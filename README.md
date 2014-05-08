@@ -10,7 +10,44 @@ This module provides secure configuration of your base OS with hardening.
 
 ## Parameters
 
-...
+* `desktop_enabled = false`
+  true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
+* `enable_ipv4_forwarding   = false`
+  true if this system requires packet forwarding in IPv4 (eg Router), false otherwise
+* `enable_ipv6_forwarding   = false`
+  true if this system requires packet forwarding in IPv6 (eg Router), false otherwise
+* `enable_ipv6 = false`
+* `arp_restricted = true`
+  true if you want the behavior of announcing and replying to ARP to be restricted, false otherwise
+* `extra_user_paths = []`
+  add additional paths to the user's `PATH` variable (default is empty).
+* `umask = "027"`
+* `password_max_age = 60`
+  maximum password age
+* `password_min_age = 7`
+  minimum password age (before allowing any other password change)
+* `auth_retries = 5`
+  the maximum number of authentication attempts, before the account is locked for some time
+* `auth_lockout_time = 600`
+  time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts
+* `login_timeout = 60`
+  authentication timeout in seconds, so login will exit if this time passes
+* `allow_login_without_home = false`
+  true if to allow users without home to login
+* `passwdqc_enabled = true`
+  true if you want to use strong password checking in PAM using passwdqc
+* `passwdqc_options = "min=disabled,disabled,16,12,8"`
+  set to any option line (as a string) that you want to pass to passwdqc
+* `allow_change_user`
+  if a user may use `su` to change his login
+* `enable_module_loading = true`
+  true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
+* `enable_sysrq = false`
+* `enable_core_dump = false`
+* `cpu_vendor = 'intel'`
+  only required if `enable_module_loading = false`: set the CPU vendor for modules to load
+* `root_ttys = ["console","tty1","tty2","tty3","tty4","tty5","tty6"]`
+  registered TTYs for root
 
 ## Usage
 
