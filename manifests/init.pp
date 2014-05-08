@@ -32,7 +32,6 @@ class os_hardening(
 
   $enable_module_loading    = true,
   $cpu_vendor               = "intel",
-  $desktop_enabled          = false,
   $enable_ipv4_forwarding   = false,
   $enable_ipv6              = false,
   $enable_ipv6_forwarding   = false,
