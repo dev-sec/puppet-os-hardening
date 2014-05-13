@@ -9,6 +9,8 @@
 class os_hardening::suid_sgid (
   $whitelist = [],
   $blacklist = [],
+  $remove_from_unknown = false,
+  $dry_run_on_unkown = false,
 ){
 
   # suid and sgid blacklists and whitelists
@@ -105,5 +107,22 @@ class os_hardening::suid_sgid (
   }
 
   blacklistFiles{ $final_blacklist: }
+
+  if $remove_from_unknown {
+    # create a helper script
+    # TODO: do without
+    file { '/usr/local/sbin/remove_suids':
+      ensure => file,
+      owner  => root,
+      group  => root,
+      mode   => 500,
+      content => template('os_hardening/remove_sugid_bits.erb'),
+    }
+    ->
+    # remove all bits
+    exec { 'remove SUID/SGID bits from unkown':
+      command => '/usr/local/sbin/remove_suids'
+    }
+  }
 
 }
