@@ -98,10 +98,9 @@ class os_hardening::suid_sgid (
   $final_whitelist = combine_sugid_lists($system_whitelist, $blacklist, $whitelist)
 
   define blacklistFiles {
-    if file_exists($name) {
-      file { $name:
-        mode => "ug-s"
-      }
+    exec{ "remove suid/sgid bit from $name":
+      command => "/bin/chmod ug-s $name",
+      onlyif => "/usr/bin/test -f $name",
     }
   }
 
