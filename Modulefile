@@ -1,4 +1,4 @@
-name    'os_hardening'
+name    'hardening/os_hardening'
 version '0.1.0'
 source 'https://github.com/TelekomLabs/puppet-os-hardening'
 author 'Dominik Richter'
