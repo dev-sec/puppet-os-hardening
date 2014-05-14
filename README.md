@@ -10,6 +10,8 @@ This module provides secure configuration of your base OS with hardening.
 
 ## Parameters
 
+* `system_environment = default`
+  define the context in which the system runs. Some options don't work for `docker`/`lxc`
 * `desktop_enabled = false`
   true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
 * `enable_ipv4_forwarding   = false`
