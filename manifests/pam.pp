@@ -7,9 +7,6 @@
 # Copyright 2014, Deutsche Telekom AG
 #
 class os_hardening::pam (
-  $enable_module_loading = true,
-  $cpu_vendor = "intel",
-  $desktop_enabled = false,
   $passwdqc_enabled = true,
   $auth_retries = 5,
   $auth_lockout_time = 600,

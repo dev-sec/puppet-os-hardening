@@ -21,9 +21,6 @@ class os_hardening(
 
   $allow_change_user        = false,
 
-  $enable_module_loading    = true,
-  $cpu_vendor               = "intel",
-  $desktop_enabled          = false,
   $passwdqc_enabled         = true,
   $auth_retries             = 5,
   $auth_lockout_time        = 600,
@@ -38,6 +35,7 @@ class os_hardening(
 
   $enable_module_loading    = true,
   $cpu_vendor               = "intel",
+  $desktop_enabled          = false,
   $enable_ipv4_forwarding   = false,
   $enable_ipv6              = false,
   $enable_ipv6_forwarding   = false,
@@ -77,9 +75,6 @@ class os_hardening(
     allow_change_user        => $allow_change_user,
   }
   class {'os_hardening::pam':
-    enable_module_loading    => $enable_module_loading,
-    cpu_vendor               => $cpu_vendor,
-    desktop_enabled          => $desktop_enabled,
     passwdqc_enabled         => $passwdqc_enabled,
     auth_retries             => $auth_retries,
     auth_lockout_time        => $auth_lockout_time,
