@@ -57,11 +57,16 @@ After adding this module, you can use the class:
 
 ## Contributors + Kudos
 
-...
+For the original port of `chef-os-hardening` to puppet:
+
+* Artem Sidorenko [artem-sidorenko](https://github.com/artem-sidorenko)
+* Frank Kloeker [eumel8](https://github.com/eumel8)
+
+Thank you all!!
 
 ## License and Author
 
-* Author:: Dominik Richter <dominik.richter@googlemail.com>
+* Author:: Dominik Richter <dominik.richter@gmail.com>
 * Author:: Deutsche Telekom AG
 
 Licensed under the Apache License, Version 2.0 (the "License");
