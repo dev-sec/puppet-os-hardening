@@ -7,6 +7,7 @@
 # Copyright 2014, Deutsche Telekom AG
 #
 class os_hardening(
+  $system_environment       = 'default',
   $allow_core_dumps         = false,
 
   $extra_user_paths         = [],
@@ -44,6 +45,21 @@ class os_hardening(
   $enable_sysrq             = false,
   $enable_core_dump         = false,
 ) {
+  # Prepare
+  # -------
+
+  # system environment configuration
+  # there may be differences when using kvm/lxc vs metal
+
+  # sysctl configuration doesn't work in docker:
+  $configure_sysctl = (
+    $system_environment != 'lxc' and
+    $system_environment != 'docker'
+    )
+
+
+  # Install
+  # -------
   class {'os_hardening::limits':
     allow_core_dumps         => $allow_core_dumps,
   }
@@ -81,15 +97,18 @@ class os_hardening(
     remove_from_unknown      => $remove_from_unknown,
     dry_run_on_unkown        => $dry_run_on_unkown,
   }
-  class {'os_hardening::sysctl':
-    enable_module_loading    => $enable_module_loading,
-    cpu_vendor               => $cpu_vendor,
-    desktop_enabled          => $desktop_enabled,
-    enable_ipv4_forwarding   => $enable_ipv4_forwarding,
-    enable_ipv6              => $enable_ipv6,
-    enable_ipv6_forwarding   => $enable_ipv6_forwarding,
-    arp_restricted           => $arp_restricted,
-    enable_sysrq             => $enable_sysrq,
-    enable_core_dump         => $enable_core_dump,
+
+  if $configure_sysctl {
+    class {'os_hardening::sysctl':
+      enable_module_loading    => $enable_module_loading,
+      cpu_vendor               => $cpu_vendor,
+      desktop_enabled          => $desktop_enabled,
+      enable_ipv4_forwarding   => $enable_ipv4_forwarding,
+      enable_ipv6              => $enable_ipv6,
+      enable_ipv6_forwarding   => $enable_ipv6_forwarding,
+      arp_restricted           => $arp_restricted,
+      enable_sysrq             => $enable_sysrq,
+      enable_core_dump         => $enable_core_dump,
+    }
   }
 }
