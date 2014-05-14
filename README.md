@@ -48,6 +48,16 @@ This module provides secure configuration of your base OS with hardening.
   only required if `enable_module_loading = false`: set the CPU vendor for modules to load
 * `root_ttys = ["console","tty1","tty2","tty3","tty4","tty5","tty6"]`
   registered TTYs for root
+* `whitelist = []`
+  all files which should keep their SUID/SGID bits if set (will be combined with pre-defined whiteliste of files)
+* `blacklist = []`
+  all files which should have their SUID/SGID bits removed if set (will be combined with pre-defined blacklist of files)
+* `remove_from_unknown = false`
+  if true will search through the mounted filesystems and make sure no files contain SUID/SGID bits
+  (except for the user-defined and system-defined whitelist)
+* `dry_run_on_unkown = false`
+  when using `remove_from_unkown` and setting this to true, will not actually remove SUID/SGID bits
+  from the found files but instead print the affected files
 
 ## Usage
 

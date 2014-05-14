@@ -30,6 +30,11 @@ class os_hardening(
 
   $root_ttys                = ["console","tty1","tty2","tty3","tty4","tty5","tty6"],
 
+  $whitelist                = [],
+  $blacklist                = [],
+  $remove_from_unknown      = false,
+  $dry_run_on_unkown        = false,
+
   $enable_module_loading    = true,
   $cpu_vendor               = "intel",
   $enable_ipv4_forwarding   = false,
@@ -69,6 +74,12 @@ class os_hardening(
   }
   class {'os_hardening::securetty':
     root_ttys                => $root_ttys,
+  }
+  class {'os_hardening::suid_sgid':
+    whitelist                => $whitelist,
+    blacklist                => $blacklist,
+    remove_from_unknown      => $remove_from_unknown,
+    dry_run_on_unkown        => $dry_run_on_unkown,
   }
   class {'os_hardening::sysctl':
     enable_module_loading    => $enable_module_loading,
