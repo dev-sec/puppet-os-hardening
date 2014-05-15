@@ -48,7 +48,7 @@ class os_hardening::pam (
         # remove pam_cracklib, because it does not play nice wiht passwdqc
         package { 'pam-cracklib':
           name => $pam_cracklib,
-          ensure => present,
+          ensure => absent,
         }
 
         # get the package for strong password checking
