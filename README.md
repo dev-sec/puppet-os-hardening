@@ -40,7 +40,7 @@ This module provides secure configuration of your base OS with hardening.
   true if you want to use strong password checking in PAM using passwdqc
 * `passwdqc_options = "min=disabled,disabled,16,12,8"`
   set to any option line (as a string) that you want to pass to passwdqc
-* `allow_change_user`
+* `allow_change_user = false`
   if a user may use `su` to change his login
 * `enable_module_loading = true`
   true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
