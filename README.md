@@ -73,6 +73,8 @@ For the original port of `chef-os-hardening` to puppet:
 
 * Artem Sidorenko [artem-sidorenko](https://github.com/artem-sidorenko)
 * Frank Kloeker [eumel8](https://github.com/eumel8)
+* Edmund Haselwanter [ehaselwanter](https://github.com/ehaselwanter)
+* Patrick Meier [atomic111](https://github.com/atomic111)
 
 Thank you all!!
 
