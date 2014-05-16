@@ -6,5 +6,5 @@ group :integration do
   gem 'kitchen-puppet', '= 0.0.8'
   gem 'librarian-puppet'
   gem 'puppet'
-  gem 'kitchen-sharedtests', '~> 0.1.0'
+  gem 'kitchen-sharedtests', '~> 0.2.0'
 end
