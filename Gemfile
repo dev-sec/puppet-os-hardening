@@ -8,3 +8,7 @@ group :integration do
   gem 'puppet'
   gem 'kitchen-sharedtests', '~> 0.2.0'
 end
+
+# group :openstack do
+#   gem 'kitchen-openstack'
+# end
