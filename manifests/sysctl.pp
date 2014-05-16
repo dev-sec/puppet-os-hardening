@@ -52,10 +52,12 @@ class os_hardening::sysctl (
             group => root,
             mode => 400,
             ensure => present,
+            notify => Exec['update-initramfs'],
         }
 
-        exec { 'update initramfs':
-          command => 'update-initramfs -u'
+        exec { 'update-initramfs':
+          command     => 'update-initramfs -u'
+          refreshonly => true,
         }
       }
     }
