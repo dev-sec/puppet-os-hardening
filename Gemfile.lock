@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/ehaselwanter/kitchen-puppet.git
+  revision: ba62c21d8efa623c3cff8cbe5120ea1720488cae
+  branch: repo_is_module
+  specs:
+    kitchen-puppet (0.0.9)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -10,8 +17,7 @@ GEM
     highline (1.6.21)
     json (1.8.1)
     json_pure (1.8.1)
-    kitchen-puppet (0.0.8)
-    kitchen-sharedtests (0.1.0)
+    kitchen-sharedtests (0.2.0)
       git
     kitchen-vagrant (0.15.0)
       test-kitchen (~> 1.0)
@@ -44,8 +50,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  kitchen-puppet (= 0.0.8)
-  kitchen-sharedtests (~> 0.1.0)
+  kitchen-puppet!
+  kitchen-sharedtests (~> 0.2.0)
   kitchen-vagrant
   librarian-puppet
   puppet
