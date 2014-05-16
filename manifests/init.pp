@@ -34,6 +34,7 @@ class os_hardening(
   $dry_run_on_unkown        = false,
 
   $enable_module_loading    = true,
+  $load_modules             = [], 
   $cpu_vendor               = "intel",
   $desktop_enabled          = false,
   $enable_ipv4_forwarding   = false,
@@ -96,6 +97,7 @@ class os_hardening(
   if $configure_sysctl {
     class {'os_hardening::sysctl':
       enable_module_loading    => $enable_module_loading,
+      load_modules             => $load_modules,
       cpu_vendor               => $cpu_vendor,
       desktop_enabled          => $desktop_enabled,
       enable_ipv4_forwarding   => $enable_ipv4_forwarding,

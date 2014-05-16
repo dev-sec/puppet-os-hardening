@@ -8,6 +8,7 @@
 #
 class os_hardening::sysctl (
   $enable_module_loading = true,
+  $load_modules = [],
   $cpu_vendor = "intel",
   $desktop_enabled = false,
   $enable_ipv4_forwarding = false,
