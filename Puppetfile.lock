@@ -1,10 +1,8 @@
 FORGE
   remote: http://forge.puppetlabs.com
   specs:
-    hardening/os_hardening (0.1.1)
-      puppetlabs/stdlib (= 3.2.1)
     puppetlabs/stdlib (3.2.1)
 
 DEPENDENCIES
-  hardening/os_hardening (>= 0)
+  puppetlabs/stdlib (= 3.2.1)
 
