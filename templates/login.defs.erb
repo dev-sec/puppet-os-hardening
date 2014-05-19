@@ -56,7 +56,7 @@ HUSHLOGIN_FILE  .hushlogin
 
 # *REQUIRED*: The default PATH settings, for superuser and normal users. (they are minimal, add the rest in the shell startup files)
 ENV_SUPATH  PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ENV_PATH  PATH=/usr/local/bin:/usr/bin:/bin<% if not additional_user_paths.empty? %><%= additional_user_paths %><% end %>
+ENV_PATH  PATH=/usr/local/bin:/usr/bin:/bin<% if not @additional_user_paths.empty? %><%= @additional_user_paths %><% end %>
 
 # Terminal permissions
 # --------------------
@@ -84,7 +84,7 @@ KILLCHAR  025
 # Prefix these values with `0` to get octal, `0x` to get hexadecimal.
 # `022` is the "historical" value in Debian for UMASK
 # `027`, or even `077`, could be considered better for privacy.
-UMASK   <%= umask %>
+UMASK   <%= @umask %>
 
 # Enable setting of the umask group bits to be the same as owner bits (examples: `022` -> `002`, `077` -> `007`) for non-root users, if the uid is the same as gid, and username is the same as the primary group name.
 # If set to yes, userdel will remove the user´s group if it contains no more members, and useradd will create by default a group with the name of the user.
@@ -95,10 +95,10 @@ USERGROUPS_ENAB yes
 # -----------------------
 
 # Maximum number of days a password may be used.
-PASS_MAX_DAYS <%= password_max_age.to_s %>
+PASS_MAX_DAYS <%= @password_max_age.to_s %>
 
 # Minimum number of days allowed between password changes.
-PASS_MIN_DAYS <%= password_min_age.to_s %>
+PASS_MIN_DAYS <%= @password_min_age.to_s %>
 
 # Number of days warning given before a password expires.
 PASS_WARN_AGE 7
@@ -118,19 +118,19 @@ GID_MAX     60000
 #SYS_GID_MAX      999
 
 # Max number of login retries if password is bad. This will most likely be overriden by PAM, since the default pam_unix module has it's own built in of 3 retries. However, this is a safe fallback in case you are using an authentication module that does not enforce PAM_MAXTRIES.
-LOGIN_RETRIES   <%= login_retries.to_s %>
+LOGIN_RETRIES   <%= @login_retries.to_s %>
 
 # Max time in seconds for login
-LOGIN_TIMEOUT   <%= login_timeout.to_s %>
+LOGIN_TIMEOUT   <%= @login_timeout.to_s %>
 
 # Which fields may be changed by regular users using chfn - use any combination of letters "frwh" (full name, room number, work phone, home phone).  If not defined, no changes are allowed.
 # For backward compatibility, "yes" = "rwh" and "no" = "frwh".
-<% if not chfn_restrict.empty? %>
-CHFN_RESTRICT   <%= chfn_restrict %>
+<% if not @chfn_restrict.empty? %>
+CHFN_RESTRICT   <%= @chfn_restrict %>
 <% end %>
 
 # Should login be allowed if we can't cd to the home directory?
-DEFAULT_HOME  <%= allow_login_without_home ? "yes" : "no" %>
+DEFAULT_HOME  <%= @allow_login_without_home ? "yes" : "no" %>
 
 # If defined, this command is run when removing a user.
 # It should remove any at/cron/print jobs etc. owned by
