@@ -7,19 +7,19 @@
 # Copyright 2014, Deutsche Telekom AG
 #
 class os_hardening::sysctl (
-  $enable_module_loading = true,
-  $load_modules = [],
-  $cpu_vendor = "intel",
-  $desktop_enabled = false,
+  $enable_module_loading  = true,
+  $load_modules           = [],
+  $cpu_vendor             = 'intel',
+  $desktop_enabled        = false,
   $enable_ipv4_forwarding = false,
-  $enable_ipv6 = false,
+  $enable_ipv6            = false,
   $enable_ipv6_forwarding = false,
-  $arp_restricted = true,
-  $enable_sysrq = false,
-  $enable_core_dump = false,
+  $arp_restricted         = true,
+  $enable_sysrq           = false,
+  $enable_core_dump       = false,
 ){
   # set variables
-  if $architecture == "amd64" or $architecture == "x86_64" {
+  if $::architecture == 'amd64' or $::architecture == 'x86_64' {
     $x86_64 = true
   } else {
     $x86_64 = false
@@ -27,11 +27,11 @@ class os_hardening::sysctl (
 
   # configure sysctl parameters
   file { '/etc/sysctl.conf':
-    content => template('os_hardening/sysctl.conf.erb'),
     ensure  => file,
+    content => template('os_hardening/sysctl.conf.erb'),
     owner   => root,
     group   => root,
-    mode    => 644,
+    mode    => '0644',
     notify  => Exec['reload_sysctl'],
   }
 
@@ -44,22 +44,25 @@ class os_hardening::sysctl (
   # if modules cannot be loaded at runtime, they must all
   # be pre-configured in initramfs
   if $enable_module_loading == false {
-    case $operatingsystem {
+    case $::operatingsystem {
       debian, ubuntu: {
         file {
           '/etc/initramfs-tools/modules':
+            ensure  => present,
             content => template( 'os_hardening/modules.erb' ),
-            owner => root,
-            group => root,
-            mode => 400,
-            ensure => present,
-            notify => Exec['update-initramfs'],
+            owner   => root,
+            group   => root,
+            mode    => '0400',
+            notify  => Exec['update-initramfs'],
         }
 
         exec { 'update-initramfs':
           command     => '/usr/sbin/update-initramfs -u',
           refreshonly => true,
         }
+      }
+      default: {
+        # TODO
       }
     }
   }
