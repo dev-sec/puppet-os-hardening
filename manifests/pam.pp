@@ -108,7 +108,7 @@ class os_hardening::pam (
     }
 
     # others ...
-    default {
+    default: {
       # TODO: not supported warning
     }
   }
