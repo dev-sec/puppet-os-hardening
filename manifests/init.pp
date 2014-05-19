@@ -11,12 +11,12 @@ class os_hardening(
   $allow_core_dumps         = false,
 
   $extra_user_paths         = [],
-  $umask                    = "027",
+  $umask                    = '027',
   $password_max_age         = 60,
   $password_min_age         = 7,
   $login_retries            = 5,
   $login_timeout            = 60,
-  $chfn_restrict            = "",
+  $chfn_restrict            = '',
   $allow_login_without_home = false,
 
   $allow_change_user        = false,
@@ -26,7 +26,8 @@ class os_hardening(
   $auth_lockout_time        = 600,
   $passwdqc_options         = 'min=disabled,disabled,16,12,8',
 
-  $root_ttys                = ["console","tty1","tty2","tty3","tty4","tty5","tty6"],
+  $root_ttys                =
+    ['console','tty1','tty2','tty3','tty4','tty5','tty6'],
 
   $whitelist                = [],
   $blacklist                = [],
@@ -34,8 +35,8 @@ class os_hardening(
   $dry_run_on_unkown        = false,
 
   $enable_module_loading    = true,
-  $load_modules             = [], 
-  $cpu_vendor               = "intel",
+  $load_modules             = [],
+  $cpu_vendor               = 'intel',
   $desktop_enabled          = false,
   $enable_ipv4_forwarding   = false,
   $enable_ipv6              = false,
