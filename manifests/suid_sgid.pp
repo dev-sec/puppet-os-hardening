@@ -113,15 +113,7 @@ class os_hardening::suid_sgid (
   $final_whitelist = combine_sugid_lists(
     $system_whitelist, $blacklist, $whitelist)
 
-  # Remove SUID and SGID bits from a given file
-  define blacklistFiles {
-    exec{ "remove suid/sgid bit from ${name}":
-      command => "/bin/chmod ug-s ${name}",
-      onlyif  => "/usr/bin/test -f ${name}",
-    }
-  }
-
-  blacklistFiles{ $final_blacklist: }
+  blacklist_files{ $final_blacklist: }
 
   if $remove_from_unknown {
     # create a helper script
