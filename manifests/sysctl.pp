@@ -57,7 +57,7 @@ class os_hardening::sysctl (
         }
 
         exec { 'update-initramfs':
-          command     => 'update-initramfs -u'
+          command     => '/usr/sbin/update-initramfs -u',
           refreshonly => true,
         }
       }
