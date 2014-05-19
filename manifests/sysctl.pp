@@ -1,5 +1,5 @@
 # == Class: os_hardening::sysctl
-# 
+#
 # Configures sysctl
 #
 # === Copyright
