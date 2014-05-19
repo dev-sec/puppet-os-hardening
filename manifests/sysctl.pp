@@ -8,6 +8,7 @@
 #
 class os_hardening::sysctl (
   $enable_module_loading = true,
+  $load_modules = [],
   $cpu_vendor = "intel",
   $desktop_enabled = false,
   $enable_ipv4_forwarding = false,
@@ -52,10 +53,12 @@ class os_hardening::sysctl (
             group => root,
             mode => 400,
             ensure => present,
+            notify => Exec['update-initramfs'],
         }
 
-        exec { 'update initramfs':
-          command => 'update-initramfs -u'
+        exec { 'update-initramfs':
+          command     => '/usr/sbin/update-initramfs -u',
+          refreshonly => true,
         }
       }
     }

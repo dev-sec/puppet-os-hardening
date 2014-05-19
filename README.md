@@ -44,6 +44,8 @@ This module provides secure configuration of your base OS with hardening.
   if a user may use `su` to change his login
 * `enable_module_loading = true`
   true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
+* `load_modules = []`
+  load this modules via initramfs if enable_module_loading is false
 * `enable_sysrq = false`
 * `enable_core_dump = false`
 * `cpu_vendor = 'intel'`
