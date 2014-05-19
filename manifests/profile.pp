@@ -14,9 +14,9 @@ class os_hardening::profile (
       '/etc/profile.d/pinerolo_profile.sh':
         ensure => present,
         source => 'puppet:///modules/os_hardening/profile.conf',
-        owner => root,
-        group => root,
-        mode => 400
+        owner  => root,
+        group  => root,
+        mode   => '0400',
     }
   }
 }
