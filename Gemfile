@@ -9,6 +9,14 @@ group :integration do
   gem 'kitchen-sharedtests', '~> 0.2.0'
 end
 
+group :development, :test do
+  gem 'rake'
+  gem 'rspec-puppet'
+  gem 'puppetlabs_spec_helper'
+  gem 'puppet-lint'
+  gem 'guard-rake'
+end
+
 # group :openstack do
 #   gem 'kitchen-openstack'
 # end

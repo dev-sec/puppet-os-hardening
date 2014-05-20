@@ -1,5 +1,5 @@
 # == Class: os_hardening::pam
-# 
+#
 # Configures PAM
 #
 # === Copyright
@@ -13,57 +13,57 @@ class os_hardening::pam (
   $passwdqc_options = 'min=disabled,disabled,16,12,8',
 ){
   # prepare package names
-  case $operatingsystem {
+  case $::operatingsystem {
     redhat, fedora: {
-      $pam_ccreds = "pam_ccreds"
-      $pam_passwdqc = "pam_passwdqc"
-      $pam_cracklib = "pam_cracklib"
+      $pam_ccreds = 'pam_ccreds'
+      $pam_passwdqc = 'pam_passwdqc'
+      $pam_cracklib = 'pam_cracklib'
     }
-    debian, ubuntu: { 
-      $pam_ccreds = "libpam-ccreds"
-      $pam_passwdqc = "libpam-passwdqc"
-      $pam_cracklib = "libpam-cracklib"
+    debian, ubuntu: {
+      $pam_ccreds = 'libpam-ccreds'
+      $pam_passwdqc = 'libpam-passwdqc'
+      $pam_cracklib = 'libpam-cracklib'
     }
     default: {
-      $pam_ccreds = "pam_ccreds"
-      $pam_passwdqc = "pam_passwdqc"
-      $pam_cracklib = "pam_cracklib"
+      $pam_ccreds = 'pam_ccreds'
+      $pam_passwdqc = 'pam_passwdqc'
+      $pam_cracklib = 'pam_cracklib'
     }
   }
 
   # remove ccreds if not necessary
   package{ 'pam-ccreds':
     ensure => absent,
-    name => $pam_ccreds
+    name   => $pam_ccreds
   }
 
-  case $operatingsystem {
+  case $::operatingsystem {
     debian, ubuntu: {
       # configure paths
-      $passwdqc_path = "/usr/share/pam-configs/passwdqc"
-      $tally2_path   = "/usr/share/pam-configs/tally2"
+      $passwdqc_path = '/usr/share/pam-configs/passwdqc'
+      $tally2_path   = '/usr/share/pam-configs/tally2'
 
       # if passwdqc is enabled
       if $passwdqc_enabled == true {
         # remove pam_cracklib, because it does not play nice wiht passwdqc
         package { 'pam-cracklib':
-          name => $pam_cracklib,
           ensure => absent,
+          name   => $pam_cracklib,
         }
 
         # get the package for strong password checking
         package { 'pam-passwdqc':
-          name => $pam_passwdqc,
           ensure => present,
+          name   => $pam_passwdqc,
         }
 
         # configure passwdqc via central module:
         file { $passwdqc_path:
+          ensure  => present,
           content => template( 'os_hardening/pam_passwdqc.erb' ),
-          owner => root,
-          group => root,
-          mode => 640,
-          ensure => present,
+          owner   => root,
+          group   => root,
+          mode    => '0640',
         }
 
       } else {
@@ -77,24 +77,24 @@ class os_hardening::pam (
         # make sure the package is not on the system,
         # if this feature is not wanted
         package { 'pam-passwdqc':
-          name => $pam_passwdqc,
           ensure => absent,
+          name   => $pam_passwdqc,
         }
       }
 
       #configure tally2
       if $auth_retries > 0 {
-        # tally2 is needed for pam 
+        # tally2 is needed for pam
         package{ 'libpam-modules':
           ensure => present,
         }
 
         file { $tally2_path:
+          ensure  => present,
           content => template( 'os_hardening/pam_tally2.erb' ),
-          owner => root,
-          group => root,
-          mode => 640,
-          ensure => present,
+          owner   => root,
+          group   => root,
+          mode    => '0640',
         }
       } else {
         file { $tally2_path:
@@ -108,6 +108,9 @@ class os_hardening::pam (
     }
 
     # others ...
+    default: {
+      # TODO: not supported warning
+    }
   }
 
 }
