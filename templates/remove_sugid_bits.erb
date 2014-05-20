@@ -12,7 +12,7 @@ filesystems=`mount | egrep -v "nosuid|cgroup|udev|none"| cut -f3 -d" "`
 
 for fs in $filesystems
 do
-  files=`/usr/bin/find $fs \( -perm -4000 -o -perm -2000 \) -type f -print 2>/dev/null | /bin/egrep -v "$suid_whitelist"`
+  files=`/usr/bin/find $fs -xdev \( -perm -4000 -o -perm -2000 \) -type f -print 2>/dev/null | /bin/egrep -v "$suid_whitelist"`
   if [ -n "$files" ]; then
     <% if dry_run_on_unkown %>
     echo "remove from: $files"
