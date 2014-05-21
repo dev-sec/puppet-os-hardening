@@ -32,7 +32,7 @@ class os_hardening(
   $whitelist                = [],
   $blacklist                = [],
   $remove_from_unknown      = false,
-  $dry_run_on_unkown        = false,
+  $dry_run_on_unknown       = false,
 
   $enable_module_loading    = true,
   $load_modules             = [],
@@ -92,7 +92,7 @@ class os_hardening(
     whitelist                => $whitelist,
     blacklist                => $blacklist,
     remove_from_unknown      => $remove_from_unknown,
-    dry_run_on_unkown        => $dry_run_on_unkown,
+    dry_run_on_unknown       => $dry_run_on_unknown,
   }
 
   if $configure_sysctl {
