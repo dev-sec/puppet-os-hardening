@@ -7,10 +7,10 @@
 # Copyright 2014, Deutsche Telekom AG
 #
 class os_hardening::suid_sgid (
-  $whitelist = [],
-  $blacklist = [],
+  $whitelist           = [],
+  $blacklist           = [],
   $remove_from_unknown = false,
-  $dry_run_on_unkown = false,
+  $dry_run_on_unknown  = false,
 ){
 
   # suid and sgid blacklists and whitelists
