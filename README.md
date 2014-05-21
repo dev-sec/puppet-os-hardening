@@ -57,11 +57,9 @@ This module provides secure configuration of your base OS with hardening.
 * `blacklist = []`
   all files which should have their SUID/SGID bits removed if set (will be combined with pre-defined blacklist of files)
 * `remove_from_unknown = false`
-  if true will search through the mounted filesystems and make sure no files contain SUID/SGID bits
-  (except for the user-defined and system-defined whitelist)
+  `true` if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Chef run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
 * `dry_run_on_unkown = false`
-  when using `remove_from_unkown` and setting this to true, will not actually remove SUID/SGID bits
-  from the found files but instead print the affected files
+  like `remove_from_unknown` above, only that SUID/SGID bits aren't removed. It will still search the filesystems to look for SUID/SGID bits but it will only print them in your log. This option is only ever recommended, when you first configure `remove_from_unkown` for SUID/SGID bits, so that you can see the files that are being changed and make adjustments to your `whitelist` and `blacklist`.
 
 ## Usage
 
