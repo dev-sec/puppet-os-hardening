@@ -7,7 +7,7 @@
 # suid whitelist
 suid_whitelist="<%= final_whitelist.join('|') %>"
 
-#filesystems to check, we irgnore mounts with nosuid and some sys mounts
+#filesystems to check, we ignore mounts with nosuid and some sys mounts
 filesystems=`mount | egrep -v "nosuid|cgroup|udev|none"| cut -f3 -d" "`
 
 for fs in $filesystems
