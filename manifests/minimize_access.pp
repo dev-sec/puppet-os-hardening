@@ -10,14 +10,22 @@ class os_hardening::minimize_access (
   $allow_change_user = false,
 ){
   # from which folders to remove public access
-  $folders = '/usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin'
+  $folders = [
+    '/usr/local/sbin',
+    '/usr/local/bin',
+    '/usr/sbin',
+    '/usr/bin',
+    '/sbin',
+    '/bin',
+  ]
 
   # remove write permissions from path folders ($PATH) for all regular users
   # this prevents changing any system-wide command from normal users
-  exec { "remove write permission from ${folders}":
-    command => "/bin/chmod go-w -R ${folders}",
+  file { $folders:
+    ensure  => 'directory',
+    mode    => 'go-w',
+    recurse => 'true',
   }
-
   # shadow must only be accessible to user root
   file { '/etc/shadow':
     owner => root,
