@@ -88,9 +88,9 @@ class os_hardening::sysctl (
   # * **1** - Try to avoid local addresses that are not in the target's subnet for this interface. This mode is useful when target hosts reachable via this interface require the source IP address in ARP requests to be part of their logical network configured on the receiving interface. When we generate the request we will check all our subnets that include the target IP and will preserve the source address if it is from such subnet. If there is no such subnet we select source address according to the rules for level 2.
   # * **2** - Always use the best local address for this target. In this mode we ignore the source address in the IP packet and try to select local address that we prefer for talks with the target host. Such local address is selected by looking for primary IP addresses on all our subnets on the outgoing interface that include the target IP address. If no suitable local address is found we select the first local address we have on the outgoing interface or on all other interfaces, with the hope we will receive reply for our request and even sometimes no matter the source IP address we announce.
   if $arp_restricted {
-    sysctl { 'net.ipv4.conf.eth0.arp_ignore': value => '1' }
+    sysctl { 'net.ipv4.conf.all.arp_ignore': value => '1' }
   } else {
-    sysctl { 'net.ipv4.conf.eth0.arp_ignore': value => '0' }
+    sysctl { 'net.ipv4.conf.all.arp_ignore': value => '0' }
   }
 
 
@@ -103,9 +103,9 @@ class os_hardening::sysctl (
   # * **4-7** - reserved
   # * **8** - do not reply for all local addresses
   if $arp_restricted {
-    sysctl { 'net.ipv4.conf.eth0.arp_announce': value => '2' }
+    sysctl { 'net.ipv4.conf.all.arp_announce': value => '2' }
   } else {
-    sysctl { 'net.ipv4.conf.eth0.arp_announce': value => '0' }
+    sysctl { 'net.ipv4.conf.all.arp_announce': value => '0' }
   }
 
   # RFC 1337 fix F1
@@ -164,7 +164,7 @@ class os_hardening::sysctl (
   # * **256** - nicing of all RT tasks
   if $enable_sysrq {
     $limited_sysrq = 4 + 16 + 32 + 64 + 128
-    sysctl { 'kernel.sysrq': value => limited_sysrq }
+    sysctl { 'kernel.sysrq': value => $limited_sysrq }
   } else {
     sysctl { 'kernel.sysrq': value => '0' }
   }
