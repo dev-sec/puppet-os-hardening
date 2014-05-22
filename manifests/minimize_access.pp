@@ -24,7 +24,7 @@ class os_hardening::minimize_access (
   file { $folders:
     ensure  => 'directory',
     mode    => 'go-w',
-    recurse => 'true',
+    recurse => true,
   }
   # shadow must only be accessible to user root
   file { '/etc/shadow':
