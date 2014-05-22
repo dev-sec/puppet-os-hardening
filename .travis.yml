@@ -2,8 +2,6 @@ rvm:
   - 1.8.7
   - 1.9.3
   - 2.0.0
-script:
-  - "bundle exec rake unit"
 env:
   - PUPPET_VERSION="~> 2.7.0"
   - PUPPET_VERSION="~> 3.0.0"

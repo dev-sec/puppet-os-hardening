@@ -5,4 +5,4 @@ require 'puppet-lint/tasks/puppet-lint'
 PuppetLint.configuration.send('disable_autoloader_layout')
 PuppetLint.configuration.send('disable_80chars')
 
-task :unit => [:lint, :spec]
+task :default => [:lint, :spec]
