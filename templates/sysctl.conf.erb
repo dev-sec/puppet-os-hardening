@@ -9,24 +9,16 @@
 # ----------
 
 # Only enable IP traffic forwarding, if required.
-<% if @enable_ipv4_forwarding %>
-net.ipv4.ip_forward = 1
-<% else %>
-net.ipv4.ip_forward = 0
-<% end %>
+net.ipv4.ip_forward = <%= @enable_ipv4_forwarding ? 1 : 0 %>
 
 # Disable or Enable IPv6 as it is needed.
-<% if @enable_ipv6 %>
+<% if @enable_ipv6 -%>
 net.ipv6.conf.all.disable_ipv6 = 0
 
 # Only enable IP traffic forwarding, if required.
-<% if @enable_ipv6_forwarding %>
-net.ipv6.conf.all.forwarding = 1
-<% else %>
-net.ipv6.conf.all.forwarding = 0
-<% end %>
+net.ipv6.conf.all.forwarding = <%= @enable_ipv6_forwarding ? 1 : 0 %>
 
-<% else %>
+<% else -%>
 net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.all.forwarding = 0
 
@@ -37,7 +29,7 @@ net.ipv6.conf.default.accept_ra_defrtr = 0
 net.ipv6.conf.default.autoconf = 0
 net.ipv6.conf.default.dad_transmits = 0
 net.ipv6.conf.default.max_addresses = 1
-<% end %>
+<% end -%>
 
 #ignore RAs on Ipv6
 net.ipv6.conf.all.accept_ra = 0
@@ -115,7 +107,9 @@ net.ipv4.conf.default.send_redirects = 0
 # ------
 
 # This settings controls how the kernel behaves towards module changes at runtime. Setting to 1 will disable module loading at runtime.
-#kernel.modules_disabled = <%= @enable_module_loading ? 0 : 1 %>
+<% if @enable_module_loading -%>
+kernel.modules_disabled = 1
+<% end -%>
 
 # Magic Sysrq should be disabled, but can also be set to a safe value if so desired for physical machines. It can allow a safe reboot if the system hangs and is a 'cleaner' alternative to hitting the reset button.
 # The following values are permitted:
