@@ -15,35 +15,5 @@
   ],
   "types": [
 
-  ],
-  "checksums": {
-    "CHANGELOG.md": "6e83d4bc615f4a404b3bd94734304a17",
-    "Gemfile": "07d3c5e5468da968f1e2011c5391bc9a",
-    "Gemfile.lock": "928e753b2a5d1778c8514db38ac565d4",
-    "Modulefile": "785dca63223a1fcb8611a18ccdee1df1",
-    "Puppetfile": "b60b846b77dd34eb6e753ebe31024ee5",
-    "Puppetfile.lock": "5fdfc75315bfcbdc17c1e095ae73fc1d",
-    "README.md": "27aa6f401a0701f7396989552c736d37",
-    "Thorfile": "b0fa6bd49862797f6a83ad4a20a79819",
-    "files/limits.conf": "898c19ca756e1928247691715cf67b4b",
-    "files/profile.conf": "486b2430f155dc2052698af48be9c0f2",
-    "lib/puppet/parser/functions/combine_sugid_lists.rb": "9d6770aaf6a0e11c246a65a99ab2e997",
-    "manifests/init.pp": "51fb67c8e9beae9f09be240c46f92552",
-    "manifests/limits.pp": "e3a58f35c2f6a45c4b7a9192284f9fd8",
-    "manifests/login_defs.pp": "7aaf6b6fc006db40c86337d8454d0460",
-    "manifests/minimize_access.pp": "753c187d75d0bad59e0bf0d6c8972599",
-    "manifests/pam.pp": "2a46a0ec97a8edc1ccd27fd27fa6a8fe",
-    "manifests/profile.pp": "812e3a8eebc4907de2366ee5e719ff9d",
-    "manifests/securetty.pp": "3982fdf9a0f8c11c4a140da278edd677",
-    "manifests/site.pp": "817260dd2cd7c3e7658f0f94c0aa953f",
-    "manifests/suid_sgid.pp": "9aa28e6eb7f4895fedeb8f59bfc4a2f8",
-    "manifests/sysctl.pp": "8da54c17ec6dc74b5c998f320f1d733f",
-    "templates/login.defs.erb": "bc4911519eb10e39b8e8936e7e4aebe4",
-    "templates/modules.erb": "4baa80525796a7cb2df5b8690b01573a",
-    "templates/pam_passwdqc.erb": "8671a400c4f63a89befd699823a11fc5",
-    "templates/pam_tally2.erb": "1227acd080c11a136b9416f52c6b4774",
-    "templates/remove_sugid_bits.erb": "2f8bffd27d65583098d97bd999744615",
-    "templates/securetty.erb": "de5e57d4007aaf4aca50974d4f45d016",
-    "templates/sysctl.conf.erb": "a20a57398293a9e6c778a4ba5bbfd0fa"
-  }
+  ]
 }
