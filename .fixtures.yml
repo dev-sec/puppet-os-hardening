@@ -1,0 +1,3 @@
+fixtures:
+  repositories:
+    sysctl: https://github.com/thias/puppet-sysctl.git

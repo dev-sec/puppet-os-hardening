@@ -11,6 +11,10 @@
     {
       "name": "puppetlabs/stdlib",
       "version_requirement": "3.2.1"
+    },
+    {
+      "name": "thias/sysctl",
+      "version_requirement": "0.3.1"
     }
   ],
   "types": [
