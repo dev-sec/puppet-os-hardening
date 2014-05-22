@@ -1,7 +1,6 @@
 guard 'rake', :task => 'lint' do
   watch(%r{^manifests/.*$})
   watch(%r{^templates/.*$})
-  watch(%r{^files/.*$})
 end
 
 guard 'rake', :task => 'spec' do
@@ -10,5 +9,4 @@ guard 'rake', :task => 'spec' do
   watch(%r{^lib/.*$})
   watch(%r{^manifests/.*$})
   watch(%r{^templates/.*$})
-  watch(%r{^files/.*$})
 end
