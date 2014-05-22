@@ -9,18 +9,18 @@
 # ----------
 
 # Only enable IP traffic forwarding, if required.
-<% if @enable_ipv4_forwarding=="true" %>
+<% if @enable_ipv4_forwarding %>
 net.ipv4.ip_forward = 1
 <% else %>
 net.ipv4.ip_forward = 0
 <% end %>
 
 # Disable or Enable IPv6 as it is needed.
-<% if @enable_ipv6=="true" %>
+<% if @enable_ipv6 %>
 net.ipv6.conf.all.disable_ipv6 = 0
 
 # Only enable IP traffic forwarding, if required.
-<% if @enable_ipv6_forwarding=="true" %>
+<% if @enable_ipv6_forwarding %>
 net.ipv6.conf.all.forwarding = 1
 <% else %>
 net.ipv6.conf.all.forwarding = 0
