@@ -69,13 +69,15 @@ After adding this module, you can use the class:
 
 ## Contributors + Kudos
 
+* Edmund Haselwanter [ehaselwanter](https://github.com/ehaselwanter)
+* Patrick Meier [atomic111](https://github.com/atomic111)
+* Reik Keutterling [spielkind](https://github.com/spielkind)
+* Tristan Helmich [fadenb](https://github.com/fadenb)
+
 For the original port of `chef-os-hardening` to puppet:
 
 * Artem Sidorenko [artem-sidorenko](https://github.com/artem-sidorenko)
 * Frank Kloeker [eumel8](https://github.com/eumel8)
-* Edmund Haselwanter [ehaselwanter](https://github.com/ehaselwanter)
-* Patrick Meier [atomic111](https://github.com/atomic111)
-* Reik Keutterling [spielkind](https://github.com/spielkind)
 
 Thank you all!!
 
