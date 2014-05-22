@@ -2,9 +2,75 @@ require 'spec_helper'
 
 describe 'os_hardening::sysctl' do
 
+  context 'with enable_ipv4_forwarding => true' do
+    let(:params) { {:enable_ipv4_forwarding => true} }
+    it do
+      should contain_sysctl('net.ipv4.ip_forward').with_value('1')
+    end
+  end
+
+  context 'with enable_ipv4_forwarding => false' do
+    let(:params) { {:enable_ipv4_forwarding => false} }
+    it do
+      should contain_sysctl('net.ipv4.ip_forward').with_value('0')
+    end
+  end
+
+  context 'with enable_ipv6 => true' do
+    let(:params) { {:enable_ipv6 => true} }
+    it do
+      should contain_sysctl('net.ipv6.conf.all.disable_ipv6').with_value('0')
+      should contain_sysctl('net.ipv6.conf.all.forwarding').with_value('0')
+    end
+  end
+
+  context 'with enable_ipv6 => false' do
+    let(:params) { {:enable_ipv6 => false} }
+    it do
+      should contain_sysctl('net.ipv6.conf.all.disable_ipv6').with_value('1')
+      should contain_sysctl('net.ipv6.conf.all.forwarding').with_value('0')
+      should contain_sysctl('net.ipv6.conf.default.router_solicitations').with_value('0')
+      should contain_sysctl('net.ipv6.conf.default.accept_ra_rtr_pref').with_value('0')
+      should contain_sysctl('net.ipv6.conf.default.accept_ra_pinfo').with_value('0')
+      should contain_sysctl('net.ipv6.conf.default.accept_ra_defrtr').with_value('0')
+      should contain_sysctl('net.ipv6.conf.default.autoconf').with_value('0')
+      should contain_sysctl('net.ipv6.conf.default.dad_transmits').with_value('0')
+      should contain_sysctl('net.ipv6.conf.default.max_addresses').with_value('1')
+    end
+  end
+
+  context 'with enable_ipv6_forwarding => true' do
+    let(:params) { {:enable_ipv6_forwarding => true, :enable_ipv6 => true } }
+    it do
+      should contain_sysctl('net.ipv6.conf.all.forwarding').with_value('1')
+    end
+  end
+
+  context 'with enable_ipv6_forwarding => false' do
+    let(:params) { {:enable_ipv6_forwarding => false, :enable_ipv6 => true } }
+    it do
+      should contain_sysctl('net.ipv6.conf.all.forwarding').with_value('0')
+    end
+  end
+
+  context 'with arp_restricted => true' do
+    let(:params) { {:arp_restricted => true } }
+    it do
+      should contain_sysctl('net.ipv4.conf.all.arp_ignore').with_value('1')
+      should contain_sysctl('net.ipv4.conf.all.arp_announce').with_value('2')
+    end
+  end
+
+  context 'with arp_restricted => false' do
+    let(:params) { {:arp_restricted => false } }
+    it do
+      should contain_sysctl('net.ipv4.conf.all.arp_ignore').with_value('0')
+      should contain_sysctl('net.ipv4.conf.all.arp_announce').with_value('0')
+    end
+  end
+
   context 'with enable_module_loading => true' do
     let(:params) { {:enable_module_loading => true} }
-
     it do
       should_not contain_sysctl('kernel.modules_disabled')
     end
@@ -12,9 +78,36 @@ describe 'os_hardening::sysctl' do
 
   context 'with enable_module_loading => false' do
     let(:params) { {:enable_module_loading => false} }
-
     it do
       should contain_sysctl('kernel.modules_disabled').with_value('1')
+    end
+  end
+
+  context 'with enable_sysrq => true' do
+    let(:params) { {:enable_sysrq => true } }
+    it do
+      should contain_sysctl('kernel.sysrq').with_value (4 + 16 + 32 + 64 + 128).to_s
+    end
+  end
+
+  context 'with enable_sysrq => false' do
+    let(:params) { {:enable_sysrq => false } }
+    it do
+      should contain_sysctl('kernel.sysrq').with_value('0')
+    end
+  end
+
+  context 'with enable_core_dump => true' do
+    let(:params) { {:enable_core_dump => true } }
+    it do
+      should contain_sysctl('fs.suid_dumpable').with_value('1')
+    end
+  end
+
+  context 'with enable_core_dump => false' do
+    let(:params) { {:enable_core_dump => false } }
+    it do
+      should contain_sysctl('fs.suid_dumpable').with_value('0')
     end
   end
 
