@@ -1,3 +1,3 @@
 fixtures:
   repositories:
-    sysctl: git@github.com:thias/puppet-sysctl.git
+    sysctl: https://github.com/thias/puppet-sysctl.git
