@@ -14,7 +14,7 @@ group :development, :test do
   gem 'rspec-puppet'
   gem 'puppetlabs_spec_helper'
   gem 'puppet-lint'
-  gem 'guard-rake'
+#  gem 'guard-rake'
 end
 
 # group :openstack do
