@@ -9,3 +9,4 @@ project_page 'https://github.com/TelekomLabs/puppet-os-hardening'
 
 ## Add dependencies, if any:
 dependency 'puppetlabs/stdlib', '3.2.1'
+dependency 'thias/sysctl', '0.3.1'
