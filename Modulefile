@@ -1,5 +1,5 @@
 name    'hardening/os_hardening'
-version '0.1.2'
+version '0.1.3'
 source 'https://github.com/TelekomLabs/puppet-os-hardening'
 author 'Dominik Richter'
 license 'Apache License, Version 2.0'
