@@ -1,1 +1,0 @@
-class { 'os_hardening': }
