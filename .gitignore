@@ -6,3 +6,5 @@ shared_test_repo/
 test/integration
 .librarian/
 .tmp/
+Puppetfile.lock
+Gemfile.lock
