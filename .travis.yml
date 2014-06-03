@@ -13,8 +13,8 @@ matrix:
   fast_finish: true
   exclude:
     - rvm: 1.9.3
-      env: PUPPET_GEM_VERSION="~> 2.7.0"
+      env: PUPPET_VERSION="~> 2.7.0"
     - rvm: 2.0.0
-      env: PUPPET_GEM_VERSION="~> 2.7.0"
+      env: PUPPET_VERSION="~> 2.7.0"
     - rvm: 2.0.0
-      env: PUPPET_GEM_VERSION="~> 3.0.0"
+      env: PUPPET_VERSION="~> 3.0.0"
