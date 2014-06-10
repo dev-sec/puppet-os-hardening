@@ -9,8 +9,7 @@
   "project_page": "https://github.com/TelekomLabs/puppet-os-hardening",
   "dependencies": [
     {
-      "name": "puppetlabs/stdlib",
-      "version_requirement": "3.2.1"
+      "name": "puppetlabs/stdlib"
     },
     {
       "name": "thias/sysctl",
