@@ -7,6 +7,7 @@ require 'rubocop/rake_task'
 
 PuppetLint.configuration.send('disable_autoloader_layout')
 PuppetLint.configuration.send('disable_80chars')
+PuppetLint.configuration.fail_on_warnings = true
 PuppetLint.configuration.ignore_paths = ["vendor/**/*.pp"]
 
 task :default => [:run_all_linters, :spec]
