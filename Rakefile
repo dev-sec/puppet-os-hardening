@@ -10,7 +10,7 @@ PuppetLint.configuration.send('disable_80chars')
 PuppetLint.configuration.fail_on_warnings = true
 PuppetLint.configuration.ignore_paths = ["vendor/**/*.pp"]
 
-task :default => [:run_all_linters, :spec]
+task :default => [:lint, :spec]
 
 # Lint the cookbook
 desc "Run all linters: rubocop and foodcritic"
