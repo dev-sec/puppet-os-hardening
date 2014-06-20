@@ -11,6 +11,7 @@ group :test do
   gem 'rspec-puppet'
   gem 'puppetlabs_spec_helper'
   gem 'puppet-lint'
+  gem 'rubocop',    '~> 0.18.1'
 end
 
 group :development do
