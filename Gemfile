@@ -12,7 +12,7 @@ group :test do
   # avoid NoMethodError: private method `clone' called for #<RuboCop::Cop::CopStore:0x00000104e286c8>
   gem 'puppetlabs_spec_helper', :git => "https://github.com/ehaselwanter/puppetlabs_spec_helper"
   gem 'puppet-lint'
-  gem 'rubocop',    '~> 0.23' if RUBY_VERSION > "1.9.3"
+  gem 'rubocop',    '~> 0.23' if RUBY_VERSION > "1.9.2"
 end
 
 group :development do
