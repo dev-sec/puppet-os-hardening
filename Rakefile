@@ -1,11 +1,18 @@
 
-if RUBY_VERSION > "1.9.3"
-  require 'rubocop'
-  require 'rubocop/rake_task' 
+require 'puppet-lint/tasks/puppet-lint'
+require 'puppetlabs_spec_helper/rake_tasks'
 
-  # Lint the cookbook
-  desc "Run all linters: rubocop and foodcritic"
-  task :run_all_linters => [ :rubocop, :lint ]
+PuppetLint.configuration.send('disable_autoloader_layout')
+PuppetLint.configuration.send('disable_80chars')
+PuppetLint.configuration.fail_on_warnings = true
+PuppetLint.configuration.ignore_paths = ['vendor/**/*.pp']
+
+if RUBY_VERSION > '1.9.3'
+  require 'rubocop'
+  require 'rubocop/rake_task'
+
+  desc "Run all linters: rubocop and puppet-lint"
+  task :run_all_linters => [:rubocop, :lint]
 
   # Rubocop
   desc 'Run Rubocop lint checks'
@@ -13,22 +20,15 @@ if RUBY_VERSION > "1.9.3"
     RuboCop::RakeTask.new
   end
 
-  task :default => [:run_all_linters, :spec]
+  task :default => [:lint, :spec]
 
 else
+  desc "Run all linters: rubocop and puppet-lint"
+  task :run_all_linters => [:lint]
+
   task :default => [:lint, :spec]
 end
 
-# puppet must be below rubocop otherwise you get
-# NoMethodError: private method `clone' called for #<RuboCop::Cop::CopStore:0x00000104e286c8>
-
-require 'puppetlabs_spec_helper/rake_tasks'
-require 'puppet-lint/tasks/puppet-lint'
-
-PuppetLint.configuration.send('disable_autoloader_layout')
-PuppetLint.configuration.send('disable_80chars')
-PuppetLint.configuration.fail_on_warnings = true
-PuppetLint.configuration.ignore_paths = ["vendor/**/*.pp"]
 
 
 
