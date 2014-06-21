@@ -1,10 +1,9 @@
 AllCops:
-  Excludes:
+  Exclude:
     - vendor/**
     - metadata.rb
     - '**/Puppetfile'
     - Puppetfile
-
 
 Documentation:
   Enabled: false
