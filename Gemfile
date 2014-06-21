@@ -11,7 +11,7 @@ group :test do
   gem 'rspec-puppet'
   gem 'puppetlabs_spec_helper'
   gem 'puppet-lint'
-  gem 'rubocop',    '~> 0.18.1'
+  gem 'rubocop',    '~> 0.18.1' if RUBY_VERSION > "1.9.3"
 end
 
 group :development do
