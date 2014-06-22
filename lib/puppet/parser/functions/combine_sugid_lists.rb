@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Puppet
   module Parser
     module Functions
