@@ -20,7 +20,7 @@ if RUBY_VERSION > '1.9.2'
     RuboCop::RakeTask.new
   end
 
-  task :default => [:lint, :spec]
+  task :default => [:run_all_linters, :spec]
 
 else
   desc "Run all linters: rubocop and puppet-lint"
