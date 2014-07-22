@@ -1,10 +1,13 @@
-# == Class: os_hardening::suid_sgid
-#
-# Minimize SUID and SGID bits.
-#
 # === Copyright
 #
 # Copyright 2014, Deutsche Telekom AG
+# Licensed under the Apache License, Version 2.0 (the "License");
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+
+# == Class: os_hardening::suid_sgid
+#
+# Minimize SUID and SGID bits.
 #
 class os_hardening::suid_sgid (
   $whitelist           = [],

@@ -1,4 +1,11 @@
+# === Copyright
+#
+# Copyright 2014, Deutsche Telekom AG
+# Licensed under the Apache License, Version 2.0 (the "License");
+# http://www.apache.org/licenses/LICENSE-2.0
+#
 # Remove SUID and SGID bits from a given file
+
 define blacklist_files {
   exec{ "remove suid/sgid bit from ${name}":
     command => "/bin/chmod ug-s ${name}",

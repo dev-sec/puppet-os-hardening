@@ -1,10 +1,13 @@
-# == Class: os_hardening::minimize_access
-#
-# Configures profile.conf.
-#
 # === Copyright
 #
 # Copyright 2014, Deutsche Telekom AG
+# Licensed under the Apache License, Version 2.0 (the "License");
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+
+# == Class: os_hardening::minimize_access
+#
+# Configures profile.conf.
 #
 class os_hardening::minimize_access (
   $allow_change_user = false,

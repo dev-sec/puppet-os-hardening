@@ -1,10 +1,13 @@
-# == Class: os_hardening::sysctl
-#
-# Configures sysctl
-#
 # === Copyright
 #
 # Copyright 2014, Deutsche Telekom AG
+# Licensed under the Apache License, Version 2.0 (the "License");
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+
+# == Class: os_hardening::pam
+#
+# Configures PAM
 #
 class os_hardening::sysctl (
   $enable_module_loading  = true,
