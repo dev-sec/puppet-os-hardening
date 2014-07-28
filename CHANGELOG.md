@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0
+
+* add verified support for puppet 3.6, remove support for puppet 3.0 and 3.4
+* improvement: streamlined rubocop and puppet-lint
+* improvement: remove stdlib fixed version dependency
+* improvement: loosened thias/sysctl dependency
+* bugfix: get puppet version in gemfile from ENV: `PUPPET_VERSION`
+
 ## 0.1.3
 
 **API-change**: `dry_run_on_unkown` is now `dry_run_on_unknown`
