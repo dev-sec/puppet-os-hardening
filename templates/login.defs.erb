@@ -30,7 +30,7 @@ FAILLOG_ENAB    yes
 LOG_UNKFAIL_ENAB  no
 
 # Enable logging of successful logins
-LOG_OK_LOGINS   yes
+LOG_OK_LOGINS   no
 
 # Enable "syslog" logging of su activity - in addition to sulog file logging.
 SYSLOG_SU_ENAB    yes
@@ -56,7 +56,7 @@ HUSHLOGIN_FILE  .hushlogin
 
 # *REQUIRED*: The default PATH settings, for superuser and normal users. (they are minimal, add the rest in the shell startup files)
 ENV_SUPATH  PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-ENV_PATH  PATH=/usr/local/bin:/usr/bin:/bin<% if not @additional_user_paths.empty? %><%= @additional_user_paths %><% end %>
+ENV_PATH  PATH=/usr/local/bin:/usr/bin:/bin<% if not @additional_user_paths.empty? %>:<%= @additional_user_paths %><% end %>
 
 # Terminal permissions
 # --------------------
