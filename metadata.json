@@ -1,13 +1,16 @@
 {
   "name": "hardening/os_hardening",
   "version": "1.0.1",
-  "source": "https://github.com/TelekomLabs/puppet-os-hardening",
   "author": "Dominik Richter",
-  "license": "Apache License, Version 2.0",
   "summary": "Configures the base OS with hardening",
-  "description": "Configures the base OS with hardening",
+  "license": "Apache License, Version 2.0",
+  "source": "https://github.com/TelekomLabs/puppet-os-hardening",
   "project_page": "https://github.com/TelekomLabs/puppet-os-hardening",
   "issues_url": "https://github.com/TelekomLabs/puppet-os-hardening/issues",
+  "description": "Configures the base OS with hardening",
+  "types": [
+
+  ],
   "dependencies": [
     {
       "name": "puppetlabs/stdlib"
@@ -16,8 +19,5 @@
       "name": "thias/sysctl",
       "version_requirement": ">=0.3.1"
     }
-  ],
-  "types": [
-
   ]
 }
