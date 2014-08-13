@@ -67,6 +67,7 @@ class os_hardening::pam (
           owner   => root,
           group   => root,
           mode    => '0640',
+          notify  => Exec['update-pam'],
         }
 
       } else {
@@ -75,6 +76,7 @@ class os_hardening::pam (
         # delete passwdqc file on ubuntu and debian
         file { $passwdqc_path:
           ensure => absent,
+          notify => Exec['update-pam'],
         }
 
         # make sure the package is not on the system,
@@ -98,15 +100,18 @@ class os_hardening::pam (
           owner   => root,
           group   => root,
           mode    => '0640',
+          notify  => Exec['update-pam'],
         }
       } else {
         file { $tally2_path:
           ensure => absent,
+          notify => Exec['update-pam'],
         }
       }
 
       exec { 'update-pam':
-        command => '/usr/sbin/pam-auth-update --package'
+        command     => '/usr/sbin/pam-auth-update --package',
+        refreshonly => true,
       }
     }
 
