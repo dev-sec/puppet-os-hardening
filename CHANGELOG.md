@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.2
+
+* improvement: only run 'update-pam' when needed
+
 ## 1.0.1
 
 * bugfix: add missing colon for user-defined paths in PATH env

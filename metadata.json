@@ -1,6 +1,6 @@
 {
   "name": "hardening/os_hardening",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Dominik Richter",
   "summary": "Configures the base OS with hardening",
   "license": "Apache License, Version 2.0",
