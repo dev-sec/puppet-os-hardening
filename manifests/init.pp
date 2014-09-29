@@ -77,39 +77,39 @@ class os_hardening(
     allow_login_without_home => $allow_login_without_home,
   }
   class {'os_hardening::minimize_access':
-    allow_change_user        => $allow_change_user,
+    allow_change_user => $allow_change_user,
   }
   class {'os_hardening::pam':
-    passwdqc_enabled         => $passwdqc_enabled,
-    auth_retries             => $auth_retries,
-    auth_lockout_time        => $auth_lockout_time,
-    passwdqc_options         => $passwdqc_options,
+    passwdqc_enabled  => $passwdqc_enabled,
+    auth_retries      => $auth_retries,
+    auth_lockout_time => $auth_lockout_time,
+    passwdqc_options  => $passwdqc_options,
   }
   class {'os_hardening::profile':
-    allow_core_dumps         => $allow_core_dumps,
+    allow_core_dumps => $allow_core_dumps,
   }
   class {'os_hardening::securetty':
-    root_ttys                => $root_ttys,
+    root_ttys => $root_ttys,
   }
   class {'os_hardening::suid_sgid':
-    whitelist                => $whitelist,
-    blacklist                => $blacklist,
-    remove_from_unknown      => $remove_from_unknown,
-    dry_run_on_unknown       => $dry_run_on_unknown,
+    whitelist           => $whitelist,
+    blacklist           => $blacklist,
+    remove_from_unknown => $remove_from_unknown,
+    dry_run_on_unknown  => $dry_run_on_unknown,
   }
 
   if $configure_sysctl {
     class {'os_hardening::sysctl':
-      enable_module_loading    => $enable_module_loading,
-      load_modules             => $load_modules,
-      cpu_vendor               => $cpu_vendor,
-      desktop_enabled          => $desktop_enabled,
-      enable_ipv4_forwarding   => $enable_ipv4_forwarding,
-      enable_ipv6              => $enable_ipv6,
-      enable_ipv6_forwarding   => $enable_ipv6_forwarding,
-      arp_restricted           => $arp_restricted,
-      enable_sysrq             => $enable_sysrq,
-      enable_core_dump         => $enable_core_dump,
+    enable_module_loading  => $enable_module_loading,
+    load_modules           => $load_modules,
+    cpu_vendor             => $cpu_vendor,
+    desktop_enabled        => $desktop_enabled,
+    enable_ipv4_forwarding => $enable_ipv4_forwarding,
+    enable_ipv6            => $enable_ipv6,
+    enable_ipv6_forwarding => $enable_ipv6_forwarding,
+    arp_restricted         => $arp_restricted,
+    enable_sysrq           => $enable_sysrq,
+    enable_core_dump       => $enable_core_dump,
     }
   }
 }
