@@ -1,9 +1,10 @@
 AllCops:
   Exclude:
-    - vendor/**
+    - vendor/**/*
     - metadata.rb
     - '**/Puppetfile'
     - Puppetfile
+    - test/**/*
 
 Documentation:
   Enabled: false
@@ -12,10 +13,14 @@ AlignParameters:
 Encoding:
   Enabled: true
 HashSyntax:
-  Enabled: false
+  Enabled: true
 LineLength:
   Enabled: false
 MethodLength:
-  Max: 30
+  Max: 40
 NumericLiterals:
   MinDigits: 10
+Metrics/CyclomaticComplexity:
+  Max: 10
+Metrics/PerceivedComplexity:
+  Max: 10
