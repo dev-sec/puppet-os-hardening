@@ -1,10 +1,10 @@
+---
 AllCops:
   Exclude:
-    - vendor/**
-    - metadata.rb
-    - '**/Puppetfile'
-    - Puppetfile
-
+  - vendor/**/*
+  - test/**/*
+  - spec/fixtures/**/*
+  - Puppetfile
 Documentation:
   Enabled: false
 AlignParameters:
@@ -15,7 +15,15 @@ HashSyntax:
   Enabled: false
 LineLength:
   Enabled: false
+EmptyLinesAroundBlockBody:
+  Enabled: false
 MethodLength:
-  Max: 30
+  Max: 40
 NumericLiterals:
   MinDigits: 10
+Metrics/CyclomaticComplexity:
+  Max: 10
+Metrics/PerceivedComplexity:
+  Max: 10
+Metrics/AbcSize:
+  Max: 29
