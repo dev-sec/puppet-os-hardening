@@ -3,6 +3,7 @@ AllCops:
   Exclude:
   - vendor/**/*
   - test/**/*
+  - spec/fixtures/**/*
   - Puppetfile
 Documentation:
   Enabled: false
