@@ -1,5 +1,5 @@
 {
-  "name": "hardening/os_hardening",
+  "name": "hardening-os_hardening",
   "version": "1.0.2",
   "author": "Dominik Richter",
   "summary": "Configures the base OS with hardening",
