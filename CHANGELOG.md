@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0
+
+**API-change**: renamed module to `hardening-os_hardening`
+
+* improvement: linting
+
 ## 1.0.2
 
 * improvement: only run 'update-pam' when needed
