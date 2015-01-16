@@ -12,7 +12,7 @@
 class os_hardening::securetty (
   $root_ttys = ['console','tty1','tty2','tty3','tty4','tty5','tty6']
 ){
-  $ttys = join( $root_ttys, '\n')
+  $ttys = join( $root_ttys, "\n")
   file { '/etc/securetty':
     ensure  => present,
     content => template( 'os_hardening/securetty.erb' ),
