@@ -51,7 +51,7 @@
 
 * feature: add configurable system environment
 * feature: remove suid/sgid bits from blacklist
-* feature: remove suid/sgid bits from unkown files
+* feature: remove suid/sgid bits from unknown files
 
 ## 0.1.0
 
