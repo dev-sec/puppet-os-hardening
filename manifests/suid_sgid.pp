@@ -130,7 +130,7 @@ class os_hardening::suid_sgid (
     }
     ->
     # remove all bits
-    exec { 'remove SUID/SGID bits from unkown':
+    exec { 'remove SUID/SGID bits from unknown':
       command => '/usr/local/sbin/remove_suids'
     }
   }
