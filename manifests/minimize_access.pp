@@ -25,6 +25,7 @@ class os_hardening::minimize_access (
   # remove write permissions from path folders ($PATH) for all regular users
   # this prevents changing any system-wide command from normal users
   file { $folders:
+    links   => 'follow',
     ensure  => 'directory',
     mode    => 'go-w',
     recurse => true,
