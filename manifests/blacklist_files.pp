@@ -6,7 +6,7 @@
 #
 # Remove SUID and SGID bits from a given file
 
-define blacklist_files {
+define os_hardening::blacklist_files {
   exec{ "remove suid/sgid bit from ${name}":
     command => "/bin/chmod ug-s ${name}",
     # the following checks if we are operating on a file

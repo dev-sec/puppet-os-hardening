@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "author": "Dominik Richter",
   "summary": "Configures the base OS with hardening",
-  "license": "Apache License, Version 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/TelekomLabs/puppet-os-hardening",
   "project_page": "https://github.com/TelekomLabs/puppet-os-hardening",
   "issues_url": "https://github.com/TelekomLabs/puppet-os-hardening/issues",

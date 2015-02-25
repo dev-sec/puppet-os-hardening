@@ -26,6 +26,7 @@ class os_hardening::minimize_access (
   # this prevents changing any system-wide command from normal users
   file { $folders:
     ensure  => 'directory',
+    links   => 'follow',
     mode    => 'go-w',
     recurse => true,
   }
