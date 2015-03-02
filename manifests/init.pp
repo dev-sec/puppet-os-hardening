@@ -101,17 +101,17 @@ class os_hardening(
 
   if $configure_sysctl {
     class {'os_hardening::sysctl':
-    enable_module_loading   => $enable_module_loading,
-    load_modules            => $load_modules,
-    cpu_vendor              => $cpu_vendor,
-    desktop_enabled         => $desktop_enabled,
-    enable_ipv4_forwarding  => $enable_ipv4_forwarding,
-    enable_ipv6             => $enable_ipv6,
-    enable_ipv6_forwarding  => $enable_ipv6_forwarding,
-    arp_restricted          => $arp_restricted,
-    enable_sysrq            => $enable_sysrq,
-    enable_core_dump        => $enable_core_dump,
-    enable_stack_protection => $enable_stack_protection,
+      enable_module_loading   => $enable_module_loading,
+      load_modules            => $load_modules,
+      cpu_vendor              => $cpu_vendor,
+      desktop_enabled         => $desktop_enabled,
+      enable_ipv4_forwarding  => $enable_ipv4_forwarding,
+      enable_ipv6             => $enable_ipv6,
+      enable_ipv6_forwarding  => $enable_ipv6_forwarding,
+      arp_restricted          => $arp_restricted,
+      enable_sysrq            => $enable_sysrq,
+      enable_core_dump        => $enable_core_dump,
+      enable_stack_protection => $enable_stack_protection,
     }
   }
 }
