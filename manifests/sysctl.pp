@@ -20,6 +20,7 @@ class os_hardening::sysctl (
   $arp_restricted         = true,
   $enable_sysrq           = false,
   $enable_core_dump       = false,
+  $enable_stack_protection = true,
 ){
 
   # set variables
@@ -172,6 +173,13 @@ class os_hardening::sysctl (
     sysctl { 'kernel.sysrq': value => '0' }
   }
 
+  # Enable stack protection by randomizing kernel va space
+  if $enable_stack_protection {
+    sysctl { 'kernel.randomize_va_space': value => '2' }
+  } else {
+    sysctl { 'kernel.randomize_va_space': value => '0' }
+  }
+  
   # Prevent core dumps with SUID. These are usually only needed by developers and may contain sensitive information.
   if $enable_core_dump {
     sysctl { 'fs.suid_dumpable': value => '1' }
