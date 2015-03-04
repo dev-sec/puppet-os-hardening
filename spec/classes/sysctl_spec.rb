@@ -115,6 +115,20 @@ describe 'os_hardening::sysctl' do
     end
   end
 
+  context 'with enable_stack_protection => true' do
+    let(:params) { { :enable_stack_protection => true } }
+    it do
+      should contain_sysctl('kernel.randomize_va_space').with_value('2')
+    end
+  end
+
+  context 'with enable_stack_protection => false' do
+    let(:params) { { :enable_stack_protection => false } }
+    it do
+      should contain_sysctl('kernel.randomize_va_space').with_value('0')
+    end
+  end
+
   context 'with enable_core_dump => true' do
     let(:params) { { :enable_core_dump => true } }
     it do

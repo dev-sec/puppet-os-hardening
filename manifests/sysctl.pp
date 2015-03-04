@@ -10,16 +10,17 @@
 # Configures PAM
 #
 class os_hardening::sysctl (
-  $enable_module_loading  = true,
-  $load_modules           = [],
-  $cpu_vendor             = 'intel',
-  $desktop_enabled        = false,
-  $enable_ipv4_forwarding = false,
-  $enable_ipv6            = false,
-  $enable_ipv6_forwarding = false,
-  $arp_restricted         = true,
-  $enable_sysrq           = false,
-  $enable_core_dump       = false,
+  $enable_module_loading   = true,
+  $load_modules            = [],
+  $cpu_vendor              = 'intel',
+  $desktop_enabled         = false,
+  $enable_ipv4_forwarding  = false,
+  $enable_ipv6             = false,
+  $enable_ipv6_forwarding  = false,
+  $arp_restricted          = true,
+  $enable_sysrq            = false,
+  $enable_core_dump        = false,
+  $enable_stack_protection = true,
 ){
 
   # set variables
@@ -172,6 +173,13 @@ class os_hardening::sysctl (
     sysctl { 'kernel.sysrq': value => '0' }
   }
 
+  # Enable stack protection by randomizing kernel va space
+  if $enable_stack_protection {
+    sysctl { 'kernel.randomize_va_space': value => '2' }
+  } else {
+    sysctl { 'kernel.randomize_va_space': value => '0' }
+  }
+  
   # Prevent core dumps with SUID. These are usually only needed by developers and may contain sensitive information.
   if $enable_core_dump {
     sysctl { 'fs.suid_dumpable': value => '1' }
