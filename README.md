@@ -48,6 +48,8 @@ This module provides secure configuration of your base OS with hardening.
   load this modules via initramfs if enable_module_loading is false
 * `enable_sysrq = false`
 * `enable_core_dump = false`
+* `enable_stack_protection = true`
+  for Address Space Layout Randomization. ASLR can help defeat certain types of buffer overflow attacks. ASLR can locate the base, libraries, heap, and stack at random positions in a process's address space, which makes it difficult for an attacking program to predict the memory address of the next instruction.
 * `cpu_vendor = 'intel'`
   only required if `enable_module_loading = false`: set the CPU vendor for modules to load
 * `root_ttys = ["console","tty1","tty2","tty3","tty4","tty5","tty6"]`
