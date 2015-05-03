@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.1
+
+* feature: add stack protection configuration via sysctl (enabled)
+* bugfix: replace non-ascii char in login.defs
+* bugfix: follow links for RHEL7 /bin and /sbin
+* bugfix: fixed tty newlines
+* bugfix: minor log typos
+
 ## 1.1.0
 
 **API-change**: renamed module to `hardening-os_hardening`
