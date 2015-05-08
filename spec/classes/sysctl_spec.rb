@@ -19,6 +19,8 @@ require 'spec_helper'
 
 describe 'os_hardening::sysctl' do
 
+  it { should contain_class('os_hardening::sysctl') }
+
   context 'with enable_ipv4_forwarding => true' do
     let(:params) { { :enable_ipv4_forwarding => true } }
     it do
