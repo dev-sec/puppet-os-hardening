@@ -11,6 +11,11 @@ end
 
 group :test do
   gem 'rake'
+  # bugfix for ruby 1.8, puppet+rspec interplay
+  # https://github.com/rspec/rspec-core/issues/1864
+  if RUBY_VERSION.start_with? '1.8'
+    gem 'rspec', "~> 3.1.0",     :require => false
+  end
   gem 'rspec-puppet'
   # avoid NoMethodError: private method `clone' called for #<RuboCop::Cop::CopStore:0x00000104e286c8>
   gem 'puppetlabs_spec_helper', :git => 'https://github.com/ehaselwanter/puppetlabs_spec_helper'
