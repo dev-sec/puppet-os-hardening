@@ -116,7 +116,7 @@ class os_hardening::suid_sgid (
   $final_whitelist = combine_sugid_lists(
     $system_whitelist, $blacklist, $whitelist)
 
-  blacklist_files{ $final_blacklist: }
+  os_hardening::blacklist_files{ $final_blacklist: }
 
   if $remove_from_unknown {
     # create a helper script
