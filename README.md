@@ -78,15 +78,15 @@ After adding this module, you can use the class:
 * Dominik Richter [arlimus](https://github.com/arlimus)
 * Edmund Haselwanter [ehaselwanter](https://github.com/ehaselwanter)
 * Christoph Hartmann [chris-rock](https://github.com/chris-rock)
-* Artem Sidorenko [artem-sidorenko](https://github.com/artem-sidorenko)
+* Thomas Dütsch [a-tom](https://github.com/a-tom)
 * Patrick Meier [atomic111](https://github.com/atomic111)
+* Artem Sidorenko [artem-sidorenko](https://github.com/artem-sidorenko)
 * Kurt Huwig [kurthuwig](https://github.com/kurthuwig)
 * Matthew Haughton [3flex](https://github.com/3flex)
 * Reik Keutterling [spielkind](https://github.com/spielkind)
 * Daniel Dreier [danieldreier](https://github.com/danieldreier)
-*  [timogoebel](https://github.com/timogoebel)
+* Timo Goebel [timogoebel](https://github.com/timogoebel)
 * Tristan Helmich [fadenb](https://github.com/fadenb)
-* Thomas Dütsch [a-tom](https://github.com/a-tom)
 
 For the original port of `chef-os-hardening` to puppet:
 
