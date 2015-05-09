@@ -114,4 +114,4 @@ limitations under the License.
 
 [1]: https://forge.puppetlabs.com/hardening/os_hardening
 [2]: http://travis-ci.org/hardening-io/puppet-os-hardening
-[3]: https://gitter.im/hardening-io
+[3]: https://gitter.im/hardening-io/general
