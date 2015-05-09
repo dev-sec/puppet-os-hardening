@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.2
+
+* bugfix: ruby1.8+puppet+rspec interplay
+* bugfix: use scoped resource for puppet 4
+
 ## 1.1.1
 
 * feature: add stack protection configuration via sysctl (enabled)
