@@ -1,4 +1,4 @@
-# os_hardening (Puppet module)
+# Puppet OS hardening
 
 [![Puppet Forge](https://img.shields.io/puppetforge/dt/hardening/os_hardening.svg)][1]
 [![Build Status](http://img.shields.io/travis/hardening-io/puppet-os-hardening.svg)][2]
@@ -6,7 +6,7 @@
 
 ## Description
 
-This module provides secure configuration of your base OS with hardening.
+This Puppet module provides secure configuration of your base OS with hardening.
 
 ## Requirements
 
