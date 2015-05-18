@@ -23,6 +23,7 @@ class os_hardening(
   $allow_login_without_home = false,
 
   $allow_change_user        = false,
+  $ignore_users             = [],
 
   $passwdqc_enabled         = true,
   $auth_retries             = 5,
@@ -79,6 +80,7 @@ class os_hardening(
   }
   class {'os_hardening::minimize_access':
     allow_change_user => $allow_change_user,
+    ignore_users      => $ignore_users,
   }
   class {'os_hardening::pam':
     passwdqc_enabled  => $passwdqc_enabled,
