@@ -1,8 +1,12 @@
-# os_hardening (Puppet module)
+# Puppet OS hardening
+
+[![Puppet Forge](https://img.shields.io/puppetforge/dt/hardening/os_hardening.svg)][1]
+[![Build Status](http://img.shields.io/travis/hardening-io/puppet-os-hardening.svg)][2]
+[![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][3]
 
 ## Description
 
-This module provides secure configuration of your base OS with hardening.
+This Puppet module provides secure configuration of your base OS with hardening.
 
 ## Requirements
 
@@ -74,15 +78,15 @@ After adding this module, you can use the class:
 * Dominik Richter [arlimus](https://github.com/arlimus)
 * Edmund Haselwanter [ehaselwanter](https://github.com/ehaselwanter)
 * Christoph Hartmann [chris-rock](https://github.com/chris-rock)
-* Artem Sidorenko [artem-sidorenko](https://github.com/artem-sidorenko)
+* Thomas Dütsch [a-tom](https://github.com/a-tom)
 * Patrick Meier [atomic111](https://github.com/atomic111)
+* Artem Sidorenko [artem-sidorenko](https://github.com/artem-sidorenko)
 * Kurt Huwig [kurthuwig](https://github.com/kurthuwig)
 * Matthew Haughton [3flex](https://github.com/3flex)
 * Reik Keutterling [spielkind](https://github.com/spielkind)
 * Daniel Dreier [danieldreier](https://github.com/danieldreier)
-*  [timogoebel](https://github.com/timogoebel)
+* Timo Goebel [timogoebel](https://github.com/timogoebel)
 * Tristan Helmich [fadenb](https://github.com/fadenb)
-* Thomas Dütsch [a-tom](https://github.com/a-tom)
 
 For the original port of `chef-os-hardening` to puppet:
 
@@ -107,3 +111,7 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+[1]: https://forge.puppetlabs.com/hardening/os_hardening
+[2]: http://travis-ci.org/hardening-io/puppet-os-hardening
+[3]: https://gitter.im/hardening-io/general

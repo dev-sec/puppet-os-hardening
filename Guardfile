@@ -3,14 +3,14 @@
 # Guardfile
 
 guard 'rake', :task => 'lint' do
-  watch(/^manifests\/.*$/)
-  watch(/^templates\/.*$/)
+  watch(%r{^manifests/.*$})
+  watch(%r{^templates/.*$})
 end
 
 guard 'rake', :task => 'spec' do
   watch(%r{^spec/(classes|defines)/.+_spec\.rb$})
   watch('spec/spec_helper.rb')
-  watch(/^lib\/.*$/)
-  watch(/^manifests\/.*$/)
-  watch(/^templates\/.*$/)
+  watch(%r{^lib/.*$})
+  watch(%r{^manifests/.*$})
+  watch(%r{^templates/.*$})
 end
