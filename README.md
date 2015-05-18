@@ -46,6 +46,8 @@ This Puppet module provides secure configuration of your base OS with hardening.
   set to any option line (as a string) that you want to pass to passwdqc
 * `allow_change_user = false`
   if a user may use `su` to change his login
+* `ignore_users = []`
+  array of system user accounts that should _not be_ hardened (password disabled and shell set to `/usr/sbin/nologin`)
 * `enable_module_loading = true`
   true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
 * `load_modules = []`
