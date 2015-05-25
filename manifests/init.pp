@@ -50,6 +50,10 @@ class os_hardening(
   $enable_core_dump         = false,
   $enable_stack_protection  = true,
 ) {
+  # Validate
+  # --------
+  validate_array($ignore_users)
+
   # Prepare
   # -------
 
