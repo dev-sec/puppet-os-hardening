@@ -44,6 +44,12 @@ This Puppet module provides secure configuration of your base OS with hardening.
   true if you want to use strong password checking in PAM using passwdqc
 * `passwdqc_options = "min=disabled,disabled,16,12,8"`
   set to any option line (as a string) that you want to pass to passwdqc
+* `manage_pam_unix = false`
+  true if you want pam_unix managed by this module
+* `enable_pw_history = true`
+  true if you want pam_unix to remember password history to prevent reuse of passwords (requires `manage_pam_unix = true`)
+* `pw_remember_last = 5`
+  the number of last passwords (e.g. 5 will prevent user to reuse any of her last 5 passwords)
 * `allow_change_user = false`
   if a user may use `su` to change his login
 * `ignore_users = []`

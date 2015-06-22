@@ -14,6 +14,9 @@ class os_hardening::pam (
   $auth_retries = 5,
   $auth_lockout_time = 600,
   $passwdqc_options = 'min=disabled,disabled,16,12,8',
+  $manage_pam_unix = false,
+  $enable_pw_history = false,
+  $pw_remember_last = 5,
 ){
   # prepare package names
   case $::operatingsystem {
@@ -45,6 +48,7 @@ class os_hardening::pam (
       # configure paths
       $passwdqc_path = '/usr/share/pam-configs/passwdqc'
       $tally2_path   = '/usr/share/pam-configs/tally2'
+      $unix_path     = '/usr/share/pam-configs/unix'
 
       # if passwdqc is enabled
       if $passwdqc_enabled == true {
@@ -106,6 +110,24 @@ class os_hardening::pam (
         file { $tally2_path:
           ensure => absent,
           notify => Exec['update-pam'],
+        }
+      }
+
+      #configure pam_unix with password history
+      if $manage_pam_unix {
+        if $enable_pw_history {
+          $pw_history_options = "remember=${pw_remember_last}"
+        }
+        else {
+          $pw_history_options = ''
+        }
+        file { $unix_path:
+          ensure  => present,
+          content => template( 'os_hardening/pam_unix.erb' ),
+          owner   => root,
+          group   => root,
+          mode    => '0640',
+          notify  => Exec['update-pam'],
         }
       }
 
