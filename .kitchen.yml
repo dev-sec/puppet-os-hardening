@@ -47,4 +47,5 @@ platforms:
     box_url: https://atlas.hashicorp.com/debian/boxes/jessie64/versions/8.1.0/providers/virtualbox.box
 suites:
 - name: default
+  sudo: true
   manifest: site.pp
