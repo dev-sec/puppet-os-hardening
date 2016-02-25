@@ -66,10 +66,10 @@ class os_hardening::pam (
 
         # configure passwdqc via central module:
         file { $passwdqc_path:
-          ensure  => present,
+          ensure  => file,
           content => template( 'os_hardening/pam_passwdqc.erb' ),
-          owner   => root,
-          group   => root,
+          owner   => 'root',
+          group   => 'root',
           mode    => '0640',
           notify  => Exec['update-pam'],
         }
@@ -99,10 +99,10 @@ class os_hardening::pam (
         }
 
         file { $tally2_path:
-          ensure  => present,
+          ensure  => file,
           content => template( 'os_hardening/pam_tally2.erb' ),
-          owner   => root,
-          group   => root,
+          owner   => 'root',
+          group   => 'root',
           mode    => '0640',
           notify  => Exec['update-pam'],
         }
@@ -122,10 +122,10 @@ class os_hardening::pam (
           $pw_history_options = ''
         }
         file { $unix_path:
-          ensure  => present,
+          ensure  => file,
           content => template( 'os_hardening/pam_unix.erb' ),
-          owner   => root,
-          group   => root,
+          owner   => 'root',
+          group   => 'root',
           mode    => '0640',
           notify  => Exec['update-pam'],
         }

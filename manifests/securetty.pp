@@ -14,10 +14,10 @@ class os_hardening::securetty (
 ){
   $ttys = join( $root_ttys, "\n")
   file { '/etc/securetty':
-    ensure  => present,
+    ensure  => file,
     content => template( 'os_hardening/securetty.erb' ),
-    owner   => root,
-    group   => root,
+    owner   => 'root',
+    group   => 'root',
     mode    => '0400',
   }
 }

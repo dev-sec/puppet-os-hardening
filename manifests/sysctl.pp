@@ -196,10 +196,10 @@ class os_hardening::sysctl (
       debian, ubuntu: {
         file {
           '/etc/initramfs-tools/modules':
-            ensure  => present,
+            ensure  => file,
             content => template( 'os_hardening/modules.erb' ),
-            owner   => root,
-            group   => root,
+            owner   => 'root',
+            group   => 'root',
             mode    => '0400',
             notify  => Exec['update-initramfs'],
         }

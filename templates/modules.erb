@@ -9,7 +9,7 @@
 # 
 # Modules for certains builds, contains support modules and some CPU-specific optimizations.
 
-<% if x86_64 == true %>
+<% if @x86_64 == true %>
 # Optimize for x86_64 cryptographic features
 twofish-x86_64-3way
 twofish-x86_64
@@ -18,14 +18,14 @@ salsa20-x86_64
 blowfish-x86_64
 <% end %>
 
-<% if cpu_vendor == "intel" %>
+<% if @cpu_vendor == "intel" %>
 # Intel-specific optimizations
 ghash-clmulni-intel
 aesni-intel
 kvm-intel
 <% end %>
 
-<% if cpu_vendor == "amd" %>
+<% if @cpu_vendor == "amd" %>
 # AMD-specific optimizations
 kvm-amd
 <% end %>
@@ -66,7 +66,7 @@ loop
 ext2
 btrfs
 
-<% if desktop_enabled %>
+<% if @desktop_enabled %>
 # Desktop
 psmouse
 snd
@@ -113,4 +113,4 @@ nf_nat
 xt_pknock
 
 # Load following requested modules
-<%= load_modules.join("\n") %>
+<%= @load_modules.join("\n") %>
