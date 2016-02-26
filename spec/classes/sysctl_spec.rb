@@ -106,7 +106,7 @@ describe 'os_hardening::sysctl' do
     let(:params) { { :enable_sysrq => true } }
     it do
       allowed_sysrq = 4 + 16 + 32 + 64 + 128
-      should contain_sysctl('kernel.sysrq').with_value("#{allowed_sysrq}")
+      should contain_sysctl('kernel.sysrq').with_value(allowed_sysrq)
     end
   end
 
