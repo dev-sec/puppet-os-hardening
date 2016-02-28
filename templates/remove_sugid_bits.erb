@@ -5,7 +5,7 @@
 # 2013-2014 Deutsche Telekom AG
 
 # suid whitelist
-suid_whitelist="<%= final_whitelist.join('|') %>"
+suid_whitelist="<%= @final_whitelist.join('|') %>"
 
 #filesystems to check, we ignore mounts with nosuid and some sys mounts
 filesystems=`mount | egrep -v "nosuid|cgroup|udev|none"| cut -f3 -d" "`
@@ -14,7 +14,7 @@ for fs in $filesystems
 do
   files=`/usr/bin/find $fs -xdev \( -perm -4000 -o -perm -2000 \) -type f -print 2>/dev/null | /bin/egrep -v "$suid_whitelist"`
   if [ -n "$files" ]; then
-    <% if dry_run_on_unknown %>
+    <% if @dry_run_on_unknown %>
     echo "remove from: $files"
     <% else %>
     chmod ug-s $files

@@ -25,10 +25,10 @@ class os_hardening::login_defs (
   # set the file
   file {
     '/etc/login.defs':
-      ensure  => present,
+      ensure  => file,
       content => template( 'os_hardening/login.defs.erb' ),
-      owner   => root,
-      group   => root,
+      owner   => 'root',
+      group   => 'root',
       mode    => '0400',
   }
 }

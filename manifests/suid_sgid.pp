@@ -123,8 +123,8 @@ class os_hardening::suid_sgid (
     # TODO: do without
     file { '/usr/local/sbin/remove_suids':
       ensure  => file,
-      owner   => root,
-      group   => root,
+      owner   => 'root',
+      group   => 'root',
       mode    => '0500',
       content => template('os_hardening/remove_sugid_bits.erb'),
     }
