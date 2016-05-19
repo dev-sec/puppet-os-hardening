@@ -24,3 +24,9 @@ RSpec.configure do |c|
   c.manifest_dir = File.join(fixture_path, 'manifests')
   c.environmentpath = File.expand_path(File.join(Dir.pwd, 'spec'))
 end
+
+RSpec.configure do |c|
+  c.default_facts = {
+    retrieve_system_users: 'root,bin,daemon,adm,lp,sync,shutdown',
+  }
+end

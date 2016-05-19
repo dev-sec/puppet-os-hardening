@@ -19,8 +19,12 @@ class os_hardening(
   $password_min_age         = 7,
   $login_retries            = 5,
   $login_timeout            = 60,
-  $chfn_restrict            = '',
+  $chfn_restrict            = 'UNSET',
   $allow_login_without_home = false,
+  $sys_uid_min              = 100,
+  $sys_uid_max              = 999,
+  $sys_gid_min              = 100,
+  $sys_gid_max              = 999,
 
   $allow_change_user        = false,
   $ignore_users             = [],
@@ -59,6 +63,8 @@ class os_hardening(
   validate_bool($manage_pam_unix)
   validate_bool($enable_pw_history)
   validate_integer($pw_remember_last)
+  validate_array($extra_user_paths)
+  validate_string($additional_user_paths)
 
   # Prepare
   # -------
@@ -72,22 +78,14 @@ class os_hardening(
     $system_environment != 'docker'
     )
 
+  $additional_user_paths = join( $extra_user_paths, ':' )
 
   # Install
   # -------
   class {'os_hardening::limits':
     allow_core_dumps         => $allow_core_dumps,
   }
-  class {'os_hardening::login_defs':
-    extra_user_paths         => $extra_user_paths,
-    umask                    => $umask,
-    password_max_age         => $password_max_age,
-    password_min_age         => $password_min_age,
-    login_retries            => $login_retries,
-    login_timeout            => $login_timeout,
-    chfn_restrict            => $chfn_restrict,
-    allow_login_without_home => $allow_login_without_home,
-  }
+  class {'os_hardening::login_defs': }
   class {'os_hardening::minimize_access':
     allow_change_user => $allow_change_user,
     ignore_users      => $ignore_users,
