@@ -1,5 +1,3 @@
-# encoding: utf-8
-#
 # Copyright 2014, Deutsche Telekom AG
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,6 +25,6 @@ end
 
 RSpec.configure do |c|
   c.default_facts = {
-    retrieve_system_users: 'root,bin,daemon,adm,lp,sync,shutdown',
+    retrieve_system_users: 'root,bin,daemon,adm,lp,sync,shutdown'
   }
 end

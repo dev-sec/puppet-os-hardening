@@ -1,5 +1,3 @@
-# encoding: utf-8
-#
 # Copyright 2014, Deutsche Telekom AG
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,13 +21,13 @@ describe 'os_hardening' do
 
   context 'with default extra_user_paths empty' do
     it do
-      should contain_file('/etc/login.defs').with_content(/^ENV_PATH  PATH=\/usr\/local\/bin:\/usr\/bin:\/bin$/)
+      should contain_file('/etc/login.defs').with_content(%r{^ENV_PATH  PATH=/usr/local/bin:/usr/bin:/bin$})
     end
   end
   context 'with custom allow_login_without_home => true' do
-    let(:params) { { :extra_user_paths => [ '/opt/bin', '/foo/bin' ] } }
+    let(:params) { { :extra_user_paths => ['/opt/bin', '/foo/bin'] } }
     it do
-      should contain_file('/etc/login.defs').with_content(/^ENV_PATH  PATH=\/usr\/local\/bin:\/usr\/bin:\/bin:\/opt\/bin:\/foo\/bin$/)
+      should contain_file('/etc/login.defs').with_content(%r{^ENV_PATH  PATH=/usr/local/bin:/usr/bin:/bin:/opt/bin:/foo/bin$})
     end
   end
   context 'with default umask => 027' do
@@ -153,6 +151,4 @@ describe 'os_hardening' do
       should contain_file('/etc/login.defs').with_content(/^DEFAULT_HOME yes/)
     end
   end
-
-
 end
