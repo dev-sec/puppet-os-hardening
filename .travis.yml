@@ -1,6 +1,5 @@
 sudo: false
 rvm:
-  - 1.8.7
   - 1.9.3
   - 2.0.0
   - 2.1.0
@@ -20,8 +19,6 @@ matrix:
       env: PUPPET_VERSION="~> 2.7.0"
     - rvm: 2.1.0
       env: PUPPET_VERSION="~> 2.7.0"
-    - rvm: 1.8.7
-      env: PUPPET_VERSION="~> 4.0.0"
     - rvm: 1.9.3
       env: PUPPET_VERSION="~> 4.0.0"
     - rvm: 2.0.0
