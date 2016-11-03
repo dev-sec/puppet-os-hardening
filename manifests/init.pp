@@ -118,6 +118,10 @@ class os_hardening(
     umask                    => $umask,
   }
 
+  class {'os_hardening::sysstat':
+    sysstat_enabled          => $sysstat_enabled,
+  }
+
   if $configure_sysctl {
     class {'os_hardening::sysctl':
       enable_module_loading   => $enable_module_loading,
