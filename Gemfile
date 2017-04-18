@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 source 'https://rubygems.org'
 
 puppetversion = ENV['PUPPET_VERSION']

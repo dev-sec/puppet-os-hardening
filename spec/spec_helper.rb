@@ -1,5 +1,3 @@
-# encoding: utf-8
-#
 # Copyright 2014, Deutsche Telekom AG
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,4 +21,10 @@ RSpec.configure do |c|
   c.module_path = File.join(fixture_path, 'modules')
   c.manifest_dir = File.join(fixture_path, 'manifests')
   c.environmentpath = File.expand_path(File.join(Dir.pwd, 'spec'))
+end
+
+RSpec.configure do |c|
+  c.default_facts = {
+    retrieve_system_users: 'root,bin,daemon,adm,lp,sync,shutdown'
+  }
 end
