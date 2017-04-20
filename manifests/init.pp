@@ -114,6 +114,10 @@ class os_hardening(
     dry_run_on_unknown  => $dry_run_on_unknown,
   }
 
+  class {'os_hardening::rc':
+    umask                    => $umask,
+  }
+
   if $configure_sysctl {
     class {'os_hardening::sysctl':
       enable_module_loading   => $enable_module_loading,
