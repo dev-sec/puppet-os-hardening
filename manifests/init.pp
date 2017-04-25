@@ -122,6 +122,8 @@ class os_hardening(
     sysstat_enabled          => $sysstat_enabled,
   }
 
+  class {'os_hardening::lynis_packages':}
+
   if $configure_sysctl {
     class {'os_hardening::sysctl':
       enable_module_loading   => $enable_module_loading,
