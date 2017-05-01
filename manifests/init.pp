@@ -52,6 +52,9 @@ class os_hardening(
   $enable_sysrq             = false,
   $enable_core_dump         = false,
   $enable_stack_protection  = true,
+  $sysstat_enabled	    = true,
+  $legal_warning            = true,
+  $company_name             = "Example"
 ) {
   # Validate
   # --------
@@ -120,6 +123,11 @@ class os_hardening(
 
   class {'os_hardening::sysstat':
     sysstat_enabled          => $sysstat_enabled,
+  }
+
+  class {'os_hardening::issue':
+    legal_warning  => $legal_warning,
+    company_name   => $company_name,
   }
 
   class {'os_hardening::lynis_packages':}
