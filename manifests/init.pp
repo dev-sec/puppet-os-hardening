@@ -131,6 +131,7 @@ class os_hardening(
   }
 
   class {'os_hardening::lynis_packages':}
+  class {'os_hardening::modprobe':}
 
   if $configure_sysctl {
     class {'os_hardening::sysctl':
