@@ -14,7 +14,7 @@ class os_hardening::issue (
   $company_name = 'Example'
 ){
   if $legal_warning == true {
-    $str = "${lsbdistdescription}
+    $str = "${::lsbdistdescription}
 
 This computer system (including all hardware , software and peripheral equipment) is the property of the ${company_name} organization.
 ${company_name} reserves the right to monitor the use of the computer system to ensure its compliance with ${company_name} security 
