@@ -180,7 +180,6 @@ class os_hardening::sysctl (
   } else {
     sysctl { 'kernel.randomize_va_space': value => '0' }
   }
-  
   # Prevent core dumps with SUID. These are usually only needed by developers and may contain sensitive information.
   if $enable_core_dump {
     sysctl { 'fs.suid_dumpable': value => '1' }
