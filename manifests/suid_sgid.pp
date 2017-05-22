@@ -128,11 +128,11 @@ class os_hardening::suid_sgid (
       mode    => '0500',
       content => template('os_hardening/remove_sugid_bits.erb'),
     }
-    ->
-    # remove all bits
+    #remove all bits
     exec { 'remove SUID/SGID bits from unknown':
       command => '/usr/local/sbin/remove_suids'
     }
+    File['/usr/local/sbin/remove_suids'] -> Exec['remove SUID/SGID bits from unknown']
   }
 
 }
