@@ -1,5 +1,6 @@
 #!/usr/bin/env rake
-# encoding: utf-8
+
+# rubocop:disable Style/SymbolArray
 
 require 'puppet-lint/tasks/puppet-lint'
 require 'puppetlabs_spec_helper/rake_tasks'

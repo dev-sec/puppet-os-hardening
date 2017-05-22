@@ -1,4 +1,3 @@
-# encoding: utf-8
 #
 # Copyright 2014, Deutsche Telekom AG
 #
@@ -17,7 +16,7 @@
 
 require 'spec_helper'
 
-describe 'os_hardening::sysctl' do
+describe 'os_hardening::sysctl' do # rubocop:disable Metrics/BlockLength
 
   it { should contain_class('os_hardening::sysctl') }
 

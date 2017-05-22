@@ -4,7 +4,7 @@ puppetversion = ENV['PUPPET_VERSION']
 if puppetversion
   gem 'puppet', puppetversion, :require => false
 else
-  gem 'puppet', :require => false
+  gem 'puppet', :require => false # rubocop:disable Bundler/DuplicatedGem
 end
 
 group :test do
