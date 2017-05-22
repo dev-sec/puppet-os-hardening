@@ -156,8 +156,8 @@ class os_hardening::sysctl (
   #Lynis suggested values implemented
   sysctl { 'net.ipv4.conf.default.log_martians' : value => '1' }
   sysctl { 'net.ipv4.conf.all.log_martians'     : value => '1' }
-  sysctl { 'kernel.kptr_restrict' 		: value => '2' }
-  sysctl { 'kernel.core_uses_pid'		: value => '1' }
+  sysctl { 'kernel.kptr_restrict'               : value => '2' }
+  sysctl { 'kernel.core_uses_pid'               : value => '1' }
 
 
   # System
