@@ -10,7 +10,7 @@
 # Configures /etc/default/sysstat
 #
 class os_hardening::sysstat (
-  $sysstat_enabled = 'true',
+  $sysstat_enabled = true,
 ){
   # set the file
   file {
