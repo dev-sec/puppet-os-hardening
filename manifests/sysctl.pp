@@ -21,6 +21,7 @@ class os_hardening::sysctl (
   $enable_sysrq            = false,
   $enable_core_dump        = false,
   $enable_stack_protection = true,
+  $enable_rpfilter         = true,
 ){
 
   # set variables
@@ -69,8 +70,13 @@ class os_hardening::sysctl (
 
   # Enable RFC-recommended source validation feature. It should not be used for routers on complex networks, but is helpful for 
   # end hosts and routers serving small networks.
-  sysctl { 'net.ipv4.conf.all.rp_filter': value => '1' }
-  sysctl { 'net.ipv4.conf.default.rp_filter': value => '1' }
+  if $enable_rpfilter {
+    sysctl { 'net.ipv4.conf.all.rp_filter': value => '1' }
+    sysctl { 'net.ipv4.conf.default.rp_filter': value => '1' }
+  } else {
+    sysctl { 'net.ipv4.conf.all.rp_filter': value => '0' }
+    sysctl { 'net.ipv4.conf.default.rp_filter': value => '0' }
+  }
 
   # Reduce the surface on SMURF attacks. Make sure to ignore ECHO broadcasts, which are only required in broad network analysis.
   sysctl { 'net.ipv4.icmp_echo_ignore_broadcasts': value => '1' }
