@@ -1,0 +1,263 @@
+#! /bin/sh
+#
+# rc
+#
+# Starts/stops services on runlevel changes.
+#
+# Optimization: A start script is not run when the service was already
+# configured to run in the previous runlevel.  A stop script is not run
+# when the the service was already configured not to run in the previous
+# runlevel.
+#
+# Authors:
+# 	Miquel van Smoorenburg <miquels@cistron.nl>
+# 	Bruce Perens <Bruce@Pixar.com>
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+export PATH
+
+# Un-comment the following for interactive debugging. Do not un-comment
+# this for debugging a real boot process as no scripts will be executed.
+# debug=echo
+
+# Make sure the name survive changing the argument list
+scriptname="$0"
+
+umask <%= @umask %>
+
+on_exit() {
+	echo "error: '$scriptname' exited outside the expected code flow."
+}
+trap on_exit EXIT # Enable emergency handler
+
+# Ignore CTRL-C only in this shell, so we can interrupt subprocesses.
+trap ":" INT QUIT TSTP
+
+# Set onlcr to avoid staircase effect.
+stty onlcr 0>&1
+
+# Now find out what the current and what the previous runlevel are.
+
+runlevel=$RUNLEVEL
+# Get first argument. Set new runlevel to this argument.
+[ "$1" != "" ] && runlevel=$1
+if [ "$runlevel" = "" ]
+then
+	echo "Usage: $scriptname <runlevel>" >&2
+	exit 1
+fi
+previous=$PREVLEVEL
+[ "$previous" = "" ] && previous=N
+
+export runlevel previous
+
+if [ -f /etc/default/rcS ] ; then
+	. /etc/default/rcS
+fi
+export VERBOSE
+
+if [ -f /lib/lsb/init-functions ] ; then
+	. /lib/lsb/init-functions
+else
+	log_action_msg() { echo $@; }
+	log_failure_msg() { echo $@; }
+	log_warning_msg() { echo $@; }
+fi
+
+#
+# Check if we are able to use make like booting.  It require the
+# insserv package to be enabled. Boot concurrency also requires
+# startpar to be installed.
+#
+CONCURRENCY=makefile
+test -s /etc/init.d/.depend.boot  || CONCURRENCY="none"
+test -s /etc/init.d/.depend.start || CONCURRENCY="none"
+test -s /etc/init.d/.depend.stop  || CONCURRENCY="none"
+if test -e /etc/init.d/.legacy-bootordering ; then
+	CONCURRENCY="none"
+fi
+if ! test -e /proc/stat; then
+	# startpar requires /proc/stat
+	if [ "$(uname)" = "GNU/kFreeBSD" ] ; then
+		mount -t linprocfs linprocfs /proc
+	elif [ "$(uname)" = "GNU" ] ; then
+		mount -t proc none /proc
+	fi
+fi
+if [ -x /lib/startpar/startpar ] ; then
+    STARTPAR=/lib/startpar/startpar
+else
+    STARTPAR=startpar
+fi
+$STARTPAR -v > /dev/null 2>&1 || CONCURRENCY="none"
+
+#
+# Start script or program.
+#
+case "$CONCURRENCY" in
+	makefile|startpar|shell) # startpar and shell are obsolete
+		CONCURRENCY=makefile
+		log_action_msg "Using makefile-style concurrent boot in runlevel $runlevel"
+		startup() {
+			eval "$($STARTPAR -p 4 -t 20 -T 3 -M $1 -P $previous -R $runlevel)"
+
+			if [ -n "$failed_service" ]
+			then
+				log_failure_msg "startpar: service(s) returned failure: $failed_service"
+			fi
+
+			if [ -n "$skipped_service_not_installed" ]
+			then
+				log_warning_msg "startpar: service(s) skipped, program is not installed: $skipped_service_not_installed"
+			fi
+
+			if [ -n "$skipped_service_not_configured" ]
+			then
+				log_warning_msg "startpar: service(s) skipped, program is not configured: $skipped_service_not_configured"
+			fi
+
+			unset failed_service skipped_service_not_installed skipped_service_not_configured
+		}
+		;;
+	none|*)
+		startup() {
+			action=$1
+			shift
+			scripts="$@"
+			for script in $scripts ; do
+				$debug "$script" $action
+			done
+		}
+		;;
+esac
+
+# Is there an rc directory for this new runlevel?
+if [ -d /etc/rc$runlevel.d ]
+then
+	case "$runlevel" in
+		0|6)
+			ACTION=stop
+			;;
+		S)
+			ACTION=start
+			;;
+		*)
+			ACTION=start
+			;;
+	esac
+
+	# First, run the KILL scripts.
+	if [ makefile = "$CONCURRENCY" ]
+	then
+		if [ "$ACTION" = "start" ] && [ "$previous" != N ]
+		then
+			startup stop
+		fi
+	elif [ "$previous" != N ]
+	then
+		# Run all scripts with the same level in parallel
+		CURLEVEL=""
+		for s in /etc/rc$runlevel.d/K*
+		do
+			# Extract order value from symlink
+			level=${s#/etc/rc$runlevel.d/K}
+			level=${level%%[a-zA-Z]*}
+			if [ "$level" = "$CURLEVEL" ]
+			then
+				continue
+			fi
+			CURLEVEL=$level
+			SCRIPTS=""
+			for i in /etc/rc$runlevel.d/K$level*
+			do
+				# Check if the script is there.
+				[ ! -f $i ] && continue
+
+				#
+				# Find stop script in previous runlevel but
+				# no start script there.
+				#
+				suffix=${i#/etc/rc$runlevel.d/K[0-9][0-9]}
+				previous_stop=/etc/rc$previous.d/K[0-9][0-9]$suffix
+				previous_start=/etc/rc$previous.d/S[0-9][0-9]$suffix
+				#
+				# If there is a stop script in the previous level
+				# and _no_ start script there, we don't
+				# have to re-stop the service.
+				#
+				[ -f $previous_stop ] && [ ! -f $previous_start ] && continue
+
+				# Stop the service.
+				SCRIPTS="$SCRIPTS $i"
+			done
+			startup stop $SCRIPTS
+		done
+	fi
+
+	if [ makefile = "$CONCURRENCY" ]
+	then
+		if [ S = "$runlevel" ]
+		then
+			startup boot
+		else
+			startup $ACTION
+		fi
+	else
+		# Now run the START scripts for this runlevel.
+		# Run all scripts with the same level in parallel
+		CURLEVEL=""
+		for s in /etc/rc$runlevel.d/S*
+		do
+			# Extract order value from symlink
+			level=${s#/etc/rc$runlevel.d/S}
+			level=${level%%[a-zA-Z]*}
+			if [ "$level" = "$CURLEVEL" ]
+			then
+				continue
+			fi
+			CURLEVEL=$level
+			SCRIPTS=""
+			for i in /etc/rc$runlevel.d/S$level*
+			do
+				[ ! -f $i ] && continue
+
+				suffix=${i#/etc/rc$runlevel.d/S[0-9][0-9]}
+				if [ "$previous" != N ]
+				then
+					#
+					# Find start script in previous runlevel and
+					# stop script in this runlevel.
+					#
+					stop=/etc/rc$runlevel.d/K[0-9][0-9]$suffix
+					previous_start=/etc/rc$previous.d/S[0-9][0-9]$suffix
+					#
+					# If there is a start script in the previous level
+					# and _no_ stop script in this level, we don't
+					# have to re-start the service.
+					#
+					if [ start = "$ACTION" ] ; then
+						[ -f $previous_start ] && [ ! -f $stop ] && continue
+					else
+						# Workaround for the special
+						# handling of runlevels 0 and 6.
+						previous_stop=/etc/rc$previous.d/K[0-9][0-9]$suffix
+						#
+						# If there is a stop script in the previous level
+						# and _no_ start script there, we don't
+						# have to re-stop the service.
+						#
+						[ -f $previous_stop ] && [ ! -f $previous_start ] && continue
+					fi
+
+				fi
+				SCRIPTS="$SCRIPTS $i"
+			done
+			startup $ACTION $SCRIPTS
+		done
+	fi
+fi
+
+trap - EXIT # Disable emergency handler
+
+exit 0
+

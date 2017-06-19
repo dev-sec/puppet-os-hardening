@@ -53,6 +53,9 @@ class os_hardening(
   $enable_sysrq             = false,
   $enable_core_dump         = false,
   $enable_stack_protection  = true,
+  $sysstat_enabled          = true,
+  $legal_warning            = true,
+  $company_name             = 'Example'
 ) {
   # Validate
   # --------
@@ -114,6 +117,22 @@ class os_hardening(
     remove_from_unknown => $remove_from_unknown,
     dry_run_on_unknown  => $dry_run_on_unknown,
   }
+
+  class {'os_hardening::rc':
+    umask                    => $umask,
+  }
+
+  class {'os_hardening::sysstat':
+    sysstat_enabled          => $sysstat_enabled,
+  }
+
+  class {'os_hardening::issue':
+    legal_warning => $legal_warning,
+    company_name  => $company_name,
+  }
+
+  class {'os_hardening::lynis_packages':}
+  class {'os_hardening::modprobe':}
 
   if $configure_sysctl {
     class {'os_hardening::sysctl':
