@@ -1,5 +1,3 @@
-#!/usr/bin/env rake
-
 # rubocop:disable Style/SymbolArray
 
 require 'puppet-lint/tasks/puppet-lint'
