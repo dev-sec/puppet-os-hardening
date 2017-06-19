@@ -53,6 +53,7 @@ class os_hardening(
   $enable_sysrq             = false,
   $enable_core_dump         = false,
   $enable_stack_protection  = true,
+  $enable_rpfilter          = true,
 ) {
   # Validate
   # --------
@@ -129,6 +130,7 @@ class os_hardening(
       enable_sysrq            => $enable_sysrq,
       enable_core_dump        => $enable_core_dump,
       enable_stack_protection => $enable_stack_protection,
+      enable_rpfilter         => $enable_rpfilter,
     }
   }
 }
