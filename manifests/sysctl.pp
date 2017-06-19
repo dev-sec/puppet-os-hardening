@@ -44,7 +44,7 @@ class os_hardening::sysctl (
   }
 
   # IPv6 enabled
-	if $manage_ipv6 {
+  if $manage_ipv6 {
     if $enable_ipv6 {
       sysctl { 'net.ipv6.conf.all.disable_ipv6': value => '0' }
       if $enable_ipv6_forwarding {
