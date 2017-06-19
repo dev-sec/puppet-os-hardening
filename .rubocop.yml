@@ -28,6 +28,6 @@ Metrics/PerceivedComplexity:
   Max: 10
 Metrics/AbcSize:
   Max: 29
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: trailing
   Enabled: true
