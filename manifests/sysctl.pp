@@ -15,6 +15,7 @@ class os_hardening::sysctl (
   $cpu_vendor              = 'intel',
   $desktop_enabled         = false,
   $enable_ipv4_forwarding  = false,
+  $manage_ipv6             = true,
   $enable_ipv6             = false,
   $enable_ipv6_forwarding  = false,
   $arp_restricted          = true,
@@ -43,30 +44,30 @@ class os_hardening::sysctl (
   }
 
   # IPv6 enabled
-  if $enable_ipv6 {
-    sysctl { 'net.ipv6.conf.all.disable_ipv6': value => '0' }
-    if $enable_ipv6_forwarding {
-      sysctl { 'net.ipv6.conf.all.forwarding': value => '1' }
+  if $manage_ipv6 {
+    if $enable_ipv6 {
+      sysctl { 'net.ipv6.conf.all.disable_ipv6': value => '0' }
+      if $enable_ipv6_forwarding {
+        sysctl { 'net.ipv6.conf.all.forwarding': value => '1' }
+      } else {
+        sysctl { 'net.ipv6.conf.all.forwarding': value => '0' }
+      }
     } else {
+      # IPv6 disabled
+      sysctl { 'net.ipv6.conf.all.disable_ipv6': value => '1' }
       sysctl { 'net.ipv6.conf.all.forwarding': value => '0' }
+      sysctl { 'net.ipv6.conf.default.router_solicitations': value => '0' }
+      sysctl { 'net.ipv6.conf.default.accept_ra_rtr_pref': value => '0' }
+      sysctl { 'net.ipv6.conf.default.accept_ra_pinfo': value => '0' }
+      sysctl { 'net.ipv6.conf.default.accept_ra_defrtr': value => '0' }
+      sysctl { 'net.ipv6.conf.default.autoconf': value => '0' }
+      sysctl { 'net.ipv6.conf.default.dad_transmits': value => '0' }
+      sysctl { 'net.ipv6.conf.default.max_addresses': value => '1' }
     }
-  } else {
-    # IPv6 disabled
-    sysctl { 'net.ipv6.conf.all.disable_ipv6': value => '1' }
-    sysctl { 'net.ipv6.conf.all.forwarding': value => '0' }
-    sysctl { 'net.ipv6.conf.default.router_solicitations': value => '0' }
-    sysctl { 'net.ipv6.conf.default.accept_ra_rtr_pref': value => '0' }
-    sysctl { 'net.ipv6.conf.default.accept_ra_pinfo': value => '0' }
-    sysctl { 'net.ipv6.conf.default.accept_ra_defrtr': value => '0' }
-    sysctl { 'net.ipv6.conf.default.autoconf': value => '0' }
-    sysctl { 'net.ipv6.conf.default.dad_transmits': value => '0' }
-    sysctl { 'net.ipv6.conf.default.max_addresses': value => '1' }
+    #ignore RAs on Ipv6
+    sysctl { 'net.ipv6.conf.all.accept_ra': value => '0' }
+    sysctl { 'net.ipv6.conf.default.accept_ra': value => '0' }
   }
-
-  #ignore RAs on Ipv6
-  sysctl { 'net.ipv6.conf.all.accept_ra': value => '0' }
-  sysctl { 'net.ipv6.conf.default.accept_ra': value => '0' }
-
   # Enable RFC-recommended source validation feature. It should not be used for routers on complex networks, but is helpful for 
   # end hosts and routers serving small networks.
   sysctl { 'net.ipv4.conf.all.rp_filter': value => '1' }
@@ -135,18 +136,20 @@ class os_hardening::sysctl (
 
   # Accepting source route can lead to malicious networking behavior, so disable it if not needed.
   sysctl { 'net.ipv4.conf.all.accept_source_route': value => '0' }
-  sysctl { 'net.ipv6.conf.all.accept_source_route': value => '0' }
   sysctl { 'net.ipv4.conf.default.accept_source_route': value => '0' }
-  sysctl { 'net.ipv6.conf.default.accept_source_route': value => '0' }
-
+  if $manage_ipv6 {
+    sysctl { 'net.ipv6.conf.all.accept_source_route': value => '0' }
+    sysctl { 'net.ipv6.conf.default.accept_source_route': value => '0' }
+  }
   # Accepting redirects can lead to malicious networking behavior, so disable it if not needed.
   sysctl { 'net.ipv4.conf.all.accept_redirects': value => '0' }
   sysctl { 'net.ipv4.conf.default.accept_redirects': value => '0' }
-  sysctl { 'net.ipv6.conf.all.accept_redirects': value => '0' }
-  sysctl { 'net.ipv6.conf.default.accept_redirects': value => '0' }
   sysctl { 'net.ipv4.conf.all.secure_redirects': value => '0' }
   sysctl { 'net.ipv4.conf.default.secure_redirects': value => '0' }
-
+  if $manage_ipv6 {
+    sysctl { 'net.ipv6.conf.all.accept_redirects': value => '0' }
+    sysctl { 'net.ipv6.conf.default.accept_redirects': value => '0' }
+  }
   # For non-routers: don't send redirects, these settings are 0
   sysctl { 'net.ipv4.conf.all.send_redirects': value => '0' }
   sysctl { 'net.ipv4.conf.default.send_redirects': value => '0' }
