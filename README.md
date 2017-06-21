@@ -18,18 +18,24 @@ This Puppet module provides secure configuration of your base OS with hardening.
   define the context in which the system runs. Some options don't work for `docker`/`lxc`
 * `desktop_enabled = false`
   true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
-* `enable_ipv4_forwarding   = false`
+* `enable_ipv4_forwarding = false`
   true if this system requires packet forwarding in IPv4 (eg Router), false otherwise
-* `enable_ipv6_forwarding   = false`
+* `enable_ipv6_forwarding = false`
   true if this system requires packet forwarding in IPv6 (eg Router), false otherwise
 * `enable_ipv6 = false`
+  false to disable ipv6 on this system, true to enable
+* `manage_ipv6 = true`
+  true to harden ipv6 setup, false to ignore ipv6 completely
 * `enable_log_martians = true`
   true to enable logging on suspicious / unroutable network packets, false otherwise **WARNING - this might generate huge log files!**
 * `arp_restricted = true`
   true if you want the behavior of announcing and replying to ARP to be restricted, false otherwise
+* `enable_rpfilter = true`
+  true to enable reverse path filtering (discard bogus packets), false otherwise
 * `extra_user_paths = []`
   add additional paths to the user's `PATH` variable (default is empty).
 * `umask = "027"`
+  umask used for the creation of new home directories by useradd / newusers
 * `password_max_age = 60`
   maximum password age
 * `password_min_age = 7`
@@ -38,6 +44,8 @@ This Puppet module provides secure configuration of your base OS with hardening.
   the maximum number of authentication attempts, before the account is locked for some time
 * `auth_lockout_time = 600`
   time in seconds that needs to pass, if the account was locked due to too many failed authentication attempts
+* `login_retries = 5`
+  the maximum number of login retries if password is bad (normally overridden by PAM / auth_retries)
 * `login_timeout = 60`
   authentication timeout in seconds, so login will exit if this time passes
 * `allow_login_without_home = false`
@@ -56,12 +64,16 @@ This Puppet module provides secure configuration of your base OS with hardening.
   if a user may use `su` to change his login
 * `ignore_users = []`
   array of system user accounts that should _not be_ hardened (password disabled and shell set to `/usr/sbin/nologin`)
+* `chfn_restrict = ""`
+  which fields may be changed by regular users using chfn
 * `enable_module_loading = true`
   true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
 * `load_modules = []`
   load this modules via initramfs if enable_module_loading is false
 * `enable_sysrq = false`
+  true to enable the magic sysrq key, false otherwise
 * `enable_core_dump = false`
+  false to prevent the creation of core dumps, true otherwise
 * `enable_stack_protection = true`
   for Address Space Layout Randomization. ASLR can help defeat certain types of buffer overflow attacks. ASLR can locate the base, libraries, heap, and stack at random positions in a process's address space, which makes it difficult for an attacking program to predict the memory address of the next instruction.
 * `cpu_vendor = 'intel'`
