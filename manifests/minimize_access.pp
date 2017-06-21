@@ -41,12 +41,21 @@ class os_hardening::minimize_access (
   }
 
   # su must only be accessible to user and group root
-  if $allow_change_user == true {
+  if $allow_change_user == false {
     file { '/bin/su':
       ensure => file,
+      links  => 'follow',
       owner  => 'root',
       group  => 'root',
       mode   => '0750',
+    }
+  } else {
+    file { '/bin/su':
+      ensure => file,
+      links  => 'follow',
+      owner  => 'root',
+      group  => 'root',
+      mode   => '4755',
     }
   }
 
