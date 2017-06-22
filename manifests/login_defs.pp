@@ -29,6 +29,6 @@ class os_hardening::login_defs (
       content => template( 'os_hardening/login.defs.erb' ),
       owner   => 'root',
       group   => 'root',
-      mode    => '0400',
+      mode    => '0444',
   }
 }
