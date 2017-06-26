@@ -33,11 +33,21 @@ class os_hardening::minimize_access (
     mode    => 'go-w',
     recurse => true,
   }
+
   # shadow must only be accessible to user root
+  case $::operatingsystem {
+    'debian', 'ubuntu': {
+      $shadowgroup = 'shadow'
+    }
+    default: {
+      $shadowgroup = 'root'
+    }
+  }
+
   file { '/etc/shadow':
     ensure => file,
     owner  => 'root',
-    group  => 'root',
+    group  => $shadowgroup,
     mode   => '0600',
   }
 
