@@ -33,12 +33,24 @@ class os_hardening::minimize_access (
     mode    => 'go-w',
     recurse => true,
   }
+
   # shadow must only be accessible to user root
+  case $::operatingsystem {
+    'debian', 'ubuntu', 'opensuse', 'sles': {
+      $shadowgroup = 'shadow'
+      $shadowmode  = '0640'
+    }
+    default: {
+      $shadowgroup = 'root'
+      $shadowmode  = '0600'
+    }
+  }
+
   file { '/etc/shadow':
     ensure => file,
     owner  => 'root',
-    group  => 'root',
-    mode   => '0600',
+    group  => $shadowgroup,
+    mode   => $shadowmode,
   }
 
   # su must only be accessible to user and group root
