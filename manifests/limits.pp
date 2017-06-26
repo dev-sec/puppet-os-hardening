@@ -16,11 +16,15 @@ class os_hardening::limits (
 ){
   if $allow_core_dumps == false {
     file { '/etc/security/limits.d/10.hardcore.conf':
-        ensure => file,
-        source => 'puppet:///modules/os_hardening/limits.conf',
-        owner  => 'root',
-        group  => 'root',
-        mode   => '0400',
+      ensure => file,
+      source => 'puppet:///modules/os_hardening/limits.conf',
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0400',
+    }
+  } else {
+    file { '/etc/security/limits.d/10.hardcore.conf':
+      ensure => absent,
     }
   }
 }

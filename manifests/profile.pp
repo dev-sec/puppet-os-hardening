@@ -13,13 +13,16 @@ class os_hardening::profile (
   $allow_core_dumps = false
 ){
   if $allow_core_dumps == false {
-    file {
-      '/etc/profile.d/pinerolo_profile.sh':
-        ensure => file,
-        source => 'puppet:///modules/os_hardening/profile.conf',
-        owner  => 'root',
-        group  => 'root',
-        mode   => '0400',
+    file { '/etc/profile.d/pinerolo_profile.sh':
+      ensure => file,
+      source => 'puppet:///modules/os_hardening/profile.conf',
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0400',
+    }
+  } else {
+    file { '/etc/profile.d/pinerolo_profile.sh':
+      ensure => absent,
     }
   }
 }
