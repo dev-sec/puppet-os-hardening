@@ -12,10 +12,10 @@
 # * disable core dumps
 #
 class os_hardening::limits (
-  $allow_core_dumps = false,
+  $enable_core_dump = false,
 ) {
 
-  if $allow_core_dumps == false {
+  if $enable_core_dump == false {
     file { '/etc/security/limits.d/10.hardcore.conf':
       ensure => file,
       source => 'puppet:///modules/os_hardening/limits.conf',
