@@ -4,20 +4,58 @@
   "author": "Dominik Richter",
   "summary": "Configures the base OS with hardening",
   "license": "Apache-2.0",
-  "source": "https://github.com/TelekomLabs/puppet-os-hardening",
-  "project_page": "https://github.com/TelekomLabs/puppet-os-hardening",
-  "issues_url": "https://github.com/TelekomLabs/puppet-os-hardening/issues",
-  "description": "Configures the base OS with hardening",
-  "types": [
-
+  "source": "https://github.com/dev-sec/puppet-os-hardening.git",
+  "project_page": "https://github.com/dev-sec/puppet-os-hardening",
+  "issues_url": "https://github.com/dev-sec/puppet-os-hardening/issues",
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 3.0.0 < 6.0.0"
+    }
   ],
   "dependencies": [
     {
-      "name": "puppetlabs/stdlib"
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.6.0 < 5.0.0"
     },
     {
       "name": "thias/sysctl",
-      "version_requirement": ">=0.3.1"
+      "version_requirement": ">= 1.0.6 < 2.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OpenSuSE",
+      "operatingsystemrelease": [
+        "13",
+        "42"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "SLES",
+      "operatingsystemrelease": [
+        "12"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "14",
+        "16"
+      ]
     }
   ]
 }
+
