@@ -54,6 +54,7 @@ class os_hardening (
   $enable_core_dump         = false,
   $enable_stack_protection  = true,
   $enable_rpfilter          = true,
+  $enable_log_martians      = true,
 ) {
 
   # Validate
@@ -132,6 +133,7 @@ class os_hardening (
       enable_core_dump        => $enable_core_dump,
       enable_stack_protection => $enable_stack_protection,
       enable_rpfilter         => $enable_rpfilter,
+      enable_log_martians     => $enable_log_martians,
     }
   }
 

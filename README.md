@@ -23,6 +23,8 @@ This Puppet module provides secure configuration of your base OS with hardening.
 * `enable_ipv6_forwarding   = false`
   true if this system requires packet forwarding in IPv6 (eg Router), false otherwise
 * `enable_ipv6 = false`
+* `enable_log_martians = true`
+  true to enable logging on suspicious / unroutable network packets, false otherwise **WARNING - this might generate huge log files!**
 * `arp_restricted = true`
   true if you want the behavior of announcing and replying to ARP to be restricted, false otherwise
 * `extra_user_paths = []`
