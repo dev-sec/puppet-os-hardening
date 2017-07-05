@@ -14,7 +14,8 @@ class os_hardening::minimize_access (
   $always_ignore_users =
     ['root','sync','shutdown','halt'],
   $ignore_users        = [],
-){
+) {
+
   # from which folders to remove public access
   $folders = [
     '/usr/local/sbin',
@@ -27,8 +28,8 @@ class os_hardening::minimize_access (
   # remove write permissions from path folders ($PATH) for all regular users
   # this prevents changing any system-wide command from normal users
   file { $folders:
-    ensure  => 'directory',
-    links   => 'follow',
+    ensure  => directory,
+    links   => follow,
     mode    => 'go-w',
     recurse => true,
   }
@@ -56,7 +57,7 @@ class os_hardening::minimize_access (
   if $allow_change_user == false {
     file { '/bin/su':
       ensure => file,
-      links  => 'follow',
+      links  => follow,
       owner  => 'root',
       group  => 'root',
       mode   => '0750',
@@ -64,7 +65,7 @@ class os_hardening::minimize_access (
   } else {
     file { '/bin/su':
       ensure => file,
-      links  => 'follow',
+      links  => follow,
       owner  => 'root',
       group  => 'root',
       mode   => '4755',
@@ -88,3 +89,4 @@ class os_hardening::minimize_access (
   }
 
 }
+

@@ -23,7 +23,7 @@ class os_hardening::sysctl (
   $enable_core_dump        = false,
   $enable_stack_protection = true,
   $enable_rpfilter         = true,
-){
+) {
 
   # set variables
   if $::architecture == 'amd64' or $::architecture == 'x86_64' {
@@ -214,14 +214,13 @@ class os_hardening::sysctl (
   if $enable_module_loading == false {
     case $::operatingsystem {
       debian, ubuntu: {
-        file {
-          '/etc/initramfs-tools/modules':
-            ensure  => file,
-            content => template( 'os_hardening/modules.erb' ),
-            owner   => 'root',
-            group   => 'root',
-            mode    => '0400',
-            notify  => Exec['update-initramfs'],
+        file { '/etc/initramfs-tools/modules':
+          ensure  => file,
+          content => template('os_hardening/modules.erb'),
+          owner   => 'root',
+          group   => 'root',
+          mode    => '0400',
+          notify  => Exec['update-initramfs'],
         }
 
         exec { 'update-initramfs':
@@ -234,4 +233,6 @@ class os_hardening::sysctl (
       }
     }
   }
+
 }
+

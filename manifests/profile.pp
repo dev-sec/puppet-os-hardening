@@ -10,8 +10,9 @@
 # Configures profile.conf.
 #
 class os_hardening::profile (
-  $allow_core_dumps = false
-){
+  $allow_core_dumps = false,
+) {
+
   if $allow_core_dumps == false {
     file { '/etc/profile.d/pinerolo_profile.sh':
       ensure => file,
@@ -25,4 +26,6 @@ class os_hardening::profile (
       ensure => absent,
     }
   }
+
 }
+
