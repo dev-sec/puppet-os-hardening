@@ -10,14 +10,15 @@
 # Configures PAM
 #
 class os_hardening::pam (
-  $passwdqc_enabled = true,
-  $auth_retries = 5,
+  $passwdqc_enabled  = true,
+  $auth_retries      = 5,
   $auth_lockout_time = 600,
-  $passwdqc_options = 'min=disabled,disabled,16,12,8',
-  $manage_pam_unix = false,
+  $passwdqc_options  = 'min=disabled,disabled,16,12,8',
+  $manage_pam_unix   = false,
   $enable_pw_history = false,
-  $pw_remember_last = 5,
-){
+  $pw_remember_last  = 5,
+) {
+
   # prepare package names
   case $::operatingsystem {
     redhat, fedora: {
@@ -40,7 +41,7 @@ class os_hardening::pam (
   # remove ccreds if not necessary
   package{ 'pam-ccreds':
     ensure => absent,
-    name   => $pam_ccreds
+    name   => $pam_ccreds,
   }
 
   case $::operatingsystem {
@@ -67,7 +68,7 @@ class os_hardening::pam (
         # configure passwdqc via central module:
         file { $passwdqc_path:
           ensure  => file,
-          content => template( 'os_hardening/pam_passwdqc.erb' ),
+          content => template('os_hardening/pam_passwdqc.erb'),
           owner   => 'root',
           group   => 'root',
           mode    => '0640',
@@ -94,13 +95,13 @@ class os_hardening::pam (
       #configure tally2
       if $auth_retries > 0 {
         # tally2 is needed for pam
-        package{ 'libpam-modules':
+        package { 'libpam-modules':
           ensure => present,
         }
 
         file { $tally2_path:
           ensure  => file,
-          content => template( 'os_hardening/pam_tally2.erb' ),
+          content => template('os_hardening/pam_tally2.erb'),
           owner   => 'root',
           group   => 'root',
           mode    => '0640',
@@ -117,13 +118,12 @@ class os_hardening::pam (
       if $manage_pam_unix {
         if $enable_pw_history {
           $pw_history_options = "remember=${pw_remember_last}"
-        }
-        else {
+        } else {
           $pw_history_options = ''
         }
         file { $unix_path:
           ensure  => file,
-          content => template( 'os_hardening/pam_unix.erb' ),
+          content => template('os_hardening/pam_unix.erb'),
           owner   => 'root',
           group   => 'root',
           mode    => '0640',
@@ -144,3 +144,4 @@ class os_hardening::pam (
   }
 
 }
+

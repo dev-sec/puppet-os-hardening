@@ -12,8 +12,9 @@
 # * disable core dumps
 #
 class os_hardening::limits (
-  $allow_core_dumps = false
-){
+  $allow_core_dumps = false,
+) {
+
   if $allow_core_dumps == false {
     file { '/etc/security/limits.d/10.hardcore.conf':
       ensure => file,
@@ -27,4 +28,6 @@ class os_hardening::limits (
       ensure => absent,
     }
   }
+
 }
+

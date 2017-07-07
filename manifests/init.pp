@@ -9,7 +9,7 @@
 #
 # Pulls in all manifests for os_hardening.
 #
-class os_hardening(
+class os_hardening (
   $system_environment       = 'default',
   $allow_core_dumps         = false,
 
@@ -55,6 +55,7 @@ class os_hardening(
   $enable_stack_protection  = true,
   $enable_rpfilter          = true,
 ) {
+
   # Validate
   # --------
   validate_array($ignore_users)
@@ -72,15 +73,15 @@ class os_hardening(
   $configure_sysctl = (
     $system_environment != 'lxc' and
     $system_environment != 'docker'
-    )
+  )
 
 
   # Install
   # -------
-  class {'os_hardening::limits':
-    allow_core_dumps         => $allow_core_dumps,
+  class { 'os_hardening::limits':
+    allow_core_dumps => $allow_core_dumps,
   }
-  class {'os_hardening::login_defs':
+  class { 'os_hardening::login_defs':
     extra_user_paths         => $extra_user_paths,
     umask                    => $umask,
     password_max_age         => $password_max_age,
@@ -90,11 +91,11 @@ class os_hardening(
     chfn_restrict            => $chfn_restrict,
     allow_login_without_home => $allow_login_without_home,
   }
-  class {'os_hardening::minimize_access':
+  class { 'os_hardening::minimize_access':
     allow_change_user => $allow_change_user,
     ignore_users      => $ignore_users,
   }
-  class {'os_hardening::pam':
+  class { 'os_hardening::pam':
     passwdqc_enabled  => $passwdqc_enabled,
     auth_retries      => $auth_retries,
     auth_lockout_time => $auth_lockout_time,
@@ -103,13 +104,13 @@ class os_hardening(
     enable_pw_history => $enable_pw_history,
     pw_remember_last  => $pw_remember_last,
   }
-  class {'os_hardening::profile':
+  class { 'os_hardening::profile':
     allow_core_dumps => $allow_core_dumps,
   }
-  class {'os_hardening::securetty':
+  class { 'os_hardening::securetty':
     root_ttys => $root_ttys,
   }
-  class {'os_hardening::suid_sgid':
+  class { 'os_hardening::suid_sgid':
     whitelist           => $whitelist,
     blacklist           => $blacklist,
     remove_from_unknown => $remove_from_unknown,
@@ -117,7 +118,7 @@ class os_hardening(
   }
 
   if $configure_sysctl {
-    class {'os_hardening::sysctl':
+    class { 'os_hardening::sysctl':
       enable_module_loading   => $enable_module_loading,
       load_modules            => $load_modules,
       cpu_vendor              => $cpu_vendor,
@@ -133,4 +134,6 @@ class os_hardening(
       enable_rpfilter         => $enable_rpfilter,
     }
   }
+
 }
+
