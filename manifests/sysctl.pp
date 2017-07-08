@@ -23,6 +23,7 @@ class os_hardening::sysctl (
   $enable_core_dump        = false,
   $enable_stack_protection = true,
   $enable_rpfilter         = true,
+  $enable_log_martians     = true,
 ) {
 
   # set variables
@@ -161,7 +162,13 @@ class os_hardening::sysctl (
   sysctl { 'net.ipv4.conf.default.send_redirects': value => '0' }
 
   # log martian packets (risky, may cause DoS)
-  #net.ipv4.conf.all.log_martians = 1
+  if $enable_log_martians {
+    sysctl { 'net.ipv4.conf.all.log_martians': value => '1' }
+    sysctl { 'net.ipv4.conf.default.log_martians': value => '1' }
+  } else {
+    sysctl { 'net.ipv4.conf.all.log_martians': value => '0' }
+    sysctl { 'net.ipv4.conf.default.log_martians': value => '0' }
+  }
 
 
   # System
