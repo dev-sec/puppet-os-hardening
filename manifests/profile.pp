@@ -10,10 +10,10 @@
 # Configures profile.conf.
 #
 class os_hardening::profile (
-  $allow_core_dumps = false,
+  $enable_core_dump = false,
 ) {
 
-  if $allow_core_dumps == false {
+  if $enable_core_dump == false {
     file { '/etc/profile.d/pinerolo_profile.sh':
       ensure => file,
       source => 'puppet:///modules/os_hardening/profile.conf',

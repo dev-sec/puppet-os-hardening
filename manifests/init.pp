@@ -11,7 +11,6 @@
 #
 class os_hardening (
   $system_environment       = 'default',
-  $allow_core_dumps         = false,
 
   $extra_user_paths         = [],
   $umask                    = '027',
@@ -80,7 +79,7 @@ class os_hardening (
   # Install
   # -------
   class { 'os_hardening::limits':
-    allow_core_dumps => $allow_core_dumps,
+    enable_core_dump => $enable_core_dump,
   }
   class { 'os_hardening::login_defs':
     extra_user_paths         => $extra_user_paths,
@@ -106,7 +105,7 @@ class os_hardening (
     pw_remember_last  => $pw_remember_last,
   }
   class { 'os_hardening::profile':
-    allow_core_dumps => $allow_core_dumps,
+    enable_core_dump => $enable_core_dump,
   }
   class { 'os_hardening::securetty':
     root_ttys => $root_ttys,
