@@ -50,7 +50,11 @@ class os_hardening (
   $enable_ipv6_forwarding   = false,
   $arp_restricted           = true,
   $enable_sysrq             = false,
-  $enable_core_dump         = false,
+
+  # unbreak legacy as of now; defaults to "false" in code
+  $enable_core_dump         = unset,
+  $allow_core_dumps         = unset,
+
   $enable_stack_protection  = true,
   $enable_rpfilter          = true,
   $enable_log_martians      = true,
@@ -75,11 +79,24 @@ class os_hardening (
     $system_environment != 'docker'
   )
 
+  unless $allow_core_dumps == unset {
+    notice("\n\n#####\n\n\$allow_core_dumps is deprecated; use \$enable_core_dump instead!\n\n#####\n\n")
+  }
+
+  if $enable_core_dump != unset {
+    validate_bool($enable_core_dump)
+    $enable_core_dump_int = $enable_core_dump
+  } elsif $allow_core_dumps != unset {
+    validate_bool($allow_core_dumps)
+    $enable_core_dump_int = $allow_core_dumps
+  } else {
+    $enable_core_dump_int = false
+  }
 
   # Install
   # -------
   class { 'os_hardening::limits':
-    enable_core_dump => $enable_core_dump,
+    enable_core_dump => $enable_core_dump_int,
   }
   class { 'os_hardening::login_defs':
     extra_user_paths         => $extra_user_paths,
@@ -105,7 +122,7 @@ class os_hardening (
     pw_remember_last  => $pw_remember_last,
   }
   class { 'os_hardening::profile':
-    enable_core_dump => $enable_core_dump,
+    enable_core_dump => $enable_core_dump_int,
   }
   class { 'os_hardening::securetty':
     root_ttys => $root_ttys,
@@ -129,7 +146,7 @@ class os_hardening (
       enable_ipv6_forwarding  => $enable_ipv6_forwarding,
       arp_restricted          => $arp_restricted,
       enable_sysrq            => $enable_sysrq,
-      enable_core_dump        => $enable_core_dump,
+      enable_core_dump        => $enable_core_dump_int,
       enable_stack_protection => $enable_stack_protection,
       enable_rpfilter         => $enable_rpfilter,
       enable_log_martians     => $enable_log_martians,
