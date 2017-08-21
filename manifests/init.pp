@@ -42,6 +42,9 @@ class os_hardening (
 
   $enable_module_loading    = true,
   $load_modules             = [],
+  $disable_filesystems      =
+    ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf','vfat'],
+
   $cpu_vendor               = 'intel',
   $desktop_enabled          = false,
   $enable_ipv4_forwarding   = false,
@@ -94,6 +97,9 @@ class os_hardening (
   class { 'os_hardening::minimize_access':
     allow_change_user => $allow_change_user,
     ignore_users      => $ignore_users,
+  }
+  class { 'os_hardening::modules':
+    disable_filesystems   => $disable_filesystems,
   }
   class { 'os_hardening::pam':
     passwdqc_enabled  => $passwdqc_enabled,
