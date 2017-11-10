@@ -14,6 +14,8 @@ class os_hardening::minimize_access (
   $always_ignore_users =
     ['root','sync','shutdown','halt'],
   $ignore_users        = [],
+  $shadowgroup         = 'root',
+  $shadowmode          = '0600',
 ) {
 
   # from which folders to remove public access
@@ -35,17 +37,6 @@ class os_hardening::minimize_access (
   }
 
   # shadow must only be accessible to user root
-  case $::operatingsystem {
-    'debian', 'ubuntu', 'opensuse', 'sles': {
-      $shadowgroup = 'shadow'
-      $shadowmode  = '0640'
-    }
-    default: {
-      $shadowgroup = 'root'
-      $shadowmode  = '0600'
-    }
-  }
-
   file { '/etc/shadow':
     ensure => file,
     owner  => 'root',
