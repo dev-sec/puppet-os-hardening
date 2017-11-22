@@ -1,0 +1,6 @@
+# Puppet os_hardening: Disable filesystems (os-10)
+
+<% @disable_filesystems.each do |fs| -%>
+install <%= fs %> /bin/true
+<% end -%>
+

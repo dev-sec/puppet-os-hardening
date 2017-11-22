@@ -70,6 +70,8 @@ This Puppet module provides secure configuration of your base OS with hardening.
   true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
 * `load_modules = []`
   load this modules via initramfs if enable_module_loading is false
+* `disable_filesystems = ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf','vfat']`
+  array of filesystems (kernel modules) that should be disabled
 * `enable_sysrq = false`
   true to enable the magic sysrq key, false otherwise
 * `enable_core_dump = false`
@@ -78,7 +80,7 @@ This Puppet module provides secure configuration of your base OS with hardening.
   for Address Space Layout Randomization. ASLR can help defeat certain types of buffer overflow attacks. ASLR can locate the base, libraries, heap, and stack at random positions in a process's address space, which makes it difficult for an attacking program to predict the memory address of the next instruction.
 * `cpu_vendor = 'intel'`
   only required if `enable_module_loading = false`: set the CPU vendor for modules to load
-* `root_ttys = ["console","tty1","tty2","tty3","tty4","tty5","tty6"]`
+* `root_ttys = ['console','tty1','tty2','tty3','tty4','tty5','tty6']`
   registered TTYs for root
 * `whitelist = []`
   all files which should keep their SUID/SGID bits if set (will be combined with pre-defined whiteliste of files)
