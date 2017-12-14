@@ -22,8 +22,11 @@ end
 Facter.add(:retrieve_system_users) do
   sys_users = []
   Puppet::Type.type('user').instances.find_all do |user|
-    user_value = user.retrieve
-    sys_users.push(user.name) unless user_value[user.property(:uid)].to_i > su_maxid
+    # Avoid picking up non-local users
+    if user.name.index('@').nil?
+      user_value = user.retrieve
+      sys_users.push(user.name) unless user_value[user.property(:uid)].to_i > su_maxid
+    end
   end
   setcode do
     sys_users.join(',')
