@@ -8,6 +8,7 @@ else
 end
 
 group :test do
+  gem 'github_changelog_generator', :require => false
   gem 'puppet-lint'
   # avoid NoMethodError: private method `clone' called for #<RuboCop::Cop::CopStore:0x00000104e286c8>
   gem 'puppetlabs_spec_helper', :git => 'https://github.com/ehaselwanter/puppetlabs_spec_helper'

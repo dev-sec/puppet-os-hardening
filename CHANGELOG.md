@@ -1,4 +1,52 @@
-# Changelog
+# Change Log
+
+## [2.0.0](https://github.com/dev-sec/puppet-os-hardening/tree/2.0.0) (2017-12-19)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/1.1.2...2.0.0)
+
+**Closed issues:**
+
+- SLES and OEL errors when ipv6 is disabled [\#82](https://github.com/dev-sec/puppet-os-hardening/issues/82)
+- Failed to generate additional resources [\#75](https://github.com/dev-sec/puppet-os-hardening/issues/75)
+- Multiple conflicts with Puppet Enterprise [\#74](https://github.com/dev-sec/puppet-os-hardening/issues/74)
+- Conflict with Puppet Enterprise 2016.1.1 [\#71](https://github.com/dev-sec/puppet-os-hardening/issues/71)
+- allow\_core\_dump set to true still ends up setting /etc/security/limits.d/10.hardcore.conf and /etc/profile.d/pinerolo\_profile.sh files [\#68](https://github.com/dev-sec/puppet-os-hardening/issues/68)
+- IPv6 setting problem [\#67](https://github.com/dev-sec/puppet-os-hardening/issues/67)
+- Log martian packets [\#66](https://github.com/dev-sec/puppet-os-hardening/issues/66)
+- Merge \#64 [\#65](https://github.com/dev-sec/puppet-os-hardening/issues/65)
+- net.ipv6.conf.default.accept\_ra [\#56](https://github.com/dev-sec/puppet-os-hardening/issues/56)
+
+**Merged pull requests:**
+
+- Update links + contributors in README [\#108](https://github.com/dev-sec/puppet-os-hardening/pull/108) ([mcgege](https://github.com/mcgege))
+- Avoid picking up users retrieved from SSSD or other domain services. [\#101](https://github.com/dev-sec/puppet-os-hardening/pull/101) ([tprobinson](https://github.com/tprobinson))
+- Implement linux-baseline os-10 [\#100](https://github.com/dev-sec/puppet-os-hardening/pull/100) ([mcgege](https://github.com/mcgege))
+- Style Guide corrections [\#98](https://github.com/dev-sec/puppet-os-hardening/pull/98) ([mcgege](https://github.com/mcgege))
+- Update module metadata [\#97](https://github.com/dev-sec/puppet-os-hardening/pull/97) ([mcgege](https://github.com/mcgege))
+- Baseline sysctl-17: Enable logging of martian packets [\#96](https://github.com/dev-sec/puppet-os-hardening/pull/96) ([mcgege](https://github.com/mcgege))
+- One single coredump parameter [\#95](https://github.com/dev-sec/puppet-os-hardening/pull/95) ([mcgege](https://github.com/mcgege))
+- Fix for Linux Baseline os-02 [\#94](https://github.com/dev-sec/puppet-os-hardening/pull/94) ([mcgege](https://github.com/mcgege))
+- Baseline os-05b: set SYS\_\[GU\]ID\_\[MIN|MAX\] in /etc/login.defs [\#92](https://github.com/dev-sec/puppet-os-hardening/pull/92) ([mcgege](https://github.com/mcgege))
+- Remove config/scripts to prevent core dumps if function is disabled… [\#91](https://github.com/dev-sec/puppet-os-hardening/pull/91) ([mcgege](https://github.com/mcgege))
+- DevSec Linux Baseline os-05 [\#90](https://github.com/dev-sec/puppet-os-hardening/pull/90) ([mcgege](https://github.com/mcgege))
+- Corrected handling of /bin/su \(via allow\_change\_user\) [\#89](https://github.com/dev-sec/puppet-os-hardening/pull/89) ([mcgege](https://github.com/mcgege))
+- Documentation update [\#88](https://github.com/dev-sec/puppet-os-hardening/pull/88) ([mcgege](https://github.com/mcgege))
+- added switch manage\_ipv6, so people could disable managing of ipv6 co… [\#87](https://github.com/dev-sec/puppet-os-hardening/pull/87) ([STetzel](https://github.com/STetzel))
+- CentOS7 issue - revert "Remove link following in minimize\_access file resource" [\#86](https://github.com/dev-sec/puppet-os-hardening/pull/86) ([mcgege](https://github.com/mcgege))
+- Making rubocop happy [\#85](https://github.com/dev-sec/puppet-os-hardening/pull/85) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Make the sysctl setting 'rp\_filter' configurable [\#84](https://github.com/dev-sec/puppet-os-hardening/pull/84) ([mcgege](https://github.com/mcgege))
+- Quick fix for issue \#71: remove '/usr/local/bin' from managed folders [\#83](https://github.com/dev-sec/puppet-os-hardening/pull/83) ([mcgege](https://github.com/mcgege))
+- Puppet-lint done for sysctl.pp [\#81](https://github.com/dev-sec/puppet-os-hardening/pull/81) ([bitvijays](https://github.com/bitvijays))
+- Fix the CI [\#80](https://github.com/dev-sec/puppet-os-hardening/pull/80) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Adopt Puppet style guide - remove dynamic variable lookup [\#70](https://github.com/dev-sec/puppet-os-hardening/pull/70) ([tuxmea](https://github.com/tuxmea))
+- Remove link following in minimize\_access file resource [\#64](https://github.com/dev-sec/puppet-os-hardening/pull/64) ([rooprob](https://github.com/rooprob))
+- update common kitchen.yml platforms [\#63](https://github.com/dev-sec/puppet-os-hardening/pull/63) ([chris-rock](https://github.com/chris-rock))
+- add support for limiting password re-use. [\#61](https://github.com/dev-sec/puppet-os-hardening/pull/61) ([igoraj](https://github.com/igoraj))
+- add local testing section to readme [\#59](https://github.com/dev-sec/puppet-os-hardening/pull/59) ([chris-rock](https://github.com/chris-rock))
+- add net.ipv6.conf.default.accept\_ra. closes \#56 [\#58](https://github.com/dev-sec/puppet-os-hardening/pull/58) ([igoraj](https://github.com/igoraj))
+- Disable System Accounts [\#54](https://github.com/dev-sec/puppet-os-hardening/pull/54) ([igoraj](https://github.com/igoraj))
+- common files: add centos 7 [\#53](https://github.com/dev-sec/puppet-os-hardening/pull/53) ([arlimus](https://github.com/arlimus))
+
+# OLD Changelog
 
 ## 1.1.2
 
@@ -69,3 +117,6 @@
 ## 0.1.0
 
 * port from chef-os-hardening and monolithic puppet implementation
+
+
+\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*

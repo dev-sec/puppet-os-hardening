@@ -2,6 +2,7 @@
 
 require 'puppet-lint/tasks/puppet-lint'
 require 'puppetlabs_spec_helper/rake_tasks'
+require 'github_changelog_generator/task'
 
 PuppetLint.configuration.send('disable_autoloader_layout')
 PuppetLint.configuration.send('disable_80chars')
@@ -22,6 +23,14 @@ if RUBY_VERSION > '1.9.2'
   end
 
   task :default => [:run_all_linters, :spec]
+
+  # Changelog Generator
+  GitHubChangelogGenerator::RakeTask.new :changelog do |config|
+    config.future_release = '2.0.0'
+    config.since_tag = '1.1.1'
+    config.user = 'dev-sec'
+    config.project = 'puppet-os-hardening'
+  end
 
 else
   desc 'Run all linters: rubocop and puppet-lint'
