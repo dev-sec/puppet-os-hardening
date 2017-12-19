@@ -1,7 +1,7 @@
 # Puppet OS hardening
 
 [![Puppet Forge](https://img.shields.io/puppetforge/dt/hardening/os_hardening.svg)][1]
-[![Build Status](http://img.shields.io/travis/hardening-io/puppet-os-hardening.svg)][2]
+[![Build Status](https://travis-ci.org/dev-sec/puppet-os-hardening.svg?branch=master)][2]
 [![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][3]
 
 ## Description
@@ -144,6 +144,7 @@ For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
 * Daniel Dreier [danieldreier](https://github.com/danieldreier)
 * Timo Goebel [timogoebel](https://github.com/timogoebel)
 * Tristan Helmich [fadenb](https://github.com/fadenb)
+* Michael Geiger [mcgege](https://github.com/mcgege)
 
 For the original port of `chef-os-hardening` to puppet:
 
@@ -169,6 +170,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[1]: https://forge.puppetlabs.com/hardening/os_hardening
-[2]: http://travis-ci.org/hardening-io/puppet-os-hardening
-[3]: https://gitter.im/hardening-io/general
+[1]: https://forge.puppet.com/hardening/os_hardening
+[2]: https://travis-ci.org/dev-sec/puppet-os-hardening
+[3]: https://gitter.im/dev-sec/general
