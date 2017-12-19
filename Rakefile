@@ -29,3 +29,5 @@ else
 
   task :default => [:lint, :spec]
 end
+
+# rubocop:enable Style/SymbolArray
