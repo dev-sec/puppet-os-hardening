@@ -5,6 +5,7 @@
 
 **Closed issues:**
 
+- Update some RH settings in this module [\#102](https://github.com/dev-sec/puppet-os-hardening/issues/102)
 - SLES and OEL errors when ipv6 is disabled [\#82](https://github.com/dev-sec/puppet-os-hardening/issues/82)
 - Failed to generate additional resources [\#75](https://github.com/dev-sec/puppet-os-hardening/issues/75)
 - Multiple conflicts with Puppet Enterprise [\#74](https://github.com/dev-sec/puppet-os-hardening/issues/74)
@@ -17,7 +18,9 @@
 
 **Merged pull requests:**
 
+- Prepare module for v2.0.0 [\#109](https://github.com/dev-sec/puppet-os-hardening/pull/109) ([mcgege](https://github.com/mcgege))
 - Update links + contributors in README [\#108](https://github.com/dev-sec/puppet-os-hardening/pull/108) ([mcgege](https://github.com/mcgege))
+- Implement new RH defaults \(see issue \#102\) [\#103](https://github.com/dev-sec/puppet-os-hardening/pull/103) ([mcgege](https://github.com/mcgege))
 - Avoid picking up users retrieved from SSSD or other domain services. [\#101](https://github.com/dev-sec/puppet-os-hardening/pull/101) ([tprobinson](https://github.com/tprobinson))
 - Implement linux-baseline os-10 [\#100](https://github.com/dev-sec/puppet-os-hardening/pull/100) ([mcgege](https://github.com/mcgege))
 - Style Guide corrections [\#98](https://github.com/dev-sec/puppet-os-hardening/pull/98) ([mcgege](https://github.com/mcgege))
