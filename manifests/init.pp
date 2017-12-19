@@ -13,7 +13,9 @@ class os_hardening (
   $system_environment       = 'default',
 
   $extra_user_paths         = [],
-  $umask                    = '027',
+  $umask                    = undef,
+  $sys_uid_min              = undef,
+  $sys_gid_min              = undef,
   $password_max_age         = 60,
   $password_min_age         = 7,
   $login_retries            = 5,
@@ -78,6 +80,35 @@ class os_hardening (
     $system_environment != 'docker'
   )
 
+  # Defaults for specific platforms
+  case $::osfamily {
+    'Debian','Suse': {
+      $def_umask = '027'
+      $def_sys_uid_min = 100
+      $def_sys_gid_min = 100
+      $shadowgroup = 'shadow'
+      $shadowmode = '0640'
+    }
+    'RedHat': {
+      $def_umask = '077'
+      $def_sys_uid_min = 201
+      $def_sys_gid_min = 201
+      $shadowgroup = 'root'
+      $shadowmode = '0000'
+    }
+    default: {
+      $def_umask = '027'
+      $def_sys_uid_min = 100
+      $def_sys_gid_min = 100
+      $shadowgroup = 'root'
+      $shadowmode = '0600'
+    }
+  }
+
+  # Merge defaults
+  $merged_umask = pick($umask, $def_umask)
+  $merged_sys_uid_min = pick($sys_uid_min, $def_sys_uid_min)
+  $merged_sys_gid_min = pick($sys_gid_min, $def_sys_gid_min)
 
   # Install
   # -------
@@ -86,7 +117,9 @@ class os_hardening (
   }
   class { 'os_hardening::login_defs':
     extra_user_paths         => $extra_user_paths,
-    umask                    => $umask,
+    umask                    => $merged_umask,
+    sys_uid_min              => $merged_sys_uid_min,
+    sys_gid_min              => $merged_sys_gid_min,
     password_max_age         => $password_max_age,
     password_min_age         => $password_min_age,
     login_retries            => $login_retries,
@@ -97,6 +130,8 @@ class os_hardening (
   class { 'os_hardening::minimize_access':
     allow_change_user => $allow_change_user,
     ignore_users      => $ignore_users,
+    shadowgroup       => $shadowgroup,
+    shadowmode        => $shadowmode,
   }
   class { 'os_hardening::modules':
     disable_filesystems   => $disable_filesystems,

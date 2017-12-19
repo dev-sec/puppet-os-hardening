@@ -12,6 +12,8 @@
 class os_hardening::login_defs (
   $extra_user_paths         = [],
   $umask                    = '027',
+  $sys_uid_min              = 100,
+  $sys_gid_min              = 100,
   $password_max_age         = 60,
   $password_min_age         = 7,
   $login_retries            = 5,
