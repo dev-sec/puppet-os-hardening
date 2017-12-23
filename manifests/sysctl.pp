@@ -5,9 +5,9 @@
 # http://www.apache.org/licenses/LICENSE-2.0
 #
 
-# == Class: os_hardening::pam
+# == Class: os_hardening::sysctl
 #
-# Configures PAM
+# Configures Kernel Parameters via sysctl
 #
 class os_hardening::sysctl (
   $enable_module_loading   = true,
