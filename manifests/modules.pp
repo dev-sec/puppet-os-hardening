@@ -9,7 +9,7 @@
 # Manage Kernel Modules
 #
 class os_hardening::modules (
-  $disable_filesystems   =
+  Array $disable_filesystems =
     ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf','vfat'],
 ) {
 

@@ -10,12 +10,12 @@
 # Configures profile.conf.
 #
 class os_hardening::minimize_access (
-  $allow_change_user   = false,
-  $always_ignore_users =
+  Boolean $allow_change_user   = false,
+  Array   $always_ignore_users =
     ['root','sync','shutdown','halt'],
-  $ignore_users        = [],
-  $shadowgroup         = 'root',
-  $shadowmode          = '0600',
+  Array   $ignore_users        = [],
+  String  $shadowgroup         = 'root',
+  String  $shadowmode          = '0600',
 ) {
 
   # from which folders to remove public access

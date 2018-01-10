@@ -10,10 +10,10 @@
 # Minimize SUID and SGID bits.
 #
 class os_hardening::suid_sgid (
-  $whitelist           = [],
-  $blacklist           = [],
-  $remove_from_unknown = false,
-  $dry_run_on_unknown  = false,
+  Array   $whitelist           = [],
+  Array   $blacklist           = [],
+  Boolean $remove_from_unknown = false,
+  Boolean $dry_run_on_unknown  = false,
 ) {
 
   # suid and sgid blacklists and whitelists

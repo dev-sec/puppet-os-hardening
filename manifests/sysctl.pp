@@ -10,20 +10,20 @@
 # Configures Kernel Parameters via sysctl
 #
 class os_hardening::sysctl (
-  $enable_module_loading   = true,
-  $load_modules            = [],
-  $cpu_vendor              = 'intel',
-  $desktop_enabled         = false,
-  $enable_ipv4_forwarding  = false,
-  $manage_ipv6             = true,
-  $enable_ipv6             = false,
-  $enable_ipv6_forwarding  = false,
-  $arp_restricted          = true,
-  $enable_sysrq            = false,
-  $enable_core_dump        = false,
-  $enable_stack_protection = true,
-  $enable_rpfilter         = true,
-  $enable_log_martians     = true,
+  Boolean $enable_module_loading   = true,
+  Array   $load_modules            = [],
+  String  $cpu_vendor              = 'intel',
+  Boolean $desktop_enabled         = false,
+  Boolean $enable_ipv4_forwarding  = false,
+  Boolean $manage_ipv6             = true,
+  Boolean $enable_ipv6             = false,
+  Boolean $enable_ipv6_forwarding  = false,
+  Boolean $arp_restricted          = true,
+  Boolean $enable_sysrq            = false,
+  Boolean $enable_core_dump        = false,
+  Boolean $enable_stack_protection = true,
+  Boolean $enable_rpfilter         = true,
+  Boolean $enable_log_martians     = true,
 ) {
 
   # set variables

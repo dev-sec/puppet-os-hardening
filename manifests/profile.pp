@@ -10,7 +10,7 @@
 # Configures profile.conf.
 #
 class os_hardening::profile (
-  $enable_core_dump = false,
+  Boolean $enable_core_dump = false,
 ) {
 
   if $enable_core_dump == false {

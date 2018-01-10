@@ -10,64 +10,57 @@
 # Pulls in all manifests for os_hardening.
 #
 class os_hardening (
-  $system_environment       = 'default',
+  String            $system_environment       = 'default',
 
-  $extra_user_paths         = [],
-  $umask                    = undef,
-  $usergroups               = true,
-  $sys_uid_min              = undef,
-  $sys_gid_min              = undef,
-  $password_max_age         = 60,
-  $password_min_age         = 7,
-  $login_retries            = 5,
-  $login_timeout            = 60,
-  $chfn_restrict            = '',
-  $allow_login_without_home = false,
+  Array             $extra_user_paths         = [],
+  Optional[String]  $umask                    = undef,
+  Boolean           $usergroups               = true,
+  Optional[Integer] $sys_uid_min              = undef,
+  Optional[Integer] $sys_gid_min              = undef,
+  Integer           $password_max_age         = 60,
+  Integer           $password_min_age         = 7,
+  Integer           $login_retries            = 5,
+  Integer           $login_timeout            = 60,
+  String            $chfn_restrict            = '',
+  Boolean           $allow_login_without_home = false,
 
-  $allow_change_user        = false,
-  $ignore_users             = [],
+  Boolean           $allow_change_user        = false,
+  Array             $ignore_users             = [],
 
-  $passwdqc_enabled         = true,
-  $auth_retries             = 5,
-  $auth_lockout_time        = 600,
-  $passwdqc_options         = 'min=disabled,disabled,16,12,8',
-  $manage_pam_unix          = false,
-  $enable_pw_history        = true,
-  $pw_remember_last         = 5,
+  Boolean           $passwdqc_enabled         = true,
+  Integer           $auth_retries             = 5,
+  Integer           $auth_lockout_time        = 600,
+  String            $passwdqc_options         = 'min=disabled,disabled,16,12,8',
+  Boolean           $manage_pam_unix          = false,
+  Boolean           $enable_pw_history        = true,
+  Integer           $pw_remember_last         = 5,
 
-  $root_ttys                =
+  Array             $root_ttys                =
     ['console','tty1','tty2','tty3','tty4','tty5','tty6'],
 
-  $whitelist                = [],
-  $blacklist                = [],
-  $remove_from_unknown      = false,
-  $dry_run_on_unknown       = false,
+  Array             $whitelist                = [],
+  Array             $blacklist                = [],
+  Boolean           $remove_from_unknown      = false,
+  Boolean           $dry_run_on_unknown       = false,
 
-  $enable_module_loading    = true,
-  $load_modules             = [],
-  $disable_filesystems      =
+  Boolean           $enable_module_loading    = true,
+  Array             $load_modules             = [],
+  Array             $disable_filesystems      =
     ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf','vfat'],
 
-  $cpu_vendor               = 'intel',
-  $desktop_enabled          = false,
-  $enable_ipv4_forwarding   = false,
-  $manage_ipv6              = true,
-  $enable_ipv6              = false,
-  $enable_ipv6_forwarding   = false,
-  $arp_restricted           = true,
-  $enable_sysrq             = false,
-  $enable_core_dump         = false,
-  $enable_stack_protection  = true,
-  $enable_rpfilter          = true,
-  $enable_log_martians      = true,
+  String            $cpu_vendor               = 'intel',
+  Boolean           $desktop_enabled          = false,
+  Boolean           $enable_ipv4_forwarding   = false,
+  Boolean           $manage_ipv6              = true,
+  Boolean           $enable_ipv6              = false,
+  Boolean           $enable_ipv6_forwarding   = false,
+  Boolean           $arp_restricted           = true,
+  Boolean           $enable_sysrq             = false,
+  Boolean           $enable_core_dump         = false,
+  Boolean           $enable_stack_protection  = true,
+  Boolean           $enable_rpfilter          = true,
+  Boolean           $enable_log_martians      = true,
 ) {
-
-  # Validate
-  # --------
-  validate_array($ignore_users)
-  validate_bool($manage_pam_unix)
-  validate_bool($enable_pw_history)
-  validate_integer($pw_remember_last)
 
   # Prepare
   # -------

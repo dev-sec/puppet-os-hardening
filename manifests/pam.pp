@@ -10,13 +10,13 @@
 # Configures PAM
 #
 class os_hardening::pam (
-  $passwdqc_enabled  = true,
-  $auth_retries      = 5,
-  $auth_lockout_time = 600,
-  $passwdqc_options  = 'min=disabled,disabled,16,12,8',
-  $manage_pam_unix   = false,
-  $enable_pw_history = false,
-  $pw_remember_last  = 5,
+  Boolean $passwdqc_enabled  = true,
+  Integer $auth_retries      = 5,
+  Integer $auth_lockout_time = 600,
+  String  $passwdqc_options  = 'min=disabled,disabled,16,12,8',
+  Boolean $manage_pam_unix   = false,
+  Boolean $enable_pw_history = false,
+  Integer $pw_remember_last  = 5,
 ) {
 
   # prepare package names
