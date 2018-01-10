@@ -14,6 +14,7 @@ class os_hardening (
 
   $extra_user_paths         = [],
   $umask                    = undef,
+  $usergroups               = true,
   $sys_uid_min              = undef,
   $sys_gid_min              = undef,
   $password_max_age         = 60,
@@ -118,6 +119,7 @@ class os_hardening (
   class { 'os_hardening::login_defs':
     extra_user_paths         => $extra_user_paths,
     umask                    => $merged_umask,
+    usergroups               => $usergroups,
     sys_uid_min              => $merged_sys_uid_min,
     sys_gid_min              => $merged_sys_gid_min,
     password_max_age         => $password_max_age,
