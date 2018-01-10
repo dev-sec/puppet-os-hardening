@@ -36,6 +36,8 @@ This Puppet module provides secure configuration of your base OS with hardening.
   add additional paths to the user's `PATH` variable (default is empty).
 * `umask = "027"`
   umask used for the creation of new home directories by useradd / newusers
+* `usergroups = true`
+  true if you want separate groups for each user, false otherwise
 * `password_max_age = 60`
   maximum password age
 * `password_min_age = 7`

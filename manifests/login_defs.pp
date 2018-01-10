@@ -12,6 +12,7 @@
 class os_hardening::login_defs (
   $extra_user_paths         = [],
   $umask                    = '027',
+  $usergroups               = true,
   $sys_uid_min              = 100,
   $sys_gid_min              = 100,
   $password_max_age         = 60,
@@ -24,6 +25,9 @@ class os_hardening::login_defs (
 
   # prepare all variables
   $additional_user_paths = join($extra_user_paths, ':')
+
+  # convert bool to yes/no
+  $usergroups_yn = bool2str($usergroups, 'yes', 'no')
 
   # set the file
   file { '/etc/login.defs':
