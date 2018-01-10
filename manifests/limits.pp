@@ -12,7 +12,7 @@
 # * disable core dumps
 #
 class os_hardening::limits (
-  $enable_core_dump = false,
+  Boolean $enable_core_dump = false,
 ) {
 
   if $enable_core_dump == false {

@@ -10,17 +10,17 @@
 # Configures PAM
 #
 class os_hardening::login_defs (
-  $extra_user_paths         = [],
-  $umask                    = '027',
-  $usergroups               = true,
-  $sys_uid_min              = 100,
-  $sys_gid_min              = 100,
-  $password_max_age         = 60,
-  $password_min_age         = 7,
-  $login_retries            = 5,
-  $login_timeout            = 60,
-  $chfn_restrict            = '',
-  $allow_login_without_home = false,
+  Array   $extra_user_paths         = [],
+  String  $umask                    = '027',
+  Boolean $usergroups               = true,
+  Integer $sys_uid_min              = 100,
+  Integer $sys_gid_min              = 100,
+  Integer $password_max_age         = 60,
+  Integer $password_min_age         = 7,
+  Integer $login_retries            = 5,
+  Integer $login_timeout            = 60,
+  String  $chfn_restrict            = '',
+  Boolean $allow_login_without_home = false,
 ) {
 
   # prepare all variables
