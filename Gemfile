@@ -1,21 +1,15 @@
 source 'https://rubygems.org'
 
-puppetversion = ENV['PUPPET_VERSION']
-if puppetversion
-  gem 'puppet', puppetversion, :require => false
-else
-  gem 'puppet', :require => false # rubocop:disable Bundler/DuplicatedGem
-end
+gem 'puppet', '~> 5.3'
 
 group :test do
-  gem 'github_changelog_generator', :require => false
   gem 'puppet-lint'
   # avoid NoMethodError: private method `clone' called for #<RuboCop::Cop::CopStore:0x00000104e286c8>
   gem 'puppetlabs_spec_helper', :git => 'https://github.com/ehaselwanter/puppetlabs_spec_helper'
   gem 'rake'
   gem 'rspec'
   gem 'rspec-puppet'
-  gem 'rubocop'
+  gem 'rubocop', '~> 0.49.0'
 end
 
 group :development do
@@ -23,9 +17,13 @@ group :development do
 end
 
 group :integration do
+  gem 'kitchen-inspec'
   gem 'kitchen-puppet'
-  gem 'kitchen-sharedtests', '~> 0.2.0'
   gem 'kitchen-vagrant'
   gem 'librarian-puppet'
-  gem 'test-kitchen'
+  gem 'test-kitchen', '~> 1.0'
+end
+
+group :tools do
+  gem 'github_changelog_generator', '~> 1.14'
 end

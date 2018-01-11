@@ -173,4 +173,3 @@ class os_hardening (
   }
 
 }
-

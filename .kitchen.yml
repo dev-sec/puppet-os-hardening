@@ -1,51 +1,52 @@
 ---
 driver:
   name: vagrant
+
+verifier:
+  name: inspec
+
 provisioner:
   name: puppet_apply
-  test_repo_uri: https://github.com/TelekomLabs/tests-os-hardening.git
+  manifests_path: test/fixtures/manifests
+  require_chef_for_busser: false
+
 platforms:
-- name: ubuntu-12.04
+- name: ubuntu-14-04
   driver_config:
-    box: ubuntu/precise64
-    box_url: https://atlas.hashicorp.com/ubuntu/boxes/precise64/versions/20150730.1.0/providers/virtualbox.box
-- name: ubuntu-14.04
+    box: bento/ubuntu-14.04
+- name: ubuntu-16-04
   driver_config:
-    box: ubuntu/trusty64
-    box_url: https://atlas.hashicorp.com/ubuntu/boxes/trusty64/versions/20150609.0.10/providers/virtualbox.box
-- name: centos-6.4
+    box: bento/ubuntu-16.04
+- name: centos-6
   driver_config:
-    box: opscode-centos-6.4
-    box_url: https://opscode-vm.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
-- name: centos-6.5
+    box: bento/centos-6.9
+- name: centos-7
   driver_config:
-    box: opscode-centos-6.5
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box
-- name: centos-7.1
+    box: bento/centos-7.4
+- name: oracle-6
   driver_config:
-    box: opscode-centos-7.1
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.1_chef-provisionerless.box
-- name: oracle-6.4
+    box: bento/oracle-6.9
+- name: oracle-7
   driver_config:
-    box: oracle-6.4
-    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel64-64.box
-- name: oracle-6.5
-  driver_config:
-    box: oracle-6.5
-    box_url: https://storage.us2.oraclecloud.com/v1/istoilis-istoilis/vagrant/oel65-64.box
-- name: debian-6
-  driver_config:
-    box: puppetlabs/debian-6.0.10-64-puppet
-    box_url: https://atlas.hashicorp.com/puppetlabs/boxes/debian-6.0.10-64-puppet/versions/1.0.2/providers/virtualbox.box
+    box: bento/oracle-7.3
 - name: debian-7
   driver_config:
-    box: debian/wheezy64
-    box_url: https://atlas.hashicorp.com/debian/boxes/wheezy64/versions/7.8.5/providers/virtualbox.box
+    box: bento/debian-7.11
 - name: debian-8
   driver_config:
-    box: debian/jessie64
-    box_url: https://atlas.hashicorp.com/debian/boxes/jessie64/versions/8.1.0/providers/virtualbox.box
+    box: bento/debian-8.6
+- name: fedora-25
+  driver_config:
+    box: bento/fedora-25
+- name: fedora-26
+  driver_config:
+    box: bento/fedora-26
+- name: opensuse-leap-42
+  driver_config:
+    box: bento/opensuse-leap-42.3
+
 suites:
 - name: default
-  sudo: true
-  manifest: site.pp
+  verifier:
+    inspec_tests:
+      - https://github.com/dev-sec/linux-baseline
