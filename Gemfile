@@ -17,6 +17,7 @@ group :development do
 end
 
 group :integration do
+  gem 'kitchen-azurerm'
   gem 'kitchen-inspec'
   gem 'kitchen-puppet'
   gem 'kitchen-vagrant'
