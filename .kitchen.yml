@@ -47,6 +47,3 @@ platforms:
 
 suites:
 - name: default
-  verifier:
-    inspec_tests:
-      - https://github.com/dev-sec/linux-baseline
