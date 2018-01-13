@@ -26,6 +26,7 @@ class os_hardening (
 
   Boolean           $allow_change_user        = false,
   Array             $ignore_users             = [],
+  Integer           $recurselimit             = 5,
 
   Boolean           $passwdqc_enabled         = true,
   Integer           $auth_retries             = 5,
@@ -127,6 +128,7 @@ class os_hardening (
     ignore_users      => $ignore_users,
     shadowgroup       => $shadowgroup,
     shadowmode        => $shadowmode,
+    recurselimit      => $recurselimit,
   }
   class { 'os_hardening::modules':
     disable_filesystems   => $disable_filesystems,
