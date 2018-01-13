@@ -40,3 +40,31 @@ else
 end
 
 # rubocop:enable Style/SymbolArray
+
+desc 'Run kitchen integration tests'
+task :kitchen do
+  concurrency = ENV['CONCURRENCY'] || 1
+  instance = ENV['INSTANCE'] || ''
+  args = ENV['CI'] ? '--destroy=always' : ''
+  sh('sh', '-c', "bundle exec kitchen test -c #{concurrency} #{args} #{instance}")
+end
+
+desc 'Prepare CI environment for Azure usage'
+task :prepare_do_env do
+  SSH_KEY_FILE = '~/.ssh/ci_id_rsa'.freeze
+  ENV_VAR_NAME = 'CI_SSH_KEY'.freeze
+
+  ['AZURE_SUBSCRIPTION_ID', 'AZURE_CLIENT_ID', 'AZURE_CLIENT_SECRET',
+   'AZURE_TENANT_ID', ENV_VAR_NAME].each do |var|
+    raise "Environment variable #{var} should be set" unless ENV[var]
+  end
+
+  ssh_file = File.expand_path(SSH_KEY_FILE)
+  dir = File.dirname(ssh_file)
+  Dir.mkdir(dir, 0o700) unless Dir.exist?(dir)
+  File.open(ssh_file, 'w') { |f| f.puts Base64.decode64(ENV[ENV_VAR_NAME]) }
+  File.chmod(0o600, ssh_file)
+
+  # azure requires also a public key file, lets generate it
+  sh "ssh-keygen -y -f #{SSH_KEY_FILE} > #{SSH_KEY_FILE}.pub"
+end

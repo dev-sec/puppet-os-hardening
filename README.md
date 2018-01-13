@@ -101,9 +101,11 @@ After adding this module, you can use the class:
 
     class { 'os_hardening': }
 
-## Local Testing
+## Testing
 
-For local testing you can use vagrant and Virtualbox of VMWare to run tests locally. You will have to install Virtualbox and Vagrant on your system. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package suitable for your system. For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
+### Local Testing
+
+You should have Ruby interpreter installed on your system. It might be a good idea to use [rvm](https://rvm.io) for that purpose. Besides that you have to install VirtualBox and Vagrant. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package and [VirtualBox Downloads](https://www.virtualbox.org/wiki/Downloads) for a VirtualBox package suitable for your system. For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
 
 Next install test-kitchen:
 
@@ -112,27 +114,36 @@ Next install test-kitchen:
 gem install bundler
 bundle install
 
-# Fetch tests
-bundle exec thor kitchen:fetch-remote-tests
-
-# Do lint checks
-bundle exec rake lint
-
-# Do spec checks
-bundle exec rake spec
+# list all test instances
+bundle exec kitchen list
 
 # fast test on one machine
-bundle exec kitchen test default-ubuntu-1204
+bundle exec kitchen test default-ubuntu-1604
 
-# test on Debian-based machines
+# test on all machines
 bundle exec kitchen test
 
 # for development
-bundle exec kitchen create default-ubuntu-1204
-bundle exec kitchen converge default-ubuntu-1204
+bundle exec kitchen create default-ubuntu-1604
+bundle exec kitchen converge default-ubuntu-1604
+bundle exec kitchen verify default-ubuntu-1604
 ```
 
 For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
+
+### CI testing of forks
+
+You can enable testing of your fork in [Travis CI](http://travis-ci.org/). By default you will get linting and spec tests.
+
+Integration tests of this repository are conducted using [Microsoft Azure](https://azure.microsoft.com/).
+
+If you want to have integration tests for your fork, you will have to add following [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) in the settings of your fork:
+
+* `AZURE_SUBSCRIPTION_ID` - subscription id
+* `AZURE_CLIENT_ID`- id of registered application
+* `AZURE_CLIENT_SECRET`- secret of registered application
+* `AZURE_TENANT_ID`- id of Azure Active Directory
+* `CI_SSH_KEY` - private part of some ssh key, in base64 encoded form (e.g. `cat id_rsa | base64 -w0 ; echo`)
 
 ## Contributors + Kudos
 
