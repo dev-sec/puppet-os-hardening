@@ -66,6 +66,8 @@ This Puppet module provides secure configuration of your base OS with hardening.
   if a user may use `su` to change his login
 * `ignore_users = []`
   array of system user accounts that should _not be_ hardened (password disabled and shell set to `/usr/sbin/nologin`)
+* `recurselimit = 5`
+  directory depth for recursive permission check
 * `chfn_restrict = ""`
   which fields may be changed by regular users using chfn
 * `enable_module_loading = true`
