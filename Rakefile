@@ -26,10 +26,11 @@ if RUBY_VERSION > '1.9.2'
 
   # Changelog Generator
   GitHubChangelogGenerator::RakeTask.new :changelog do |config|
-    config.future_release = '2.0.0'
+    config.future_release = '2.1.0'
     config.since_tag = '1.1.1'
     config.user = 'dev-sec'
     config.project = 'puppet-os-hardening'
+    config.exclude_labels = ['no changelog','invalid']
   end
 
 else

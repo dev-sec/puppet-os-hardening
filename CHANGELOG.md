@@ -1,5 +1,31 @@
 # Change Log
 
+## [2.1.0](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.0) (2018-01-17)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.0.0...2.1.0)
+
+**Implemented enhancements:**
+
+- Update to verify the module against https://github.com/dev-sec/linux-baseline [\#79](https://github.com/dev-sec/puppet-os-hardening/issues/79)
+- Use type checking by defining data types [\#114](https://github.com/dev-sec/puppet-os-hardening/pull/114) ([mcgege](https://github.com/mcgege))
+- Make paramater USERGROUPS\_ENAB in login.defs configurable [\#113](https://github.com/dev-sec/puppet-os-hardening/pull/113) ([mcgege](https://github.com/mcgege))
+
+**Fixed bugs:**
+
+- Limit recursive file/directory check [\#116](https://github.com/dev-sec/puppet-os-hardening/pull/116) ([mcgege](https://github.com/mcgege))
+
+**Closed issues:**
+
+- Minimize access needs a better way of removing +w on system folders  [\#60](https://github.com/dev-sec/puppet-os-hardening/issues/60)
+- login.defs for different OS [\#57](https://github.com/dev-sec/puppet-os-hardening/issues/57)
+- Adduser consistency [\#49](https://github.com/dev-sec/puppet-os-hardening/issues/49)
+
+**Merged pull requests:**
+
+- Skip entropy tests and disable auditd tests [\#117](https://github.com/dev-sec/puppet-os-hardening/pull/117) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Get CI tests running on azure [\#115](https://github.com/dev-sec/puppet-os-hardening/pull/115) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Making test-kitchen work again [\#112](https://github.com/dev-sec/puppet-os-hardening/pull/112) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Correct header comments in sysctl.pp [\#69](https://github.com/dev-sec/puppet-os-hardening/pull/69) ([Zordrak](https://github.com/Zordrak))
+
 ## [2.0.0](https://github.com/dev-sec/puppet-os-hardening/tree/2.0.0) (2017-12-19)
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/1.1.2...2.0.0)
 
@@ -15,10 +41,10 @@
 - Log martian packets [\#66](https://github.com/dev-sec/puppet-os-hardening/issues/66)
 - Merge \#64 [\#65](https://github.com/dev-sec/puppet-os-hardening/issues/65)
 - net.ipv6.conf.default.accept\_ra [\#56](https://github.com/dev-sec/puppet-os-hardening/issues/56)
+- Publish new release on Puppet Forge [\#104](https://github.com/dev-sec/puppet-os-hardening/issues/104)
 
 **Merged pull requests:**
 
-- Prepare module for v2.0.0 [\#109](https://github.com/dev-sec/puppet-os-hardening/pull/109) ([mcgege](https://github.com/mcgege))
 - Update links + contributors in README [\#108](https://github.com/dev-sec/puppet-os-hardening/pull/108) ([mcgege](https://github.com/mcgege))
 - Implement new RH defaults \(see issue \#102\) [\#103](https://github.com/dev-sec/puppet-os-hardening/pull/103) ([mcgege](https://github.com/mcgege))
 - Avoid picking up users retrieved from SSSD or other domain services. [\#101](https://github.com/dev-sec/puppet-os-hardening/pull/101) ([tprobinson](https://github.com/tprobinson))
@@ -48,6 +74,16 @@
 - add net.ipv6.conf.default.accept\_ra. closes \#56 [\#58](https://github.com/dev-sec/puppet-os-hardening/pull/58) ([igoraj](https://github.com/igoraj))
 - Disable System Accounts [\#54](https://github.com/dev-sec/puppet-os-hardening/pull/54) ([igoraj](https://github.com/igoraj))
 - common files: add centos 7 [\#53](https://github.com/dev-sec/puppet-os-hardening/pull/53) ([arlimus](https://github.com/arlimus))
+- Prepare module for v2.0.0 [\#109](https://github.com/dev-sec/puppet-os-hardening/pull/109) ([mcgege](https://github.com/mcgege))
+
+## [1.1.2](https://github.com/dev-sec/puppet-os-hardening/tree/1.1.2) (2015-05-09)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/1.1.1...1.1.2)
+
+**Merged pull requests:**
+
+- Update common readme badges + contributors + rubocop [\#52](https://github.com/dev-sec/puppet-os-hardening/pull/52) ([arlimus](https://github.com/arlimus))
+- update common travis.yml, kitchen.yml platforms [\#51](https://github.com/dev-sec/puppet-os-hardening/pull/51) ([arlimus](https://github.com/arlimus))
+- bugfix: use scoped resource for puppet 4 [\#50](https://github.com/dev-sec/puppet-os-hardening/pull/50) ([arlimus](https://github.com/arlimus))
 
 # OLD Changelog
 
