@@ -111,10 +111,8 @@ class os_hardening::suid_sgid (
     '/usr/lib/libvte-2.90-9/gnome-pty-helper',
   ]
 
-  $final_blacklist = combine_sugid_lists(
-    $system_blacklist, $whitelist, $blacklist)
-  $final_whitelist = combine_sugid_lists(
-    $system_whitelist, $blacklist, $whitelist)
+  $final_blacklist = combine_sugid_lists($system_blacklist, $whitelist, $blacklist)
+  $final_whitelist = combine_sugid_lists($system_whitelist, $blacklist, $whitelist)
 
   os_hardening::blacklist_files { $final_blacklist: }
 

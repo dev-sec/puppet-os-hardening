@@ -1,3 +1,3 @@
-forge "http://forge.puppetlabs.com"
+forge 'http://forge.puppetlabs.com'
 
 metadata

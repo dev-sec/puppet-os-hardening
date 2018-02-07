@@ -38,3 +38,4 @@ matrix:
 
 script:
   -  bundle exec rake prepare_do_env kitchen KITCHEN_LOCAL_YAML=.kitchen.azure.yml
+  
