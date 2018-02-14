@@ -118,15 +118,15 @@ bundle install
 bundle exec kitchen list
 
 # fast test on one machine
-bundle exec kitchen test default-ubuntu-1604
+bundle exec kitchen test default-ubuntu-16-04
 
 # test on all machines
 bundle exec kitchen test
 
 # for development
-bundle exec kitchen create default-ubuntu-1604
-bundle exec kitchen converge default-ubuntu-1604
-bundle exec kitchen verify default-ubuntu-1604
+bundle exec kitchen create default-ubuntu-16-04
+bundle exec kitchen converge default-ubuntu-16-04
+bundle exec kitchen verify default-ubuntu-16-04
 ```
 
 For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
