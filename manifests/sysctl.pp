@@ -39,21 +39,13 @@ class os_hardening::sysctl (
   # ----------
 
   # Only enable IP traffic forwarding, if required.
-  if $enable_ipv4_forwarding {
-    sysctl { 'net.ipv4.ip_forward': value => '1' }
-  } else {
-    sysctl { 'net.ipv4.ip_forward': value => '0' }
-  }
+  sysctl { 'net.ipv4.ip_forward': value => bool2num($enable_ipv4_forwarding) }
 
   # IPv6 enabled
   if $manage_ipv6 {
     if $enable_ipv6 {
       sysctl { 'net.ipv6.conf.all.disable_ipv6': value => '0' }
-      if $enable_ipv6_forwarding {
-        sysctl { 'net.ipv6.conf.all.forwarding': value => '1' }
-      } else {
-        sysctl { 'net.ipv6.conf.all.forwarding': value => '0' }
-      }
+      sysctl { 'net.ipv6.conf.all.forwarding': value => bool2num($enable_ipv6_forwarding) }
     } else {
       # IPv6 disabled
       sysctl { 'net.ipv6.conf.all.disable_ipv6': value => '1' }
@@ -70,15 +62,11 @@ class os_hardening::sysctl (
     sysctl { 'net.ipv6.conf.all.accept_ra': value => '0' }
     sysctl { 'net.ipv6.conf.default.accept_ra': value => '0' }
   }
-  # Enable RFC-recommended source validation feature. It should not be used for routers on complex networks, but is helpful for 
+  # Enable RFC-recommended source validation feature. It should not be used for routers on complex networks, but is helpful for
   # end hosts and routers serving small networks.
-  if $enable_rpfilter {
-    sysctl { 'net.ipv4.conf.all.rp_filter': value => '1' }
-    sysctl { 'net.ipv4.conf.default.rp_filter': value => '1' }
-  } else {
-    sysctl { 'net.ipv4.conf.all.rp_filter': value => '0' }
-    sysctl { 'net.ipv4.conf.default.rp_filter': value => '0' }
-  }
+  sysctl { 'net.ipv4.conf.all.rp_filter': value => bool2num($enable_rpfilter) }
+  sysctl { 'net.ipv4.conf.default.rp_filter': value => bool2num($enable_rpfilter) }
+
 
   # Reduce the surface on SMURF attacks. Make sure to ignore ECHO broadcasts, which are only required in broad network analysis.
   sysctl { 'net.ipv4.icmp_echo_ignore_broadcasts': value => '1' }
@@ -89,7 +77,7 @@ class os_hardening::sysctl (
   # Limit the amount of traffic the system uses for ICMP.
   sysctl { 'net.ipv4.icmp_ratelimit': value => '100' }
 
-  # Adjust the ICMP ratelimit to include: ping, dst unreachable, source quench, time exceed, param problem, timestamp reply, 
+  # Adjust the ICMP ratelimit to include: ping, dst unreachable, source quench, time exceed, param problem, timestamp reply,
   # information reply
   sysctl { 'net.ipv4.icmp_ratemask': value => '88089' }
 
@@ -100,28 +88,24 @@ class os_hardening::sysctl (
   # Define different restriction levels for announcing the local source IP address from IP packets in ARP requests sent on interface:
   #
   # * **0** - (default) Use any local address, configured on any interface
-  # * **1** - Try to avoid local addresses that are not in the target's subnet for this interface. This mode is useful when target 
-  # hosts reachable via this interface require the source IP address in ARP requests to be part of their logical network configured 
-  # on the receiving interface. When we generate the request we will check all our subnets that include the target IP and will 
-  # preserve the source address if it is from such subnet. If there is no such subnet we select source address according to the rules 
+  # * **1** - Try to avoid local addresses that are not in the target's subnet for this interface. This mode is useful when target
+  # hosts reachable via this interface require the source IP address in ARP requests to be part of their logical network configured
+  # on the receiving interface. When we generate the request we will check all our subnets that include the target IP and will
+  # preserve the source address if it is from such subnet. If there is no such subnet we select source address according to the rules
   # for level 2.
-  # * **2** - Always use the best local address for this target. In this mode we ignore the source address in the IP packet and try 
-  # to select local address that we prefer for talks with the target host. Such local address is selected by looking for primary IP 
-  # addresses on all our subnets on the outgoing interface that include the target IP address. If no suitable local address is found 
-  # we select the first local address we have on the outgoing interface or on all other interfaces, with the hope we will receive 
+  # * **2** - Always use the best local address for this target. In this mode we ignore the source address in the IP packet and try
+  # to select local address that we prefer for talks with the target host. Such local address is selected by looking for primary IP
+  # addresses on all our subnets on the outgoing interface that include the target IP address. If no suitable local address is found
+  # we select the first local address we have on the outgoing interface or on all other interfaces, with the hope we will receive
   # reply for our request and even sometimes no matter the source IP address we announce.
-  if $arp_restricted {
-    sysctl { 'net.ipv4.conf.all.arp_ignore': value => '1' }
-  } else {
-    sysctl { 'net.ipv4.conf.all.arp_ignore': value => '0' }
-  }
+  sysctl { 'net.ipv4.conf.all.arp_ignore': value => bool2num($arp_restricted) }
 
 
   # Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
   #
   # * **0** - (default): reply for any local target IP address, configured on any interface
   # * **1** - reply only if the target IP address is local address configured on the incoming interface
-  # * **2** - reply only if the target IP address is local address configured on the incoming interface and both with the sender's 
+  # * **2** - reply only if the target IP address is local address configured on the incoming interface and both with the sender's
   # IP address are part from same subnet on this interface
   # * **3** - do not reply for local addresses configured with scope host, only resolutions for global and link addresses are replied
   # * **4-7** - reserved
@@ -162,13 +146,8 @@ class os_hardening::sysctl (
   sysctl { 'net.ipv4.conf.default.send_redirects': value => '0' }
 
   # log martian packets (risky, may cause DoS)
-  if $enable_log_martians {
-    sysctl { 'net.ipv4.conf.all.log_martians': value => '1' }
-    sysctl { 'net.ipv4.conf.default.log_martians': value => '1' }
-  } else {
-    sysctl { 'net.ipv4.conf.all.log_martians': value => '0' }
-    sysctl { 'net.ipv4.conf.default.log_martians': value => '0' }
-  }
+  sysctl { 'net.ipv4.conf.all.log_martians': value => bool2num($enable_log_martians) }
+  sysctl { 'net.ipv4.conf.default.log_martians': value => bool2num($enable_log_martians) }
 
 
   # System
@@ -180,7 +159,7 @@ class os_hardening::sysctl (
   }
   #kernel.modules_disabled = <%= @enable_module_loading ? 0 : 1 %>
 
-  # Magic Sysrq should be disabled, but can also be set to a safe value if so desired for physical machines. It can allow a safe reboot if 
+  # Magic Sysrq should be disabled, but can also be set to a safe value if so desired for physical machines. It can allow a safe reboot if
   # the system hangs and is a 'cleaner' alternative to hitting the reset button.
   # The following values are permitted:
   #
@@ -209,11 +188,7 @@ class os_hardening::sysctl (
     sysctl { 'kernel.randomize_va_space': value => '0' }
   }
   # Prevent core dumps with SUID. These are usually only needed by developers and may contain sensitive information.
-  if $enable_core_dump {
-    sysctl { 'fs.suid_dumpable': value => '1' }
-  } else {
-    sysctl { 'fs.suid_dumpable': value => '0' }
-  }
+  sysctl { 'fs.suid_dumpable': value => bool2num($enable_core_dump) }
 
   # configure for module hardening
   # if modules cannot be loaded at runtime, they must all

@@ -13,13 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+Puppet::Functions.create_function(:combine_sugid_lists) do
+  dispatch :list do
+    param 'Array', :base
+    param 'Array', :remove
+    param 'Array', :add
+  end
 
-module Puppet
-  module Parser
-    module Functions
-      newfunction(:combine_sugid_lists, :type => :rvalue) do |args|
-        (args[0] - args[1] + args[2]).uniq
-      end
-    end
+  def list(base, remove, add)
+    (base - remove + add).uniq
   end
 end
