@@ -1,3 +1,5 @@
 fixtures:
   repositories:
     sysctl: https://github.com/thias/puppet-sysctl.git
+    stblib: https://github.com/puppetlabs/puppetlabs-stdlib
+
