@@ -10,15 +10,10 @@ env:
  - INSTANCE=ubuntu-16-04
  - INSTANCE=centos-6
  - INSTANCE=centos-7
- - INSTANCE=oracle-6
- - INSTANCE=oracle-7
- - INSTANCE=rhel-6
- - INSTANCE=rhel-7
- - INSTANCE=debian-6
  - INSTANCE=debian-7
- - INSTANCE=opensuse-leap-42
- - INSTANCE=sles-11
- - INSTANCE=sles-12
+ - INSTANCE=debian-8
+ - INSTANCE=fedora-26
+ - INSTANCE=fedora-27
 
 matrix:
   allow_failures: # allow failues of integration tests as the forks might miss the DO token
@@ -26,16 +21,10 @@ matrix:
   - env: INSTANCE=ubuntu-16-04
   - env: INSTANCE=centos-6
   - env: INSTANCE=centos-7
-  - env: INSTANCE=oracle-6
-  - env: INSTANCE=oracle-7
-  - env: INSTANCE=rhel-6
-  - env: INSTANCE=rhel-7
-  - env: INSTANCE=debian-6
   - env: INSTANCE=debian-7
-  - env: INSTANCE=opensuse-leap-42
-  - env: INSTANCE=sles-11
-  - env: INSTANCE=sles-12
+  - env: INSTANCE=debian-8
+  - env: INSTANCE=fedora-26
+  - env: INSTANCE=fedora-27
 
 script:
-  -  bundle exec rake prepare_do_env kitchen KITCHEN_LOCAL_YAML=.kitchen.azure.yml
-  
+  -  bundle exec rake prepare_do_env kitchen KITCHEN_LOCAL_YAML=.kitchen.do.yml
