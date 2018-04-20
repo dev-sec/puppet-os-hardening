@@ -19,6 +19,17 @@ class os_hardening::minimize_access (
   Integer $recurselimit        = 5,
 ) {
 
+  case $::operatingsystem {
+    redhat, fedora: {
+      $nologin_path = '/sbin/nologin'
+    }
+    debian, ubuntu: {
+      $nologin_path = '/usr/sbin/nologin'
+    }
+    default: {
+      $nologin_path = '/sbin/nologin'
+    }
+  }
   # from which folders to remove public access
   $folders = [
     '/usr/local/sbin',
@@ -77,7 +88,7 @@ class os_hardening::minimize_access (
   # ensure accounts are locked (no password) and use nologin shell
   user { $target_system_users:
     ensure   => present,
-    shell    => '/usr/sbin/nologin',
+    shell    => $nologin_path,
     password => '*',
   }
 
