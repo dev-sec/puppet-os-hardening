@@ -12,6 +12,7 @@
 class os_hardening::login_defs (
   Array   $extra_user_paths         = [],
   String  $umask                    = '027',
+  String  $maildir                  = '/var/mail',
   Boolean $usergroups               = true,
   Integer $sys_uid_min              = 100,
   Integer $sys_gid_min              = 100,

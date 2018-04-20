@@ -14,6 +14,7 @@ class os_hardening (
 
   Array             $extra_user_paths         = [],
   Optional[String]  $umask                    = undef,
+  Optional[String]  $maildir                  = undef,
   Boolean           $usergroups               = true,
   Optional[Integer] $sys_uid_min              = undef,
   Optional[Integer] $sys_gid_min              = undef,
@@ -113,6 +114,7 @@ class os_hardening (
   class { 'os_hardening::login_defs':
     extra_user_paths         => $extra_user_paths,
     umask                    => $merged_umask,
+    maildir                  => $maildir,
     usergroups               => $usergroups,
     sys_uid_min              => $merged_sys_uid_min,
     sys_gid_min              => $merged_sys_gid_min,
