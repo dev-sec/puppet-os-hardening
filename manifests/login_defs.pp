@@ -17,6 +17,7 @@ class os_hardening::login_defs (
   Integer $sys_gid_min              = 100,
   Integer $password_max_age         = 60,
   Integer $password_min_age         = 7,
+  Integer $password_warn_age        = 7,
   Integer $login_retries            = 5,
   Integer $login_timeout            = 60,
   String  $chfn_restrict            = '',

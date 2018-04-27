@@ -42,6 +42,8 @@ This Puppet module provides secure configuration of your base OS with hardening.
   maximum password age
 * `password_min_age = 7`
   minimum password age (before allowing any other password change)
+* `password_warn_age = 7`
+  Days warning before password change is due
 * `auth_retries = 5`
   the maximum number of authentication attempts, before the account is locked for some time
 * `auth_lockout_time = 600`
