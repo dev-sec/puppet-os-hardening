@@ -1,5 +1,24 @@
 # Change Log
 
+## [2.1.1](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.1) (2018-05-17)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.1.0...2.1.1)
+
+**Implemented enhancements:**
+
+- Convert module into "standardized PDK module" [\#107](https://github.com/dev-sec/puppet-os-hardening/issues/107)
+- Adding new param to specify maildir path. Updated nologin path for Re… [\#127](https://github.com/dev-sec/puppet-os-hardening/pull/127) ([hundredacres](https://github.com/hundredacres))
+- converted module to pdk \#107 [\#120](https://github.com/dev-sec/puppet-os-hardening/pull/120) ([enemarke](https://github.com/enemarke))
+
+**Closed issues:**
+
+- net.ipv4.tcp\_rfc1337 not a valid sysctl key [\#124](https://github.com/dev-sec/puppet-os-hardening/issues/124)
+
+**Merged pull requests:**
+
+- Add password\_warn\_age parameter for login.defs [\#128](https://github.com/dev-sec/puppet-os-hardening/pull/128) ([claw-real](https://github.com/claw-real))
+- CI: switch testing to DigitalOcean [\#126](https://github.com/dev-sec/puppet-os-hardening/pull/126) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Refactoring and new spec test [\#121](https://github.com/dev-sec/puppet-os-hardening/pull/121) ([enemarke](https://github.com/enemarke))
+
 ## [2.1.0](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.0) (2018-01-17)
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.0.0...2.1.0)
 
@@ -18,20 +37,21 @@
 - Minimize access needs a better way of removing +w on system folders  [\#60](https://github.com/dev-sec/puppet-os-hardening/issues/60)
 - login.defs for different OS [\#57](https://github.com/dev-sec/puppet-os-hardening/issues/57)
 - Adduser consistency [\#49](https://github.com/dev-sec/puppet-os-hardening/issues/49)
+- Update some RH settings in this module [\#102](https://github.com/dev-sec/puppet-os-hardening/issues/102)
 
 **Merged pull requests:**
 
-- Skip entropy tests and disable auditd tests [\#117](https://github.com/dev-sec/puppet-os-hardening/pull/117) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Get CI tests running on azure [\#115](https://github.com/dev-sec/puppet-os-hardening/pull/115) ([artem-sidorenko](https://github.com/artem-sidorenko))
-- Making test-kitchen work again [\#112](https://github.com/dev-sec/puppet-os-hardening/pull/112) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Correct header comments in sysctl.pp [\#69](https://github.com/dev-sec/puppet-os-hardening/pull/69) ([Zordrak](https://github.com/Zordrak))
+- Skip entropy tests and disable auditd tests [\#117](https://github.com/dev-sec/puppet-os-hardening/pull/117) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Making test-kitchen work again [\#112](https://github.com/dev-sec/puppet-os-hardening/pull/112) ([artem-sidorenko](https://github.com/artem-sidorenko))
+- Implement new RH defaults \(see issue \#102\) [\#103](https://github.com/dev-sec/puppet-os-hardening/pull/103) ([mcgege](https://github.com/mcgege))
 
 ## [2.0.0](https://github.com/dev-sec/puppet-os-hardening/tree/2.0.0) (2017-12-19)
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/1.1.2...2.0.0)
 
 **Closed issues:**
 
-- Update some RH settings in this module [\#102](https://github.com/dev-sec/puppet-os-hardening/issues/102)
 - SLES and OEL errors when ipv6 is disabled [\#82](https://github.com/dev-sec/puppet-os-hardening/issues/82)
 - Failed to generate additional resources [\#75](https://github.com/dev-sec/puppet-os-hardening/issues/75)
 - Multiple conflicts with Puppet Enterprise [\#74](https://github.com/dev-sec/puppet-os-hardening/issues/74)
@@ -46,7 +66,6 @@
 **Merged pull requests:**
 
 - Update links + contributors in README [\#108](https://github.com/dev-sec/puppet-os-hardening/pull/108) ([mcgege](https://github.com/mcgege))
-- Implement new RH defaults \(see issue \#102\) [\#103](https://github.com/dev-sec/puppet-os-hardening/pull/103) ([mcgege](https://github.com/mcgege))
 - Avoid picking up users retrieved from SSSD or other domain services. [\#101](https://github.com/dev-sec/puppet-os-hardening/pull/101) ([tprobinson](https://github.com/tprobinson))
 - Implement linux-baseline os-10 [\#100](https://github.com/dev-sec/puppet-os-hardening/pull/100) ([mcgege](https://github.com/mcgege))
 - Style Guide corrections [\#98](https://github.com/dev-sec/puppet-os-hardening/pull/98) ([mcgege](https://github.com/mcgege))
