@@ -28,6 +28,8 @@ class os_hardening (
 
   Boolean           $allow_change_user        = false,
   Array             $ignore_users             = [],
+  Array             $folders_to_restrict      =
+    ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
   Integer           $recurselimit             = 5,
 
   Boolean           $passwdqc_enabled         = true,
@@ -128,11 +130,12 @@ class os_hardening (
     allow_login_without_home => $allow_login_without_home,
   }
   class { 'os_hardening::minimize_access':
-    allow_change_user => $allow_change_user,
-    ignore_users      => $ignore_users,
-    shadowgroup       => $shadowgroup,
-    shadowmode        => $shadowmode,
-    recurselimit      => $recurselimit,
+    allow_change_user   => $allow_change_user,
+    ignore_users        => $ignore_users,
+    folders_to_restrict => $folders_to_restrict,
+    shadowgroup         => $shadowgroup,
+    shadowmode          => $shadowmode,
+    recurselimit        => $recurselimit,
   }
   class { 'os_hardening::modules':
     disable_filesystems   => $disable_filesystems,
