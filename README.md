@@ -68,6 +68,8 @@ This Puppet module provides secure configuration of your base OS with hardening.
   the number of last passwords (e.g. 5 will prevent user to reuse any of her last 5 passwords)
 * `allow_change_user = false`
   if a user may use `su` to change his login
+* `only_root_may_su = false`
+  true when only root and member of the group wheel may use su, required to be true for CIS Benchmark compliance
 * `ignore_users = []`
   array of system user accounts that should _not be_ hardened (password disabled and shell set to `/usr/sbin/nologin`)
 * `recurselimit = 5`

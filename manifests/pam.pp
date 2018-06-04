@@ -17,6 +17,7 @@ class os_hardening::pam (
   Boolean $manage_pam_unix   = false,
   Boolean $enable_pw_history = false,
   Integer $pw_remember_last  = 5,
+  Boolean $only_root_may_su  = false,
 ) {
 
   # prepare package names
@@ -50,6 +51,7 @@ class os_hardening::pam (
       $passwdqc_path = '/usr/share/pam-configs/passwdqc'
       $tally2_path   = '/usr/share/pam-configs/tally2'
       $unix_path     = '/usr/share/pam-configs/unix'
+      $su_path       = '/etc/pam.d/su'
 
       # if passwdqc is enabled
       if $passwdqc_enabled == true {
@@ -128,6 +130,32 @@ class os_hardening::pam (
           group   => 'root',
           mode    => '0640',
           notify  => Exec['update-pam'],
+        }
+      }
+
+      #only allow root and members of the group wheel to su
+      if $only_root_may_su {
+        case $::operatingsystem {
+          redhat, fedora, centos: {
+            $pam_su_template = 'os_hardening/pam_su_redhat_centos.erb'
+          }
+          debian, ubuntu: {
+            $pam_su_template = 'os_hardening/pam_su_debian_ubuntu.erb'
+          }
+          suse: {
+            $pam_su_template = 'os_hardening/pam_su_suse.erb'
+          }
+          default: {
+            fail("Sorry, currently there is no support for su restriction on your platform $operatingsystem.")
+          }
+        }
+
+        file { $su_path:
+          ensure  => file,
+          content => template($pam_su_template),
+          owner   => 'root',
+          group   => 'root',
+          mode    => '0640',
         }
       }
 
