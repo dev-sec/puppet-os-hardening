@@ -79,15 +79,15 @@ class os_hardening::auditd (
 
   file_line {
     'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 1, 32 bit':
-      path   => '/etc/audit/auditd.conf',
+      path   => '/etc/audit/audit.rules',
       line   => '-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change',
       notify => Service['auditd'];
     'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 2, 32 bit':
-      path   => '/etc/audit/auditd.conf',
+      path   => '/etc/audit/audit.rules',
       line   => '-a always,exit -F arch=b32 -S clock_settime -k time-change',
       notify => Service['auditd'];
     'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 3':
-      path   => '/etc/audit/auditd.conf',
+      path   => '/etc/audit/audit.rules',
       line   => '-w /etc/localtime -p wa -k time-change',
       notify => Service['auditd'];
   }
@@ -95,11 +95,11 @@ class os_hardening::auditd (
   if $::architecture == 'amd64' {
     file_line {
       'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 1, 64 bit':
-        path   => '/etc/audit/auditd.conf',
+        path   => '/etc/audit/audit.rules',
         line   => '-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change',
         notify => Service['auditd'];
       'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 2, 64 bit':
-        path   => '/etc/audit/auditd.conf',
+        path   => '/etc/audit/audit.rules',
         line   => '-a always,exit -F arch=b64 -S clock_settime -k time-change',
         notify => Service['auditd'];
     }
