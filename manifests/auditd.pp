@@ -221,5 +221,20 @@ class os_hardening::auditd (
       notify => Service['auditd'];
   }
 
+  file_line {
+    'CIS DIL Benchmark 4.1.9 - Ensure session initiation information is collected - line 1':
+      path   => $audit_rules,
+      line   => '-w /var/run/utmp -p wa -k session',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.9 - Ensure session initiation information is collected - line 2':
+      path   => $audit_rules,
+      line   => '-w /var/log/wtmp -p wa -k logins',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.9 - Ensure session initiation information is collected - line 3':
+      path   => $audit_rules,
+      line   => '-w /var/log/btmp -p wa -k logins',
+      notify => Service['auditd'];
+  }
+
 }
 
