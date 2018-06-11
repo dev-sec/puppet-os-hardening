@@ -170,10 +170,12 @@ class os_hardening::auditd (
   }
 
   if $::architecture == 'amd64' {
+    file_line {
       'CIS DIL Benchmark 4.1.6 - Ensure events that modify the system\'s network environment are collected - line 1, 64bit':
         path   => $audit_rules,
         line   => '-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale',
         notify => Service['auditd'];
+    }
   }
 
 }
