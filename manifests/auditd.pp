@@ -86,6 +86,13 @@ class os_hardening::auditd (
     }
   }
 
+  file { $audit_rules:
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0640',
+  }
+
   file_line {
     'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 1, 32 bit':
       path   => $audit_rules,
