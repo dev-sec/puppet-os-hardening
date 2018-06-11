@@ -105,5 +105,28 @@ class os_hardening::auditd (
     }
   }
 
+  file_line {
+    'CIS DIL Benchmark 4.1.5 - Ensure events that modify user/group information are collected - line 1':
+      path   => '/etc/audit/audit.rules',
+      line   => '-w /etc/group -p wa -k identity',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.5 - Ensure events that modify user/group information are collected - line 2':
+      path   => '/etc/audit/audit.rules',
+      line   => '-w /etc/passwd -p wa -k identity',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.5 - Ensure events that modify user/group information are collected - line 3':
+      path   => '/etc/audit/audit.rules',
+      line   => '-w /etc/gshadow -p wa -k identity',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.5 - Ensure events that modify user/group information are collected - line 4':
+      path   => '/etc/audit/audit.rules',
+      line   => '-w /etc/shadow -p wa -k identity',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.5 - Ensure events that modify user/group information are collected - line 5':
+      path   => '/etc/audit/audit.rules',
+      line   => '-w /etc/security/opasswd -p wa -k identity',
+      notify => Service['auditd'];
+  }
+
 }
 
