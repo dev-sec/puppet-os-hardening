@@ -77,17 +77,26 @@ class os_hardening::auditd (
     refreshonly => true,
   }
 
+  case $::operatingsystem {
+    debian: {
+      $audit_rules = '/etc/audit/rules.d/cis.rules'
+    }
+    default: {
+      $audit_rules = '/etc/audit/audit.rules'
+    }
+  }
+
   file_line {
     'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 1, 32 bit':
-      path   => '/etc/audit/audit.rules',
+      path   => $audit_rules,
       line   => '-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time-change',
       notify => Service['auditd'];
     'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 2, 32 bit':
-      path   => '/etc/audit/audit.rules',
+      path   => $audit_rules,
       line   => '-a always,exit -F arch=b32 -S clock_settime -k time-change',
       notify => Service['auditd'];
     'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 3':
-      path   => '/etc/audit/audit.rules',
+      path   => $audit_rules,
       line   => '-w /etc/localtime -p wa -k time-change',
       notify => Service['auditd'];
   }
@@ -95,11 +104,11 @@ class os_hardening::auditd (
   if $::architecture == 'amd64' {
     file_line {
       'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 1, 64 bit':
-        path   => '/etc/audit/audit.rules',
+        path   => $audit_rules,
         line   => '-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time-change',
         notify => Service['auditd'];
       'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 2, 64 bit':
-        path   => '/etc/audit/audit.rules',
+        path   => $audit_rules,
         line   => '-a always,exit -F arch=b64 -S clock_settime -k time-change',
         notify => Service['auditd'];
     }
@@ -107,23 +116,23 @@ class os_hardening::auditd (
 
   file_line {
     'CIS DIL Benchmark 4.1.5 - Ensure events that modify user/group information are collected - line 1':
-      path   => '/etc/audit/audit.rules',
+      path   => $audit_rules,
       line   => '-w /etc/group -p wa -k identity',
       notify => Service['auditd'];
     'CIS DIL Benchmark 4.1.5 - Ensure events that modify user/group information are collected - line 2':
-      path   => '/etc/audit/audit.rules',
+      path   => $audit_rules,
       line   => '-w /etc/passwd -p wa -k identity',
       notify => Service['auditd'];
     'CIS DIL Benchmark 4.1.5 - Ensure events that modify user/group information are collected - line 3':
-      path   => '/etc/audit/audit.rules',
+      path   => $audit_rules,
       line   => '-w /etc/gshadow -p wa -k identity',
       notify => Service['auditd'];
     'CIS DIL Benchmark 4.1.5 - Ensure events that modify user/group information are collected - line 4':
-      path   => '/etc/audit/audit.rules',
+      path   => $audit_rules,
       line   => '-w /etc/shadow -p wa -k identity',
       notify => Service['auditd'];
     'CIS DIL Benchmark 4.1.5 - Ensure events that modify user/group information are collected - line 5':
-      path   => '/etc/audit/audit.rules',
+      path   => $audit_rules,
       line   => '-w /etc/security/opasswd -p wa -k identity',
       notify => Service['auditd'];
   }
