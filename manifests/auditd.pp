@@ -78,11 +78,13 @@ class os_hardening::auditd (
   }
 
   case $::operatingsystem {
-    debian: {
+    debian, ubuntu: {
       $audit_rules = '/etc/audit/rules.d/cis.rules'
+      $network_file = '/etc/network'
     }
     default: {
       $audit_rules = '/etc/audit/audit.rules'
+      $network_file = '/etc/sysconfig/network'
     }
   }
 
@@ -142,6 +144,36 @@ class os_hardening::auditd (
       path   => $audit_rules,
       line   => '-w /etc/security/opasswd -p wa -k identity',
       notify => Service['auditd'];
+  }
+
+  file_line {
+    'CIS DIL Benchmark 4.1.6 - Ensure events that modify the system\'s network environment are collected - line 1, 32bit':
+      path   => $audit_rules,
+      line   => '-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.6 - Ensure events that modify the system\'s network environment are collected - line 2':
+      path   => $audit_rules,
+      line   => '-w /etc/issue -p wa -k system-locale',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.6 - Ensure events that modify the system\'s network environment are collected - line 3':
+      path   => $audit_rules,
+      line   => '-w /etc/issue.net -p wa -k system-locale',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.6 - Ensure events that modify the system\'s network environment are collected - line 4':
+      path   => $audit_rules,
+      line   => '-w /etc/hosts -p wa -k system-locale',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.6 - Ensure events that modify the system\'s network environment are collected - line 5':
+      path   => $audit_rules,
+      line   => "-w ${network_file} -p wa -k system-locale",
+      notify => Service['auditd'];
+  }
+
+  if $::architecture == 'amd64' {
+      'CIS DIL Benchmark 4.1.6 - Ensure events that modify the system\'s network environment are collected - line 1, 64bit':
+        path   => $audit_rules,
+        line   => '-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale',
+        notify => Service['auditd'];
   }
 
 }
