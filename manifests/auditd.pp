@@ -50,26 +50,26 @@ class os_hardening::auditd (
   }
 
   file_line { 'CIS DIL Benchmark 4.1.1.3 - Ensure audit logs are not automatically deleted':
-    path  => '/etc/audit/auditd.conf',
-    match => '^max_log_file_action =.*',
-    line  => "max_log_file_action = ${max_log_file_action}",
+    path   => '/etc/audit/auditd.conf',
+    match  => '^max_log_file_action =.*',
+    line   => "max_log_file_action = ${max_log_file_action}",
     notify => Service['auditd'],
   }
 
   if $max_log_file_action == 'rotate' {
     file_line { 'CIS DIL Benchmark 4.1.1.3 not implemented, number of logs to keep':
-      path  => '/etc/audit/auditd.conf',
-      match => '^num_logs =.*',
-      line  => "num_logs = ${num_logs}",
+      path   => '/etc/audit/auditd.conf',
+      match  => '^num_logs =.*',
+      line   => "num_logs = ${num_logs}",
       notify => Service['auditd'],
     }
   }
 
   # CIS DIL Benchmark 4.1.3 - Ensure auditing for processes that start prior to auditd is enabled
   exec { 'CIS DIL Benchmark 4.1.3 - Ensure auditing for processes that start prior to auditd is enabled':
-    command => "/bin/sed -i -e 's/GRUB_CMDLINE_LINUX_DEFAULT=\"\\(.*\\)\"/GRUB_CMDLINE_LINUX_DEFAULT=\"\\1  net.ifnames=0 biosdevname=0\"/g' /etc/default/grub;",
+    command => "/bin/sed -i -e 's/GRUB_CMDLINE_LINUX_DEFAULT=\"\\(.*\\)\"/GRUB_CMDLINE_LINUX_DEFAULT=\"\\1 audit=1\"/g' /etc/default/grub;",
     unless  => "/bin/grep GRUB_CMDLINE_LINUX /etc/default/grub | /bin/grep -q 'audit=1'",
-    notify => Service['auditd'],
+    notify  => Service['auditd'],
   }
 
 }
