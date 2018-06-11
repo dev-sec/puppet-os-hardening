@@ -84,7 +84,7 @@ class os_hardening::auditd (
       notify => Service['auditd'];
     'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 2, 32 bit':
       path   => '/etc/audit/auditd.conf',
-      line   => '-a always,exit -F arch=b32 -S clock_settime -k time-change':
+      line   => '-a always,exit -F arch=b32 -S clock_settime -k time-change',
       notify => Service['auditd'];
     'CIS DIL Benchmark 4.1.4 - Ensure events that modify date and time information are collected - line 3':
       path   => '/etc/audit/auditd.conf',
