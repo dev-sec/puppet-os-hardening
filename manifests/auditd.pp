@@ -13,6 +13,8 @@ class os_hardening::auditd (
   Integer                                                    $max_log_file        = 8,
   Enum['rotate', 'ignore', 'syslog', 'suspend', 'keep_logs'] $max_log_file_action = 'rotate',
   Integer                                                    $num_logs            = 5,
+  Boolean                                                    $selinux_in_use      = false,
+  Boolean                                                    $apparmor_in_use     = false,
 ) {
 
   package { 'auditd':
@@ -174,6 +176,32 @@ class os_hardening::auditd (
       'CIS DIL Benchmark 4.1.6 - Ensure events that modify the system\'s network environment are collected - line 1, 64bit':
         path   => $audit_rules,
         line   => '-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale',
+        notify => Service['auditd'];
+    }
+  }
+
+  if $selinux_in_use {
+    file_line {
+      'CIS DIL Benchmark 4.1.7 - Ensure events that modify the system\'s Mandatory Access Controls are collected - line 1, selinux':
+        path   => $audit_rules,
+        line   => '-w /etc/selinux/ -p wa -k MAC-policy',
+        notify => Service['auditd'];
+      'CIS DIL Benchmark 4.1.7 - Ensure events that modify the system\'s Mandatory Access Controls are collected - line 2, selinux':
+        path   => $audit_rules,
+        line   => '-w /usr/share/selinux/ -p wa -k MAC-policy',
+        notify => Service['auditd'];
+    }
+  }
+
+  if $apparmor_in_use {
+    file_line {
+      'CIS DIL Benchmark 4.1.7 - Ensure events that modify the system\'s Mandatory Access Controls are collected - line 1, apparmor':
+        path   => $audit_rules,
+        line   => '-w /etc/apparmor/ -p wa -k MAC-policy',
+        notify => Service['auditd'];
+      'CIS DIL Benchmark 4.1.7 - Ensure events that modify the system\'s Mandatory Access Controls are collected - line 2, apparmor':
+        path   => $audit_rules,
+        line   => '-w /etc/apparmor.d/ -p wa -k MAC-policy',
         notify => Service['auditd'];
     }
   }

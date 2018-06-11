@@ -68,6 +68,8 @@ class os_hardening (
   Enum['rotate', 'ignore', 'syslog', 'suspend', 'keep_logs']
                     $auditd_max_log_file_action = 'rotate',
   Integer           $auditd_num_logs          = 5,
+  Boolean           $apparmor_in_use          = false,
+  Boolean           $selinux_in_use           = false,
 ) {
 
   # Prepare
@@ -187,6 +189,8 @@ class os_hardening (
     max_log_file        => $auditd_max_log_file,
     max_log_file_action => $auditd_max_log_file_action,
     num_logs            => $auditd_num_logs,
+    selinux_in_use      => $selinux_in_use,
+    apparmor_in_use     => $apparmor_in_use,
   }
 
 }
