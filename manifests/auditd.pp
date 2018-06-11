@@ -69,7 +69,12 @@ class os_hardening::auditd (
   exec { 'CIS DIL Benchmark 4.1.3 - Ensure auditing for processes that start prior to auditd is enabled':
     command => "/bin/sed -i -e 's/GRUB_CMDLINE_LINUX_DEFAULT=\"\\(.*\\)\"/GRUB_CMDLINE_LINUX_DEFAULT=\"\\1 audit=1\"/g' /etc/default/grub;",
     unless  => "/bin/grep GRUB_CMDLINE_LINUX /etc/default/grub | /bin/grep -q 'audit=1'",
-    notify  => Service['auditd'],
+    notify  => Exec['CIS DIL Benchmark 4.1.3 - Ensure auditing for processes that start prior to auditd is enabled - update grub'],
+  }
+
+  exec { 'CIS DIL Benchmark 4.1.3 - Ensure auditing for processes that start prior to auditd is enabled - update grub':
+    command     => '/usr/sbin/update-grub',
+    refreshonly => true,
   }
 
 }
