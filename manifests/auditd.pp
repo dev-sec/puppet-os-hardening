@@ -206,5 +206,20 @@ class os_hardening::auditd (
     }
   }
 
+  file_line {
+    'CIS DIL Benchmark 4.1.8 - Ensure login and logout events are collected - line 1':
+      path   => $audit_rules,
+      line   => '-w /var/log/faillog -p wa -k logins',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.8 - Ensure login and logout events are collected - line 2':
+      path   => $audit_rules,
+      line   => '-w /var/log/lastlog -p wa -k logins',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.8 - Ensure login and logout events are collected - line 3':
+      path   => $audit_rules,
+      line   => '-w /var/log/tallylog -p wa -k logins',
+      notify => Service['auditd'];
+  }
+
 }
 
