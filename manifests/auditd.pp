@@ -304,5 +304,19 @@ class os_hardening::auditd (
     }
   }
 
+  file_line { 'CIS DIL Benchmark 4.1.13 - Ensure successful file system mounts are collected - 32bit':
+    path   => $audit_rules,
+    line   => "-a always,exit -F arch=b32 -S mount -F auid>=${non_system_users_from} -F auid!=4294967295 -k mounts",
+    notify => Service['auditd'];
+  }
+
+  if $::architecture == 'amd64' {
+    file_line { 'CIS DIL Benchmark 4.1.13 - Ensure successful file system mounts are collected - 64bit':
+      path   => $audit_rules,
+      line   => "-a always,exit -F arch=b64 -S mount -F auid>=${non_system_users_from} -F auid!=4294967295 -k mounts",
+      notify => Service['auditd'];
+    }
+  }
+
 }
 
