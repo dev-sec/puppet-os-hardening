@@ -318,5 +318,19 @@ class os_hardening::auditd (
     }
   }
 
+  file_line { 'CIS DIL Benchmark 4.1.14 - Ensure file deletion events by users are collected - 32bit':
+    path   => $audit_rules,
+    line   => "-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=${non_system_users_from} -F auid!=4294967295 -k delete",
+    notify => Service['auditd'];
+  }
+
+  if $::architecture == 'amd64' {
+    file_line { 'CIS DIL Benchmark 4.1.14 - Ensure file deletion events by users are collected - 64bit':
+      path   => $audit_rules,
+      line   => "-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=${non_system_users_from} -F auid!=4294967295 -k delete",
+      notify => Service['auditd'];
+    }
+  }
+
 }
 
