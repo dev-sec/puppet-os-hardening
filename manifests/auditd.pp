@@ -236,5 +236,37 @@ class os_hardening::auditd (
       notify => Service['auditd'];
   }
 
+  file_line {
+    'CIS DIL Benchmark 4.1.10 - Ensure discretionary access control permission modification events are collected - line 1, 32bit':
+      path   => $audit_rules,
+      line   => '-a always,exit -F arch=b32 -S chmod -S fchmod -S fchmodat -F auid>=500 -F auid!=4294967295 -k perm_mod',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.10 - Ensure discretionary access control permission modification events are collected - line 2, 32bit':
+      path   => $audit_rules,
+      line   => '-a always,exit -F arch=b32 -S chown -S fchown -S fchownat -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.10 - Ensure discretionary access control permission modification events are collected - line 3, 32bit':
+      path   => $audit_rules,
+      line   => '-a always,exit -F arch=b32 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod',
+      notify => Service['auditd'];
+  }
+
+  if $::architecture == 'amd64' {
+    file_line {
+      'CIS DIL Benchmark 4.1.10 - Ensure discretionary access control permission modification events are collected - line 1, 64bit':
+        path   => $audit_rules,
+        line   => '-a always,exit -F arch=b64 -S chmod -S fchmod -S fchmodat -F auid>=500 -F auid!=4294967295 -k perm_mod',
+        notify => Service['auditd'];
+      'CIS DIL Benchmark 4.1.10 - Ensure discretionary access control permission modification events are collected - line 2, 64bit':
+        path   => $audit_rules,
+        line   => '-a always,exit -F arch=b64 -S chown -S fchown -S fchownat -S lchown -F auid>=500 -F auid!=4294967295 -k perm_mod',
+        notify => Service['auditd'];
+      'CIS DIL Benchmark 4.1.10 - Ensure discretionary access control permission modification events are collected - line 3, 64bit':
+        path   => $audit_rules,
+        line   => '-a always,exit -F arch=b64 -S setxattr -S lsetxattr -S fsetxattr -S removexattr -S lremovexattr -S fremovexattr -F auid>=500 -F auid!=4294967295 -k perm_mod',
+        notify => Service['auditd'];
+    }
+  }
+
 }
 
