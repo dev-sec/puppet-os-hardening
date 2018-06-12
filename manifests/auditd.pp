@@ -393,7 +393,8 @@ class os_hardening::auditd (
 
   exec { 'CIS DIL Benchmark 4.1.18 - Ensure the audit configuration is immutable':
     command => "/bin/echo '-e 2' >> ${audit_rules_last}",
-    unless  => "/bin/grep '^\s*[^#]' ${audit_rules_last} | /usr/bin/tail -1 | /bin/grep -q -e '^-e 2$'"
+    unless  => "/bin/grep '^\s*[^#]' ${audit_rules_last} | /usr/bin/tail -1 | /bin/grep -q -e '^-e 2$'",
+    notify => Service['auditd'];
   }
 
 }
