@@ -270,5 +270,29 @@ class os_hardening::auditd (
     }
   }
 
+  file_line {
+    'CIS DIL Benchmark 4.1.11 - Ensure unsuccessful unauthorized file access attempts are collected - line 1, 32bit':
+      path   => $audit_rules,
+      line   => "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=${non_system_users_from} -F auid!=4294967295 -k access",
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.11 - Ensure unsuccessful unauthorized file access attempts are collected - line 2, 32bit':
+      path   => $audit_rules,
+      line   => "-a always,exit -F arch=b32 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=${non_system_users_from} -F auid!=4294967295 -k access",
+      notify => Service['auditd'];
+  }
+
+  if $::architecture == 'amd64' {
+    file_line {
+      'CIS DIL Benchmark 4.1.11 - Ensure unsuccessful unauthorized file access attempts are collected - line 1, 64bit':
+        path   => $audit_rules,
+        line   => "-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EACCES -F auid>=${non_system_users_from} -F auid!=4294967295 -k access",
+        notify => Service['auditd'];
+      'CIS DIL Benchmark 4.1.11 - Ensure unsuccessful unauthorized file access attempts are collected - line 2, 64bit':
+        path   => $audit_rules,
+        line   => "-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=${non_system_users_from} -F auid!=4294967295 -k access",
+        notify => Service['auditd'];
+    }
+  }
+
 }
 
