@@ -64,6 +64,7 @@ class os_hardening (
   Boolean           $enable_rpfilter          = true,
   Boolean           $enable_log_martians      = true,
 
+  Boolean           $enable_auditd            = false,
   Integer           $auditd_max_log_file      = 8,
   Enum['rotate', 'ignore', 'syslog', 'suspend', 'keep_logs']
                     $auditd_max_log_file_action = 'rotate',
@@ -185,12 +186,14 @@ class os_hardening (
     }
   }
 
-  class { 'os_hardening::auditd':
-    max_log_file        => $auditd_max_log_file,
-    max_log_file_action => $auditd_max_log_file_action,
-    num_logs            => $auditd_num_logs,
-    selinux_in_use      => $selinux_in_use,
-    apparmor_in_use     => $apparmor_in_use,
+  if $enable_auditd {
+    class { 'os_hardening::auditd':
+      max_log_file        => $auditd_max_log_file,
+      max_log_file_action => $auditd_max_log_file_action,
+      num_logs            => $auditd_num_logs,
+      selinux_in_use      => $selinux_in_use,
+      apparmor_in_use     => $apparmor_in_use,
+    }
   }
 
 }
