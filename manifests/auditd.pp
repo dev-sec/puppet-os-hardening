@@ -296,9 +296,10 @@ class os_hardening::auditd (
   }
 
   $privileged_binaries.each |String $binary| {
+    # TODO We should sanitise $binary.
     file_line { "CIS DIL Benchmark 4.1.12 - Ensure use of privileged commands is collected - $binary":
       path   => $audit_rules,
-      line   => "-a always,exit -F path=\" $binary \" -F perm=x -F auid>=${non_system_users_from} -F auid!=4294967295 -k privileged",
+      line   => "-a always,exit -F path=${binary} -F perm=x -F auid>=${non_system_users_from} -F auid!=4294967295 -k privileged",
       notify => Service['auditd'];
     }
   }
