@@ -18,6 +18,37 @@ class os_hardening::auditd (
   Array                                                      $privileged_binaries = [],
 ) {
 
+  case $::operatingsystem {
+    debian, ubuntu: {
+      $audit_rules = '/etc/audit/rules.d/cis.rules'
+      $audit_rules_last = '/etc/audit/rules.d/zzz_last.rules'
+      $network_file = '/etc/network'
+      $non_system_users_from = 1000
+    }
+    default: {
+      $audit_rules = '/etc/audit/audit.rules'
+      $audit_rules_last = $audit_rules
+      $network_file = '/etc/sysconfig/network'
+      $non_system_users_from = 500
+    }
+  }
+
+  file { $audit_rules:
+    ensure => file,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0640',
+  }
+
+  if $audit_rules_last != $audit_rules {
+    file { $audit_rules_last:
+      ensure => file,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0640',
+    }
+  }
+
   package { 'auditd':
     ensure => installed,
   }
@@ -78,26 +109,6 @@ class os_hardening::auditd (
   exec { 'CIS DIL Benchmark 4.1.3 - Ensure auditing for processes that start prior to auditd is enabled - update grub':
     command     => '/usr/sbin/update-grub',
     refreshonly => true,
-  }
-
-  case $::operatingsystem {
-    debian, ubuntu: {
-      $audit_rules = '/etc/audit/rules.d/cis.rules'
-      $network_file = '/etc/network'
-      $non_system_users_from = 1000
-    }
-    default: {
-      $audit_rules = '/etc/audit/audit.rules'
-      $network_file = '/etc/sysconfig/network'
-      $non_system_users_from = 500
-    }
-  }
-
-  file { $audit_rules:
-    ensure => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0640',
   }
 
   file_line {
@@ -378,6 +389,11 @@ class os_hardening::auditd (
       line   => '-a always,exit -F arch=b32 -S init_module -S delete_module -k modules',
       notify => Service['auditd'];
     }
+  }
+
+  exec { 'CIS DIL Benchmark 4.1.18 - Ensure the audit configuration is immutable':
+    command => "/bin/echo '-e 2' >> ${audit_rules_last}",
+    unless  => "/bin/grep '^\s*[^#]' ${audit_rules_last} | /usr/bin/tail -1 | /bin/grep -q -e '^-e 2$'"
   }
 
 }
