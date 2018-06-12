@@ -343,5 +343,11 @@ class os_hardening::auditd (
       notify => Service['auditd'];
   }
 
+  file_line { 'CIS DIL Benchmark 4.1.16 - Ensure system administrator actions (sudolog) are collected':
+    path   => $audit_rules,
+    line   => '-w /var/log/sudo.log -p wa -k actions',
+    notify => Service['auditd'];
+  }
+
 }
 
