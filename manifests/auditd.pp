@@ -332,5 +332,16 @@ class os_hardening::auditd (
     }
   }
 
+  file_line {
+    'CIS DIL Benchmark 4.1.15 - Ensure changes to system administration scope (sudoers) is collected - line 1':
+      path   => $audit_rules,
+      line   => '-w /etc/sudoers -p wa -k scope',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.15 - Ensure changes to system administration scope (sudoers) is collected - line 2':
+      path   => $audit_rules,
+      line   => '-w /etc/sudoers.d/ -p wa -k scope',
+      notify => Service['auditd'];
+  }
+
 }
 
