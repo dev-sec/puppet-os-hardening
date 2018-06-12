@@ -71,6 +71,7 @@ class os_hardening (
   Integer           $auditd_num_logs          = 5,
   Boolean           $apparmor_in_use          = false,
   Boolean           $selinux_in_use           = false,
+  Array             $privileged_binaries      = [],
 ) {
 
   # Prepare
@@ -193,6 +194,7 @@ class os_hardening (
       num_logs            => $auditd_num_logs,
       selinux_in_use      => $selinux_in_use,
       apparmor_in_use     => $apparmor_in_use,
+      privileged_binaries => $privileged_binaries,
     }
   }
 

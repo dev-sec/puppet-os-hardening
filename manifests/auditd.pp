@@ -15,6 +15,7 @@ class os_hardening::auditd (
   Integer                                                    $num_logs            = 5,
   Boolean                                                    $selinux_in_use      = false,
   Boolean                                                    $apparmor_in_use     = false,
+  Array                                                      $privileged_binaries = [],
 ) {
 
   package { 'auditd':
@@ -291,6 +292,14 @@ class os_hardening::auditd (
         path   => $audit_rules,
         line   => "-a always,exit -F arch=b64 -S creat -S open -S openat -S truncate -S ftruncate -F exit=-EPERM -F auid>=${non_system_users_from} -F auid!=4294967295 -k access",
         notify => Service['auditd'];
+    }
+  }
+
+  $privileged_binaries.each |String $binary| {
+    file_line { "CIS DIL Benchmark 4.1.12 - Ensure use of privileged commands is collected - $binary":
+      path   => $audit_rules,
+      line   => "-a always,exit -F path=\" $binary \" -F perm=x -F auid>=${non_system_users_from} -F auid!=4294967295 -k privileged",
+      notify => Service['auditd'];
     }
   }
 
