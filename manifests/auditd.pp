@@ -349,5 +349,36 @@ class os_hardening::auditd (
     notify => Service['auditd'];
   }
 
+  file_line {
+    'CIS DIL Benchmark 4.1.17 - Ensure kernel module loading and unloading is collected - line 1':
+      path   => $audit_rules,
+      line   => '-w /sbin/insmod -p x -k modules',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.17 - Ensure kernel module loading and unloading is collected - line 2':
+      path   => $audit_rules,
+      line   => '-w /sbin/rmmod -p x -k modules',
+      notify => Service['auditd'];
+    'CIS DIL Benchmark 4.1.17 - Ensure kernel module loading and unloading is collected - line 3':
+      path   => $audit_rules,
+      line   => '-w /sbin/modprobe -p x -k modules',
+      notify => Service['auditd'];
+  }
+
+  if $::architecture == 'amd64' {
+    file_line { 'CIS DIL Benchmark 4.1.17 - Ensure kernel module loading and unloading is collected - line 4 64bit':
+      path   => $audit_rules,
+      line   => '-a always,exit -F arch=b64 -S init_module -S delete_module -k modules',
+      notify => Service['auditd'];
+    }
+  }
+
+  if $::architecture == 'i386' {
+    file_line { 'CIS DIL Benchmark 4.1.17 - Ensure kernel module loading and unloading is collected - line 4 32bit':
+      path   => $audit_rules,
+      line   => '-a always,exit -F arch=b32 -S init_module -S delete_module -k modules',
+      notify => Service['auditd'];
+    }
+  }
+
 }
 
