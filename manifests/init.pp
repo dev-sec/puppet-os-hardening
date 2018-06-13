@@ -63,6 +63,10 @@ class os_hardening (
   Boolean           $enable_stack_protection  = true,
   Boolean           $enable_rpfilter          = true,
   Boolean           $enable_log_martians      = true,
+
+  Array             $unwanted_packages        = ['telnet'],
+  Array             $wanted_packages          = ['ntp'],
+  Array             $disabled_services        = ['rsync'],
 ) {
 
   # Prepare
@@ -176,6 +180,12 @@ class os_hardening (
       enable_rpfilter         => $enable_rpfilter,
       enable_log_martians     => $enable_log_martians,
     }
+  }
+
+  class { 'os_hardening::services':
+    unwanted_packages => $unwanted_packages,
+    wanted_packages   => $wanted_packages,
+    disabled_services => $disabled_services,
   }
 
 }
