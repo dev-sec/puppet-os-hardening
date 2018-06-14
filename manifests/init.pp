@@ -63,6 +63,8 @@ class os_hardening (
   Boolean           $enable_stack_protection  = true,
   Boolean           $enable_rpfilter          = true,
   Boolean           $enable_log_martians      = true,
+
+  Boolean           $enable_apparmor          = false,
 ) {
 
   # Prepare
@@ -175,6 +177,11 @@ class os_hardening (
       enable_stack_protection => $enable_stack_protection,
       enable_rpfilter         => $enable_rpfilter,
       enable_log_martians     => $enable_log_martians,
+    }
+  }
+
+  if $enable_apparmor {
+    class { 'os_hardening::apparmor':
     }
   }
 
