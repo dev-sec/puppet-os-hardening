@@ -134,29 +134,12 @@ class os_hardening::pam (
       }
 
       #only allow root and members of the group wheel to su
-      if $only_root_may_su {
-        case $::operatingsystem {
-          redhat, fedora, centos: {
-            $pam_su_template = 'os_hardening/pam_su_redhat_centos.erb'
-          }
-          debian, ubuntu: {
-            $pam_su_template = 'os_hardening/pam_su_debian_ubuntu.erb'
-          }
-          suse: {
-            $pam_su_template = 'os_hardening/pam_su_suse.erb'
-          }
-          default: {
-            fail("Sorry, currently there is no support for su restriction on your platform $operatingsystem.")
-          }
-        }
-
-        file { $su_path:
-          ensure  => file,
-          content => template($pam_su_template),
-          owner   => 'root',
-          group   => 'root',
-          mode    => '0640',
-        }
+      file { $su_path:
+        ensure  => file,
+        content => template('os_hardening/pam_su_debian_ubuntu.erb'),
+        owner   => 'root',
+        group   => 'root',
+        mode    => '0640',
       }
 
       exec { 'update-pam':
