@@ -35,7 +35,7 @@ class os_hardening::apparmor (
   if $enforce_all {
     exec { 'Enforce all AppArmor profiles on the system':
       command => '/usr/sbin/aa-enforce /etc/apparmor.d/*',
-      onlyif  => '[ $(apparmor_status --enforced) -lt $(apparmor_status --profiled) ]',
+      onlyif  => '/bin/sh -c "[ $(apparmor_status --enforced) -lt $(apparmor_status --profiled) ]"',
     }
   }
 
