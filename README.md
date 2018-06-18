@@ -98,6 +98,10 @@ This Puppet module provides secure configuration of your base OS with hardening.
   `true` if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Puppet run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
 * `dry_run_on_unknown = false`
   like `remove_from_unknown` above, only that SUID/SGID bits aren't removed. It will still search the filesystems to look for SUID/SGID bits but it will only print them in your log. This option is only ever recommended, when you first configure `remove_from_unknown` for SUID/SGID bits, so that you can see the files that are being changed and make adjustments to your `whitelist` and `blacklist`.
+* `enable_apparmor = false`
+  for installing and configuring apparmor, set to true (requires a machine restart to fully activate!)
+* `apparmor_enforce_all = false`
+  when apparmor should enforce all profiles it can load, set this to true
 
 ## Usage
 
