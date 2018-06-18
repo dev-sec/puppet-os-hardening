@@ -65,6 +65,7 @@ class os_hardening (
   Boolean           $enable_log_martians      = true,
 
   Boolean           $enable_apparmor          = false,
+  Boolean           $apparmor_enforce_all     = false,
 ) {
 
   # Prepare
@@ -182,6 +183,7 @@ class os_hardening (
 
   if $enable_apparmor {
     class { 'os_hardening::apparmor':
+      enforce_all => $apparmor_enforce_all,
     }
   }
 

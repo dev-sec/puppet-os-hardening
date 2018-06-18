@@ -10,6 +10,7 @@
 # Configures AppArmor
 #
 class os_hardening::apparmor (
+  Boolean $enforce_all = false,
 ) {
 
   # Install the actual package
@@ -29,6 +30,13 @@ class os_hardening::apparmor (
     'After enable apparmor, update grub':
       command     => '/usr/sbin/update-grub',
       refreshonly => true;
+  }
+
+  if $enforce_all {
+    exec { 'Enforce all AppArmor profiles on the system':
+      command => '/usr/sbin/aa-enforce /etc/apparmor.d/*',
+      onlyif  => '[ $(apparmor_status --enforced) -lt $(apparmor_status --profiled) ]',
+    }
   }
 
 }
