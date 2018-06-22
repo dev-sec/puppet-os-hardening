@@ -33,6 +33,15 @@ class os_hardening::auditd (
     }
   }
 
+  package { 'auditd':
+    ensure => installed,
+  }
+
+  service { 'auditd':
+    ensure => running,
+    enable => true,
+  }
+
   file { $audit_rules:
     ensure => file,
     owner  => 'root',
@@ -47,15 +56,6 @@ class os_hardening::auditd (
       group  => 'root',
       mode   => '0640',
     }
-  }
-
-  package { 'auditd':
-    ensure => installed,
-  }
-
-  service { 'auditd':
-    ensure => running,
-    enable => true,
   }
 
   file_line { 'CIS DIL Benchmark 4.1.1.1 - Ensure audit log storage size is configured':
