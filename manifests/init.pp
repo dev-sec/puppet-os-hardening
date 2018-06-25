@@ -11,6 +11,7 @@
 #
 class os_hardening (
   String            $system_environment       = 'default',
+  Boolean           $pe_environment           = false,
 
   Array             $extra_user_paths         = [],
   Optional[String]  $umask                    = undef,
@@ -109,6 +110,15 @@ class os_hardening (
   $merged_sys_uid_min = pick($sys_uid_min, $def_sys_uid_min)
   $merged_sys_gid_min = pick($sys_gid_min, $def_sys_gid_min)
 
+  # Fix for Puppet Enterprise
+  if $pe_environment {
+    # Don't redefine directory
+    $folders_to_restrict_int = delete($folders_to_restrict, '/usr/local/bin')
+  } else {
+    $folders_to_restrict_int = $folders_to_restrict
+  }
+
+
   # Install
   # -------
   class { 'os_hardening::limits':
@@ -132,7 +142,7 @@ class os_hardening (
   class { 'os_hardening::minimize_access':
     allow_change_user   => $allow_change_user,
     ignore_users        => $ignore_users,
-    folders_to_restrict => $folders_to_restrict,
+    folders_to_restrict => $folders_to_restrict_int,
     shadowgroup         => $shadowgroup,
     shadowmode          => $shadowmode,
     recurselimit        => $recurselimit,

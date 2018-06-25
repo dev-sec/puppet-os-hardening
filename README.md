@@ -10,12 +10,20 @@ This Puppet module provides secure configuration of your base OS with hardening.
 
 ## Requirements
 
-* Puppet
+* Puppet OpenSource or Enterprise
+* [Module stdlib](https://forge.puppet.com/puppetlabs/stdlib)
+
+### IMPORTANT for Puppet Enterprise
+
+**If you are using this module in a PE environment, you have to set** `pe_environment = true`  
+Otherwise puppet will drop an error (duplicate resource)!
 
 ## Parameters
 
 * `system_environment = default`
   define the context in which the system runs. Some options don't work for `docker`/`lxc`
+* `pe_environment = false`
+  set this to true if you are using Puppet Enterprise **IMPORTANT - see above**
 * `desktop_enabled = false`
   true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
 * `enable_ipv4_forwarding = false`
