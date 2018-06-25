@@ -24,12 +24,15 @@ class os_hardening::minimize_access (
   case $::operatingsystem {
     redhat, fedora: {
       $nologin_path = '/sbin/nologin'
+      $shadow_path = ['/etc/shadow', '/etc/gshadow']
     }
     debian, ubuntu: {
       $nologin_path = '/usr/sbin/nologin'
+      $shadow_path = ['/etc/shadow', '/etc/gshadow']
     }
     default: {
       $nologin_path = '/sbin/nologin'
+      $shadow_path = '/etc/shadow'
     }
   }
 
@@ -46,7 +49,7 @@ class os_hardening::minimize_access (
   })
 
   # shadow must only be accessible to user root
-  file { '/etc/shadow':
+  file { $shadow_path:
     ensure => file,
     owner  => 'root',
     group  => $shadowgroup,
