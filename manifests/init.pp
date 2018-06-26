@@ -37,6 +37,7 @@ class os_hardening (
   Boolean           $manage_pam_unix          = false,
   Boolean           $enable_pw_history        = true,
   Integer           $pw_remember_last         = 5,
+  Boolean           $only_root_may_su         = false,
 
   Array             $root_ttys                =
     ['console','tty1','tty2','tty3','tty4','tty5','tty6'],
@@ -150,6 +151,7 @@ class os_hardening (
     manage_pam_unix   => $manage_pam_unix,
     enable_pw_history => $enable_pw_history,
     pw_remember_last  => $pw_remember_last,
+    only_root_may_su  => $only_root_may_su,
   }
   class { 'os_hardening::profile':
     enable_core_dump => $enable_core_dump,
