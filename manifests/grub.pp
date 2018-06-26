@@ -24,7 +24,7 @@ class os_hardening::grub (
     # This sets up Grub on Debian Stretch so you can still boot the system without a password
     exec { 'Keep system bootable without credentials':
       command => "/bin/sed -i -e 's/^CLASS=\"\\(.*\\)\"/CLASS=\"\\1 --unrestricted\"/' /etc/grub.d/10_linux;",
-      unless  => '/bin/grep -e "^CLASS=" /etc/grub.d/10_linux | /bin/grep -q "--unrestricted"',
+      unless  => '/bin/grep -e "^CLASS=" /etc/grub.d/10_linux | /bin/grep -q -- "--unrestricted"',
       notify  => Exec['Grub configuration recreate for os_hardening::grub'],
     }
   }
