@@ -100,6 +100,18 @@ This Puppet module provides secure configuration of your base OS with hardening.
   `true` if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Puppet run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
 * `dry_run_on_unknown = false`
   like `remove_from_unknown` above, only that SUID/SGID bits aren't removed. It will still search the filesystems to look for SUID/SGID bits but it will only print them in your log. This option is only ever recommended, when you first configure `remove_from_unknown` for SUID/SGID bits, so that you can see the files that are being changed and make adjustments to your `whitelist` and `blacklist`.
+* `enable_auditd = false`
+  when auditd should be managed by this module, set this to true, **after deploying this, a reboot is required to affectuate it!**
+* `auditd_max_log_file = 8`
+  when auditd handling by the module is enabled, this will make sure that at most 8MB of log files are on disk, when the action `rotate` is chosen for `auditd_max_log_files_action`
+* `auditd_max_log_file_action = 'rotate'`
+  this option controls how auditd should handle old log files, valid options are `rotate`, `ignore`, `syslog`, `suspend` and `keep_logs`, if full CIS DIL Benchmark compliance is required, this needs to be set to `keep_logs` and another system of rotation needs to be set up (after the logs have been sent to a remote server)
+* `apparmor_in_use = false`
+  this needs to be set to true if apparmor is in use, to make sure the profiles are monitored for changes
+* `selinux_in_use = false`
+  this needs to be set to true if selinux is in use, to make sure the profiles are monitored for changes
+* `privileged_binaries = []`
+  add all your privileged binaries to this array to monitor usage of them, get a list with `find <partition> -xdev \( -perm -4000 -o -perm -2000 \) -type f` and replace <partition> with a partitions that can be used to execute binaries
 
 ## Usage
 
