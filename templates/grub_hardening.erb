@@ -1,3 +1,4 @@
-set superusers="<%= @user %>"
-password_pbkdf2 <%= @user %> <%= @password_hash %>
+#!/bin/sh
+echo set superusers="<%= @user %>"
+echo password_pbkdf2 <%= @user %> <%= @password_hash %>
 
