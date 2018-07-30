@@ -185,12 +185,11 @@ class os_hardening (
     }
   }
 
-  if $enable_grub_hardening {
-    class { 'os_hardening::grub':
-      user                  => $grub_user,
-      password_hash         => $grub_password_hash,
-      boot_without_password => $boot_without_password,
-    }
+  class { 'os_hardening::grub':
+    enable                => $enable_grub_hardening,
+    user                  => $grub_user,
+    password_hash         => $grub_password_hash,
+    boot_without_password => $boot_without_password,
   }
 
 }
