@@ -21,7 +21,7 @@ class os_hardening::grub (
       $grub_cfg = '/boot/grub/grub.cfg'
       $grub_cmd = "/usr/sbin/grub-mkconfig"
     }
-    redhat, fedora: {
+    default: {
       $grub_cfg = '/boot/grub2/grub.cfg'
       $grub_cmd = "/usr/sbin/grub2-mkconfig"
     }
