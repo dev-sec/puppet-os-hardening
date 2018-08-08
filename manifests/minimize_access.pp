@@ -14,6 +14,8 @@ class os_hardening::minimize_access (
   Array   $always_ignore_users =
     ['root','sync','shutdown','halt'],
   Array   $ignore_users        = [],
+  Array   $folders_to_restrict =
+    ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
   String  $shadowgroup         = 'root',
   String  $shadowmode          = '0600',
   Integer $recurselimit        = 5,
@@ -33,24 +35,18 @@ class os_hardening::minimize_access (
       $shadow_path = '/etc/shadow'
     }
   }
-  # from which folders to remove public access
-  $folders = [
-    '/usr/local/sbin',
-    '/usr/sbin',
-    '/usr/bin',
-    '/sbin',
-    '/bin',
-  ]
 
   # remove write permissions from path folders ($PATH) for all regular users
   # this prevents changing any system-wide command from normal users
-  file { $folders:
-    ensure       => directory,
-    links        => follow,
-    mode         => 'go-w',
-    recurse      => true,
-    recurselimit => $recurselimit,
-  }
+  ensure_resources ('file',
+  { $folders_to_restrict => {
+      ensure       => directory,
+      links        => follow,
+      mode         => 'go-w',
+      recurse      => true,
+      recurselimit => $recurselimit,
+    }
+  })
 
   # shadow must only be accessible to user root
   file { $shadow_path:
