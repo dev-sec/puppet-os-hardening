@@ -84,6 +84,8 @@ Otherwise puppet will drop an error (duplicate resource)!
   folders to make sure of that group and world do not have write access to it or any of the contents
 * `recurselimit = 5`
   directory depth for recursive permission check
+* `dir_mode = '0750'`
+  mode to use for directories created while creating a user (homedirs, basically)
 * `chfn_restrict = ""`
   which fields may be changed by regular users using chfn
 * `enable_module_loading = true`

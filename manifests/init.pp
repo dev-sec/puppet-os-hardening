@@ -32,6 +32,7 @@ class os_hardening (
   Array             $folders_to_restrict      =
     ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
   Integer           $recurselimit             = 5,
+  String            $dir_mode                 = '0750',
 
   Boolean           $passwdqc_enabled         = true,
   Integer           $auth_retries             = 5,
@@ -147,6 +148,7 @@ class os_hardening (
     shadowgroup         => $shadowgroup,
     shadowmode          => $shadowmode,
     recurselimit        => $recurselimit,
+    dir_mode            => $dir_mode,
   }
   class { 'os_hardening::modules':
     disable_filesystems   => $disable_filesystems,
