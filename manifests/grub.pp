@@ -12,7 +12,7 @@
 class os_hardening::grub (
   Boolean $enable                = false,
   String  $user                  = 'root',
-  String  $password_hash         = false,
+  String  $password_hash         = '',
   Boolean $boot_without_password = true,
 ) {
 

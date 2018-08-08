@@ -67,7 +67,7 @@ class os_hardening (
 
   Boolean           $enable_grub_hardening    = false,
   String            $grub_user                = 'root',
-  String            $grub_password_hash       = false,
+  String            $grub_password_hash       = '',
   Boolean           $boot_without_password    = true,
 ) {
 
