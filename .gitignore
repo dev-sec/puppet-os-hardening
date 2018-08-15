@@ -27,3 +27,4 @@ Puppetfile.lock
 /tmp/
 /vendor/
 /convert_report.txt
+.ruby-version
