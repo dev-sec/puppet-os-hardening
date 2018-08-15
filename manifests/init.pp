@@ -11,6 +11,7 @@
 #
 class os_hardening (
   String            $system_environment       = 'default',
+  Boolean           $pe_environment           = false,
 
   Array             $extra_user_paths         = [],
   Optional[String]  $umask                    = undef,
@@ -28,6 +29,8 @@ class os_hardening (
 
   Boolean           $allow_change_user        = false,
   Array             $ignore_users             = [],
+  Array             $folders_to_restrict      =
+    ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
   Integer           $recurselimit             = 5,
 
   Boolean           $passwdqc_enabled         = true,
@@ -73,6 +76,11 @@ class os_hardening (
   Boolean           $apparmor_in_use          = false,
   Boolean           $selinux_in_use           = false,
   Array             $privileged_binaries      = [],
+
+  Boolean           $enable_grub_hardening    = false,
+  String            $grub_user                = 'root',
+  String            $grub_password_hash       = '',
+  Boolean           $boot_without_password    = true,
 ) {
 
   # Prepare
@@ -117,6 +125,15 @@ class os_hardening (
   $merged_sys_uid_min = pick($sys_uid_min, $def_sys_uid_min)
   $merged_sys_gid_min = pick($sys_gid_min, $def_sys_gid_min)
 
+  # Fix for Puppet Enterprise
+  if $pe_environment {
+    # Don't redefine directory
+    $folders_to_restrict_int = delete($folders_to_restrict, '/usr/local/bin')
+  } else {
+    $folders_to_restrict_int = $folders_to_restrict
+  }
+
+
   # Install
   # -------
   class { 'os_hardening::limits':
@@ -138,11 +155,12 @@ class os_hardening (
     allow_login_without_home => $allow_login_without_home,
   }
   class { 'os_hardening::minimize_access':
-    allow_change_user => $allow_change_user,
-    ignore_users      => $ignore_users,
-    shadowgroup       => $shadowgroup,
-    shadowmode        => $shadowmode,
-    recurselimit      => $recurselimit,
+    allow_change_user   => $allow_change_user,
+    ignore_users        => $ignore_users,
+    folders_to_restrict => $folders_to_restrict_int,
+    shadowgroup         => $shadowgroup,
+    shadowmode          => $shadowmode,
+    recurselimit        => $recurselimit,
   }
   class { 'os_hardening::modules':
     disable_filesystems   => $disable_filesystems,
@@ -198,6 +216,13 @@ class os_hardening (
       apparmor_in_use     => $apparmor_in_use,
       privileged_binaries => $privileged_binaries,
     }
+  }
+
+  class { 'os_hardening::grub':
+    enable                => $enable_grub_hardening,
+    user                  => $grub_user,
+    password_hash         => $grub_password_hash,
+    boot_without_password => $boot_without_password,
   }
 
 }
