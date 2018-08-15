@@ -68,6 +68,11 @@ class os_hardening (
   Boolean           $enable_stack_protection  = true,
   Boolean           $enable_rpfilter          = true,
   Boolean           $enable_log_martians      = true,
+
+  Boolean           $enable_grub_hardening    = false,
+  String            $grub_user                = 'root',
+  String            $grub_password_hash       = '',
+  Boolean           $boot_without_password    = true,
 ) {
 
   # Prepare
@@ -193,6 +198,13 @@ class os_hardening (
       enable_rpfilter         => $enable_rpfilter,
       enable_log_martians     => $enable_log_martians,
     }
+  }
+
+  class { 'os_hardening::grub':
+    enable                => $enable_grub_hardening,
+    user                  => $grub_user,
+    password_hash         => $grub_password_hash,
+    boot_without_password => $boot_without_password,
   }
 
 }
