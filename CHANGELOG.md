@@ -1,5 +1,18 @@
 # Change Log
 
+## [2.1.2](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.2) (2018-08-15)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.1.1...2.1.2)
+
+**Implemented enhancements:**
+
+- Deploy GRUB hardening [\#137](https://github.com/dev-sec/puppet-os-hardening/pull/137) ([timstoop](https://github.com/timstoop))
+- Only allow root and members of group wheel to use su [\#134](https://github.com/dev-sec/puppet-os-hardening/pull/134) ([timstoop](https://github.com/timstoop))
+- Fix permissions on /etc/gshadow, based on CIS DIL Benchmark 6.1.5. [\#133](https://github.com/dev-sec/puppet-os-hardening/pull/133) ([timstoop](https://github.com/timstoop))
+
+**Merged pull requests:**
+
+- Add stricter file permissions + PE fix [\#136](https://github.com/dev-sec/puppet-os-hardening/pull/136) ([mcgege](https://github.com/mcgege))
+
 ## [2.1.1](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.1) (2018-05-17)
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.1.0...2.1.1)
 
