@@ -10,9 +10,9 @@
 # Configures specific services that do not require a full class of their own
 #
 class os_hardening::services (
-  Array   $unwanted_packages = ['telnet'],
-  Array   $wanted_packages   = ['ntp'],
-  Array   $disabled_services = ['rsync'],
+  Array   $unwanted_packages = [],
+  Array   $wanted_packages   = [],
+  Array   $disabled_services = [],
 ) {
   # Remove packages that should not be installed
   $unwanted_packages.each |String $package| {

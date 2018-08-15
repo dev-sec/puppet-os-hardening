@@ -68,9 +68,9 @@ class os_hardening (
   Boolean           $enable_rpfilter          = true,
   Boolean           $enable_log_martians      = true,
 
-  Array             $unwanted_packages        = ['telnet'],
-  Array             $wanted_packages          = ['ntp'],
-  Array             $disabled_services        = ['rsync'],
+  Array             $unwanted_packages        = [],
+  Array             $wanted_packages          = [],
+  Array             $disabled_services        = [],
 
   Boolean           $enable_grub_hardening    = false,
   String            $grub_user                = 'root',

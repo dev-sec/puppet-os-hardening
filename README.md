@@ -110,11 +110,11 @@ Otherwise puppet will drop an error (duplicate resource)!
   `true` if you want to remove SUID/SGID bits from any file, that is not explicitly configured in a `blacklist`. This will make every Puppet run search through the mounted filesystems looking for SUID/SGID bits that are not configured in the default and user blacklist. If it finds an SUID/SGID bit, it will be removed, unless this file is in your `whitelist`.
 * `dry_run_on_unknown = false`
   like `remove_from_unknown` above, only that SUID/SGID bits aren't removed. It will still search the filesystems to look for SUID/SGID bits but it will only print them in your log. This option is only ever recommended, when you first configure `remove_from_unknown` for SUID/SGID bits, so that you can see the files that are being changed and make adjustments to your `whitelist` and `blacklist`.
-* `unwanted_packages = ['telnet']`
+* `unwanted_packages = []`
   packages that should be removed from the system
-* `wanted_packages = ['ntp']`
+* `wanted_packages = []`
   packages that should be added to the system
-* `disabled_services = ['rsync']`
+* `disabled_services = []`
   services that should not be enabled
 * `enable_grub_hardening = false`
   set to true to enable some grub hardening rules
@@ -130,6 +130,25 @@ Otherwise puppet will drop an error (duplicate resource)!
 After adding this module, you can use the class:
 
     class { 'os_hardening': }
+
+### Note about wanted/unwanted packages and disabled services
+
+As the CIS Distribution Independent Linux Benchmark is a good starting point
+regarding hardening of systems, it was deemed appropriate to implement an easy
+way to deal with one-offs for which one doesn't write to write an entire module.
+
+For instance, to increase CIS DIL compliance on a Debian system, one should set
+the following:
+
+```
+wanted_packages   => ['ntp'],
+unwanted_packages => ['telnet'],
+disabled_services => ['rsync'],
+```
+
+The default settings of NTP are actually pretty good for most situations, so it
+is not immediately necessary to implement a module. However, if you do use a
+module to control these services, that is of course preferred.
 
 ## Testing
 
