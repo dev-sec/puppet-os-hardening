@@ -31,6 +31,7 @@ class os_hardening::grub (
     file { '/etc/grub.d/01_hardening':
       content => template('os_hardening/grub_hardening.erb'),
       notify  => Exec['Grub configuration recreate for os_hardening::grub'],
+      mode    => '0755',
     }
 
     file { $grub_cfg:
