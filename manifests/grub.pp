@@ -19,11 +19,11 @@ class os_hardening::grub (
   case $::operatingsystem {
     debian, ubuntu: {
       $grub_cfg = '/boot/grub/grub.cfg'
-      $grub_cmd = "/usr/sbin/grub-mkconfig"
+      $grub_cmd = '/usr/sbin/grub-mkconfig'
     }
     default: {
       $grub_cfg = '/boot/grub2/grub.cfg'
-      $grub_cmd = "/usr/sbin/grub2-mkconfig"
+      $grub_cmd = '/usr/sbin/grub2-mkconfig'
     }
   }
 
@@ -57,7 +57,7 @@ class os_hardening::grub (
   } else {
     file { '/etc/grub.d/01_hardening':
       ensure => absent,
-      notify  => Exec['Grub configuration recreate for os_hardening::grub'],
+      notify => Exec['Grub configuration recreate for os_hardening::grub'],
     }
   }
 

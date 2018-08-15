@@ -8,10 +8,10 @@ if File.exist?(logindefs)
   end
 else
   case Facter.value(:osfamily)
-    when 'Debian', 'OpenBSD', 'FreeBSD'
-      su_maxid = 999
-    else
-      su_maxid = 499
+  when 'Debian', 'OpenBSD', 'FreeBSD'
+    su_maxid = 999
+  else
+    su_maxid = 499
   end
 end
 
