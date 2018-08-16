@@ -69,6 +69,10 @@ class os_hardening (
   Boolean           $enable_rpfilter          = true,
   Boolean           $enable_log_martians      = true,
 
+  Array             $unwanted_packages        = [],
+  Array             $wanted_packages          = [],
+  Array             $disabled_services        = [],
+
   Boolean           $enable_grub_hardening    = false,
   String            $grub_user                = 'root',
   String            $grub_password_hash       = '',
@@ -198,6 +202,12 @@ class os_hardening (
       enable_rpfilter         => $enable_rpfilter,
       enable_log_martians     => $enable_log_martians,
     }
+  }
+
+  class { 'os_hardening::services':
+    unwanted_packages => $unwanted_packages,
+    wanted_packages   => $wanted_packages,
+    disabled_services => $disabled_services,
   }
 
   class { 'os_hardening::grub':
