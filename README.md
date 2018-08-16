@@ -135,7 +135,7 @@ After adding this module, you can use the class:
 
 As the CIS Distribution Independent Linux Benchmark is a good starting point
 regarding hardening of systems, it was deemed appropriate to implement an easy
-way to deal with one-offs for which one doesn't write to write an entire module.
+way to deal with one-offs for which one doesn't want to write an entire module.
 
 For instance, to increase CIS DIL compliance on a Debian system, one should set
 the following:
