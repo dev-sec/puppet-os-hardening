@@ -10,12 +10,20 @@ This Puppet module provides secure configuration of your base OS with hardening.
 
 ## Requirements
 
-* Puppet
+* Puppet OpenSource or Enterprise
+* [Module stdlib](https://forge.puppet.com/puppetlabs/stdlib)
+
+### IMPORTANT for Puppet Enterprise
+
+**If you are using this module in a PE environment, you have to set** `pe_environment = true`  
+Otherwise puppet will drop an error (duplicate resource)!
 
 ## Parameters
 
 * `system_environment = default`
   define the context in which the system runs. Some options don't work for `docker`/`lxc`
+* `pe_environment = false`
+  set this to true if you are using Puppet Enterprise **IMPORTANT - see above**
 * `desktop_enabled = false`
   true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
 * `enable_ipv4_forwarding = false`
@@ -68,8 +76,12 @@ This Puppet module provides secure configuration of your base OS with hardening.
   the number of last passwords (e.g. 5 will prevent user to reuse any of her last 5 passwords)
 * `allow_change_user = false`
   if a user may use `su` to change his login
+* `only_root_may_su = false`
+  true when only root and member of the group wheel may use su, required to be true for CIS Benchmark compliance
 * `ignore_users = []`
   array of system user accounts that should _not be_ hardened (password disabled and shell set to `/usr/sbin/nologin`)
+* `folders_to_restrict = ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin']`
+  folders to make sure of that group and world do not have write access to it or any of the contents
 * `recurselimit = 5`
   directory depth for recursive permission check
 * `chfn_restrict = ""`
@@ -102,12 +114,45 @@ This Puppet module provides secure configuration of your base OS with hardening.
   for installing and configuring apparmor, set to true (requires a machine restart to fully activate!)
 * `apparmor_enforce_all = false`
   when apparmor should enforce all profiles it can load, set this to true
+* `unwanted_packages = []`
+  packages that should be removed from the system
+* `wanted_packages = []`
+  packages that should be added to the system
+* `disabled_services = []`
+  services that should not be enabled
+* `enable_grub_hardening = false`
+  set to true to enable some grub hardening rules
+* `grub_user = 'root'`
+  the grub username that needs to be provided when changing config on the grub prompt
+* `grub_password_hash = ''`
+  a password hash created with `grub-mkpasswd-pbkdf2` that is associated with the grub\_user
+* `boot_without_password = true`
+  setup Grub so it only requires a password when changing an entry, not when booting an existing entry
 
 ## Usage
 
 After adding this module, you can use the class:
 
     class { 'os_hardening': }
+
+### Note about wanted/unwanted packages and disabled services
+
+As the CIS Distribution Independent Linux Benchmark is a good starting point
+regarding hardening of systems, it was deemed appropriate to implement an easy
+way to deal with one-offs for which one doesn't want to write an entire module.
+
+For instance, to increase CIS DIL compliance on a Debian system, one should set
+the following:
+
+```
+wanted_packages   => ['ntp'],
+unwanted_packages => ['telnet'],
+disabled_services => ['rsync'],
+```
+
+The default settings of NTP are actually pretty good for most situations, so it
+is not immediately necessary to implement a module. However, if you do use a
+module to control these services, that is of course preferred.
 
 ## Testing
 
