@@ -77,6 +77,10 @@ class os_hardening (
   Boolean           $selinux_in_use           = false,
   Array             $privileged_binaries      = [],
 
+  Array             $unwanted_packages        = [],
+  Array             $wanted_packages          = [],
+  Array             $disabled_services        = [],
+
   Boolean           $enable_grub_hardening    = false,
   String            $grub_user                = 'root',
   String            $grub_password_hash       = '',
@@ -207,15 +211,20 @@ class os_hardening (
     }
   }
 
-  if $enable_auditd {
-    class { 'os_hardening::auditd':
-      max_log_file        => $auditd_max_log_file,
-      max_log_file_action => $auditd_max_log_file_action,
-      num_logs            => $auditd_num_logs,
-      selinux_in_use      => $selinux_in_use,
-      apparmor_in_use     => $apparmor_in_use,
-      privileged_binaries => $privileged_binaries,
-    }
+  class { 'os_hardening::auditd':
+    enable              => $enable_auditd,
+    max_log_file        => $auditd_max_log_file,
+    max_log_file_action => $auditd_max_log_file_action,
+    num_logs            => $auditd_num_logs,
+    selinux_in_use      => $selinux_in_use,
+    apparmor_in_use     => $apparmor_in_use,
+    privileged_binaries => $privileged_binaries,
+  }
+
+  class { 'os_hardening::services':
+    unwanted_packages => $unwanted_packages,
+    wanted_packages   => $wanted_packages,
+    disabled_services => $disabled_services,
   }
 
   class { 'os_hardening::grub':

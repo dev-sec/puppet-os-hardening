@@ -122,6 +122,12 @@ Otherwise puppet will drop an error (duplicate resource)!
   this needs to be set to true if selinux is in use, to make sure the profiles are monitored for changes
 * `privileged_binaries = []`
   add all your privileged binaries to this array to monitor usage of them, get a list with `find <partition> -xdev \( -perm -4000 -o -perm -2000 \) -type f` and replace <partition> with a partitions that can be used to execute binaries
+* `unwanted_packages = []`
+  packages that should be removed from the system
+* `wanted_packages = []`
+  packages that should be added to the system
+* `disabled_services = []`
+  services that should not be enabled
 * `enable_grub_hardening = false`
   set to true to enable some grub hardening rules
 * `grub_user = 'root'`
@@ -136,6 +142,25 @@ Otherwise puppet will drop an error (duplicate resource)!
 After adding this module, you can use the class:
 
     class { 'os_hardening': }
+
+### Note about wanted/unwanted packages and disabled services
+
+As the CIS Distribution Independent Linux Benchmark is a good starting point
+regarding hardening of systems, it was deemed appropriate to implement an easy
+way to deal with one-offs for which one doesn't want to write an entire module.
+
+For instance, to increase CIS DIL compliance on a Debian system, one should set
+the following:
+
+```
+wanted_packages   => ['ntp'],
+unwanted_packages => ['telnet'],
+disabled_services => ['rsync'],
+```
+
+The default settings of NTP are actually pretty good for most situations, so it
+is not immediately necessary to implement a module. However, if you do use a
+module to control these services, that is of course preferred.
 
 ## Testing
 
