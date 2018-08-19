@@ -205,10 +205,9 @@ class os_hardening (
     }
   }
 
-  if $enable_apparmor {
-    class { 'os_hardening::apparmor':
-      enforce_all => $apparmor_enforce_all,
-    }
+  class { 'os_hardening::apparmor':
+    enable      => $enable_apparmor,
+    enforce_all => $apparmor_enforce_all,
   }
 
   class { 'os_hardening::services':
