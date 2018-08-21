@@ -1,4 +1,5 @@
 #!/bin/sh
+# MANAGED BY PUPPET
 echo set superusers="<%= @user %>"
 echo password_pbkdf2 <%= @user %> <%= @password_hash %>
 
