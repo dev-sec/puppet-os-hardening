@@ -12,6 +12,7 @@ This Puppet module provides secure configuration of your base OS with hardening.
 
 * Puppet OpenSource or Enterprise
 * [Module stdlib](https://forge.puppet.com/puppetlabs/stdlib)
+* [Module sysctl](https://forge.puppet.com/thias/sysctl)
 
 ### IMPORTANT for Puppet Enterprise
 
