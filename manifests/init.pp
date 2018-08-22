@@ -216,5 +216,8 @@ class os_hardening (
     password_hash         => $grub_password_hash,
     boot_without_password => $boot_without_password,
   }
+  class { 'os_hardening::umask':
+    system_umask          => $system_umask,
 
+  }
 }
