@@ -24,6 +24,16 @@ class os_hardening::umask (
      mode    => '0644',
    }
   }
+  else {
+   
+   file { '/etc/profile.d/umask.sh':
+     ensure  => absent,
+   }
+  
+  }
+  
+  
+  
 
 }
 
