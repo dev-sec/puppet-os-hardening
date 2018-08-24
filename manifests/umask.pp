@@ -31,9 +31,5 @@ class os_hardening::umask (
    }
   
   }
-  
-  
-  
-
 }
 
