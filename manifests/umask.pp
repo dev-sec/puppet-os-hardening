@@ -11,7 +11,7 @@
 #
 class os_hardening::umask (
     $system_umask = undef,
-){
+) {
 
   if $system_umask != undef {
 
