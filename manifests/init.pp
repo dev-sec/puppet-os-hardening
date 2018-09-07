@@ -77,6 +77,8 @@ class os_hardening (
   String            $grub_user                = 'root',
   String            $grub_password_hash       = '',
   Boolean           $boot_without_password    = true,
+
+  Optional[String]  $system_umask             = undef,
 ) {
 
   # Prepare
@@ -217,4 +219,7 @@ class os_hardening (
     boot_without_password => $boot_without_password,
   }
 
+  class { 'os_hardening::umask':
+    system_umask          => $system_umask,
+  }
 }
