@@ -125,7 +125,9 @@ Otherwise puppet will drop an error (duplicate resource)!
   a password hash created with `grub-mkpasswd-pbkdf2` that is associated with the grub\_user
 * `boot_without_password = true`
   setup Grub so it only requires a password when changing an entry, not when booting an existing entry
-
+* `system_umask = 027`
+  if this variable is set setup the umask for all user in the system.
+     
 ## Usage
 
 After adding this module, you can use the class:
