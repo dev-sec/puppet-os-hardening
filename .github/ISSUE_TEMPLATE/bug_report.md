@@ -23,17 +23,10 @@ A clear and concise description of what you expected to happen.
 ```
 
 **OS / Environment**
-
 <!--- Provide all relevant information below, e.g. target OS versions, network device firmware, etc. -->
 
-**Chef Version**
-<!--- Paste verbatim output from "chef-client --version" between quotes -->
-```paste below
-
-```
-
-**Cookbook Version**
-<!--- Paste version of the cookbook between quotes -->
+**Puppet Version**
+<!--- Paste verbatim output from "puppet --version" between quotes -->
 ```paste below
 
 ```
