@@ -1,5 +1,29 @@
 # Change Log
 
+## [2.1.3](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.3) (2018-11-12)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.1.2...2.1.3)
+
+**Implemented enhancements:**
+
+- Support os umask [\#152](https://github.com/dev-sec/puppet-os-hardening/pull/152) ([hdep](https://github.com/hdep))
+- Easy add and remove packages, disable services [\#138](https://github.com/dev-sec/puppet-os-hardening/pull/138) ([timstoop](https://github.com/timstoop))
+
+**Closed issues:**
+
+- user resource conflict with puppetlabs/apache: Duplicate declaration: User\[www-data\] is already declared [\#157](https://github.com/dev-sec/puppet-os-hardening/issues/157)
+- Missing comments in managed file : file managed by puppet [\#146](https://github.com/dev-sec/puppet-os-hardening/issues/146)
+- Missing requirements in readme file [\#145](https://github.com/dev-sec/puppet-os-hardening/issues/145)
+
+**Merged pull requests:**
+
+- Update issue templates [\#158](https://github.com/dev-sec/puppet-os-hardening/pull/158) ([rndmh3ro](https://github.com/rndmh3ro))
+- rework README [\#155](https://github.com/dev-sec/puppet-os-hardening/pull/155) ([mcgege](https://github.com/mcgege))
+- Create license file [\#154](https://github.com/dev-sec/puppet-os-hardening/pull/154) ([mcgege](https://github.com/mcgege))
+- Create license file [\#153](https://github.com/dev-sec/puppet-os-hardening/pull/153) ([mcgege](https://github.com/mcgege))
+- Add  'MANAGED BY PUPPET' header [\#150](https://github.com/dev-sec/puppet-os-hardening/pull/150) ([hdep](https://github.com/hdep))
+- Fix missing Requirements in Readme [\#149](https://github.com/dev-sec/puppet-os-hardening/pull/149) ([hdep](https://github.com/hdep))
+- Add OpenSUSE 15 to the supported distributions [\#148](https://github.com/dev-sec/puppet-os-hardening/pull/148) ([mcgege](https://github.com/mcgege))
+
 ## [2.1.2](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.2) (2018-08-15)
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.1.1...2.1.2)
 
