@@ -57,14 +57,16 @@
       "operatingsystem": "SLES",
       "operatingsystemrelease": [
         "11",
-        "12"
+        "12",
+        "15"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
         "14",
-        "16"
+        "16",
+        "18"
       ]
     }
   ],
