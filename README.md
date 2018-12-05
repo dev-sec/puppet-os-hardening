@@ -121,6 +121,8 @@ Otherwise puppet will drop an error (duplicate resource)!
   for Address Space Layout Randomization. ASLR can help defeat certain types of buffer overflow attacks. ASLR can locate the base, libraries, heap, and stack at random positions in a process's address space, which makes it difficult for an attacking program to predict the memory address of the next instruction.
 * `enable_rpfilter = true`
   true to enable reverse path filtering (discard bogus packets), false otherwise
+* `rpfilter_loose = false`
+  (only if `enable_rpfilter` is true) *loose mode* (rp_filter = 2) if true, *strict mode* otherwise
 * `enable_log_martians = true`
   true to enable logging on suspicious / unroutable network packets, false otherwise **WARNING - this might generate huge log files!**
 * `unwanted_packages = []`

@@ -67,6 +67,7 @@ class os_hardening (
   Boolean           $enable_core_dump         = false,
   Boolean           $enable_stack_protection  = true,
   Boolean           $enable_rpfilter          = true,
+  Boolean           $rpfilter_loose           = false,
   Boolean           $enable_log_martians      = true,
 
   Array             $unwanted_packages        = [],
@@ -202,6 +203,7 @@ class os_hardening (
       enable_core_dump        => $enable_core_dump,
       enable_stack_protection => $enable_stack_protection,
       enable_rpfilter         => $enable_rpfilter,
+      rpfilter_loose          => $rpfilter_loose,
       enable_log_martians     => $enable_log_martians,
     }
   }
