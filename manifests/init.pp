@@ -53,7 +53,7 @@ class os_hardening (
   Boolean           $enable_module_loading    = true,
   Array             $load_modules             = [],
   Array             $disable_filesystems      =
-    ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf','vfat'],
+    ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf'],
 
   String            $cpu_vendor               = 'intel',
   Boolean           $desktop_enabled          = false,
