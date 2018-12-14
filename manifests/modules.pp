@@ -10,7 +10,7 @@
 #
 class os_hardening::modules (
   Array $disable_filesystems =
-    ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf','vfat'],
+    ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf'],
 ) {
 
   # Disable unused filesystems (os-10)

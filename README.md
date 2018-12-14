@@ -87,7 +87,7 @@ Otherwise puppet will drop an error (duplicate resource)!
   true if you want to allowed to change kernel modules once the system is running (eg `modprobe`, `rmmod`)
 * `load_modules = []`
   load this modules via initramfs if enable_module_loading is false
-* `disable_filesystems = ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf','vfat']`
+* `disable_filesystems = ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf']`
   array of filesystems (kernel modules) that should be disabled
 * `cpu_vendor = 'intel'`
   only required if `enable_module_loading = false`: set the CPU vendor for modules to load
