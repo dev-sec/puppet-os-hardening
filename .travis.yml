@@ -1,30 +1,49 @@
-sudo: false
+---
+dist: trusty
 language: ruby
-bundler_args: --without development
 cache: bundler
-
-rvm: 2.4.1
-
-env:
- - INSTANCE=ubuntu-14-04
- - INSTANCE=ubuntu-16-04
- - INSTANCE=centos-6
- - INSTANCE=centos-7
- - INSTANCE=debian-7
- - INSTANCE=debian-8
- - INSTANCE=fedora-26
- - INSTANCE=fedora-27
-
-matrix:
-  allow_failures: # allow failues of integration tests as the forks might miss the DO token
-  - env: INSTANCE=ubuntu-14-04
-  - env: INSTANCE=ubuntu-16-04
-  - env: INSTANCE=centos-6
-  - env: INSTANCE=centos-7
-  - env: INSTANCE=debian-7
-  - env: INSTANCE=debian-8
-  - env: INSTANCE=fedora-26
-  - env: INSTANCE=fedora-27
-
+before_install:
+  - if [ $BUNDLER_VERSION ]; then
+      gem install -v $BUNDLER_VERSION bundler --no-rdoc --no-ri;
+    fi
+  - bundle -v
+  - rm -f Gemfile.lock
+  - gem update --system $RUBYGEMS_VERSION
+  - gem --version
+  - bundle -v
 script:
-  -  bundle exec rake prepare_do_env kitchen KITCHEN_LOCAL_YAML=.kitchen.do.yml
+  - 'bundle exec rake $CHECK'
+bundler_args: --without system_tests
+rvm:
+  - 2.5.1
+env:
+  global:
+    - BEAKER_PUPPET_COLLECTION=puppet6 PUPPET_GEM_VERSION="~> 6.0"
+matrix:
+  fast_finish: true
+  include:
+    -
+      env: CHECK="syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop"
+    -
+      env: CHECK=parallel_spec
+    -
+      env: PUPPET_GEM_VERSION="~> 5.0" CHECK=parallel_spec
+      rvm: 2.4.4
+    -
+      env: PUPPET_GEM_VERSION="~> 4.0" CHECK=parallel_spec RUBYGEMS_VERSION=2.7.8 BUNDLER_VERSION=1.17.3
+      rvm: 2.1.9
+branches:
+  only:
+    - master
+    - /^v\d/
+notifications:
+  email: false
+deploy:
+  provider: puppetforge
+  user: puppet
+  password:
+    secure: ""
+  on:
+    tags: true
+    all_branches: true
+    condition: "$DEPLOY_TO_FORGE = yes"
