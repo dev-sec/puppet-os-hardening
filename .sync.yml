@@ -1,0 +1,15 @@
+---
+.gitlab-ci.yml:
+  delete: true
+
+.gitignore:
+  paths:
+    - .ruby-version
+
+.yardopts:
+  delete: true
+
+appveyor.yml:
+  delete: true
+
+
