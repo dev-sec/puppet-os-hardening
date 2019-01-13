@@ -24,3 +24,8 @@ Rakefile:
   changelog_user: 'dev-sec'
   changelog_project: 'puppet-os-hardening'
   changelog_since_tag: '1.1.1'
+
+spec/default_facts.yml:
+  extra_facts:
+    retrieve_system_users: 'root,bin,daemon,adm,lp,sync,shutdown,halt,mail,operator,games,ftp,nobody,systemd-network,dbus,polkitd,rpc,rpcuser,postfix,sshd,chrony'
+
