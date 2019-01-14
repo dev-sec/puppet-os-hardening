@@ -2,10 +2,10 @@
 
 file { '/etc/modprobe.d/':
     ensure => directory,
-} ->
-    
+}
+
 # Apply hardening module
-class { 'os_hardening':
+-> class { 'os_hardening':
     system_environment => 'docker',
 }
 

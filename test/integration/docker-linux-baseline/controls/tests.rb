@@ -44,4 +44,3 @@ include_controls 'linux-baseline' do
   skip_control 'sysctl-32'
   skip_control 'sysctl-33'
 end
-
