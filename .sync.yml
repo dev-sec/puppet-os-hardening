@@ -13,6 +13,7 @@
 .travis.yml:
   branches:
     - 'pdk180'
+  deploy: false
 
 .yardopts:
   delete: true
