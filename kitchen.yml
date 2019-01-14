@@ -1,0 +1,26 @@
+---
+driver:
+  name: docker
+  use_sudo: false
+  privileged: true
+
+provisioner:
+  name: puppet_apply
+  manifests_path: test/fixtures/manifests
+  modules_path: test/fixtures/modules
+  ignore_spec_fixtures: true
+  puppetfile_path: test/fixtures/Puppetfile
+  require_chef_for_busser: false
+
+platforms:
+  - name: ubuntu-16.04
+
+verifier:
+  name: inspec
+  reporter:
+    - cli
+    - junit:.kitchen/logs/%{suite}-%{platform}_inspec.xml
+
+suites:
+  - name: docker-linux-baseline
+

@@ -1,4 +1,11 @@
 ---
+.gitignore:
+  paths:
+    - '/.kitchen/'
+    - '/test/fixtures/.librarian/'
+    - '/test/fixtures/.tmp/'
+    - '/test/fixtures/Puppetfile.lock'
+
 .gitlab-ci.yml:
   delete: true
 
@@ -18,6 +25,13 @@ appveyor.yml:
   delete: true
 
 Gemfile:
+  required:
+    ':integration':
+      - gem: 'librarian-puppet'
+      - gem: 'test-kitchen'
+      - gem: 'kitchen-docker'
+      - gem: 'kitchen-inspec'
+      - gem: 'kitchen-puppet'
   optional:
     ':development':
       - gem: 'github_changelog_generator'
@@ -29,6 +43,8 @@ Rakefile:
   changelog_user: 'dev-sec'
   changelog_project: 'puppet-os-hardening'
   changelog_since_tag: '1.1.1'
+  imports:
+    - 'Rakefile.local'
 
 spec/default_facts.yml:
   extra_facts:

@@ -1,0 +1,4 @@
+# Use dependencies defined in metadata.json
+forge "https://forgeapi.puppetlabs.com"
+metadata
+

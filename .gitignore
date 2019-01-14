@@ -22,3 +22,7 @@
 /convert_report.txt
 /update_report.txt
 .DS_Store
+/.kitchen/
+/test/fixtures/.librarian/
+/test/fixtures/.tmp/
+/test/fixtures/Puppetfile.lock

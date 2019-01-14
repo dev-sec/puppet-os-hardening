@@ -1,0 +1,8 @@
+desc 'Run kitchen integration tests'
+task :kitchen do
+  concurrency = ENV['CONCURRENCY'] || 1
+  instance = ENV['INSTANCE'] || ''
+  args = ENV['CI'] ? '--destroy=always' : ''
+  sh('sh', '-c', "bundle exec kitchen test -c #{concurrency} #{args} #{instance}")
+end
+
