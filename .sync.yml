@@ -2,10 +2,6 @@
 .gitlab-ci.yml:
   delete: true
 
-.gitignore:
-  paths:
-    - .ruby-version
-
 .rubocop.yml:
   default_configs:
     inherit_from: .rubocop_todo.yml
