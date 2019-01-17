@@ -1,4 +1,4 @@
-desc 'Run local kitchen integration tests (docker container)'
+desc 'Run kitchen integration tests (docker container)'
 task :kitchen do
   concurrency = ENV['CONCURRENCY'] || 1
   instance = ENV['INSTANCE'] || ''

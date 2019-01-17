@@ -14,7 +14,7 @@
     inherit_from: .rubocop_todo.yml
 
 .travis.yml:
-  deploy: false
+  unmanaged: true
 
 .yardopts:
   delete: true
