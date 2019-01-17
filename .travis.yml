@@ -30,6 +30,5 @@ branches:
   only:
     - master
     - /^v\d/
-    - pdk180
 notifications:
   email: false

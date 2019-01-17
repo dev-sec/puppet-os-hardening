@@ -14,8 +14,6 @@
     inherit_from: .rubocop_todo.yml
 
 .travis.yml:
-  branches:
-    - 'pdk180'
   deploy: false
 
 .yardopts:
