@@ -24,6 +24,9 @@ platforms:
 #     image: opensuse/leap:15
 #     platform: opensuse
 
+transport:
+  name: sftp
+
 verifier:
   name: inspec
   reporter:

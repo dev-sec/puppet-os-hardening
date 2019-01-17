@@ -32,6 +32,7 @@ Gemfile:
       - gem: 'kitchen-docker'
       - gem: 'kitchen-inspec'
       - gem: 'kitchen-puppet'
+      - gem: 'kitchen-sync'
   optional:
     ':development':
       - gem: 'github_changelog_generator'
