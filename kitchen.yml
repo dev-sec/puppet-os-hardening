@@ -1,8 +1,9 @@
 ---
 driver:
   name: docker
-  use_sudo: false
   privileged: true
+  remove_images: true
+  use_sudo: false
 
 provisioner:
   name: puppet_apply
@@ -13,7 +14,15 @@ provisioner:
   require_chef_for_busser: false
 
 platforms:
+  - name: centos-7
+  - name: debian-8
   - name: ubuntu-16.04
+
+# SuSE is not yet supported by kitchen-puppet
+# - name: opensuse-15
+#   driver_config:
+#     image: opensuse/leap:15
+#     platform: opensuse
 
 verifier:
   name: inspec
