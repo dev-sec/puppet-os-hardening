@@ -3,18 +3,22 @@ driver:
   name: docker
   privileged: true
   remove_images: true
+  require_chef_omnibus: false
   use_sudo: false
 
 provisioner:
   name: puppet_apply
+  ignore_spec_fixtures: true
   manifests_path: test/fixtures/manifests
   modules_path: test/fixtures/modules
-  ignore_spec_fixtures: true
   puppetfile_path: test/fixtures/Puppetfile
   require_chef_for_busser: false
 
 platforms:
   - name: centos-7
+    provisioner:
+      puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
   - name: debian-8
   - name: ubuntu-16-04
     driver_config:
