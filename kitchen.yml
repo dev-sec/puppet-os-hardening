@@ -23,12 +23,22 @@ platforms:
   - name: ubuntu-16-04
     driver_config:
       image: ubuntu:16.04
-
-# SuSE is not yet supported by kitchen-puppet
-# - name: opensuse-15
-#   driver_config:
-#     image: opensuse/leap:15
-#     platform: opensuse
+  - name: opensuse-42
+    driver_config:
+      image: opensuse:42.3
+      platform: opensuse
+    provisioner:
+      custom_pre_install_command: |
+        sudo zypper addrepo -n puppet5 -f -G http://yum.puppetlabs.com/puppet5/sles/12/x86_64 puppet5
+        sudo zypper install -y puppet-agent kmod
+  - name: opensuse-15
+    driver_config:
+      image: opensuse/leap:15
+      platform: opensuse
+    provisioner:
+      custom_pre_install_command: |
+        sudo zypper addrepo -n puppet5 -f -G http://yum.puppetlabs.com/puppet5/sles/15/x86_64 puppet5
+        sudo zypper install -y puppet-agent
 
 transport:
   name: sftp

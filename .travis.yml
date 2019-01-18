@@ -39,3 +39,5 @@ jobs:
       env: INSTANCE=debian-8 CHECK=kitchen
     - name: "Integration test (Ubuntu 16.04)"
       env: INSTANCE=ubuntu-16-04 CHECK=kitchen
+    - name: "Integration test (OpenSUSE 42.3)"
+      env: INSTANCE=opensuse-42 CHECK=kitchen
