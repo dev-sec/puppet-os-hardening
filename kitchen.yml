@@ -15,14 +15,13 @@ provisioner:
   require_chef_for_busser: false
 
 platforms:
+  - name: centos-6
   - name: centos-7
     provisioner:
       puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
       puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
+  - name: debian-7
   - name: debian-8
-  - name: ubuntu-16-04
-    driver_config:
-      image: ubuntu:16.04
   - name: opensuse-42
     driver_config:
       image: opensuse:42.3
@@ -39,6 +38,23 @@ platforms:
       custom_pre_install_command: |
         sudo zypper addrepo -n puppet5 -f -G http://yum.puppetlabs.com/puppet5/sles/15/x86_64 puppet5
         sudo zypper install -y puppet-agent
+  - name: oracle-6
+    driver_config:
+      image: oraclelinux:6
+      platform: rhel
+  - name: oracle-7
+    driver_config:
+      image: oraclelinux:7
+      platform: rhel
+    provisioner:
+      puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
+  - name: ubuntu-16-04
+    driver_config:
+      image: ubuntu:16.04
+  - name: ubuntu-18-04
+    driver_config:
+      image: ubuntu:18.04
 
 transport:
   name: sftp
