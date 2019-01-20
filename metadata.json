@@ -50,7 +50,8 @@
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
         "7",
-        "8"
+        "8",
+        "9"
       ]
     },
     {
@@ -73,7 +74,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 4.0.0 < 6.0.0"
+      "version_requirement": ">= 4.0.0 < 7.0.0"
     }
   ],
   "template-url": "https://github.com/dev-sec/puppet-pdk-template",
