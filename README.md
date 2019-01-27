@@ -16,7 +16,7 @@ This Puppet module provides secure configuration of your base OS with hardening.
 
 ### IMPORTANT for Puppet Enterprise
 
-**If you are using this module in a PE environment, you have to set** `pe_environment = true`  
+**If you are using this module in a PE environment, you have to set** `pe_environment = true`
 Otherwise puppet will drop an error (duplicate resource)!
 
 ## Parameters
@@ -131,7 +131,7 @@ Otherwise puppet will drop an error (duplicate resource)!
   setup Grub so it only requires a password when changing an entry, not when booting an existing entry
 * `system_umask = undef`
   if this variable is set setup the umask for all user in the system (e.g. '027')
-     
+
 ## Usage
 
 After adding this module, you can use the class:
@@ -161,9 +161,21 @@ module to control these services, that is of course preferred.
 
 ### Local Testing
 
-You should have Ruby interpreter installed on your system. It might be a good idea to use [rvm](https://rvm.io) for that purpose. Besides that you have to install VirtualBox and Vagrant. See [Vagrant Downloads](http://downloads.vagrantup.com/) for a vagrant package and [VirtualBox Downloads](https://www.virtualbox.org/wiki/Downloads) for a VirtualBox package suitable for your system. For all our tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
+You should have Ruby interpreter installed on your system. It might be a good idea to use [rvm](https://rvm.io) for that purpose. Besides that you have to install the `Puppet Development Kit` [PDK](https://puppet.com/download-puppet-development-kit) and [Docker Community Edition](https://www.docker.com/products/docker-engine), as the integration tests run in Docker containers.
 
-Next install test-kitchen:
+For all our integration tests we use `test-kitchen`. If you are not familiar with `test-kitchen` please have a look at [their guide](http://kitchen.ci/docs/getting-started).
+
+#### PDK Tests
+
+```bash
+# Syntax & Lint tests
+pdk validate
+
+# Unit Tests
+pdk test unit
+```
+
+#### Integration Tests
 
 ```bash
 # Install dependencies
@@ -174,32 +186,15 @@ bundle install
 bundle exec kitchen list
 
 # fast test on one machine
-bundle exec kitchen test default-ubuntu-16-04
+bundle exec kitchen test ubuntu-16-04-puppet5
 
 # test on all machines
 bundle exec kitchen test
-
-# for development
-bundle exec kitchen create default-ubuntu-16-04
-bundle exec kitchen converge default-ubuntu-16-04
-bundle exec kitchen verify default-ubuntu-16-04
 ```
 
-For more information see [test-kitchen](http://kitchen.ci/docs/getting-started)
+### CI testing of PRs & forks
 
-### CI testing of forks
-
-You can enable testing of your fork in [Travis CI](http://travis-ci.org/). By default you will get linting and spec tests.
-
-Integration tests of this repository are conducted using [Microsoft Azure](https://azure.microsoft.com/).
-
-If you want to have integration tests for your fork, you will have to add following [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) in the settings of your fork:
-
-* `AZURE_SUBSCRIPTION_ID` - subscription id
-* `AZURE_CLIENT_ID`- id of registered application
-* `AZURE_CLIENT_SECRET`- secret of registered application
-* `AZURE_TENANT_ID`- id of Azure Active Directory
-* `CI_SSH_KEY` - private part of some ssh key, in base64 encoded form (e.g. `cat id_rsa | base64 -w0 ; echo`)
+Your patches will automatically get tested via [Travis CI](http://travis-ci.org/). The test summary is visible on Github in your PR, details can be found on the corresponding [Travis puppet-os-hardening page](https://travis-ci.org/dev-sec/puppet-os-hardening).
 
 ## Contributors + Kudos
 
