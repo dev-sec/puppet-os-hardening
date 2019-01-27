@@ -1,0 +1,7 @@
+desc 'Run kitchen integration tests (docker container)'
+task :kitchen do
+  concurrency = ENV['CONCURRENCY'] || 1
+  instance = ENV['INSTANCE'] || ''
+  sh('sh', '-c', "bundle exec kitchen test --destroy=always -c #{concurrency} #{instance}")
+end
+

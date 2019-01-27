@@ -1,4 +1,4 @@
-name: os-hardening-integration-tests
+name: integration-tests-docker
 version: 1.0.0
 depends:
   - name: linux-baseline

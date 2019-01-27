@@ -1,30 +1,62 @@
-sudo: false
-language: ruby
-bundler_args: --without development
+---
+bundler_args: --without system_tests
 cache: bundler
+dist: trusty
+language: ruby
 
-rvm: 2.4.1
+notifications:
+  email: false
 
-env:
- - INSTANCE=ubuntu-14-04
- - INSTANCE=ubuntu-16-04
- - INSTANCE=centos-6
- - INSTANCE=centos-7
- - INSTANCE=debian-7
- - INSTANCE=debian-8
- - INSTANCE=fedora-26
- - INSTANCE=fedora-27
+services:
+  - docker
 
-matrix:
-  allow_failures: # allow failues of integration tests as the forks might miss the DO token
-  - env: INSTANCE=ubuntu-14-04
-  - env: INSTANCE=ubuntu-16-04
-  - env: INSTANCE=centos-6
-  - env: INSTANCE=centos-7
-  - env: INSTANCE=debian-7
-  - env: INSTANCE=debian-8
-  - env: INSTANCE=fedora-26
-  - env: INSTANCE=fedora-27
+before_install:
+  - bundle -v
+  - rm -f Gemfile.lock
+  - gem update --system $RUBYGEMS_VERSION
+  - gem --version
+  - bundle -v
+
+rvm:
+  - 2.5.1
 
 script:
-  -  bundle exec rake prepare_do_env kitchen KITCHEN_LOCAL_YAML=.kitchen.do.yml
+  - 'bundle exec rake $CHECK'
+
+jobs:
+  include:
+    - name: "Syntax & Lint checks"
+      env: PUPPET_GEM_VERSION="~> 6.0" CHECK="syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop"
+    - name: "Unit tests (Puppet 5)"
+      env: PUPPET_GEM_VERSION="~> 5.0" CHECK=parallel_spec
+      rvm: 2.4.4
+    - name: "Unit tests (Puppet 6)"
+      env: PUPPET_GEM_VERSION="~> 6.0" CHECK=parallel_spec
+    - stage: integration
+      name: "Integration test (CentOS 6 / Puppet 5)"
+      env: INSTANCE=centos-6-puppet5 CHECK=kitchen
+    - name: "Integration test (CentOS 7 / Puppet 5)"
+      env: INSTANCE=centos-7-puppet5 CHECK=kitchen
+    - name: "Integration test (CentOS 7 / Puppet 6)"
+      env: INSTANCE=centos-7-puppet6 CHECK=kitchen
+    - name: "Integration test (Debian 8 / Puppet 5)"
+      env: INSTANCE=debian-8-puppet5 CHECK=kitchen
+    - name: "Integration test (Debian 9 / Puppet 5)"
+      env: INSTANCE=debian-9-puppet5 CHECK=kitchen
+    - name: "Integration test (Debian 9 / Puppet 6)"
+      env: INSTANCE=debian-9-puppet6 CHECK=kitchen
+    - name: "Integration test (OpenSUSE 42.3 / Puppet 5)"
+      env: INSTANCE=opensuse-42-puppet5 CHECK=kitchen
+    - name: "Integration test (Oracle Linux 6 / Puppet 5)"
+      env: INSTANCE=oracle-6-puppet5 CHECK=kitchen
+    - name: "Integration test (Oracle Linux 7 / Puppet 5)"
+      env: INSTANCE=oracle-7-puppet5 CHECK=kitchen
+    - name: "Integration test (Oracle Linux 7 / Puppet 6)"
+      env: INSTANCE=oracle-7-puppet6 CHECK=kitchen
+    - name: "Integration test (Ubuntu 16.04 / Puppet 5)"
+      env: INSTANCE=ubuntu-16-04-puppet5 CHECK=kitchen
+    - name: "Integration test (Ubuntu 18.04 / Puppet 5)"
+      env: INSTANCE=ubuntu-18-04-puppet5 CHECK=kitchen
+    - name: "Integration test (Ubuntu 18.04 / Puppet 6)"
+      env: INSTANCE=ubuntu-18-04-puppet6 CHECK=kitchen
+

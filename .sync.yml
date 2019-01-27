@@ -1,0 +1,54 @@
+---
+.gitignore:
+  paths:
+    - '/.kitchen/'
+    - '/test/fixtures/.librarian/'
+    - '/test/fixtures/.tmp/'
+    - '/test/fixtures/Puppetfile.lock'
+
+.gitlab-ci.yml:
+  delete: true
+
+.rubocop.yml:
+  default_configs:
+    inherit_from: .rubocop_todo.yml
+
+.travis.yml:
+  unmanaged: true
+
+.yardopts:
+  delete: true
+
+appveyor.yml:
+  delete: true
+
+Gemfile:
+  required:
+    ':integration':
+      - gem: 'librarian-puppet'
+      - gem: 'test-kitchen'
+      - gem: 'kitchen-docker'
+      - gem: 'kitchen-inspec'
+      - gem: 'kitchen-puppet'
+      - gem: 'kitchen-sync'
+  optional:
+    ':development':
+      - gem: 'github_changelog_generator'
+        git: 'https://github.com/skywinder/github-changelog-generator'
+        ref: '20ee04ba1234e9e83eb2ffb5056e23d641c7a018'
+        condition: "Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.2.2')"
+
+Rakefile:
+  changelog_user: 'dev-sec'
+  changelog_project: 'puppet-os-hardening'
+  changelog_since_tag: '1.1.1'
+  imports:
+    - 'Rakefile.local'
+
+spec/default_facts.yml:
+  extra_facts:
+    retrieve_system_users: 'root,bin,daemon,adm,lp,sync,shutdown,halt,mail,operator,games,ftp,nobody,systemd-network,dbus,polkitd,rpc,rpcuser,postfix,sshd,chrony'
+
+spec/spec_helper.rb:
+  mock_with: ':rspec'
+
