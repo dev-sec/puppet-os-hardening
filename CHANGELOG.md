@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.1](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.1) (2019-01-28)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.0...2.2.1)
+
+**Merged pull requests:**
+
+- Bugfix script to change file + dir permissions for Puppet Forge build [\#176](https://github.com/dev-sec/puppet-os-hardening/pull/176) ([mcgege](https://github.com/mcgege))
+
 ## [2.2.0](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.0) (2019-01-27)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.1.3...2.2.0)
@@ -7,8 +15,11 @@
 **Implemented enhancements:**
 
 - Test / Update for Puppet 6 [\#156](https://github.com/dev-sec/puppet-os-hardening/issues/156)
-- Update test mechanisms [\#169](https://github.com/dev-sec/puppet-os-hardening/pull/169) ([mcgege](https://github.com/mcgege))
+- Convert module into "standardized PDK module" [\#107](https://github.com/dev-sec/puppet-os-hardening/issues/107)
+- Update to verify the module against https://github.com/dev-sec/linux-baseline [\#79](https://github.com/dev-sec/puppet-os-hardening/issues/79)
 - New option rpfilter\_loose to enable loose mode \(rp\_filter = 2\) [\#163](https://github.com/dev-sec/puppet-os-hardening/pull/163) ([mcgege](https://github.com/mcgege))
+- Update test mechanisms [\#169](https://github.com/dev-sec/puppet-os-hardening/pull/169) ([mcgege](https://github.com/mcgege))
+- Support os umask [\#152](https://github.com/dev-sec/puppet-os-hardening/pull/152) ([hdep](https://github.com/hdep))
 
 **Fixed bugs:**
 
@@ -32,7 +43,6 @@
 
 **Implemented enhancements:**
 
-- Support os umask [\#152](https://github.com/dev-sec/puppet-os-hardening/pull/152) ([hdep](https://github.com/hdep))
 - Easy add and remove packages, disable services [\#138](https://github.com/dev-sec/puppet-os-hardening/pull/138) ([timstoop](https://github.com/timstoop))
 
 **Closed issues:**
@@ -71,7 +81,6 @@
 
 **Implemented enhancements:**
 
-- Convert module into "standardized PDK module" [\#107](https://github.com/dev-sec/puppet-os-hardening/issues/107)
 - Adding new param to specify maildir path. Updated nologin path for Re… [\#127](https://github.com/dev-sec/puppet-os-hardening/pull/127) ([hundredacres](https://github.com/hundredacres))
 - converted module to pdk \#107 [\#120](https://github.com/dev-sec/puppet-os-hardening/pull/120) ([enemarke](https://github.com/enemarke))
 
@@ -91,7 +100,6 @@
 
 **Implemented enhancements:**
 
-- Update to verify the module against https://github.com/dev-sec/linux-baseline [\#79](https://github.com/dev-sec/puppet-os-hardening/issues/79)
 - Use type checking by defining data types [\#114](https://github.com/dev-sec/puppet-os-hardening/pull/114) ([mcgege](https://github.com/mcgege))
 - Make paramater USERGROUPS\_ENAB in login.defs configurable [\#113](https://github.com/dev-sec/puppet-os-hardening/pull/113) ([mcgege](https://github.com/mcgege))
 
