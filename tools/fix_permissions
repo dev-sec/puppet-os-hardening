@@ -1,0 +1,17 @@
+#!/bin/bash
+# Fix file + directory permissions for Puppet
+
+
+# module root dir
+MODDIR=$(dirname $(readlink -f "$0"))/..
+
+# sanity check
+if [ ! -r "$MODDIR/metadata.json" ] ; then
+    echo "Cannot determine module root!"
+    exit 1
+fi
+
+# fix permissions
+find "$MODDIR" -type d -print0 | xargs -0 chmod go+rx
+find "$MODDIR" -type f -print0 | xargs -0 chmod go+r
+
