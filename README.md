@@ -1,7 +1,6 @@
 # Puppet OS hardening
 
-[![Puppet Forge Version](https://img.shields.io/puppetforge/v/hardening/os_hardening.svg)][1]
-[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/hardening/os_hardening.svg)][1]
+[![Puppet Forge](https://img.shields.io/puppetforge/dt/hardening/os_hardening.svg)][1]
 [![Build Status](https://travis-ci.org/dev-sec/puppet-os-hardening.svg?branch=master)][2]
 [![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][3]
 
@@ -13,7 +12,8 @@ This Puppet module provides secure configuration of your base OS with hardening.
 
 * Puppet OpenSource or Enterprise
 * [Module stdlib](https://forge.puppet.com/puppetlabs/stdlib)
-* [Module sysctl](https://forge.puppet.com/thias/sysctl)
+* [Module sysctl](https://forge.puppet.com/herculesteam/augeasproviders_sysctl)
+
 
 ### IMPORTANT for Puppet Enterprise
 
