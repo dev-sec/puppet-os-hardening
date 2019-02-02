@@ -1,6 +1,7 @@
 # Puppet OS hardening
 
-[![Puppet Forge](https://img.shields.io/puppetforge/dt/hardening/os_hardening.svg)][1]
+[![Puppet Forge Version](https://img.shields.io/puppetforge/v/hardening/os_hardening.svg)][1]
+[![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/hardening/os_hardening.svg)][1]
 [![Build Status](https://travis-ci.org/dev-sec/puppet-os-hardening.svg?branch=master)][2]
 [![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][3]
 
