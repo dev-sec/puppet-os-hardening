@@ -1,5 +1,5 @@
 forge "https://forgeapi.puppetlabs.com"
 
 mod "puppetlabs/stdlib"
-mod "thias/sysctl"
+mod "herculesteam/augeasproviders_sysctl"
 
