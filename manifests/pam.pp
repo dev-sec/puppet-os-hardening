@@ -74,6 +74,7 @@ class os_hardening::pam (
           owner   => 'root',
           group   => 'root',
           mode    => '0640',
+          require => Package['pam-passwdqc'],
           notify  => Exec['update-pam'],
         }
 
