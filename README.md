@@ -3,7 +3,6 @@
 [![Puppet Forge Version](https://img.shields.io/puppetforge/v/hardening/os_hardening.svg)][1]
 [![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/hardening/os_hardening.svg)][1]
 [![Build Status](https://travis-ci.org/dev-sec/puppet-os-hardening.svg?branch=master)][2]
-[![Gitter Chat](https://badges.gitter.im/Join%20Chat.svg)][3]
 
 ## Description
 
@@ -14,7 +13,6 @@ This Puppet module provides secure configuration of your base OS with hardening.
 * Puppet OpenSource or Enterprise
 * [Module stdlib](https://forge.puppet.com/puppetlabs/stdlib)
 * [Module sysctl](https://forge.puppet.com/herculesteam/augeasproviders_sysctl)
-
 
 ### IMPORTANT for Puppet Enterprise
 
@@ -149,7 +147,7 @@ way to deal with one-offs for which one doesn't want to write an entire module.
 For instance, to increase CIS DIL compliance on a Debian system, one should set
 the following:
 
-```
+```puppet
 wanted_packages   => ['ntp'],
 unwanted_packages => ['telnet'],
 disabled_services => ['rsync'],
@@ -198,6 +196,15 @@ bundle exec kitchen test
 
 Your patches will automatically get tested via [Travis CI](http://travis-ci.org/). The test summary is visible on Github in your PR, details can be found on the corresponding [Travis puppet-os-hardening page](https://travis-ci.org/dev-sec/puppet-os-hardening).
 
+## Get in touch
+
+You can reach us on several ways:
+
+* [@DevSecIO](https://twitter.com/DevSecIO) on Twitter
+* Mailing list for usage related topics: devsec@freelists.org
+* Mailing list with release announcements (no posts are possible here): devsec-announce@freelists.org
+* Mailing list for topics related to development of dev-sec.io: devsec-dev@freelists.org
+
 ## Contributors + Kudos
 
 * Dominik Richter [arlimus](https://github.com/arlimus)
@@ -240,4 +247,3 @@ limitations under the License.
 
 [1]: https://forge.puppet.com/hardening/os_hardening
 [2]: https://travis-ci.org/dev-sec/puppet-os-hardening
-[3]: https://gitter.im/dev-sec/general
