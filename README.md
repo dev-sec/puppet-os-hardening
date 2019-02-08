@@ -201,9 +201,8 @@ Your patches will automatically get tested via [Travis CI](http://travis-ci.org/
 You can reach us on several ways:
 
 * [@DevSecIO](https://twitter.com/DevSecIO) on Twitter
-* Mailing list for usage related topics: devsec@freelists.org
-* Mailing list with release announcements (no posts are possible here): devsec-announce@freelists.org
-* Mailing list for topics related to development of dev-sec.io: devsec-dev@freelists.org
+* Mailing list for questions and general discussion: devsec@freelists.org [[subsribe]](https://www.freelists.org/list/devsec)
+* Mailing list with release announcements (no posts are possible here): devsec-announce@freelists.org [[subscribe]](https://www.freelists.org/list/devsec-announce)
 
 ## Contributors + Kudos
 
