@@ -78,6 +78,6 @@
     }
   ],
   "template-url": "https://github.com/dev-sec/puppet-pdk-template",
-  "pdk-version": "1.8.0",
-  "template-ref": "heads/master-0-g2cfd0d5"
+  "pdk-version": "1.9.0",
+  "template-ref": "heads/master-0-gac6c75e"
 }
