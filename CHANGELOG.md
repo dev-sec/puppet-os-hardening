@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.2.2](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.2) (2019-02-28)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.1...2.2.2)
+
+**Implemented enhancements:**
+
+- Readme updates [\#188](https://github.com/dev-sec/puppet-os-hardening/pull/188) ([mcgege](https://github.com/mcgege))
+- Replace sysctl module [\#183](https://github.com/dev-sec/puppet-os-hardening/pull/183) ([mcgege](https://github.com/mcgege))
+- Add version tag on puppetforge [\#182](https://github.com/dev-sec/puppet-os-hardening/pull/182) ([mcgege](https://github.com/mcgege))
+
+**Fixed bugs:**
+
+- Wrong permission on module files [\#175](https://github.com/dev-sec/puppet-os-hardening/issues/175)
+- Add missing dependency [\#184](https://github.com/dev-sec/puppet-os-hardening/pull/184) ([theosotr](https://github.com/theosotr))
+
+**Merged pull requests:**
+
+- Replace Gitter with mailing lists [\#185](https://github.com/dev-sec/puppet-os-hardening/pull/185) ([mcgege](https://github.com/mcgege))
+
 ## [2.2.1](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.1) (2019-01-28)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.0...2.2.1)
