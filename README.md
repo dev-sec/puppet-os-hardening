@@ -2,24 +2,66 @@
 
 [![Puppet Forge Version](https://img.shields.io/puppetforge/v/hardening/os_hardening.svg)][1]
 [![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/hardening/os_hardening.svg)][1]
+[![Puppet Forge Endorsement](https://img.shields.io/puppetforge/e/hardening/os_hardening.svg)][1]
 [![Build Status](https://travis-ci.org/dev-sec/puppet-os-hardening.svg?branch=master)][2]
 
-## Description
+#### Table of Contents
 
-This Puppet module provides secure configuration of your base OS with hardening.
+1. [Module Description - What the module does and why it is useful](#module-description)
+1. [Setup - The basics of getting started with os_hardening](#setup)
+   * [Setup Requirements](#setup-requirements)
+   * [Beginning with os_hardening](#beginning-with-os_hardening)
+1. [Usage - Configuration options and additional functionality](#usage)
+   * [Important for Puppet Enterprise](#important-for-puppet-enterprise)
+   * [Parameters](#parameters)
+   * [Note about wanted/unwanted packages and disabled services](#note-about-wantedunwanted-packages-and-disabled-services)
+1. [Limitations - OS compatibility, etc.](#limitations)
+1. [Development - Guide for contributing to the module](#development)
+1. [Testing - Quality gates for your changes in the code](#testing)
+   * [Local Testing](#local-testing)
+   * [PDK Tests](#pdk-tests)
+   * [Integration Tests](#integration-tests)
+   * [CI testing of PRs & forks](#ci-testing-of-prs--forks)
+1. [Get in touch](#get-in-touch)
+1. [Contributors + Kudos](#contributors--kudos)
+1. [License and Author](#license-and-author)
 
-## Requirements
+## Module Description
+
+This Puppet module provides secure configuration of your base OS with hardening and is part of the [DevSec Hardening Framework](https://dev-sec.io).
+
+## Setup
+
+### Setup Requirements
 
 * Puppet OpenSource or Enterprise
 * [Module stdlib](https://forge.puppet.com/puppetlabs/stdlib)
 * [Module sysctl](https://forge.puppet.com/herculesteam/augeasproviders_sysctl)
+
+### Beginning with os_hardening
+
+After adding this module, you can use the class:
+
+```puppet
+class { 'os_hardening': }
+```
+
+All parameters are contained within the main `os_hardening` class, so you just have to pass them like this:
+
+```puppet
+class { 'os_hardening':
+  enable_ipv4_forwarding => true,
+}
+```
+
+## Usage
 
 ### IMPORTANT for Puppet Enterprise
 
 **If you are using this module in a PE environment, you have to set** `pe_environment = true`
 Otherwise puppet will drop an error (duplicate resource)!
 
-## Parameters
+### Parameters
 
 * `system_environment = 'default'`
   define the context in which the system runs. Some options don't work for `docker`/`lxc`
@@ -132,12 +174,6 @@ Otherwise puppet will drop an error (duplicate resource)!
 * `system_umask = undef`
   if this variable is set setup the umask for all user in the system (e.g. '027')
 
-## Usage
-
-After adding this module, you can use the class:
-
-    class { 'os_hardening': }
-
 ### Note about wanted/unwanted packages and disabled services
 
 As the CIS Distribution Independent Linux Benchmark is a good starting point
@@ -156,6 +192,14 @@ disabled_services => ['rsync'],
 The default settings of NTP are actually pretty good for most situations, so it
 is not immediately necessary to implement a module. However, if you do use a
 module to control these services, that is of course preferred.
+
+## Limitations
+
+This module has been tested and should run on most Linux distributions. For an extensive list of supported operating systems, see [metadata.json](https://github.com/dev-sec/puppet-os-hardening/blob/master/metadata.json)
+
+## Development
+
+If you want to contribute, please follow our [contribution guide](https://dev-sec.io/contributing/).
 
 ## Testing
 
