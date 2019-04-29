@@ -77,7 +77,7 @@
       "version_requirement": ">= 4.0.0 < 7.0.0"
     }
   ],
-  "template-url": "https://github.com/dev-sec/puppet-pdk-template",
-  "pdk-version": "1.9.1",
-  "template-ref": "heads/master-0-ga9d68fa"
+  "template-url": "https://github.com/dev-sec/puppet-pdk-template#1.10.0",
+  "pdk-version": "1.10.0",
+  "template-ref": "tags/1.10.0-0-g273f780"
 }
