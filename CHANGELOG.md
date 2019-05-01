@@ -1,8 +1,20 @@
 # Changelog
 
-## [v2.2.3](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.3) (2019-05-01)
+## [v2.2.4](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.4) (2019-05-01)
 
-[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.2...v2.2.3)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.3...v2.2.4)
+
+**Implemented enhancements:**
+
+- Adjust .travis.yml to PDK template [\#197](https://github.com/dev-sec/puppet-os-hardening/pull/197) ([mcgege](https://github.com/mcgege))
+
+**Fixed bugs:**
+
+- Add dirs to exclude to .pdkignore [\#196](https://github.com/dev-sec/puppet-os-hardening/pull/196) ([mcgege](https://github.com/mcgege))
+
+## [2.2.3](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.3) (2019-05-01)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.2...2.2.3)
 
 **Implemented enhancements:**
 
