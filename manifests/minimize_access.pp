@@ -14,6 +14,8 @@ class os_hardening::minimize_access (
   Array   $always_ignore_users =
     ['root','sync','shutdown','halt'],
   Array   $ignore_users        = [],
+# Added ignore home users
+  Array   $ignore_home_users        = [],
   Array   $folders_to_restrict =
     ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
   String  $shadowgroup         = 'root',
@@ -47,6 +49,24 @@ class os_hardening::minimize_access (
       recurselimit => $recurselimit,
     }
   })
+
+# added users with homes
+  $homes_users = split($::home_users, ',')
+
+# added ignore these homes
+  $target_home_users = difference($homes_users, $ignore_home_users)
+
+# added homes to restrict
+  ensure_resources ('file',
+  { $target_home_users => {
+      ensure       => directory,
+      links        => follow,
+      mode         => 'g-w,o-rwx',
+      recurse      => true,
+      recurselimit => $recurselimit,
+    }
+  })
+
 
   # shadow must only be accessible to user root
   file { $shadow_path:

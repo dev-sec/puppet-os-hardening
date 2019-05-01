@@ -29,6 +29,8 @@ class os_hardening (
 
   Boolean           $allow_change_user        = false,
   Array             $ignore_users             = [],
+# Added home ignore users
+  Array             $ignore_home_users        = [],
   Array             $folders_to_restrict      =
     ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
   Integer           $recurselimit             = 5,
@@ -155,6 +157,8 @@ class os_hardening (
   class { 'os_hardening::minimize_access':
     allow_change_user   => $allow_change_user,
     ignore_users        => $ignore_users,
+# added ignore home users
+    ignore_home_users   => $ignore_home_users,
     folders_to_restrict => $folders_to_restrict_int,
     shadowgroup         => $shadowgroup,
     shadowmode          => $shadowmode,
