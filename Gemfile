@@ -30,12 +30,13 @@ group :development do
   gem "github_changelog_generator",                    require: false, git: 'https://github.com/skywinder/github-changelog-generator', ref: '20ee04ba1234e9e83eb2ffb5056e23d641c7a018' if Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.2.2')
 end
 group :integration do
-  gem "librarian-puppet", require: false
-  gem "test-kitchen",     require: false
-  gem "kitchen-docker",   require: false
-  gem "kitchen-inspec",   require: false
-  gem "kitchen-puppet",   require: false
-  gem "kitchen-sync",     require: false
+  gem "librarian-puppet",     require: false
+  gem "test-kitchen",         require: false
+  gem "kitchen-digitalocean", require: false
+  gem "kitchen-docker",       require: false
+  gem "kitchen-inspec",       require: false
+  gem "kitchen-puppet",       require: false
+  gem "kitchen-sync",         require: false
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']

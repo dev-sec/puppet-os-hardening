@@ -27,6 +27,7 @@ Gemfile:
     ':integration':
       - gem: 'librarian-puppet'
       - gem: 'test-kitchen'
+      - gem: 'kitchen-digitalocean'
       - gem: 'kitchen-docker'
       - gem: 'kitchen-inspec'
       - gem: 'kitchen-puppet'

@@ -1,0 +1,84 @@
+---
+driver:
+  name: digitalocean
+  size: s-1vcpu-1gb
+  region: nyc3
+
+provisioner:
+  name: puppet_apply
+  ignore_spec_fixtures: true
+  manifests_path: test/fixtures/manifests.do
+  modules_path: test/fixtures/modules
+  puppetfile_path: test/fixtures/Puppetfile
+  require_chef_for_busser: false
+
+platforms:
+  - name: centos-6-puppet5
+    driver_config:
+      image: centos-6-x64
+    provisioner:
+      puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-6.noarch.rpm
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet5/puppet5-release-el-6.noarch.rpm
+  - name: centos-7-puppet5
+    driver_config:
+      image: centos-7-x64
+    provisioner:
+      puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
+  - name: centos-7-puppet6
+    driver_config:
+      image: centos-7-x64
+    provisioner:
+      puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet6/puppet6-release-el-7.noarch.rpm
+  - name: debian-8-puppet5
+    driver_config:
+      image: debian-8-x64
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet5-release-trusty.deb
+  - name: debian-9-puppet5
+    driver_config:
+      image: debian-9-x64
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet5-release-xenial.deb
+  - name: debian-9-puppet6
+    driver_config:
+      image: debian-9-x64
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet6-release-xenial.deb
+  - name: ubuntu-16-04-puppet5
+    driver_config:
+      image: ubuntu-16-04-x64
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet5-release-xenial.deb
+  - name: ubuntu-18-04-puppet5
+    driver_config:
+      image: ubuntu-18-04-x64
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet5-release-bionic.deb
+  - name: ubuntu-18-04-puppet6
+    driver_config:
+      image: ubuntu-18-04-x64
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet6-release-bionic.deb
+
+transport:
+  name: sftp
+  ssh_key: '~/.ssh/do_ci'
+  max_wait_until_ready: 30
+
+verifier:
+  name: inspec
+  reporter:
+    - cli
+    - junit:.kitchen/logs/%{suite}-%{platform}_inspec.xml
+
+suites:
+  - name: digitalocean-linux-baseline
+

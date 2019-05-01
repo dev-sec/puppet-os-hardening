@@ -20,7 +20,8 @@
 1. [Testing - Quality gates for your changes in the code](#testing)
    * [Local Testing](#local-testing)
    * [PDK Tests](#pdk-tests)
-   * [Integration Tests](#integration-tests)
+   * [Integration Tests (Docker)](#integration-tests-docker)
+   * [Integration Tests (DigitalOcean)](#integration-tests-digitalocean)
    * [CI testing of PRs & forks](#ci-testing-of-prs--forks)
 1. [Get in touch](#get-in-touch)
 1. [Contributors + Kudos](#contributors--kudos)
@@ -219,7 +220,9 @@ pdk validate
 pdk test unit
 ```
 
-#### Integration Tests
+#### Integration Tests (Docker)
+
+Per default the integration tests will run in docker containers - unfortunately not all tests can run in container environments (e.g. sysctl settings).
 
 ```bash
 # Install dependencies
@@ -235,6 +238,24 @@ bundle exec kitchen test ubuntu-16-04-puppet5
 # test on all machines
 bundle exec kitchen test
 ```
+
+#### Integration Tests (DigitalOcean)
+
+For complete integration tests with [DigitalOcean](https://cloud.digitalocean.com) you have to get an account there and setup some environment variables:
+
+* `KITCHEN_LOCAL_YAML=kitchen.do.yml`
+* `DIGITALOCEAN_ACCESS_TOKEN` - [access token for DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2)
+* `DIGITALOCEAN_SSH_KEY_IDS` - ID in DigitalOcean of your ssh key, see [this](https://github.com/test-kitchen/kitchen-digitalocean#installation-and-setup) for more information
+
+The ssh key has to be named `~/.ssh/do_ci` and added to your profile at DigitalOcean.
+After this you're ready to run the tests as described at [Integration Tests (Docker)](#integration-tests-docker).
+
+If you want to run the full integration tests with Travis CI in your fork, you will have to add these [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) in the settings of your fork:
+
+* `KITCHEN_LOCAL_YAML=kitchen.do.yml`
+* `DIGITALOCEAN_ACCESS_TOKEN` - [access token for DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2)
+* `CI_SSH_KEY` - private part of a ssh key, available on DigitalOcean for your instances, in base64 encoded form (e.g. `cat id_rsa | base64 -w0 ; echo`)
+* `DIGITALOCEAN_SSH_KEY_IDS` - ID in DigitalOcean of `CI_SSH_KEY`, see [this](https://github.com/test-kitchen/kitchen-digitalocean#installation-and-setup) for more information
 
 ### CI testing of PRs & forks
 
