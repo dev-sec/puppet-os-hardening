@@ -40,3 +40,7 @@
 /.yardopts
 /spec/
 /.vscode/
+/.kitchen/
+/test/fixtures/.librarian/
+/test/fixtures/.tmp/
+/test/fixtures/Puppetfile.lock

@@ -9,6 +9,13 @@
 .gitlab-ci.yml:
   delete: true
 
+.pdkignore:
+  paths:
+    - '/.kitchen/'
+    - '/test/fixtures/.librarian/'
+    - '/test/fixtures/.tmp/'
+    - '/test/fixtures/Puppetfile.lock'
+
 .rubocop.yml:
   default_configs:
     inherit_from: .rubocop_todo.yml
