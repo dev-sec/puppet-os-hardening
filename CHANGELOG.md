@@ -1,5 +1,19 @@
 # Changelog
 
+## [v2.2.3](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.3) (2019-05-01)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.2...v2.2.3)
+
+**Implemented enhancements:**
+
+- Integration tests with DigitalOcean \(see \#180\) [\#194](https://github.com/dev-sec/puppet-os-hardening/pull/194) ([mcgege](https://github.com/mcgege))
+- Update to PDK 1.9.1 [\#191](https://github.com/dev-sec/puppet-os-hardening/pull/191) ([mcgege](https://github.com/mcgege))
+- Update to PDK 1.9.0 [\#190](https://github.com/dev-sec/puppet-os-hardening/pull/190) ([mcgege](https://github.com/mcgege))
+
+**Merged pull requests:**
+
+- Update to PDK 1.10.0 [\#193](https://github.com/dev-sec/puppet-os-hardening/pull/193) ([mcgege](https://github.com/mcgege))
+
 ## [2.2.2](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.2) (2019-02-28)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.1...2.2.2)
