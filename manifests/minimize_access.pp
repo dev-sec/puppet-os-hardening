@@ -14,8 +14,15 @@ class os_hardening::minimize_access (
   Array   $always_ignore_users =
     ['root','sync','shutdown','halt'],
   Array   $ignore_users        = [],
+# Added ignore home users
+  Array   $ignore_home_users        = [],
+# Added ignore restrict log dir
+  Array   $ignore_restrict_log_dir  = [],
   Array   $folders_to_restrict =
     ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
+# Added restrict log dir
+  Array   $restrict_log_dir =
+    ['/var/log/'],
   String  $shadowgroup         = 'root',
   String  $shadowmode          = '0600',
   Integer $recurselimit        = 5,
@@ -47,6 +54,134 @@ class os_hardening::minimize_access (
       recurselimit => $recurselimit,
     }
   })
+# added users with homes
+  $homes_users = split($::home_users, ',')
+
+# added ignore these homes
+  $target_home_users = difference($homes_users, $ignore_home_users)
+
+# added homes to restrict
+  ensure_resources ('file',
+  { $target_home_users => {
+      ensure       => directory,
+      links        => follow,
+      mode         => 'g-w,o-rwx',
+      recurse      => true,
+      recurselimit => $recurselimit,
+    }
+  })
+
+# ensure log folders have right permissions
+ ensure_resources ('file',
+  { $restrict_log_dir => {
+      ensure       => directory,
+      ignore	   => $ignore_restrict_log_dir,
+      links        => follow,
+      mode         => 'g-wx,o-rwx',
+      recurse      => true,
+      recurselimit => $recurselimit,
+    }
+  })
+
+# ensure crontab have right permissions
+ ensure_resources ('file',
+  { '/etc/crontab' => {
+      ensure       => file,
+      mode         => 'og-rwx',
+      owner	   => 'root',	
+      group        => 'root',
+    }
+  })
+
+# ensure cron hourly have right permissions
+ ensure_resources ('file',
+  { '/etc/cron.hourly' => {
+      ensure       => directory,
+      mode         => 'og-rwx',
+      owner        => 'root',
+      group        => 'root',
+      links        => follow,
+      recurse      => true,
+      recurselimit => $recurselimit,
+    }
+  })
+
+# ensure cron daily have right permissions
+ ensure_resources ('file',
+  { '/etc/cron.daily' => {
+      ensure       => directory,
+      mode         => 'og-rwx',
+      owner        => 'root',
+      group        => 'root',
+      links        => follow,
+      recurse      => true,
+      recurselimit => $recurselimit,
+    }
+  })
+
+# ensure cron weekly have right permissions
+ ensure_resources ('file',
+  { '/etc/cron.weekly' => {
+      ensure       => directory,
+      mode         => 'og-rwx',
+      owner        => 'root',
+      group        => 'root',
+      links        => follow,
+      recurse      => true,
+      recurselimit => $recurselimit,
+    }
+  })
+
+# ensure cron monthly have right permissions
+ ensure_resources ('file',
+  { '/etc/cron.monthly' => {
+      ensure       => directory,
+      mode         => 'og-rwx',
+      owner        => 'root',
+      group        => 'root',
+      links        => follow,
+      recurse      => true,
+      recurselimit => $recurselimit,
+    }
+  })
+
+# ensure cron.d have right permissions
+ ensure_resources ('file',
+  { '/etc/cron.d' => {
+      ensure       => directory,
+      mode         => 'og-rwx',
+      owner        => 'root',
+      group        => 'root',
+      links        => follow,
+      recurse      => true,
+      recurselimit => $recurselimit,
+    }
+  })
+
+# ensure cron.deny and at.deny is absent
+  file { '/etc/cron.deny':
+    ensure => absent,
+  }
+
+  file { '/etc/at.deny':
+    ensure       => absent,
+  }
+
+# ensure cron.allow is there
+  file { '/etc/cron.allow':
+    ensure       => present,
+    owner        => 'root',
+    group        => 'root',
+    mode         => 'og-rwx',
+  }
+
+# ensure at.allow is there
+  file { '/etc/at.allow':
+    ensure       => present,
+    owner        => 'root',
+    group        => 'root',
+    mode         => 'og-rwx',
+  }
 
   # shadow must only be accessible to user root
   file { $shadow_path:
