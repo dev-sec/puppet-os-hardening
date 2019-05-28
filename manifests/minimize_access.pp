@@ -75,7 +75,7 @@ class os_hardening::minimize_access (
   ensure_resources ('file',
   { $restrict_log_dir => {
       ensure       => directory,
-      ignore	     => $ignore_restrict_log_dir,
+      ignore       => $ignore_restrict_log_dir,
       links        => follow,
       mode         => 'g-wx,o-rwx',
       recurse      => true,
@@ -88,7 +88,7 @@ class os_hardening::minimize_access (
   { '/etc/crontab' => {
       ensure       => file,
       mode         => 'og-rwx',
-      owner	       => 'root',
+      owner        => 'root',
       group        => 'root',
     }
   })
