@@ -72,10 +72,10 @@ class os_hardening::minimize_access (
   })
 
 # ensure log folders have right permissions
- ensure_resources ('file',
+  ensure_resources ('file',
   { $restrict_log_dir => {
       ensure       => directory,
-      ignore	   => $ignore_restrict_log_dir,
+      ignore	     => $ignore_restrict_log_dir,
       links        => follow,
       mode         => 'g-wx,o-rwx',
       recurse      => true,
@@ -84,17 +84,17 @@ class os_hardening::minimize_access (
   })
 
 # ensure crontab have right permissions
- ensure_resources ('file',
+  ensure_resources ('file',
   { '/etc/crontab' => {
       ensure       => file,
       mode         => 'og-rwx',
-      owner	   => 'root',	
+      owner	       => 'root',
       group        => 'root',
     }
   })
 
 # ensure cron hourly have right permissions
- ensure_resources ('file',
+  ensure_resources ('file',
   { '/etc/cron.hourly' => {
       ensure       => directory,
       mode         => 'og-rwx',
@@ -107,7 +107,7 @@ class os_hardening::minimize_access (
   })
 
 # ensure cron daily have right permissions
- ensure_resources ('file',
+  ensure_resources ('file',
   { '/etc/cron.daily' => {
       ensure       => directory,
       mode         => 'og-rwx',
@@ -120,7 +120,7 @@ class os_hardening::minimize_access (
   })
 
 # ensure cron weekly have right permissions
- ensure_resources ('file',
+  ensure_resources ('file',
   { '/etc/cron.weekly' => {
       ensure       => directory,
       mode         => 'og-rwx',
@@ -133,7 +133,7 @@ class os_hardening::minimize_access (
   })
 
 # ensure cron monthly have right permissions
- ensure_resources ('file',
+  ensure_resources ('file',
   { '/etc/cron.monthly' => {
       ensure       => directory,
       mode         => 'og-rwx',
@@ -146,7 +146,7 @@ class os_hardening::minimize_access (
   })
 
 # ensure cron.d have right permissions
- ensure_resources ('file',
+  ensure_resources ('file',
   { '/etc/cron.d' => {
       ensure       => directory,
       mode         => 'og-rwx',
@@ -169,18 +169,18 @@ class os_hardening::minimize_access (
 
 # ensure cron.allow is there
   file { '/etc/cron.allow':
-    ensure       => present,
-    owner        => 'root',
-    group        => 'root',
-    mode         => 'og-rwx',
+    ensure => present,
+    owner  => 'root',
+    group  => 'root',
+    mode   => 'og-rwx',
   }
 
 # ensure at.allow is there
   file { '/etc/at.allow':
-    ensure       => present,
-    owner        => 'root',
-    group        => 'root',
-    mode         => 'og-rwx',
+    ensure => present,
+    owner  => 'root',
+    group  => 'root',
+    mode   => 'og-rwx',
   }
 
   # shadow must only be accessible to user root
@@ -227,4 +227,3 @@ class os_hardening::minimize_access (
   }
 
 }
-

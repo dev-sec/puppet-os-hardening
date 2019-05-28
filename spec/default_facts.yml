@@ -6,4 +6,4 @@ ipaddress: "172.16.254.254"
 is_pe: false
 macaddress: "AA:AA:AA:AA:AA:AA"
 retrieve_system_users: root,bin,daemon,adm,lp,sync,shutdown,halt,mail,operator,games,ftp,nobody,systemd-network,dbus,polkitd,rpc,rpcuser,postfix,sshd,chrony
-home_users:
+home_users: ""

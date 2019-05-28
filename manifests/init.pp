@@ -160,18 +160,18 @@ class os_hardening (
     allow_login_without_home => $allow_login_without_home,
   }
   class { 'os_hardening::minimize_access':
-    allow_change_user   => $allow_change_user,
-    ignore_users        => $ignore_users,
+    allow_change_user       => $allow_change_user,
+    ignore_users            => $ignore_users,
 # added ignore home users
-    ignore_home_users   => $ignore_home_users,
+    ignore_home_users       => $ignore_home_users,
 # added ignore restrict log dir
-    ignore_restrict_log_dir   => $ignore_restrict_log_dir,
-    folders_to_restrict => $folders_to_restrict_int,
+    ignore_restrict_log_dir => $ignore_restrict_log_dir,
+    folders_to_restrict     => $folders_to_restrict_int,
 # Added restrict log dir
-    restrict_log_dir => $restrict_log_dir,
-    shadowgroup         => $shadowgroup,
-    shadowmode          => $shadowmode,
-    recurselimit        => $recurselimit,
+    restrict_log_dir        => $restrict_log_dir,
+    shadowgroup             => $shadowgroup,
+    shadowmode              => $shadowmode,
+    recurselimit            => $recurselimit,
   }
   class { 'os_hardening::modules':
     disable_filesystems   => $disable_filesystems,
