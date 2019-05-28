@@ -20,12 +20,9 @@ end
 Facter.add(:home_users) do
   sys_users = []
   Puppet::Type.type('user').instances.select do |user|
-    # looking for local users
-    if user.name.index('@').nil?
-      user_value = user.retrieve
-      if user_value[user.property(:uid)].to_i > su_maxid && user_value[user.property(:uid)].to_i < 65_000
-      	sys_users.push(user_value[user.property(:home)])
-      end
+    user_value = user.retrieve
+    if user_value[user.property(:uid)].to_i > su_maxid && user_value[user.property(:uid)].to_i < 65_000
+      sys_users.push(user_value[user.property(:home)])
     end
   end
 
@@ -33,4 +30,3 @@ Facter.add(:home_users) do
     sys_users.join(',')
   end
 end
-
