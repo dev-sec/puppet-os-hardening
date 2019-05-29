@@ -37,6 +37,7 @@ group :integration do
   gem "kitchen-inspec",       require: false
   gem "kitchen-puppet",       require: false
   gem "kitchen-sync",         require: false
+  gem "inspec", '~> 3',       require: false
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
