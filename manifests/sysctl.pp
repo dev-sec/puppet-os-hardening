@@ -13,6 +13,7 @@ class os_hardening::sysctl (
   Boolean $enable_module_loading   = true,
   Array   $load_modules            = [],
   String  $cpu_vendor              = 'intel',
+  String  $icmp_ratelimit          = '100',
   Boolean $desktop_enabled         = false,
   Boolean $enable_ipv4_forwarding  = false,
   Boolean $manage_ipv6             = true,
@@ -85,7 +86,7 @@ class os_hardening::sysctl (
   sysctl { 'net.ipv4.icmp_ignore_bogus_error_responses': value => '1' }
 
   # Limit the amount of traffic the system uses for ICMP.
-  sysctl { 'net.ipv4.icmp_ratelimit': value => '100' }
+  sysctl { 'net.ipv4.icmp_ratelimit': value => $icmp_ratelimit }
 
   # Adjust the ICMP ratelimit to include: ping, dst unreachable, source quench, time exceed, param problem, timestamp reply,
   # information reply
