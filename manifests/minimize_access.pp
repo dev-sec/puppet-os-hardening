@@ -54,7 +54,7 @@ class os_hardening::minimize_access (
       recurselimit => $recurselimit,
     }
   })
-# added users with homes
+# Added users with homes
   $homes_users = split($::home_users, ',')
 
 # added ignore these homes
