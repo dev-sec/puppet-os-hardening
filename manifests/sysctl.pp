@@ -41,13 +41,13 @@ class os_hardening::sysctl (
   # ----------
 
   # Only enable IP traffic forwarding, if required.
-  sysctl { 'net.ipv4.ip_forward': value => bool2num($enable_ipv4_forwarding) }
+  sysctl { 'net.ipv4.ip_forward': value => String(bool2num($enable_ipv4_forwarding)) }
 
   # IPv6 enabled
   if $manage_ipv6 {
     if $enable_ipv6 {
       sysctl { 'net.ipv6.conf.all.disable_ipv6': value => '0' }
-      sysctl { 'net.ipv6.conf.all.forwarding': value => bool2num($enable_ipv6_forwarding) }
+      sysctl { 'net.ipv6.conf.all.forwarding': value => String(bool2num($enable_ipv6_forwarding)) }
     } else {
       # IPv6 disabled
       sysctl { 'net.ipv6.conf.all.disable_ipv6': value => '1' }
@@ -68,12 +68,12 @@ class os_hardening::sysctl (
   # end hosts and routers serving small networks.
   if $enable_rpfilter {
     if $rpfilter_loose {
-      $rpfilter = 2
+      $rpfilter = '2'
     } else {
-      $rpfilter = 1
+      $rpfilter = '1'
     }
   } else {
-    $rpfilter = 0
+    $rpfilter = '0'
   }
   sysctl { 'net.ipv4.conf.all.rp_filter': value => $rpfilter }
   sysctl { 'net.ipv4.conf.default.rp_filter': value => $rpfilter }
@@ -109,7 +109,7 @@ class os_hardening::sysctl (
   # addresses on all our subnets on the outgoing interface that include the target IP address. If no suitable local address is found
   # we select the first local address we have on the outgoing interface or on all other interfaces, with the hope we will receive
   # reply for our request and even sometimes no matter the source IP address we announce.
-  sysctl { 'net.ipv4.conf.all.arp_ignore': value => bool2num($arp_restricted) }
+  sysctl { 'net.ipv4.conf.all.arp_ignore': value => String(bool2num($arp_restricted)) }
 
 
   # Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
@@ -157,8 +157,8 @@ class os_hardening::sysctl (
   sysctl { 'net.ipv4.conf.default.send_redirects': value => '0' }
 
   # log martian packets (risky, may cause DoS)
-  sysctl { 'net.ipv4.conf.all.log_martians': value => bool2num($enable_log_martians) }
-  sysctl { 'net.ipv4.conf.default.log_martians': value => bool2num($enable_log_martians) }
+  sysctl { 'net.ipv4.conf.all.log_martians': value => String(bool2num($enable_log_martians)) }
+  sysctl { 'net.ipv4.conf.default.log_martians': value => String(bool2num($enable_log_martians)) }
 
 
   # System
@@ -186,7 +186,7 @@ class os_hardening::sysctl (
   # * **128** - reboot/poweroff
   # * **256** - nicing of all RT tasks
   if $enable_sysrq {
-    $limited_sysrq = 4 + 16 + 32 + 64 + 128
+    $limited_sysrq = String(4 + 16 + 32 + 64 + 128)
     sysctl { 'kernel.sysrq': value => $limited_sysrq }
   } else {
     sysctl { 'kernel.sysrq': value => '0' }
@@ -199,7 +199,7 @@ class os_hardening::sysctl (
     sysctl { 'kernel.randomize_va_space': value => '0' }
   }
   # Prevent core dumps with SUID. These are usually only needed by developers and may contain sensitive information.
-  sysctl { 'fs.suid_dumpable': value => bool2num($enable_core_dump) }
+  sysctl { 'fs.suid_dumpable': value => String(bool2num($enable_core_dump)) }
 
   # configure for module hardening
   # if modules cannot be loaded at runtime, they must all
