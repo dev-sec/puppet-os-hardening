@@ -1,16 +1,25 @@
 # Changelog
 
-## [v2.2.4](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.4) (2019-05-01)
+## [v2.2.5](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.5) (2019-06-01)
 
-[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.3...v2.2.4)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.4...v2.2.5)
+
+**Fixed bugs:**
+
+- Augeas sysctl needs explicit string value [\#207](https://github.com/dev-sec/puppet-os-hardening/pull/207) ([mcgege](https://github.com/mcgege))
+
+**Merged pull requests:**
+
+- Kitchen fix [\#206](https://github.com/dev-sec/puppet-os-hardening/pull/206) ([mcgege](https://github.com/mcgege))
+- Some applications require different setting for icmp\_ratelimit [\#204](https://github.com/dev-sec/puppet-os-hardening/pull/204) ([tuxmea](https://github.com/tuxmea))
+
+## [2.2.4](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.4) (2019-05-01)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.3...2.2.4)
 
 **Implemented enhancements:**
 
 - Adjust .travis.yml to PDK template [\#197](https://github.com/dev-sec/puppet-os-hardening/pull/197) ([mcgege](https://github.com/mcgege))
-
-**Fixed bugs:**
-
-- Add dirs to exclude to .pdkignore [\#196](https://github.com/dev-sec/puppet-os-hardening/pull/196) ([mcgege](https://github.com/mcgege))
 
 ## [2.2.3](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.3) (2019-05-01)
 
@@ -21,6 +30,10 @@
 - Integration tests with DigitalOcean \(see \#180\) [\#194](https://github.com/dev-sec/puppet-os-hardening/pull/194) ([mcgege](https://github.com/mcgege))
 - Update to PDK 1.9.1 [\#191](https://github.com/dev-sec/puppet-os-hardening/pull/191) ([mcgege](https://github.com/mcgege))
 - Update to PDK 1.9.0 [\#190](https://github.com/dev-sec/puppet-os-hardening/pull/190) ([mcgege](https://github.com/mcgege))
+
+**Fixed bugs:**
+
+- Add dirs to exclude to .pdkignore [\#196](https://github.com/dev-sec/puppet-os-hardening/pull/196) ([mcgege](https://github.com/mcgege))
 
 **Merged pull requests:**
 
@@ -136,7 +149,6 @@
 **Merged pull requests:**
 
 - Add password\_warn\_age parameter for login.defs [\#128](https://github.com/dev-sec/puppet-os-hardening/pull/128) ([claw-real](https://github.com/claw-real))
-- CI: switch testing to DigitalOcean [\#126](https://github.com/dev-sec/puppet-os-hardening/pull/126) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Refactoring and new spec test [\#121](https://github.com/dev-sec/puppet-os-hardening/pull/121) ([enemarke](https://github.com/enemarke))
 
 ## [2.1.0](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.0) (2018-01-17)
@@ -161,6 +173,7 @@
 
 **Merged pull requests:**
 
+- CI: switch testing to DigitalOcean [\#126](https://github.com/dev-sec/puppet-os-hardening/pull/126) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Get CI tests running on azure [\#115](https://github.com/dev-sec/puppet-os-hardening/pull/115) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Correct header comments in sysctl.pp [\#69](https://github.com/dev-sec/puppet-os-hardening/pull/69) ([Zordrak](https://github.com/Zordrak))
 - Skip entropy tests and disable auditd tests [\#117](https://github.com/dev-sec/puppet-os-hardening/pull/117) ([artem-sidorenko](https://github.com/artem-sidorenko))
@@ -214,6 +227,7 @@
 - add net.ipv6.conf.default.accept\_ra. closes \#56 [\#58](https://github.com/dev-sec/puppet-os-hardening/pull/58) ([igoraj](https://github.com/igoraj))
 - Disable System Accounts [\#54](https://github.com/dev-sec/puppet-os-hardening/pull/54) ([igoraj](https://github.com/igoraj))
 - common files: add centos 7 [\#53](https://github.com/dev-sec/puppet-os-hardening/pull/53) ([arlimus](https://github.com/arlimus))
+- update common travis.yml, kitchen.yml platforms [\#51](https://github.com/dev-sec/puppet-os-hardening/pull/51) ([arlimus](https://github.com/arlimus))
 - Prepare module for v2.0.0 [\#109](https://github.com/dev-sec/puppet-os-hardening/pull/109) ([mcgege](https://github.com/mcgege))
 
 ## [1.1.2](https://github.com/dev-sec/puppet-os-hardening/tree/1.1.2) (2015-05-09)
@@ -223,7 +237,6 @@
 **Merged pull requests:**
 
 - Update common readme badges + contributors + rubocop [\#52](https://github.com/dev-sec/puppet-os-hardening/pull/52) ([arlimus](https://github.com/arlimus))
-- update common travis.yml, kitchen.yml platforms [\#51](https://github.com/dev-sec/puppet-os-hardening/pull/51) ([arlimus](https://github.com/arlimus))
 - bugfix: use scoped resource for puppet 4 [\#50](https://github.com/dev-sec/puppet-os-hardening/pull/50) ([arlimus](https://github.com/arlimus))
 
 # OLD Changelog
