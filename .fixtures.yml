@@ -2,5 +2,5 @@ fixtures:
   repositories:
     sysctl: https://github.com/hercules-team/augeasproviders_sysctl
     augeasproviders_core: https://github.com/hercules-team/augeasproviders_core
-    stblib: https://github.com/puppetlabs/puppetlabs-stdlib
+    stdlib: https://github.com/puppetlabs/puppetlabs-stdlib
 
