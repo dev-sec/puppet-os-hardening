@@ -11,16 +11,16 @@
 #
 class os_hardening::minimize_access (
   Boolean $allow_change_user   = false,
+  Boolean $manage_home_permissions   = false,
+  Boolean $manage_log_permissions   = false,
+  Boolean $manage_cron_permissions   = false,
   Array   $always_ignore_users =
     ['root','sync','shutdown','halt'],
   Array   $ignore_users        = [],
-# Added ignore home users
   Array   $ignore_home_users        = [],
-# Added ignore restrict log dir
   Array   $ignore_restrict_log_dir  = [],
   Array   $folders_to_restrict =
     ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
-# Added restrict log dir
   Array   $restrict_log_dir =
     ['/var/log/'],
   String  $shadowgroup         = 'root',
@@ -61,6 +61,7 @@ class os_hardening::minimize_access (
   $target_home_users = difference($homes_users, $ignore_home_users)
 
 # added homes to restrict
+if $manage_home_permissions == true {
   ensure_resources ('file',
   { $target_home_users => {
       ensure       => directory,
@@ -70,8 +71,10 @@ class os_hardening::minimize_access (
       recurselimit => $recurselimit,
     }
   })
+}
 
 # ensure log folders have right permissions
+if $manage_log_permissions == true {
   ensure_resources ('file',
   { $restrict_log_dir => {
       ensure       => directory,
@@ -82,8 +85,10 @@ class os_hardening::minimize_access (
       recurselimit => $recurselimit,
     }
   })
+}
 
 # ensure crontab have right permissions
+if $manage_cron_premissions == true {
   ensure_resources ('file',
   { '/etc/crontab' => {
       ensure       => file,
@@ -92,8 +97,10 @@ class os_hardening::minimize_access (
       group        => 'root',
     }
   })
+}
 
 # ensure cron hourly have right permissions
+if $manage_cron_premissions == true {
   ensure_resources ('file',
   { '/etc/cron.hourly' => {
       ensure       => directory,
@@ -105,8 +112,10 @@ class os_hardening::minimize_access (
       recurselimit => $recurselimit,
     }
   })
+}
 
 # ensure cron daily have right permissions
+if $manage_cron_premissions == true {
   ensure_resources ('file',
   { '/etc/cron.daily' => {
       ensure       => directory,
@@ -118,8 +127,10 @@ class os_hardening::minimize_access (
       recurselimit => $recurselimit,
     }
   })
+}
 
 # ensure cron weekly have right permissions
+if $manage_cron_premissions == true {
   ensure_resources ('file',
   { '/etc/cron.weekly' => {
       ensure       => directory,
@@ -131,8 +142,10 @@ class os_hardening::minimize_access (
       recurselimit => $recurselimit,
     }
   })
+}
 
 # ensure cron monthly have right permissions
+if $manage_cron_premissions == true {
   ensure_resources ('file',
   { '/etc/cron.monthly' => {
       ensure       => directory,
@@ -144,8 +157,10 @@ class os_hardening::minimize_access (
       recurselimit => $recurselimit,
     }
   })
+}
 
 # ensure cron.d have right permissions
+if $manage_cron_premissions == true {
   ensure_resources ('file',
   { '/etc/cron.d' => {
       ensure       => directory,
@@ -157,31 +172,40 @@ class os_hardening::minimize_access (
       recurselimit => $recurselimit,
     }
   })
+}
 
 # ensure cron.deny and at.deny is absent
+if $manage_cron_premissions == true {
   file { '/etc/cron.deny':
     ensure => absent,
   }
+}
 
+if $manage_cron_premissions == true {
   file { '/etc/at.deny':
     ensure       => absent,
   }
+}
 
 # ensure cron.allow is there
+if $manage_cron_premissions == true {
   file { '/etc/cron.allow':
     ensure => present,
     owner  => 'root',
     group  => 'root',
     mode   => 'og-rwx',
   }
+}
 
 # ensure at.allow is there
+if $manage_cron_premissions == true {
   file { '/etc/at.allow':
     ensure => present,
     owner  => 'root',
     group  => 'root',
     mode   => 'og-rwx',
   }
+}
 
   # shadow must only be accessible to user root
   file { $shadow_path:

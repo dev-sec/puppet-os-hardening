@@ -28,14 +28,14 @@ class os_hardening (
   Boolean           $allow_login_without_home = false,
 
   Boolean           $allow_change_user        = false,
+  Boolean $manage_home_permissions            = false,
+  Boolean $manage_log_permissions             = false,
+  Boolean $manage_cron_permissions            = false,
   Array             $ignore_users             = [],
-# Added home ignore users
   Array             $ignore_home_users        = [],
-# Added ignore log dir
   Array             $ignore_restrict_log_dir  = [],
   Array             $folders_to_restrict      =
     ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
-# Added restrict log dir
   Array             $restrict_log_dir         =
     ['/var/log/'],
   Integer           $recurselimit             = 5,
@@ -161,13 +161,13 @@ class os_hardening (
   }
   class { 'os_hardening::minimize_access':
     allow_change_user       => $allow_change_user,
+    manage_home_permissions => $manage_home_permissions,
+    manage_log_permissions  => $manage_log_permissions,
+    manage_cron_permissions => $manage_cron_permissions,
     ignore_users            => $ignore_users,
-# added ignore home users
     ignore_home_users       => $ignore_home_users,
-# added ignore restrict log dir
     ignore_restrict_log_dir => $ignore_restrict_log_dir,
     folders_to_restrict     => $folders_to_restrict_int,
-# Added restrict log dir
     restrict_log_dir        => $restrict_log_dir,
     shadowgroup             => $shadowgroup,
     shadowmode              => $shadowmode,
