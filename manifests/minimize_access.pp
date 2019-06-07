@@ -97,10 +97,8 @@ if $manage_cron_permissions == true {
       group        => 'root',
     }
   })
-}
 
 # ensure cron hourly have right permissions
-if $manage_cron_permissions == true {
   ensure_resources ('file',
   { '/etc/cron.hourly' => {
       ensure       => directory,
@@ -112,10 +110,8 @@ if $manage_cron_permissions == true {
       recurselimit => $recurselimit,
     }
   })
-}
 
 # ensure cron daily have right permissions
-if $manage_cron_permissions == true {
   ensure_resources ('file',
   { '/etc/cron.daily' => {
       ensure       => directory,
@@ -127,10 +123,8 @@ if $manage_cron_permissions == true {
       recurselimit => $recurselimit,
     }
   })
-}
 
 # ensure cron weekly have right permissions
-if $manage_cron_permissions == true {
   ensure_resources ('file',
   { '/etc/cron.weekly' => {
       ensure       => directory,
@@ -142,10 +136,8 @@ if $manage_cron_permissions == true {
       recurselimit => $recurselimit,
     }
   })
-}
 
 # ensure cron monthly have right permissions
-if $manage_cron_permissions == true {
   ensure_resources ('file',
   { '/etc/cron.monthly' => {
       ensure       => directory,
@@ -157,10 +149,8 @@ if $manage_cron_permissions == true {
       recurselimit => $recurselimit,
     }
   })
-}
 
 # ensure cron.d have right permissions
-if $manage_cron_permissions == true {
   ensure_resources ('file',
   { '/etc/cron.d' => {
       ensure       => directory,
@@ -172,33 +162,25 @@ if $manage_cron_permissions == true {
       recurselimit => $recurselimit,
     }
   })
-}
 
 # ensure cron.deny and at.deny is absent
-if $manage_cron_permissions == true {
   file { '/etc/cron.deny':
     ensure => absent,
   }
-}
 
-if $manage_cron_permissions == true {
   file { '/etc/at.deny':
     ensure       => absent,
   }
-}
 
 # ensure cron.allow is there
-if $manage_cron_permissions == true {
   file { '/etc/cron.allow':
     ensure => present,
     owner  => 'root',
     group  => 'root',
     mode   => 'og-rwx',
   }
-}
 
 # ensure at.allow is there
-if $manage_cron_permissions == true {
   file { '/etc/at.allow':
     ensure => present,
     owner  => 'root',
