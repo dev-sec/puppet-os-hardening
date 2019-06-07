@@ -88,7 +88,7 @@ if $manage_log_permissions == true {
 }
 
 # ensure crontab have right permissions
-if $manage_cron_premissions == true {
+if $manage_cron_permissions == true {
   ensure_resources ('file',
   { '/etc/crontab' => {
       ensure       => file,
