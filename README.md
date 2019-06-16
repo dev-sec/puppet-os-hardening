@@ -134,6 +134,8 @@ Otherwise puppet will drop an error (duplicate resource)!
   array of filesystems (kernel modules) that should be disabled
 * `cpu_vendor = 'intel'`
   only required if `enable_module_loading = false`: set the CPU vendor for modules to load
+* `icmp_ratelimit = '100'`
+  default value '100', allow overwriting, needs String
 * `desktop_enabled = false`
   true if this is a desktop system, ie Xorg, KDE/GNOME/Unity/etc
 * `enable_ipv4_forwarding = false`

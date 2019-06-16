@@ -39,6 +39,8 @@ Gemfile:
       - gem: 'kitchen-inspec'
       - gem: 'kitchen-puppet'
       - gem: 'kitchen-sync'
+      - gem: 'inspec'
+        version: '~> 3'
   optional:
     ':development':
       - gem: 'github_changelog_generator'

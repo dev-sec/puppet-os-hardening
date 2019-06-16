@@ -164,6 +164,14 @@ describe 'os_hardening::sysctl' do
           is_expected.to contain_sysctl('fs.suid_dumpable').with_value('0')
         end
       end
+
+      context 'with icmp_ratelimit => 10' do
+        let(:params) { { icmp_ratelimit: '10' } }
+
+        it do
+          is_expected.to contain_sysctl('net.ipv4.icmp_ratelimit').with_value('10')
+        end
+      end
     end
   end
 end

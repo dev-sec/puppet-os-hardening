@@ -63,6 +63,7 @@ class os_hardening (
     ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf'],
 
   String            $cpu_vendor               = 'intel',
+  String            $icmp_ratelimit           = '100',
   Boolean           $desktop_enabled          = false,
   Boolean           $enable_ipv4_forwarding   = false,
   Boolean           $manage_ipv6              = true,
@@ -204,6 +205,7 @@ class os_hardening (
       enable_module_loading   => $enable_module_loading,
       load_modules            => $load_modules,
       cpu_vendor              => $cpu_vendor,
+      icmp_ratelimit          => $icmp_ratelimit,
       desktop_enabled         => $desktop_enabled,
       enable_ipv4_forwarding  => $enable_ipv4_forwarding,
       manage_ipv6             => $manage_ipv6,
