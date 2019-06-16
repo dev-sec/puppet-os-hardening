@@ -176,6 +176,19 @@ Otherwise puppet will drop an error (duplicate resource)!
   setup Grub so it only requires a password when changing an entry, not when booting an existing entry
 * `system_umask = undef`
   if this variable is set setup the umask for all user in the system (e.g. '027')
+*`manage_home_permissions = false`
+  set to true to manage local users file and directory permissions (g-w,o-rwx) 
+*`ignore_home_users = []`
+  array for users that is not to be restricted by manage_home_permissions
+*`manage_log_permissions = false`
+  set to true to manage log file permissions (g-wx,o-rwx)
+*`restrict_log_dir = ['/var/log/']`
+  set main log dir
+*`ignore_restrict_log_dir = []`
+  array to exclude log dirs under the main log dir
+*`manage_cron_permissions = false`
+  set to true to manage cron file permissions (og-rwx)
+   
 
 ### Note about wanted/unwanted packages and disabled services
 
