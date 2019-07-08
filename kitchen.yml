@@ -40,7 +40,7 @@ platforms:
       puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet6-release-xenial.deb
   - name: opensuse-42-puppet5
     driver_config:
-      image: opensuse:42.3
+      image: opensuse/leap:42.3
       platform: opensuse
     provisioner:
       custom_pre_install_command: |
