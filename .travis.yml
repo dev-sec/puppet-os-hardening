@@ -1,7 +1,7 @@
 ---
 bundler_args: --without system_tests
 cache: bundler
-dist: trusty
+dist: xenial
 language: ruby
 
 notifications:
