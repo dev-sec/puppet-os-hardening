@@ -1,8 +1,32 @@
 # Changelog
 
-## [v2.2.5](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.5) (2019-06-01)
+## [v2.2.6](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.6) (2019-07-24)
 
-[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.4...v2.2.5)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.5...v2.2.6)
+
+**Implemented enhancements:**
+
+- Proxy support / SUSE fixes [\#217](https://github.com/dev-sec/puppet-os-hardening/pull/217) ([mcgege](https://github.com/mcgege))
+- Updates from pdk template 1.11.1 [\#215](https://github.com/dev-sec/puppet-os-hardening/pull/215) ([mcgege](https://github.com/mcgege))
+- Metadata / Travis fixes [\#211](https://github.com/dev-sec/puppet-os-hardening/pull/211) ([mcgege](https://github.com/mcgege))
+- CIS: Fix permissions on home cron and log dirs [\#203](https://github.com/dev-sec/puppet-os-hardening/pull/203) ([PenguinFreeDom](https://github.com/PenguinFreeDom))
+
+**Fixed bugs:**
+
+- Approve stdlib v6 + resolve librarian-puppet problem [\#213](https://github.com/dev-sec/puppet-os-hardening/issues/213)
+
+**Closed issues:**
+
+- Error: no implicit conversion of Integer into String [\#199](https://github.com/dev-sec/puppet-os-hardening/issues/199)
+
+**Merged pull requests:**
+
+- allow puppet-stdlib v6 [\#219](https://github.com/dev-sec/puppet-os-hardening/pull/219) ([mcgege](https://github.com/mcgege))
+- OpenSUSE 42.3 docker image correction [\#214](https://github.com/dev-sec/puppet-os-hardening/pull/214) ([mcgege](https://github.com/mcgege))
+
+## [2.2.5](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.5) (2019-06-01)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.4...2.2.5)
 
 **Fixed bugs:**
 
@@ -21,6 +45,10 @@
 
 - Adjust .travis.yml to PDK template [\#197](https://github.com/dev-sec/puppet-os-hardening/pull/197) ([mcgege](https://github.com/mcgege))
 
+**Fixed bugs:**
+
+- Add dirs to exclude to .pdkignore [\#196](https://github.com/dev-sec/puppet-os-hardening/pull/196) ([mcgege](https://github.com/mcgege))
+
 ## [2.2.3](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.3) (2019-05-01)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.2...2.2.3)
@@ -30,10 +58,6 @@
 - Integration tests with DigitalOcean \(see \#180\) [\#194](https://github.com/dev-sec/puppet-os-hardening/pull/194) ([mcgege](https://github.com/mcgege))
 - Update to PDK 1.9.1 [\#191](https://github.com/dev-sec/puppet-os-hardening/pull/191) ([mcgege](https://github.com/mcgege))
 - Update to PDK 1.9.0 [\#190](https://github.com/dev-sec/puppet-os-hardening/pull/190) ([mcgege](https://github.com/mcgege))
-
-**Fixed bugs:**
-
-- Add dirs to exclude to .pdkignore [\#196](https://github.com/dev-sec/puppet-os-hardening/pull/196) ([mcgege](https://github.com/mcgege))
 
 **Merged pull requests:**
 
@@ -149,6 +173,7 @@
 **Merged pull requests:**
 
 - Add password\_warn\_age parameter for login.defs [\#128](https://github.com/dev-sec/puppet-os-hardening/pull/128) ([claw-real](https://github.com/claw-real))
+- CI: switch testing to DigitalOcean [\#126](https://github.com/dev-sec/puppet-os-hardening/pull/126) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Refactoring and new spec test [\#121](https://github.com/dev-sec/puppet-os-hardening/pull/121) ([enemarke](https://github.com/enemarke))
 
 ## [2.1.0](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.0) (2018-01-17)
@@ -173,7 +198,6 @@
 
 **Merged pull requests:**
 
-- CI: switch testing to DigitalOcean [\#126](https://github.com/dev-sec/puppet-os-hardening/pull/126) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Get CI tests running on azure [\#115](https://github.com/dev-sec/puppet-os-hardening/pull/115) ([artem-sidorenko](https://github.com/artem-sidorenko))
 - Correct header comments in sysctl.pp [\#69](https://github.com/dev-sec/puppet-os-hardening/pull/69) ([Zordrak](https://github.com/Zordrak))
 - Skip entropy tests and disable auditd tests [\#117](https://github.com/dev-sec/puppet-os-hardening/pull/117) ([artem-sidorenko](https://github.com/artem-sidorenko))
@@ -227,7 +251,6 @@
 - add net.ipv6.conf.default.accept\_ra. closes \#56 [\#58](https://github.com/dev-sec/puppet-os-hardening/pull/58) ([igoraj](https://github.com/igoraj))
 - Disable System Accounts [\#54](https://github.com/dev-sec/puppet-os-hardening/pull/54) ([igoraj](https://github.com/igoraj))
 - common files: add centos 7 [\#53](https://github.com/dev-sec/puppet-os-hardening/pull/53) ([arlimus](https://github.com/arlimus))
-- update common travis.yml, kitchen.yml platforms [\#51](https://github.com/dev-sec/puppet-os-hardening/pull/51) ([arlimus](https://github.com/arlimus))
 - Prepare module for v2.0.0 [\#109](https://github.com/dev-sec/puppet-os-hardening/pull/109) ([mcgege](https://github.com/mcgege))
 
 ## [1.1.2](https://github.com/dev-sec/puppet-os-hardening/tree/1.1.2) (2015-05-09)
@@ -237,6 +260,7 @@
 **Merged pull requests:**
 
 - Update common readme badges + contributors + rubocop [\#52](https://github.com/dev-sec/puppet-os-hardening/pull/52) ([arlimus](https://github.com/arlimus))
+- update common travis.yml, kitchen.yml platforms [\#51](https://github.com/dev-sec/puppet-os-hardening/pull/51) ([arlimus](https://github.com/arlimus))
 - bugfix: use scoped resource for puppet 4 [\#50](https://github.com/dev-sec/puppet-os-hardening/pull/50) ([arlimus](https://github.com/arlimus))
 
 # OLD Changelog
