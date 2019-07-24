@@ -5,6 +5,7 @@
     - '/test/fixtures/.librarian/'
     - '/test/fixtures/.tmp/'
     - '/test/fixtures/Puppetfile.lock'
+    - '/kitchen.local.yml'
 
 .gitlab-ci.yml:
   delete: true
@@ -36,6 +37,8 @@ Gemfile:
       - gem: 'test-kitchen'
       - gem: 'kitchen-digitalocean'
       - gem: 'kitchen-docker'
+        git: 'https://github.com/mcgege/kitchen-docker'
+        branch: 'leap15'
       - gem: 'kitchen-inspec'
       - gem: 'kitchen-puppet'
       - gem: 'kitchen-sync'

@@ -1,6 +1,0 @@
----
-driver:
-  http_proxy: http://10.182.149.32:3128
-  https_proxy: http://10.182.149.32:3128
-  remove_images: true
-

@@ -22,7 +22,6 @@
    * [PDK Tests](#pdk-tests)
    * [Integration Tests (Docker)](#integration-tests-docker)
    * [Integration Tests (DigitalOcean)](#integration-tests-digitalocean)
-   * [Local adjustments](#local-adjustments)
    * [CI testing of PRs & forks](#ci-testing-of-prs--forks)
 1. [Get in touch](#get-in-touch)
 1. [Contributors + Kudos](#contributors--kudos)
@@ -178,7 +177,7 @@ Otherwise puppet will drop an error (duplicate resource)!
 * `system_umask = undef`
   if this variable is set setup the umask for all user in the system (e.g. '027')
 *`manage_home_permissions = false`
-  set to true to manage local users file and directory permissions (g-w,o-rwx)
+  set to true to manage local users file and directory permissions (g-w,o-rwx) 
 *`ignore_home_users = []`
   array for users that is not to be restricted by manage_home_permissions
 *`manage_log_permissions = false`
@@ -189,6 +188,7 @@ Otherwise puppet will drop an error (duplicate resource)!
   array to exclude log dirs under the main log dir
 *`manage_cron_permissions = false`
   set to true to manage cron file permissions (og-rwx)
+   
 
 ### Note about wanted/unwanted packages and disabled services
 
@@ -271,10 +271,6 @@ If you want to run the full integration tests with Travis CI in your fork, you w
 * `DIGITALOCEAN_ACCESS_TOKEN` - [access token for DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2)
 * `CI_SSH_KEY` - private part of a ssh key, available on DigitalOcean for your instances, in base64 encoded form (e.g. `cat id_rsa | base64 -w0 ; echo`)
 * `DIGITALOCEAN_SSH_KEY_IDS` - ID in DigitalOcean of `CI_SSH_KEY`, see [this](https://github.com/test-kitchen/kitchen-digitalocean#installation-and-setup) for more information
-
-### Local adjustments
-
-If you need to adapt the kitchen file to your needs (e.g. adding a proxy) you can copy the template `kitchen.local.yml.example` to `kitchen.local.yml` and adjust the settings.
 
 ### CI testing of PRs & forks
 
