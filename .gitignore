@@ -29,4 +29,3 @@
 /test/fixtures/.librarian/
 /test/fixtures/.tmp/
 /test/fixtures/Puppetfile.lock
-/kitchen.local.yml
