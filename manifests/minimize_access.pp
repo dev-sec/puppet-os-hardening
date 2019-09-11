@@ -89,14 +89,18 @@ if $manage_log_permissions == true {
 
 # ensure crontab have right permissions
 if $manage_cron_permissions == true {
-  ensure_resources ('file',
-  { '/etc/crontab' => {
-      ensure       => file,
-      mode         => 'og-rwx',
-      owner        => 'root',
-      group        => 'root',
+
+  $cronfiles = [ '/etc/anacrontab', '/etc/crontab' ]
+  $cronfiles.each |String $cronfile| {
+    if ($::existing[$cronfile]) {
+      file { $cronfile:
+        ensure => file,
+        mode   => 'og-rwx',
+        owner  => 'root',
+        group  => 'root',
+      }
     }
-  })
+  }
 
 # ensure cron hourly have right permissions
   ensure_resources ('file',
