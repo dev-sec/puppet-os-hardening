@@ -31,6 +31,7 @@ class os_hardening::services (
   # Disable services that are not wanted
   $disabled_services.each |String $service| {
     service { $service:
+      ensure => stopped,
       enable => false,
     }
   }
