@@ -17,8 +17,17 @@ end
 
 def changelog_project
   return unless Rake.application.top_level_tasks.include? "changelog"
-  returnVal = "puppet-os-hardening" || JSON.load(File.read('metadata.json'))['source'].match(%r{.*/([^/]*)})[1]
-  raise "unable to find the changelog_project in .sync.yml or the name in metadata.json" if returnVal.nil?
+
+  returnVal = "puppet-os-hardening"
+  returnVal ||= begin
+    metadata_source = JSON.load(File.read('metadata.json'))['source']
+    metadata_source_match = metadata_source && metadata_source.match(%r{.*\/([^\/]*?)(?:\.git)?\Z})
+
+    metadata_source_match && metadata_source_match[1]
+  end
+
+  raise "unable to find the changelog_project in .sync.yml or calculate it from the source in metadata.json" if returnVal.nil?
+
   puts "GitHubChangelogGenerator project:#{returnVal}"
   returnVal
 end
