@@ -5,6 +5,7 @@ driver:
   name: docker
   privileged: true
   require_chef_omnibus: false
+  #socket: tcp://10.182.149.94
   use_sudo: false
 
 provisioner:
