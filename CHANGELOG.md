@@ -1,8 +1,32 @@
 # Changelog
 
-## [v2.2.6](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.6) (2019-07-24)
+## [v2.2.7](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.7) (2019-10-04)
 
-[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.5...v2.2.6)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.6...v2.2.7)
+
+**Implemented enhancements:**
+
+- If disabled service should also be stopped [\#226](https://github.com/dev-sec/puppet-os-hardening/pull/226) ([mcgege](https://github.com/mcgege))
+- Manage files /etc/anacrontab and crontab equally [\#225](https://github.com/dev-sec/puppet-os-hardening/pull/225) ([mcgege](https://github.com/mcgege))
+
+**Fixed bugs:**
+
+- Travis-CI fix \(kitchen / faraday broken?\) [\#228](https://github.com/dev-sec/puppet-os-hardening/pull/228) ([mcgege](https://github.com/mcgege))
+
+**Closed issues:**
+
+- disabled\_services should be stopped too [\#224](https://github.com/dev-sec/puppet-os-hardening/issues/224)
+- os\_hardening::minimize\_access should treat anacrontab the same as crontab [\#223](https://github.com/dev-sec/puppet-os-hardening/issues/223)
+
+**Merged pull requests:**
+
+- CentOS 8 support [\#229](https://github.com/dev-sec/puppet-os-hardening/pull/229) ([mcgege](https://github.com/mcgege))
+- Updates from pdk template 1.13.0 [\#227](https://github.com/dev-sec/puppet-os-hardening/pull/227) ([mcgege](https://github.com/mcgege))
+- Updates from pdk template 1.12.0 [\#221](https://github.com/dev-sec/puppet-os-hardening/pull/221) ([mcgege](https://github.com/mcgege))
+
+## [2.2.6](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.6) (2019-07-24)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.5...2.2.6)
 
 **Implemented enhancements:**
 
