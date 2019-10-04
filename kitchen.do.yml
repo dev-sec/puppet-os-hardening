@@ -31,6 +31,12 @@ platforms:
     provisioner:
       puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
       puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet6/puppet6-release-el-7.noarch.rpm
+  - name: centos-8-puppet6
+    driver_config:
+      image: centos-8-x64
+    provisioner:
+      puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-8.noarch.rpm
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet6/puppet6-release-el-8.noarch.rpm
   - name: debian-8-puppet5
     driver_config:
       image: debian-8-x64
