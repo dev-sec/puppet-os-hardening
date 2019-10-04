@@ -39,6 +39,8 @@ jobs:
       env: INSTANCE=centos-7-puppet5 CHECK=kitchen
     - name: "Integration test (CentOS 7 / Puppet 6)"
       env: INSTANCE=centos-7-puppet6 CHECK=kitchen
+    - name: "Integration test (CentOS 8 / Puppet 6)"
+      env: INSTANCE=centos-8-puppet6 CHECK=kitchen
     - name: "Integration test (Debian 8 / Puppet 5)"
       env: INSTANCE=debian-8-puppet5 CHECK=kitchen
     - name: "Integration test (Debian 9 / Puppet 5)"

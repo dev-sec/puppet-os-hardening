@@ -47,11 +47,12 @@ class os_hardening::minimize_access (
   # this prevents changing any system-wide command from normal users
   ensure_resources ('file',
   { $folders_to_restrict => {
-      ensure       => directory,
-      links        => follow,
-      mode         => 'go-w',
-      recurse      => true,
-      recurselimit => $recurselimit,
+      ensure                  => directory,
+      links                   => follow,
+      mode                    => 'go-w',
+      recurse                 => true,
+      recurselimit            => $recurselimit,
+      selinux_ignore_defaults => true,
     }
   })
 # Added users with homes

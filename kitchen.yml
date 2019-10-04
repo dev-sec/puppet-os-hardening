@@ -5,7 +5,6 @@ driver:
   name: docker
   privileged: true
   require_chef_omnibus: false
-  #socket: tcp://10.182.149.94
   use_sudo: false
 
 provisioner:
@@ -29,6 +28,10 @@ platforms:
     provisioner:
       puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
       puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet6/puppet6-release-el-7.noarch.rpm
+  - name: centos-8-puppet6
+    provisioner:
+      puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-8.noarch.rpm
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet6/puppet6-release-el-8.noarch.rpm
   - name: debian-8-puppet5
     provisioner:
       puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
