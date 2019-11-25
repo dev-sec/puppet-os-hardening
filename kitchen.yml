@@ -59,7 +59,7 @@ platforms:
     provisioner:
       custom_pre_install_command: |
         sudo zypper addrepo -n puppet5 -f -G http://yum.puppetlabs.com/puppet5/sles/12/x86_64 puppet5
-        sudo zypper http_proxy=<%= ENV['http_proxy'] %> https_proxy=<%= ENV['https_proxy'] %> install -y puppet-agent
+        sudo http_proxy=<%= ENV['http_proxy'] %> https_proxy=<%= ENV['https_proxy'] %> zypper install -y puppet-agent
   - name: opensuse-15-puppet6
     driver_config:
       image: opensuse/leap:15
