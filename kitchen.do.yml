@@ -41,12 +41,16 @@ platforms:
     driver_config:
       image: debian-8-x64
     provisioner:
+      custom_pre_install_command: |
+        sudo apt-get -y install apt-transport-https
       puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
       puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet5-release-trusty.deb
   - name: debian-9-puppet5
     driver_config:
       image: debian-9-x64
     provisioner:
+      custom_pre_install_command: |
+        sudo apt-get -y install apt-transport-https
       puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
       puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet5-release-xenial.deb
   - name: debian-9-puppet6
@@ -59,6 +63,8 @@ platforms:
     driver_config:
       image: ubuntu-16-04-x64
     provisioner:
+      custom_pre_install_command: |
+        sudo apt-get -y install apt-transport-https
       puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
       puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet5-release-xenial.deb
   - name: ubuntu-18-04-puppet5
