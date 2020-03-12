@@ -34,10 +34,14 @@ platforms:
       puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet6/puppet6-release-el-8.noarch.rpm
   - name: debian-8-puppet5
     provisioner:
+      custom_pre_install_command: |
+        sudo apt-get -y install apt-transport-https
       puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-trusty.deb
       puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet5-release-trusty.deb
   - name: debian-9-puppet5
     provisioner:
+      custom_pre_install_command: |
+        sudo apt-get -y install apt-transport-https
       puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
       puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet5-release-xenial.deb
   - name: debian-9-puppet6
@@ -93,6 +97,8 @@ platforms:
     driver_config:
       image: ubuntu:16.04
     provisioner:
+      custom_pre_install_command: |
+        sudo apt-get -y install apt-transport-https
       puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
       puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet5-release-xenial.deb
   - name: ubuntu-18-04-puppet5
