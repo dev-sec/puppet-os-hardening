@@ -38,7 +38,8 @@ group :integration do
   gem "kitchen-inspec",       require: false
   gem "kitchen-puppet",       require: false
   gem "kitchen-sync",         require: false
-  gem "inspec", '~> 3',       require: false
+  gem "inspec",               require: false, source: "https://packagecloud.io/cinc-project/stable"
+  gem "inspec-core",          require: false, source: "https://packagecloud.io/cinc-project/stable"
   gem "faraday", '= 0.15.4',  require: false
 end
 
