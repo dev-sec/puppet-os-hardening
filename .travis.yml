@@ -18,7 +18,7 @@ before_install:
   - bundle -v
 
 rvm:
-  - 2.5.3
+  - 2.5.7
 
 script:
   - 'bundle exec rake $CHECK'
