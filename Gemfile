@@ -40,7 +40,6 @@ group :integration do
   gem "kitchen-sync",         require: false
   gem "inspec",               require: false, source: "https://packagecloud.io/cinc-project/stable"
   gem "inspec-core",          require: false, source: "https://packagecloud.io/cinc-project/stable"
-  gem "faraday", '= 0.15.4',  require: false
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']

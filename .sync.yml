@@ -46,8 +46,6 @@ Gemfile:
         source: 'https://packagecloud.io/cinc-project/stable'
       - gem: 'inspec-core'
         source: 'https://packagecloud.io/cinc-project/stable'
-      - gem: 'faraday'
-        version: '= 0.15.4'
   optional:
     ':development':
       - gem: 'github_changelog_generator'
