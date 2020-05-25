@@ -33,7 +33,7 @@ class os_hardening::minimize_access (
       $nologin_path = '/sbin/nologin'
       $shadow_path = ['/etc/shadow', '/etc/gshadow']
     }
-    debian, ubuntu: {
+    debian, ubuntu, cumuluslinux: {
       $nologin_path = '/usr/sbin/nologin'
       $shadow_path = ['/etc/shadow', '/etc/gshadow']
     }

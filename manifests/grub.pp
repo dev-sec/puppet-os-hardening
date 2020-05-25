@@ -17,7 +17,7 @@ class os_hardening::grub (
 ) {
 
   case $::operatingsystem {
-    debian, ubuntu: {
+    debian, ubuntu, cumuluslinux: {
       $grub_cfg = '/boot/grub/grub.cfg'
       $grub_cmd = '/usr/sbin/grub-mkconfig'
     }

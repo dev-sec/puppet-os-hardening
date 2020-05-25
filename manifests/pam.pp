@@ -27,7 +27,7 @@ class os_hardening::pam (
       $pam_passwdqc = 'pam_passwdqc'
       $pam_cracklib = 'pam_cracklib'
     }
-    debian, ubuntu: {
+    debian, ubuntu, cumuluslinux: {
       $pam_ccreds = 'libpam-ccreds'
       $pam_passwdqc = 'libpam-passwdqc'
       $pam_cracklib = 'libpam-cracklib'
@@ -46,7 +46,7 @@ class os_hardening::pam (
   }
 
   case $::operatingsystem {
-    debian, ubuntu: {
+    debian, ubuntu, cumuluslinux: {
       # configure paths
       $passwdqc_path = '/usr/share/pam-configs/passwdqc'
       $tally2_path   = '/usr/share/pam-configs/tally2'
