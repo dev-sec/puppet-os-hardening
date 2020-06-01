@@ -206,7 +206,7 @@ class os_hardening::sysctl (
   # be pre-configured in initramfs
   if $enable_module_loading == false {
     case $::operatingsystem {
-      debian, ubuntu: {
+      debian, ubuntu, cumuluslinux: {
         file { '/etc/initramfs-tools/modules':
           ensure  => file,
           content => template('os_hardening/modules.erb'),
