@@ -1,8 +1,31 @@
 # Changelog
 
-## [v2.2.7](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.7) (2019-10-04)
+## [v2.2.8](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.8) (2020-06-01)
 
-[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.6...v2.2.7)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.7...v2.2.8)
+
+**Implemented enhancements:**
+
+- Updates from pdk template 1.17.0 [\#236](https://github.com/dev-sec/puppet-os-hardening/pull/236) ([mcgege](https://github.com/mcgege))
+
+**Fixed bugs:**
+
+- Minimize\_access to File \[/usr/bin\] issue [\#234](https://github.com/dev-sec/puppet-os-hardening/issues/234)
+- Fix for integration tests \(apt-transport-https missing\) [\#237](https://github.com/dev-sec/puppet-os-hardening/pull/237) ([mcgege](https://github.com/mcgege))
+
+**Closed issues:**
+
+- Conflicts with apache module [\#231](https://github.com/dev-sec/puppet-os-hardening/issues/231)
+
+**Merged pull requests:**
+
+- patch-cumuluslinux-support [\#239](https://github.com/dev-sec/puppet-os-hardening/pull/239) ([mdklapwijk](https://github.com/mdklapwijk))
+- Update to PDK 1.15 [\#233](https://github.com/dev-sec/puppet-os-hardening/pull/233) ([mcgege](https://github.com/mcgege))
+- Small fix on kitchen.yml [\#232](https://github.com/dev-sec/puppet-os-hardening/pull/232) ([mcgege](https://github.com/mcgege))
+
+## [2.2.7](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.7) (2019-10-04)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.6...2.2.7)
 
 **Implemented enhancements:**
 
@@ -102,10 +125,6 @@
 - Wrong permission on module files [\#175](https://github.com/dev-sec/puppet-os-hardening/issues/175)
 - Add missing dependency [\#184](https://github.com/dev-sec/puppet-os-hardening/pull/184) ([theosotr](https://github.com/theosotr))
 
-**Merged pull requests:**
-
-- Replace Gitter with mailing lists [\#185](https://github.com/dev-sec/puppet-os-hardening/pull/185) ([mcgege](https://github.com/mcgege))
-
 ## [2.2.1](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.1) (2019-01-28)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.0...2.2.1)
@@ -139,6 +158,7 @@
 
 **Merged pull requests:**
 
+- Replace Gitter with mailing lists [\#185](https://github.com/dev-sec/puppet-os-hardening/pull/185) ([mcgege](https://github.com/mcgege))
 - Also works with current puppetlabs/stdlib \(5.1.0 tested\) [\#168](https://github.com/dev-sec/puppet-os-hardening/pull/168) ([mcgege](https://github.com/mcgege))
 - Do not disable vfat. Fixes \#165. [\#166](https://github.com/dev-sec/puppet-os-hardening/pull/166) ([timstoop](https://github.com/timstoop))
 - Add support for Ubuntu 18.04 and SLES 15 in metadata.json [\#162](https://github.com/dev-sec/puppet-os-hardening/pull/162) ([mcgege](https://github.com/mcgege))
