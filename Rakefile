@@ -59,16 +59,15 @@ else
   desc 'Generate a Changelog from GitHub'
   task :changelog do
     raise <<EOM
-The changelog tasks depends on unreleased features of the github_changelog_generator gem.
+The changelog tasks depends on recent features of the github_changelog_generator gem.
 Please manually add it to your .sync.yml for now, and run `pdk update`:
 ---
 Gemfile:
   optional:
     ':development':
       - gem: 'github_changelog_generator'
-        git: 'https://github.com/skywinder/github-changelog-generator'
-        ref: '20ee04ba1234e9e83eb2ffb5056e23d641c7a018'
-        condition: "Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.2.2')"
+        version: '~> 1.15'
+        condition: "Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.3.0')"
 EOM
   end
 end
