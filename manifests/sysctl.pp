@@ -146,8 +146,8 @@ class os_hardening::sysctl (
   # Accepting redirects can lead to malicious networking behavior, so disable it if not needed.
   sysctl { 'net.ipv4.conf.all.accept_redirects': value => '0' }
   sysctl { 'net.ipv4.conf.default.accept_redirects': value => '0' }
-  sysctl { 'net.ipv4.conf.all.secure_redirects': value => '0' }
-  sysctl { 'net.ipv4.conf.default.secure_redirects': value => '0' }
+  sysctl { 'net.ipv4.conf.all.secure_redirects': value => '1' }
+  sysctl { 'net.ipv4.conf.default.secure_redirects': value => '1' }
   if $manage_ipv6 {
     sysctl { 'net.ipv6.conf.all.accept_redirects': value => '0' }
     sysctl { 'net.ipv6.conf.default.accept_redirects': value => '0' }
