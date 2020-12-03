@@ -85,7 +85,7 @@ class os_hardening (
   String            $grub_user                = 'root',
   String            $grub_password_hash       = '',
   Boolean           $boot_without_password    = true,
-  
+
   Boolean           $enable_sysctl_config     = true,
 
   Optional[String]  $system_umask             = undef,
@@ -100,7 +100,7 @@ class os_hardening (
   # sysctl configuration doesn't work in docker:
   $configure_sysctl = (
     $system_environment != 'lxc' and
-    $system_environment != 'docker' and 
+    $system_environment != 'docker' and
     $enable_sysctl_config
   )
 
