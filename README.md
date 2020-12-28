@@ -148,6 +148,8 @@ Otherwise puppet will drop an error (duplicate resource)!
   true if this system requires packet forwarding in IPv6 (eg Router), false otherwise
 * `arp_restricted = true`
   true if you want the behavior of announcing and replying to ARP to be restricted, false otherwise
+* `arp_ignore_samenet = false`
+  true will drop packets that are not from the same subnet (arp_ignore = 2), false will only check the target ip (arp_ignore = 1)
 * `enable_sysrq = false`
   true to enable the magic sysrq key, false otherwise
 * `enable_core_dump = false`
