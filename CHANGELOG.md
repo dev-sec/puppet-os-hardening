@@ -1,8 +1,28 @@
 # Changelog
 
-## [v2.2.9](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.9) (2020-12-03)
+## [v2.2.10](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.10) (2020-12-28)
 
-[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.8...v2.2.9)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.9...v2.2.10)
+
+**Implemented enhancements:**
+
+- Fix + switch for arp\_ignore [\#256](https://github.com/dev-sec/puppet-os-hardening/pull/256) ([mcgege](https://github.com/mcgege))
+
+**Fixed bugs:**
+
+- Switch to Inspec 4 to break bundler loop [\#257](https://github.com/dev-sec/puppet-os-hardening/pull/257) ([mcgege](https://github.com/mcgege))
+
+**Closed issues:**
+
+- os\_hardening failing on centos7 [\#241](https://github.com/dev-sec/puppet-os-hardening/issues/241)
+
+**Merged pull requests:**
+
+- Disable sysctl configuration [\#253](https://github.com/dev-sec/puppet-os-hardening/pull/253) ([Tahitibob35](https://github.com/Tahitibob35))
+
+## [2.2.9](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.9) (2020-12-03)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.8...2.2.9)
 
 **Implemented enhancements:**
 
