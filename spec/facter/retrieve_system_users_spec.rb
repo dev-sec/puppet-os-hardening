@@ -4,7 +4,8 @@ require 'spec_helper'
 describe 'retrieve_system_users', type: :fact do
   before(:each) do
     Facter.clear
-    allow(File).to receive(:readline).with('/etc/login.defs')
+    allow(File).to receive(:readline)
+        .with('/etc/login.defs')
         .and_return(IO.read("#{File.dirname(__FILE__)}/../fixtures/etc/login.defs"))
 
     user1 = Puppet::Type.type(:user).new(name: 'root', ensure: 'present')
