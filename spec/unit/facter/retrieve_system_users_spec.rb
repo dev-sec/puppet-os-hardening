@@ -6,7 +6,7 @@ describe 'retrieve_system_users', type: :fact do
     Facter.clear
     allow(File).to receive(:readline)
       .with('/etc/login.defs')
-      .and_return(IO.read("#{File.dirname(__FILE__)}/../fixtures/etc/login.defs"))
+      .and_return(IO.read("#{File.dirname(__FILE__)}/../../fixtures/etc/login.defs"))
 
     user1 = Puppet::Type.type(:user).new(name: 'root', ensure: 'present')
     user2 = Puppet::Type.type(:user).new(name: 'bin', ensure: 'present')
