@@ -1,8 +1,20 @@
 # Changelog
 
-## [v2.2.10](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.10) (2020-12-28)
+## [v2.2.11](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.11) (2021-01-27)
 
-[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.9...v2.2.10)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.10...v2.2.11)
+
+**Fixed bugs:**
+
+- Revert "secure\_redirects should be set to 1 \(default\)" [\#260](https://github.com/dev-sec/puppet-os-hardening/pull/260) ([mcgege](https://github.com/mcgege))
+
+**Closed issues:**
+
+- Default $arp\_restricted=true breaks Calico overlay network [\#254](https://github.com/dev-sec/puppet-os-hardening/issues/254)
+
+## [2.2.10](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.10) (2020-12-28)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.9...2.2.10)
 
 **Implemented enhancements:**
 
