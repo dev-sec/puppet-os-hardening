@@ -192,6 +192,8 @@ Otherwise puppet will drop an error (duplicate resource)!
   set to true to manage cron file permissions (og-rwx)
 * `enable_sysctl_config = true`
   set to false to disable sysctl configuration
+* `manage_system_users = true`
+  set to false to disable managing of system users (empty password and setting nologin shell)
 
    
 
