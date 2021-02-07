@@ -8,16 +8,23 @@ describe 'home_users', type: :fact do
       .with('/etc/login.defs')
       .and_return(IO.read("#{File.dirname(__FILE__)}/../../fixtures/etc/login.defs"))
 
-    user1 = Puppet::Type.type(:user).new(name: 'root', ensure: 'present')
-    user2 = Puppet::Type.type(:user).new(name: 'bin', ensure: 'present')
-    user3 = Puppet::Type.type(:user).new(name: 'daemon', ensure: 'present')
+    # https://ruby-doc.org/stdlib-2.5.3/libdoc/etc/rdoc/Struct.html#Passwd
+    # fields: name, passwd, uid, gid, gecos, homedir, shell
+    user_root = Etc::Passwd.new('root', 'x', 0, 0, 'root', '/root', '/bin/bash')
+    user_bin = Etc::Passwd.new('bin', 'x', 1, 1, 'bin', '/bin', '/sbin/nologin')
+    user_daemon = Etc::Passwd.new('daemon', 'x', 2, 2, 'daemon', '/sbin', '/sbin/nologin')
+    user_testuser = Etc::Passwd.new('testuser', 'x', 1000, 1000, 'tesuser', '/home/testuser', '/bin/bash')
 
-    allow(Puppet::Type.type(:user)).to receive(:instances).and_return([user1, user2, user3])
+    allow(Etc).to receive(:passwd)
+      .and_yield(user_root)
+      .and_yield(user_bin)
+      .and_yield(user_daemon)
+      .and_yield(user_testuser)
   end
   after(:each) { Facter.clear }
   context 'on CentOS is should' do
     it 'have basic users set' do
-      expect(Facter.fact(:home_users).value).to eq('root,bin,daemon')
+      expect(Facter.fact(:home_users).value).to eq('/home/testuser')
     end
   end
 end

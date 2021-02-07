@@ -18,15 +18,12 @@ end
 # Retrieve all system users and build custom fact with the usernames
 # using comma separated values.
 Facter.add(:home_users) do
-  sys_users = []
-  Puppet::Type.type('user').instances.select do |user|
-    user_value = user.retrieve
-    if user_value[user.property(:uid)].to_i > su_maxid && user_value[user.property(:uid)].to_i < 65_000
-      sys_users.push(user_value[user.property(:home)])
-    end
+  home_users = []
+  Etc.passwd do |u|
+    home_users.push(u.dir) if u.uid > su_maxid && u.uid < 65_000
   end
 
   setcode do
-    sys_users.join(',')
+    home_users.join(',')
   end
 end
