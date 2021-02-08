@@ -28,9 +28,9 @@ class os_hardening (
   Boolean           $allow_login_without_home = false,
 
   Boolean           $allow_change_user        = false,
-  Boolean $manage_home_permissions            = false,
-  Boolean $manage_log_permissions             = false,
-  Boolean $manage_cron_permissions            = false,
+  Boolean           $manage_home_permissions  = false,
+  Boolean           $manage_log_permissions   = false,
+  Boolean           $manage_cron_permissions  = false,
   Array             $ignore_users             = [],
   Array             $ignore_home_users        = [],
   Array             $ignore_restrict_log_dir  = [],
