@@ -34,9 +34,6 @@ jobs:
       rvm: 2.4.5
     - name: "Unit tests (Puppet 6)"
       env: PUPPET_GEM_VERSION="~> 6.0" CHECK=parallel_spec
-    - stage: integration
-      name: "Integration test (CentOS 6 / Puppet 5)"
-      env: INSTANCE=centos-6-puppet5 CHECK=kitchen
     - name: "Integration test (CentOS 7 / Puppet 5)"
       env: INSTANCE=centos-7-puppet5 CHECK=kitchen
     - name: "Integration test (CentOS 7 / Puppet 6)"
