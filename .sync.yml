@@ -21,9 +21,6 @@
   default_configs:
     inherit_from: .rubocop_todo.yml
 
-.travis.yml:
-  unmanaged: true
-
 .yardopts:
   delete: true
 

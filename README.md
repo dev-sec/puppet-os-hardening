@@ -272,7 +272,7 @@ For complete integration tests with [DigitalOcean](https://cloud.digitalocean.co
 The ssh key has to be named `~/.ssh/do_ci` and added to your profile at DigitalOcean.
 After this you're ready to run the tests as described at [Integration Tests (Docker)](#integration-tests-docker).
 
-If you want to run the full integration tests with Travis CI in your fork, you will have to add these [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) in the settings of your fork:
+If you want to run the full integration tests with Github Actions in your fork, you will have to add these [environment variables](https://docs.github.com/en/actions/reference/encrypted-secrets) in the settings of your fork:
 
 * `KITCHEN_LOCAL_YAML=kitchen.do.yml`
 * `DIGITALOCEAN_ACCESS_TOKEN` - [access token for DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2)
@@ -281,7 +281,7 @@ If you want to run the full integration tests with Travis CI in your fork, you w
 
 ### CI testing of PRs & forks
 
-Your patches will automatically get tested via [Travis CI](http://travis-ci.org/). The test summary is visible on Github in your PR, details can be found on the corresponding [Travis puppet-os-hardening page](https://travis-ci.org/dev-sec/puppet-os-hardening).
+Your patches will automatically get tested via Github Actions. The test summary is visible on Github in your PR, details can be found in the linked tests.
 
 ## Get in touch
 
