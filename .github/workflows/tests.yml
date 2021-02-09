@@ -1,5 +1,6 @@
 name: Puppet Tests
 
+
 on:
   push:
   pull_request:
