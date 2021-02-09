@@ -1,0 +1,85 @@
+name: Puppet Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: '0 4 * * *'
+
+jobs:
+  syntax-lint:
+    runs-on: ubuntu-latest
+    env:
+      SIMPLECOV: yes
+      PUPPET_GEM_VERSION: "~> 6.0"
+    strategy:
+      fail-fast: true
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.5.7
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Run tests
+      run: bundle exec rake syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop
+
+  unit:
+    runs-on: ubuntu-latest
+    env:
+      SIMPLECOV: yes
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - rvm: 2.4.5
+            puppet_gem_version: "~> 5.0"
+          - rvm: 2.5.7
+            puppet_gem_version: "~> 6.0"
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.rvm }}
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Run tests
+      run: bundle exec rake parallel_spec
+      env:
+        PUPPET_GEM_VERSION: ${{ matrix.puppet_gem_version }}
+
+  integration:
+    runs-on: ubuntu-latest
+    env:
+      SIMPLECOV: yes
+    strategy:
+      fail-fast: false
+      matrix:
+        version_os_puppet:
+          - centos-7-puppet5
+          - centos-7-puppet6
+          - debian-8-puppet5
+          - centos-8-puppet6
+          - debian-9-puppet5
+          - debian-9-puppet6
+          - opensuse-42-puppet5
+          - oracle-6-puppet5
+          - oracle-7-puppet5
+          - oracle-7-puppet6
+          - ubuntu-16-04-puppet5
+          - ubuntu-18-04-puppet5
+          - ubuntu-18-04-puppet6
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.5.7
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Run tests
+      run: bundle exec rake kitchen
+      env:
+        INSTANCE: ${{ matrix.version_os_puppet }}
