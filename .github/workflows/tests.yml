@@ -1,8 +1,8 @@
 name: Puppet Tests
 
-
 on:
   push:
+    branches: [ master ]
   pull_request:
     branches: [ master ]
   schedule:
@@ -46,6 +46,8 @@ jobs:
       with:
         ruby-version: ${{ matrix.rvm }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      env:
+        PUPPET_GEM_VERSION: ${{ matrix.puppet_gem_version }}
     - name: Run tests
       run: bundle exec rake parallel_spec
       env:
