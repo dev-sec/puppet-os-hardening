@@ -3,7 +3,7 @@
 [![Puppet Forge Version](https://img.shields.io/puppetforge/v/hardening/os_hardening.svg)][1]
 [![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/hardening/os_hardening.svg)][1]
 [![Puppet Forge Endorsement](https://img.shields.io/puppetforge/e/hardening/os_hardening.svg)][1]
-[![Build Status](https://github.com/dev-sec/puppet-os-hardening/workflows/tests)][2]
+[![Build Status](https://github.com/dev-sec/puppet-os-hardening/workflows/tests/badge.svg)][2]
 
 #### Table of Contents
 
@@ -332,4 +332,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 [1]: https://forge.puppet.com/hardening/os_hardening
-[2]: https://github.com/dev-sec/puppet-os-hardening/workflows/tests/badge.svg
+[2]: https://github.com/dev-sec/puppet-os-hardening/workflows/tests
