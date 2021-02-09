@@ -1,4 +1,4 @@
-name: Puppet Tests
+name: tests
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       SIMPLECOV: yes
       PUPPET_GEM_VERSION: "~> 6.0"
     strategy:
-      fail-fast: true
+      fail-fast: false
 
     steps:
     - uses: actions/checkout@v2
@@ -32,7 +32,7 @@ jobs:
     env:
       SIMPLECOV: yes
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         include:
           - rvm: 2.4.5
