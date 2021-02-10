@@ -22,7 +22,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.5.7
+        ruby-version: 2.6
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
       run: bundle exec rake syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop
@@ -34,17 +34,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - rvm: 2.4.5
-            puppet_gem_version: "~> 5.0"
-          - rvm: 2.5.7
-            puppet_gem_version: "~> 6.0"
+        puppet_gem_version:
+          - "~> 5.0"
+          - "~> 6.0"
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.rvm }}
+        ruby-version: 2.6
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       env:
         PUPPET_GEM_VERSION: ${{ matrix.puppet_gem_version }}
@@ -79,7 +77,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.5.7
+        ruby-version: 2.6
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
       run: bundle exec rake kitchen
