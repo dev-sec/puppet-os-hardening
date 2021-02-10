@@ -37,8 +37,6 @@ Gemfile:
       - gem: 'test-kitchen'
       - gem: 'kitchen-digitalocean'
       - gem: 'kitchen-docker'
-        git: 'https://github.com/mcgege/kitchen-docker'
-        branch: 'leap15'
       - gem: 'kitchen-inspec'
       - gem: 'kitchen-puppet'
       - gem: 'kitchen-sync'
@@ -46,6 +44,10 @@ Gemfile:
         source: 'https://packagecloud.io/cinc-project/stable'
       - gem: 'inspec-core'
         source: 'https://packagecloud.io/cinc-project/stable'
+      - gem: 'winrm-fs'
+        version: '= 1.3.3'
+      - gem: 'tty-box'
+        version: '= 0.5.0'
   optional:
     ':development':
       - gem: 'github_changelog_generator'
