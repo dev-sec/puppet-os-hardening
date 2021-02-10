@@ -40,7 +40,7 @@ group :integration do
   gem "kitchen-sync",            require: false
   gem "inspec",                  require: false, source: "https://packagecloud.io/cinc-project/stable"
   gem "inspec-core",             require: false, source: "https://packagecloud.io/cinc-project/stable"
-  gem "chef-utils", '= 15.6.10', require: false, source: "https://packagecloud.io/cinc-project/stable"
+  gem "chef-utils", '= 15.6.10', require: false, source: "https://rubygems.org/"
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
