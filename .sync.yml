@@ -44,6 +44,8 @@ Gemfile:
         source: 'https://packagecloud.io/cinc-project/stable'
       - gem: 'inspec-core'
         source: 'https://packagecloud.io/cinc-project/stable'
+      - gem: 'chef-utils'
+        version: '= 15.6.10'
   optional:
     ':development':
       - gem: 'github_changelog_generator'
