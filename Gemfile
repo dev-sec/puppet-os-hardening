@@ -40,8 +40,6 @@ group :integration do
   gem "kitchen-sync",         require: false
   gem "inspec",               require: false, source: "https://packagecloud.io/cinc-project/stable"
   gem "inspec-core",          require: false, source: "https://packagecloud.io/cinc-project/stable"
-  gem "winrm-fs", "= 1.3.3"
-  gem "tty-box", "= 0.5.0"
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']

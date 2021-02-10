@@ -34,15 +34,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        puppet_gem_version:
-          - "~> 5.0"
-          - "~> 6.0"
+        include:
+          - rvm: 2.4.5
+            puppet_gem_version: "~> 5.0"
+          - rvm: 2.6
+            puppet_gem_version: "~> 6.0"
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6
+        ruby-version: ${{ matrix.rvm }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       env:
         PUPPET_GEM_VERSION: ${{ matrix.puppet_gem_version }}
