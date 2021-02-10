@@ -1,8 +1,26 @@
 # Changelog
 
-## [v2.2.11](https://github.com/dev-sec/puppet-os-hardening/tree/v2.2.11) (2021-01-27)
+## [v2.3.0](https://github.com/dev-sec/puppet-os-hardening/tree/v2.3.0) (2021-02-10)
 
-[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.10...v2.2.11)
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.11...v2.3.0)
+
+**Implemented enhancements:**
+
+- Use CINC \(instead of InSpec 4\) [\#212](https://github.com/dev-sec/puppet-os-hardening/issues/212)
+- move to github actions [\#264](https://github.com/dev-sec/puppet-os-hardening/pull/264) ([schurzi](https://github.com/schurzi))
+- fixed alignment of properties and indentation [\#263](https://github.com/dev-sec/puppet-os-hardening/pull/263) ([hp197](https://github.com/hp197))
+- Added manage\_system\_users option and formatted properties [\#262](https://github.com/dev-sec/puppet-os-hardening/pull/262) ([hp197](https://github.com/hp197))
+- use new syntax for stub in rspec [\#259](https://github.com/dev-sec/puppet-os-hardening/pull/259) ([schurzi](https://github.com/schurzi))
+- Move from inspec to cinc [\#238](https://github.com/dev-sec/puppet-os-hardening/pull/238) ([mcgege](https://github.com/mcgege))
+
+**Fixed bugs:**
+
+- Fix Travis tests [\#255](https://github.com/dev-sec/puppet-os-hardening/issues/255)
+- add source for chef-utils gem \(bundle confusion\) [\#265](https://github.com/dev-sec/puppet-os-hardening/pull/265) ([mcgege](https://github.com/mcgege))
+
+## [2.2.11](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.11) (2021-01-27)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.10...2.2.11)
 
 **Fixed bugs:**
 
@@ -104,6 +122,7 @@
 - Updates from pdk template 1.11.1 [\#215](https://github.com/dev-sec/puppet-os-hardening/pull/215) ([mcgege](https://github.com/mcgege))
 - Metadata / Travis fixes [\#211](https://github.com/dev-sec/puppet-os-hardening/pull/211) ([mcgege](https://github.com/mcgege))
 - CIS: Fix permissions on home cron and log dirs [\#203](https://github.com/dev-sec/puppet-os-hardening/pull/203) ([PenguinFreeDom](https://github.com/PenguinFreeDom))
+- Update to PDK 1.9.0 [\#190](https://github.com/dev-sec/puppet-os-hardening/pull/190) ([mcgege](https://github.com/mcgege))
 
 **Fixed bugs:**
 
@@ -151,7 +170,6 @@
 
 - Integration tests with DigitalOcean \(see \#180\) [\#194](https://github.com/dev-sec/puppet-os-hardening/pull/194) ([mcgege](https://github.com/mcgege))
 - Update to PDK 1.9.1 [\#191](https://github.com/dev-sec/puppet-os-hardening/pull/191) ([mcgege](https://github.com/mcgege))
-- Update to PDK 1.9.0 [\#190](https://github.com/dev-sec/puppet-os-hardening/pull/190) ([mcgege](https://github.com/mcgege))
 
 **Merged pull requests:**
 
@@ -220,6 +238,7 @@
 **Implemented enhancements:**
 
 - Easy add and remove packages, disable services [\#138](https://github.com/dev-sec/puppet-os-hardening/pull/138) ([timstoop](https://github.com/timstoop))
+- Deploy GRUB hardening [\#137](https://github.com/dev-sec/puppet-os-hardening/pull/137) ([timstoop](https://github.com/timstoop))
 
 **Closed issues:**
 
@@ -232,7 +251,6 @@
 - Update issue templates [\#158](https://github.com/dev-sec/puppet-os-hardening/pull/158) ([rndmh3ro](https://github.com/rndmh3ro))
 - rework README [\#155](https://github.com/dev-sec/puppet-os-hardening/pull/155) ([mcgege](https://github.com/mcgege))
 - Create license file [\#154](https://github.com/dev-sec/puppet-os-hardening/pull/154) ([mcgege](https://github.com/mcgege))
-- Create license file [\#153](https://github.com/dev-sec/puppet-os-hardening/pull/153) ([mcgege](https://github.com/mcgege))
 - Add  'MANAGED BY PUPPET' header [\#150](https://github.com/dev-sec/puppet-os-hardening/pull/150) ([hdep](https://github.com/hdep))
 - Fix missing Requirements in Readme [\#149](https://github.com/dev-sec/puppet-os-hardening/pull/149) ([hdep](https://github.com/hdep))
 - Add OpenSUSE 15 to the supported distributions [\#148](https://github.com/dev-sec/puppet-os-hardening/pull/148) ([mcgege](https://github.com/mcgege))
@@ -243,12 +261,12 @@
 
 **Implemented enhancements:**
 
-- Deploy GRUB hardening [\#137](https://github.com/dev-sec/puppet-os-hardening/pull/137) ([timstoop](https://github.com/timstoop))
 - Only allow root and members of group wheel to use su [\#134](https://github.com/dev-sec/puppet-os-hardening/pull/134) ([timstoop](https://github.com/timstoop))
 - Fix permissions on /etc/gshadow, based on CIS DIL Benchmark 6.1.5. [\#133](https://github.com/dev-sec/puppet-os-hardening/pull/133) ([timstoop](https://github.com/timstoop))
 
 **Merged pull requests:**
 
+- Create license file [\#153](https://github.com/dev-sec/puppet-os-hardening/pull/153) ([mcgege](https://github.com/mcgege))
 - Add stricter file permissions + PE fix [\#136](https://github.com/dev-sec/puppet-os-hardening/pull/136) ([mcgege](https://github.com/mcgege))
 
 ## [2.1.1](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.1) (2018-05-17)
@@ -340,7 +358,6 @@
 - Adopt Puppet style guide - remove dynamic variable lookup [\#70](https://github.com/dev-sec/puppet-os-hardening/pull/70) ([tuxmea](https://github.com/tuxmea))
 - Remove link following in minimize\_access file resource [\#64](https://github.com/dev-sec/puppet-os-hardening/pull/64) ([rooprob](https://github.com/rooprob))
 - update common kitchen.yml platforms [\#63](https://github.com/dev-sec/puppet-os-hardening/pull/63) ([chris-rock](https://github.com/chris-rock))
-- add support for limiting password re-use. [\#61](https://github.com/dev-sec/puppet-os-hardening/pull/61) ([igoraj](https://github.com/igoraj))
 - add local testing section to readme [\#59](https://github.com/dev-sec/puppet-os-hardening/pull/59) ([chris-rock](https://github.com/chris-rock))
 - add net.ipv6.conf.default.accept\_ra. closes \#56 [\#58](https://github.com/dev-sec/puppet-os-hardening/pull/58) ([igoraj](https://github.com/igoraj))
 - Disable System Accounts [\#54](https://github.com/dev-sec/puppet-os-hardening/pull/54) ([igoraj](https://github.com/igoraj))
@@ -353,6 +370,7 @@
 
 **Merged pull requests:**
 
+- add support for limiting password re-use. [\#61](https://github.com/dev-sec/puppet-os-hardening/pull/61) ([igoraj](https://github.com/igoraj))
 - Update common readme badges + contributors + rubocop [\#52](https://github.com/dev-sec/puppet-os-hardening/pull/52) ([arlimus](https://github.com/arlimus))
 - update common travis.yml, kitchen.yml platforms [\#51](https://github.com/dev-sec/puppet-os-hardening/pull/51) ([arlimus](https://github.com/arlimus))
 - bugfix: use scoped resource for puppet 4 [\#50](https://github.com/dev-sec/puppet-os-hardening/pull/50) ([arlimus](https://github.com/arlimus))
