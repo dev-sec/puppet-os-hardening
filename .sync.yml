@@ -37,6 +37,7 @@ Gemfile:
       - gem: 'test-kitchen'
       - gem: 'kitchen-digitalocean'
       - gem: 'kitchen-docker'
+        git: 'https://github.com/test-kitchen/kitchen-docker'
       - gem: 'kitchen-inspec'
       - gem: 'kitchen-puppet'
       - gem: 'kitchen-sync'
