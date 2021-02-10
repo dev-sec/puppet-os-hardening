@@ -37,12 +37,16 @@ Gemfile:
       - gem: 'test-kitchen'
       - gem: 'kitchen-digitalocean'
       - gem: 'kitchen-docker'
-        git: 'https://github.com/mcgege/kitchen-docker'
-        branch: 'leap15'
+        git: 'https://github.com/test-kitchen/kitchen-docker'
       - gem: 'kitchen-inspec'
       - gem: 'kitchen-puppet'
       - gem: 'kitchen-sync'
       - gem: 'inspec'
+        source: 'https://packagecloud.io/cinc-project/stable'
+      - gem: 'inspec-core'
+        source: 'https://packagecloud.io/cinc-project/stable'
+      - gem: 'chef-utils'
+        version: '= 15.6.10'
   optional:
     ':development':
       - gem: 'github_changelog_generator'
