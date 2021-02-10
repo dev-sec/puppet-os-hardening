@@ -28,9 +28,10 @@ class os_hardening (
   Boolean           $allow_login_without_home = false,
 
   Boolean           $allow_change_user        = false,
-  Boolean $manage_home_permissions            = false,
-  Boolean $manage_log_permissions             = false,
-  Boolean $manage_cron_permissions            = false,
+  Boolean           $manage_home_permissions  = false,
+  Boolean           $manage_log_permissions   = false,
+  Boolean           $manage_cron_permissions  = false,
+  Boolean           $manage_system_users      = true,
   Array             $ignore_users             = [],
   Array             $ignore_home_users        = [],
   Array             $ignore_restrict_log_dir  = [],
@@ -70,6 +71,7 @@ class os_hardening (
   Boolean           $enable_ipv6              = false,
   Boolean           $enable_ipv6_forwarding   = false,
   Boolean           $arp_restricted           = true,
+  Boolean           $arp_ignore_samenet       = false,
   Boolean           $enable_sysrq             = false,
   Boolean           $enable_core_dump         = false,
   Boolean           $enable_stack_protection  = true,
@@ -86,6 +88,8 @@ class os_hardening (
   String            $grub_password_hash       = '',
   Boolean           $boot_without_password    = true,
 
+  Boolean           $enable_sysctl_config     = true,
+
   Optional[String]  $system_umask             = undef,
 ) {
 
@@ -98,7 +102,8 @@ class os_hardening (
   # sysctl configuration doesn't work in docker:
   $configure_sysctl = (
     $system_environment != 'lxc' and
-    $system_environment != 'docker'
+    $system_environment != 'docker' and
+    $enable_sysctl_config
   )
 
   # Defaults for specific platforms
@@ -165,6 +170,7 @@ class os_hardening (
     manage_home_permissions => $manage_home_permissions,
     manage_log_permissions  => $manage_log_permissions,
     manage_cron_permissions => $manage_cron_permissions,
+    manage_system_users     => $manage_system_users,
     ignore_users            => $ignore_users,
     ignore_home_users       => $ignore_home_users,
     ignore_restrict_log_dir => $ignore_restrict_log_dir,
@@ -212,6 +218,7 @@ class os_hardening (
       enable_ipv6             => $enable_ipv6,
       enable_ipv6_forwarding  => $enable_ipv6_forwarding,
       arp_restricted          => $arp_restricted,
+      arp_ignore_samenet      => $arp_ignore_samenet,
       enable_sysrq            => $enable_sysrq,
       enable_core_dump        => $enable_core_dump,
       enable_stack_protection => $enable_stack_protection,

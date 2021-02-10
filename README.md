@@ -3,7 +3,7 @@
 [![Puppet Forge Version](https://img.shields.io/puppetforge/v/hardening/os_hardening.svg)][1]
 [![Puppet Forge Downloads](https://img.shields.io/puppetforge/dt/hardening/os_hardening.svg)][1]
 [![Puppet Forge Endorsement](https://img.shields.io/puppetforge/e/hardening/os_hardening.svg)][1]
-[![Build Status](https://travis-ci.org/dev-sec/puppet-os-hardening.svg?branch=master)][2]
+[![Build Status](https://github.com/dev-sec/puppet-os-hardening/workflows/tests/badge.svg)][2]
 
 #### Table of Contents
 
@@ -148,6 +148,8 @@ Otherwise puppet will drop an error (duplicate resource)!
   true if this system requires packet forwarding in IPv6 (eg Router), false otherwise
 * `arp_restricted = true`
   true if you want the behavior of announcing and replying to ARP to be restricted, false otherwise
+* `arp_ignore_samenet = false`
+  true will drop packets that are not from the same subnet (arp_ignore = 2), false will only check the target ip (arp_ignore = 1)
 * `enable_sysrq = false`
   true to enable the magic sysrq key, false otherwise
 * `enable_core_dump = false`
@@ -176,18 +178,23 @@ Otherwise puppet will drop an error (duplicate resource)!
   setup Grub so it only requires a password when changing an entry, not when booting an existing entry
 * `system_umask = undef`
   if this variable is set setup the umask for all user in the system (e.g. '027')
-*`manage_home_permissions = false`
+* `manage_home_permissions = false`
   set to true to manage local users file and directory permissions (g-w,o-rwx) 
-*`ignore_home_users = []`
+* `ignore_home_users = []`
   array for users that is not to be restricted by manage_home_permissions
-*`manage_log_permissions = false`
+* `manage_log_permissions = false`
   set to true to manage log file permissions (g-wx,o-rwx)
-*`restrict_log_dir = ['/var/log/']`
+* `restrict_log_dir = ['/var/log/']`
   set main log dir
-*`ignore_restrict_log_dir = []`
+* `ignore_restrict_log_dir = []`
   array to exclude log dirs under the main log dir
-*`manage_cron_permissions = false`
+* `manage_cron_permissions = false`
   set to true to manage cron file permissions (og-rwx)
+* `enable_sysctl_config = true`
+  set to false to disable sysctl configuration
+* `manage_system_users = true`
+  set to false to disable managing of system users (empty password and setting nologin shell)
+
    
 
 ### Note about wanted/unwanted packages and disabled services
@@ -265,7 +272,7 @@ For complete integration tests with [DigitalOcean](https://cloud.digitalocean.co
 The ssh key has to be named `~/.ssh/do_ci` and added to your profile at DigitalOcean.
 After this you're ready to run the tests as described at [Integration Tests (Docker)](#integration-tests-docker).
 
-If you want to run the full integration tests with Travis CI in your fork, you will have to add these [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) in the settings of your fork:
+If you want to run the full integration tests with Github Actions in your fork, you will have to add these [environment variables](https://docs.github.com/en/actions/reference/encrypted-secrets) in the settings of your fork:
 
 * `KITCHEN_LOCAL_YAML=kitchen.do.yml`
 * `DIGITALOCEAN_ACCESS_TOKEN` - [access token for DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-use-the-digitalocean-api-v2)
@@ -274,7 +281,7 @@ If you want to run the full integration tests with Travis CI in your fork, you w
 
 ### CI testing of PRs & forks
 
-Your patches will automatically get tested via [Travis CI](http://travis-ci.org/). The test summary is visible on Github in your PR, details can be found on the corresponding [Travis puppet-os-hardening page](https://travis-ci.org/dev-sec/puppet-os-hardening).
+Your patches will automatically get tested via Github Actions. The test summary is visible on Github in your PR, details can be found in the linked tests.
 
 ## Get in touch
 
@@ -325,4 +332,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 [1]: https://forge.puppet.com/hardening/os_hardening
-[2]: https://travis-ci.org/dev-sec/puppet-os-hardening
+[2]: https://github.com/dev-sec/puppet-os-hardening/workflows/tests

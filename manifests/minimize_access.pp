@@ -10,22 +10,23 @@
 # Configures profile.conf.
 #
 class os_hardening::minimize_access (
-  Boolean $allow_change_user   = false,
-  Boolean $manage_home_permissions   = false,
-  Boolean $manage_log_permissions   = false,
-  Boolean $manage_cron_permissions   = false,
-  Array   $always_ignore_users =
+  Boolean $allow_change_user       = false,
+  Boolean $manage_home_permissions = false,
+  Boolean $manage_log_permissions  = false,
+  Boolean $manage_cron_permissions = false,
+  Boolean $manage_system_users     = true,
+  Array   $always_ignore_users     =
     ['root','sync','shutdown','halt'],
-  Array   $ignore_users        = [],
-  Array   $ignore_home_users        = [],
-  Array   $ignore_restrict_log_dir  = [],
-  Array   $folders_to_restrict =
+  Array   $ignore_users            = [],
+  Array   $ignore_home_users       = [],
+  Array   $ignore_restrict_log_dir = [],
+  Array   $folders_to_restrict     =
     ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
-  Array   $restrict_log_dir =
+  Array   $restrict_log_dir        =
     ['/var/log/'],
-  String  $shadowgroup         = 'root',
-  String  $shadowmode          = '0600',
-  Integer $recurselimit        = 5,
+  String  $shadowgroup             = 'root',
+  String  $shadowmode              = '0600',
+  Integer $recurselimit            = 5,
 ) {
 
   case $::operatingsystem {
@@ -221,20 +222,21 @@ if $manage_cron_permissions == true {
     }
   }
 
-  # retrieve system users through custom fact
-  $system_users = split($::retrieve_system_users, ',')
+  if $manage_system_users == true {
+    # retrieve system users through custom fact
+    $system_users = split($::retrieve_system_users, ',')
 
-  # build array of usernames we need to verify/change
-  $ignore_users_arr = union($always_ignore_users, $ignore_users)
+    # build array of usernames we need to verify/change
+    $ignore_users_arr = union($always_ignore_users, $ignore_users)
 
-  # build a target array with usernames to verify/change
-  $target_system_users = difference($system_users, $ignore_users_arr)
+    # build a target array with usernames to verify/change
+    $target_system_users = difference($system_users, $ignore_users_arr)
 
-  # ensure accounts are locked (no password) and use nologin shell
-  user { $target_system_users:
-    ensure   => present,
-    shell    => $nologin_path,
-    password => '*',
+    # ensure accounts are locked (no password) and use nologin shell
+    user { $target_system_users:
+      ensure   => present,
+      shell    => $nologin_path,
+      password => '*',
+    }
   }
-
 }

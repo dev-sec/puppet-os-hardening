@@ -20,6 +20,7 @@ class os_hardening::sysctl (
   Boolean $enable_ipv6             = false,
   Boolean $enable_ipv6_forwarding  = false,
   Boolean $arp_restricted          = true,
+  Boolean $arp_ignore_samenet      = false,
   Boolean $enable_sysrq            = false,
   Boolean $enable_core_dump        = false,
   Boolean $enable_stack_protection = true,
@@ -109,7 +110,15 @@ class os_hardening::sysctl (
   # addresses on all our subnets on the outgoing interface that include the target IP address. If no suitable local address is found
   # we select the first local address we have on the outgoing interface or on all other interfaces, with the hope we will receive
   # reply for our request and even sometimes no matter the source IP address we announce.
-  sysctl { 'net.ipv4.conf.all.arp_ignore': value => String(bool2num($arp_restricted)) }
+  if $arp_restricted {
+    if $arp_ignore_samenet {
+      sysctl { 'net.ipv4.conf.all.arp_ignore': value => '2' }
+    } else {
+      sysctl { 'net.ipv4.conf.all.arp_ignore': value => '1' }
+    }
+  } else {
+    sysctl { 'net.ipv4.conf.all.arp_ignore': value => '0' }
+  }
 
 
   # Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
