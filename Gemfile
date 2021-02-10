@@ -34,7 +34,7 @@ group :integration do
   gem "librarian-puppet",     require: false
   gem "test-kitchen",         require: false
   gem "kitchen-digitalocean", require: false
-  gem "kitchen-docker",       require: false, git: 'https://github.com/mcgege/kitchen-docker', branch: 'leap15'
+  gem "kitchen-docker",       require: false
   gem "kitchen-inspec",       require: false
   gem "kitchen-puppet",       require: false
   gem "kitchen-sync",         require: false
