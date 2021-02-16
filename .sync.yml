@@ -47,6 +47,8 @@ Gemfile:
         source: 'https://packagecloud.io/cinc-project/stable'
       - gem: 'chef-utils'
         source: 'https://rubygems.org/'
+      - gem: 'chef-config'
+        source: 'https://rubygems.org/'
   optional:
     ':development':
       - gem: 'github_changelog_generator'
