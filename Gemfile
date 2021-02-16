@@ -42,6 +42,7 @@ group :integration do
   gem "inspec-core",          require: false, source: "https://packagecloud.io/cinc-project/stable"
   gem "chef-utils",           require: false, source: "https://rubygems.org/"
   gem "chef-config",          require: false, source: "https://rubygems.org/"
+  gem "unf_ext",              require: false, source: "https://rubygems.org/"
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
