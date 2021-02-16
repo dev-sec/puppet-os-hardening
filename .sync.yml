@@ -51,6 +51,8 @@ Gemfile:
         source: 'https://rubygems.org/'
       - gem: 'unf_ext'
         source: 'https://rubygems.org/'
+      - gem: 'sync'
+        source: 'https://rubygems.org/'
   optional:
     ':development':
       - gem: 'github_changelog_generator'
