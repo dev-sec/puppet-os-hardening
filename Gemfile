@@ -31,16 +31,16 @@ group :development do
   gem "github_changelog_generator", '~> 1.15',                   require: false if Gem::Version.new(RUBY_VERSION.dup) >= Gem::Version.new('2.3.0')
 end
 group :integration do
-  gem "librarian-puppet",        require: false
-  gem "test-kitchen",            require: false
-  gem "kitchen-digitalocean",    require: false
-  gem "kitchen-docker",          require: false, git: 'https://github.com/test-kitchen/kitchen-docker'
-  gem "kitchen-inspec",          require: false
-  gem "kitchen-puppet",          require: false
-  gem "kitchen-sync",            require: false
-  gem "inspec",                  require: false, source: "https://packagecloud.io/cinc-project/stable"
-  gem "inspec-core",             require: false, source: "https://packagecloud.io/cinc-project/stable"
-  gem "chef-utils", '= 15.6.10', require: false, source: "https://rubygems.org/"
+  gem "librarian-puppet",     require: false
+  gem "test-kitchen",         require: false
+  gem "kitchen-digitalocean", require: false
+  gem "kitchen-docker",       require: false, git: 'https://github.com/test-kitchen/kitchen-docker'
+  gem "kitchen-inspec",       require: false
+  gem "kitchen-puppet",       require: false
+  gem "kitchen-sync",         require: false
+  gem "inspec",               require: false, source: "https://packagecloud.io/cinc-project/stable"
+  gem "inspec-core",          require: false, source: "https://packagecloud.io/cinc-project/stable"
+  gem "chef-utils",           require: false, source: "https://rubygems.org/"
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
