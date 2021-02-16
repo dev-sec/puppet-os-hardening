@@ -46,7 +46,12 @@ Gemfile:
       - gem: 'inspec-core'
         source: 'https://packagecloud.io/cinc-project/stable'
       - gem: 'chef-utils'
-        version: '= 15.6.10'
+        source: 'https://rubygems.org/'
+      - gem: 'chef-config'
+        source: 'https://rubygems.org/'
+      - gem: 'unf_ext'
+        source: 'https://rubygems.org/'
+      - gem: 'sync'
         source: 'https://rubygems.org/'
   optional:
     ':development':
