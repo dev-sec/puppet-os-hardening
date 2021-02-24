@@ -6,6 +6,7 @@ file { '/etc/modprobe.d/':
 
 # Apply hardening module
 -> class { 'os_hardening':
-    system_environment => 'docker',
+    manage_cron_permissions => true,
+    system_environment      => 'docker',
 }
 
