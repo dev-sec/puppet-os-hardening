@@ -5,5 +5,7 @@ file { '/etc/modprobe.d/':
 }
 
 # Apply hardening module
--> class { 'os_hardening': }
+-> class { 'os_hardening':
+    manage_cron_permissions => true,
+}
 
