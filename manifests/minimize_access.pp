@@ -20,6 +20,7 @@ class os_hardening::minimize_access (
   Array   $ignore_users            = [],
   Array   $ignore_home_users       = [],
   Array   $ignore_restrict_log_dir = [],
+  Array   $ignore_files_in_folder_to_restrict = [],
   Array   $folders_to_restrict     =
     ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
   Array   $restrict_log_dir        =
@@ -49,6 +50,7 @@ class os_hardening::minimize_access (
   ensure_resources ('file',
   { $folders_to_restrict => {
       ensure                  => directory,
+      ignore		      => $ignore_files_in_folder_to_restrict,
       links                   => follow,
       mode                    => 'go-w',
       recurse                 => true,
