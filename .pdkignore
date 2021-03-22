@@ -32,6 +32,7 @@
 /.gitignore
 /.gitlab-ci.yml
 /.pdkignore
+/.puppet-lint.rc
 /Rakefile
 /rakelib/
 /.rspec
@@ -40,6 +41,7 @@
 /.yardopts
 /spec/
 /.vscode/
+/.sync.yml
 /.kitchen/
 /test/fixtures/.librarian/
 /test/fixtures/.tmp/
