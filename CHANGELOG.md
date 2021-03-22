@@ -1,5 +1,12 @@
 # Changelog
 
+## [v2.3.1](https://github.com/dev-sec/puppet-os-hardening/tree/v2.3.1) (2021-03-22)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.3.0...v2.3.1)
+
+**Fixed bugs:**
+- add argument "ignore_files_in_folder_to_restrict" [\#271](https://github.com/dev-sec/puppet-os-hardening/issues/271)
+
 ## [v2.3.0](https://github.com/dev-sec/puppet-os-hardening/tree/v2.3.0) (2021-02-10)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.11...v2.3.0)
