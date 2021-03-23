@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'bundler'
 require 'puppet_litmus/rake_tasks' if Bundler.rubygems.find_name('puppet_litmus').any?
 require 'puppetlabs_spec_helper/rake_tasks'
 require 'puppet-syntax/tasks/puppet-syntax'
@@ -51,9 +52,25 @@ if Bundler.rubygems.find_name('github_changelog_generator').any?
     config.project = "#{changelog_project}"
     config.since_tag = "1.1.1"
     config.future_release = "#{changelog_future_release}"
-    config.exclude_labels = ['no changelog','invalid']
+    config.exclude_labels = ['maintenance']
+    config.header = "# Change log\n\nAll notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org)."
     config.add_pr_wo_labels = true
-    config.issues = true
+    config.issues = false
+    config.merge_prefix = "### UNCATEGORIZED PRS; LABEL THEM ON GITHUB"
+    config.configure_sections = {
+      "Changed" => {
+        "prefix" => "### Changed",
+        "labels" => ["backwards-incompatible"],
+      },
+      "Added" => {
+        "prefix" => "### Added",
+        "labels" => ["enhancement", "feature"],
+      },
+      "Fixed" => {
+        "prefix" => "### Fixed",
+        "labels" => ["bug", "documentation", "bugfix"],
+      },
+    }
   end
 else
   desc 'Generate a Changelog from GitHub'
