@@ -35,7 +35,7 @@ class os_hardening (
   Array             $ignore_users                       = [],
   Array             $ignore_home_users                  = [],
   Array             $ignore_restrict_log_dir            = [],
-  Array		    $ignore_files_in_folder_to_restrict = [],
+  Array             $ignore_files_in_folder_to_restrict = [],
   Array             $folders_to_restrict                =
     ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
   Array             $restrict_log_dir                   =
@@ -65,9 +65,9 @@ class os_hardening (
     ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf'],
 
   String            $cpu_vendor                         = 'intel',
-  String            $icmp_ratelimit           	        = '100',
+  String            $icmp_ratelimit                     = '100',
   Boolean           $desktop_enabled                    = false,
-  Boolean           $enable_ipv4_forwarding   	        = false,
+  Boolean           $enable_ipv4_forwarding             = false,
   Boolean           $manage_ipv6                        = true,
   Boolean           $enable_ipv6                        = false,
   Boolean           $enable_ipv6_forwarding             = false,

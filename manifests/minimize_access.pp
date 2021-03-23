@@ -50,7 +50,7 @@ class os_hardening::minimize_access (
   ensure_resources ('file',
   { $folders_to_restrict => {
       ensure                  => directory,
-      ignore		      => $ignore_files_in_folder_to_restrict,
+      ignore                  => $ignore_files_in_folder_to_restrict,
       links                   => follow,
       mode                    => 'go-w',
       recurse                 => true,
