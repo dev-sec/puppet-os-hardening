@@ -10,24 +10,24 @@
 # Configures profile.conf.
 #
 class os_hardening::minimize_access (
-  Boolean $allow_change_user       		= false,
-  Boolean $manage_home_permissions 		= false,
-  Boolean $manage_log_permissions  		= false,
-  Boolean $manage_cron_permissions 		= false,
-  Boolean $manage_system_users     		= true,
-  Array   $always_ignore_users     		=
+  Boolean $allow_change_user                    = false,
+  Boolean $manage_home_permissions              = false,
+  Boolean $manage_log_permissions               = false,
+  Boolean $manage_cron_permissions              = false,
+  Boolean $manage_system_users                  = true,
+  Array   $always_ignore_users                  =
     ['root','sync','shutdown','halt'],
-  Array   $ignore_users            		= [],
-  Array   $ignore_home_users       		= [],
-  Array   $ignore_restrict_log_dir 		= [],
-  Array   $ignore_files_in_folder_to_restrict	= [],
-  Array   $folders_to_restrict     		=
+  Array   $ignore_users                         = [],
+  Array   $ignore_home_users                    = [],
+  Array   $ignore_restrict_log_dir              = [],
+  Array   $ignore_files_in_folder_to_restrict   = [],
+  Array   $folders_to_restrict                  =
     ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
-  Array   $restrict_log_dir        		=
+  Array   $restrict_log_dir                     =
     ['/var/log/'],
-  String  $shadowgroup             		= 'root',
-  String  $shadowmode              		= '0600',
-  Integer $recurselimit            		= 5,
+  String  $shadowgroup                          = 'root',
+  String  $shadowmode                           = '0600',
+  Integer $recurselimit                         = 5,
 ) {
 
   case $::operatingsystem {
