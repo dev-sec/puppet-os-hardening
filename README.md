@@ -188,6 +188,8 @@ Otherwise puppet will drop an error (duplicate resource)!
   set main log dir
 * `ignore_restrict_log_dir = []`
   array to exclude log dirs under the main log dir
+* `ignore_files_in_folder_to_restrict = []`
+  array to ignore files to hardened in dirs under the folder_to_restrict array
 * `manage_cron_permissions = false`
   set to true to manage cron file permissions (og-rwx)
 * `enable_sysctl_config = true`
@@ -306,6 +308,7 @@ You can reach us on several ways:
 * Timo Goebel [timogoebel](https://github.com/timogoebel)
 * Tristan Helmich [fadenb](https://github.com/fadenb)
 * Michael Geiger [mcgege](https://github.com/mcgege)
+* Timo Bergemann [LooOOooM](https://github.com/LooOOooM)
 
 For the original port of `chef-os-hardening` to puppet:
 
