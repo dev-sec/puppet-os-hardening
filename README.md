@@ -14,6 +14,7 @@
 1. [Usage - Configuration options and additional functionality](#usage)
    * [Important for Puppet Enterprise](#important-for-puppet-enterprise)
    * [Parameters](#parameters)
+   * [Hiera usage](#hiera-usage)
    * [Note about wanted/unwanted packages and disabled services](#note-about-wantedunwanted-packages-and-disabled-services)
 1. [Limitations - OS compatibility, etc.](#limitations)
 1. [Development - Guide for contributing to the module](#development)
@@ -179,7 +180,7 @@ Otherwise puppet will drop an error (duplicate resource)!
 * `system_umask = undef`
   if this variable is set setup the umask for all user in the system (e.g. '027')
 * `manage_home_permissions = false`
-  set to true to manage local users file and directory permissions (g-w,o-rwx) 
+  set to true to manage local users file and directory permissions (g-w,o-rwx)
 * `ignore_home_users = []`
   array for users that is not to be restricted by manage_home_permissions
 * `manage_log_permissions = false`
@@ -197,7 +198,17 @@ Otherwise puppet will drop an error (duplicate resource)!
 * `manage_system_users = true`
   set to false to disable managing of system users (empty password and setting nologin shell)
 
-   
+### Hiera usage
+
+It's also possible to set the parameters in Hiera like this:
+
+```puppet
+os_hardening::password_max_age:  90
+os_hardening::password_min_age:  0
+os_hardening::password_warn_age: 14
+os_hardening::unwanted_packages: ['telnet']
+os_hardening::ignore_users:      ['git','githook','ansible','apache','puppetboard']
+```
 
 ### Note about wanted/unwanted packages and disabled services
 
@@ -326,7 +337,9 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+```
+  http://www.apache.org/licenses/LICENSE-2.0
+```
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
