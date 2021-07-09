@@ -25,6 +25,7 @@
 .project
 .envrc
 /inventory.yaml
+/spec/fixtures/litmus_inventory.yaml
 /.kitchen/
 /test/fixtures/.librarian/
 /test/fixtures/.tmp/
