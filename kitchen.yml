@@ -20,14 +20,34 @@ platforms:
     provisioner:
       puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
       puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet6/puppet6-release-el-7.noarch.rpm
+  - name: centos-7-puppet7
+    provisioner:
+      puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet7/puppet7-release-el-7.noarch.rpm
   - name: centos-8-puppet6
     provisioner:
       puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-8.noarch.rpm
       puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet6/puppet6-release-el-8.noarch.rpm
+  - name: centos-8-puppet7
+    provisioner:
+      puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-8.noarch.rpm
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet7/puppet7-release-el-8.noarch.rpm
   - name: debian-9-puppet6
     provisioner:
       puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
       puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet6-release-xenial.deb
+  - name: debian-9-puppet7
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet7-release-xenial.deb
+  - name: debian-10-puppet6
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-buster.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet6-release-buster.deb
+  - name: debian-10-puppet7
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-buster.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet7-release-buster.deb
   - name: opensuse-15-puppet6
     driver_config:
       image: opensuse/leap:15
@@ -36,6 +56,14 @@ platforms:
       custom_pre_install_command: |
         sudo zypper addrepo -n puppet6 -f -G http://yum.puppetlabs.com/puppet6/sles/12/x86_64 puppet6
         sudo http_proxy=<%= ENV['http_proxy'] %> https_proxy=<%= ENV['https_proxy'] %> zypper install -y puppet-agent
+  - name: opensuse-15-puppet7
+    driver_config:
+      image: opensuse/leap:15
+      platform: opensuse
+    provisioner:
+      custom_pre_install_command: |
+        sudo zypper addrepo -n puppet7 -f -G http://yum.puppetlabs.com/puppet7/sles/15/x86_64 puppet7
+        sudo http_proxy=<%= ENV['http_proxy'] %> https_proxy=<%= ENV['https_proxy'] %> zypper install -y puppet-agent
   - name: oracle-7-puppet6
     driver_config:
       image: oraclelinux:7
@@ -43,12 +71,37 @@ platforms:
     provisioner:
       puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
       puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet6/puppet6-release-el-7.noarch.rpm
+  - name: oracle-7-puppet7
+    driver_config:
+      image: oraclelinux:7
+      platform: rhel
+    provisioner:
+      puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
+      puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet7/puppet7-release-el-7.noarch.rpm
   - name: ubuntu-18-04-puppet6
     driver_config:
       image: ubuntu:18.04
     provisioner:
       puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
       puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet6-release-bionic.deb
+  - name: ubuntu-18-04-puppet7
+    driver_config:
+      image: ubuntu:18.04
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-xenial.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet7-release-bionic.deb
+  - name: ubuntu-20-04-puppet6
+    driver_config:
+      image: ubuntu:20.04
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-focal.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet6-release-focal.deb
+  - name: ubuntu-20-04-puppet7
+    driver_config:
+      image: ubuntu:20.04
+    provisioner:
+      puppet_apt_repo: https://apt.puppetlabs.com/puppetlabs-release-focal.deb
+      puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet7-release-focal.deb
 
 transport:
   name: sftp
