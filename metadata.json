@@ -10,7 +10,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 4.6.0 < 7.0.0"
+      "version_requirement": ">= 4.6.0 < 8.0.0"
     },
     {
       "name": "herculesteam/augeasproviders_sysctl",
@@ -79,7 +79,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 5.0.0 < 7.0.0"
+      "version_requirement": ">= 6.0.0 < 8.0.0"
     }
   ],
   "template-url": "https://github.com/dev-sec/puppet-pdk-template#2.1.1",
