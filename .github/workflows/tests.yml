@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SIMPLECOV: yes
-      PUPPET_GEM_VERSION: "~> 6.0"
+      PUPPET_GEM_VERSION: "~> 7.0"
     strategy:
       fail-fast: false
 
@@ -22,7 +22,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6
+        ruby-version: 2.7
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
       run: bundle exec rake syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop
@@ -35,10 +35,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - rvm: 2.4.5
-            puppet_gem_version: "~> 5.0"
           - rvm: 2.6
             puppet_gem_version: "~> 6.0"
+          - rvm: 2.7
+            puppet_gem_version: "~> 7.0"
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby
@@ -61,25 +61,28 @@ jobs:
       fail-fast: false
       matrix:
         version_os_puppet:
-          - centos-7-puppet5
           - centos-7-puppet6
-          - debian-8-puppet5
+          - centos-7-puppet7
           - centos-8-puppet6
-          - debian-9-puppet5
+          - centos-8-puppet7
           - debian-9-puppet6
-          - opensuse-42-puppet5
-          - oracle-6-puppet5
-          - oracle-7-puppet5
+          - debian-9-puppet7
+          - debian-10-puppet6
+          - debian-10-puppet7
+          - opensuse-15-puppet6
+          - opensuse-15-puppet7
           - oracle-7-puppet6
-          - ubuntu-16-04-puppet5
-          - ubuntu-18-04-puppet5
+          - oracle-7-puppet7
           - ubuntu-18-04-puppet6
+          - ubuntu-18-04-puppet7
+          - ubuntu-20-04-puppet6
+          - ubuntu-20-04-puppet7
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6
+        ruby-version: 2.7
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
       run: bundle exec rake kitchen
