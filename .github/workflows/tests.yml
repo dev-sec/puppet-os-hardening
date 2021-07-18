@@ -35,8 +35,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - rvm: 2.4.5
-            puppet_gem_version: "~> 5.0"
           - rvm: 2.6
             puppet_gem_version: "~> 6.0"
     steps:
@@ -61,18 +59,10 @@ jobs:
       fail-fast: false
       matrix:
         version_os_puppet:
-          - centos-7-puppet5
           - centos-7-puppet6
-          - debian-8-puppet5
           - centos-8-puppet6
-          - debian-9-puppet5
           - debian-9-puppet6
-          - opensuse-42-puppet5
-          - oracle-6-puppet5
-          - oracle-7-puppet5
           - oracle-7-puppet6
-          - ubuntu-16-04-puppet5
-          - ubuntu-18-04-puppet5
           - ubuntu-18-04-puppet6
     steps:
     - uses: actions/checkout@v2
