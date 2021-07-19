@@ -1,30 +1,69 @@
 # Changelog
 
-## [v2.3.0](https://github.com/dev-sec/puppet-os-hardening/tree/v2.3.0) (2021-02-10)
+## Changelog generator problem - older changes included in current delta
 
-[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.11...v2.3.0)
+## [v2.3.1](https://github.com/dev-sec/puppet-os-hardening/tree/v2.3.1) (2021-07-19)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.3.0...v2.3.1)
 
 **Implemented enhancements:**
 
-- Use CINC \(instead of InSpec 4\) [\#212](https://github.com/dev-sec/puppet-os-hardening/issues/212)
+- Add support for Puppet 7 [\#267](https://github.com/dev-sec/puppet-os-hardening/issues/267)
+- allow defining parameters in hiera [\#248](https://github.com/dev-sec/puppet-os-hardening/issues/248)
+- Add integration tests for current platforms [\#172](https://github.com/dev-sec/puppet-os-hardening/issues/172)
+- Add Puppet 7 tests + new versions [\#282](https://github.com/dev-sec/puppet-os-hardening/pull/282) ([mcgege](https://github.com/mcgege))
+- Remove Puppet v5 support + tests [\#281](https://github.com/dev-sec/puppet-os-hardening/pull/281) ([mcgege](https://github.com/mcgege))
+- update to PDK template 2.1.1 [\#278](https://github.com/dev-sec/puppet-os-hardening/pull/278) ([mcgege](https://github.com/mcgege))
+- Add documentation on hiera usage \(see \#248\) [\#274](https://github.com/dev-sec/puppet-os-hardening/pull/274) ([mcgege](https://github.com/mcgege))
+- Update to PDK 2.0 template [\#273](https://github.com/dev-sec/puppet-os-hardening/pull/273) ([mcgege](https://github.com/mcgege))
+- Fix: Dead links result in an error \#271 [\#272](https://github.com/dev-sec/puppet-os-hardening/pull/272) ([LooOOooM](https://github.com/LooOOooM))
 - move to github actions [\#264](https://github.com/dev-sec/puppet-os-hardening/pull/264) ([schurzi](https://github.com/schurzi))
 - fixed alignment of properties and indentation [\#263](https://github.com/dev-sec/puppet-os-hardening/pull/263) ([hp197](https://github.com/hp197))
 - Added manage\_system\_users option and formatted properties [\#262](https://github.com/dev-sec/puppet-os-hardening/pull/262) ([hp197](https://github.com/hp197))
 - use new syntax for stub in rspec [\#259](https://github.com/dev-sec/puppet-os-hardening/pull/259) ([schurzi](https://github.com/schurzi))
+- Fix + switch for arp\_ignore [\#256](https://github.com/dev-sec/puppet-os-hardening/pull/256) ([mcgege](https://github.com/mcgege))
 - Move from inspec to cinc [\#238](https://github.com/dev-sec/puppet-os-hardening/pull/238) ([mcgege](https://github.com/mcgege))
 
 **Fixed bugs:**
 
-- Fix Travis tests [\#255](https://github.com/dev-sec/puppet-os-hardening/issues/255)
+- Activate manage\_cron\_permissions to satisfy cron tests [\#269](https://github.com/dev-sec/puppet-os-hardening/pull/269) ([mcgege](https://github.com/mcgege))
+- Solve bundle problem on automated tests [\#268](https://github.com/dev-sec/puppet-os-hardening/pull/268) ([mcgege](https://github.com/mcgege))
 - add source for chef-utils gem \(bundle confusion\) [\#265](https://github.com/dev-sec/puppet-os-hardening/pull/265) ([mcgege](https://github.com/mcgege))
+- Revert "secure\_redirects should be set to 1 \(default\)" [\#260](https://github.com/dev-sec/puppet-os-hardening/pull/260) ([mcgege](https://github.com/mcgege))
+- Switch to Inspec 4 to break bundler loop [\#257](https://github.com/dev-sec/puppet-os-hardening/pull/257) ([mcgege](https://github.com/mcgege))
+
+**Closed issues:**
+
+- New warning - max\_files - exceeds the default soft limit 1000 [\#279](https://github.com/dev-sec/puppet-os-hardening/issues/279)
+- enable\_log\_martians to false are logged [\#277](https://github.com/dev-sec/puppet-os-hardening/issues/277)
+- Dead links result in an error [\#271](https://github.com/dev-sec/puppet-os-hardening/issues/271)
+- Duplicate declaration [\#270](https://github.com/dev-sec/puppet-os-hardening/issues/270)
+- Using relative file modes can result very wrong in some cases [\#222](https://github.com/dev-sec/puppet-os-hardening/issues/222)
+
+**Merged pull requests:**
+
+- Add ignore\_max\_files\_warnings \(\#279\) [\#280](https://github.com/dev-sec/puppet-os-hardening/pull/280) ([earthgecko](https://github.com/earthgecko))
+- Disable sysctl configuration [\#253](https://github.com/dev-sec/puppet-os-hardening/pull/253) ([Tahitibob35](https://github.com/Tahitibob35))
+
+## [2.3.0](https://github.com/dev-sec/puppet-os-hardening/tree/2.3.0) (2021-02-10)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.11...2.3.0)
+
+**Implemented enhancements:**
+
+- Use CINC \(instead of InSpec 4\) [\#212](https://github.com/dev-sec/puppet-os-hardening/issues/212)
+
+**Fixed bugs:**
+
+- Fix Travis tests [\#255](https://github.com/dev-sec/puppet-os-hardening/issues/255)
+
+**Closed issues:**
+
+- Fix broken tests in Travis CI [\#123](https://github.com/dev-sec/puppet-os-hardening/issues/123)
 
 ## [2.2.11](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.11) (2021-01-27)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.10...2.2.11)
-
-**Fixed bugs:**
-
-- Revert "secure\_redirects should be set to 1 \(default\)" [\#260](https://github.com/dev-sec/puppet-os-hardening/pull/260) ([mcgege](https://github.com/mcgege))
 
 **Closed issues:**
 
@@ -34,21 +73,9 @@
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.9...2.2.10)
 
-**Implemented enhancements:**
-
-- Fix + switch for arp\_ignore [\#256](https://github.com/dev-sec/puppet-os-hardening/pull/256) ([mcgege](https://github.com/mcgege))
-
-**Fixed bugs:**
-
-- Switch to Inspec 4 to break bundler loop [\#257](https://github.com/dev-sec/puppet-os-hardening/pull/257) ([mcgege](https://github.com/mcgege))
-
 **Closed issues:**
 
 - os\_hardening failing on centos7 [\#241](https://github.com/dev-sec/puppet-os-hardening/issues/241)
-
-**Merged pull requests:**
-
-- Disable sysctl configuration [\#253](https://github.com/dev-sec/puppet-os-hardening/pull/253) ([Tahitibob35](https://github.com/Tahitibob35))
 
 ## [2.2.9](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.9) (2020-12-03)
 
@@ -59,70 +86,83 @@
 - More secure kernel settings [\#250](https://github.com/dev-sec/puppet-os-hardening/pull/250) ([mcgege](https://github.com/mcgege))
 - Set SHA\_CRYPT\_\*\_ROUNDS \(Telekom security req linux-10\) [\#249](https://github.com/dev-sec/puppet-os-hardening/pull/249) ([mcgege](https://github.com/mcgege))
 - Update to PDK 1.18.1 [\#242](https://github.com/dev-sec/puppet-os-hardening/pull/242) ([mcgege](https://github.com/mcgege))
+- Updates from pdk template 1.17.0 [\#236](https://github.com/dev-sec/puppet-os-hardening/pull/236) ([mcgege](https://github.com/mcgege))
+- If disabled service should also be stopped [\#226](https://github.com/dev-sec/puppet-os-hardening/pull/226) ([mcgege](https://github.com/mcgege))
+- Manage files /etc/anacrontab and crontab equally [\#225](https://github.com/dev-sec/puppet-os-hardening/pull/225) ([mcgege](https://github.com/mcgege))
+- Proxy support / SUSE fixes [\#217](https://github.com/dev-sec/puppet-os-hardening/pull/217) ([mcgege](https://github.com/mcgege))
+- Updates from pdk template 1.11.1 [\#215](https://github.com/dev-sec/puppet-os-hardening/pull/215) ([mcgege](https://github.com/mcgege))
+- Metadata / Travis fixes [\#211](https://github.com/dev-sec/puppet-os-hardening/pull/211) ([mcgege](https://github.com/mcgege))
+- CIS: Fix permissions on home cron and log dirs [\#203](https://github.com/dev-sec/puppet-os-hardening/pull/203) ([PenguinFreeDom](https://github.com/PenguinFreeDom))
+- Adjust .travis.yml to PDK template [\#197](https://github.com/dev-sec/puppet-os-hardening/pull/197) ([mcgege](https://github.com/mcgege))
+- Integration tests with DigitalOcean \(see \#180\) [\#194](https://github.com/dev-sec/puppet-os-hardening/pull/194) ([mcgege](https://github.com/mcgege))
+- Update to PDK 1.9.1 [\#191](https://github.com/dev-sec/puppet-os-hardening/pull/191) ([mcgege](https://github.com/mcgege))
+- Update to PDK 1.9.0 [\#190](https://github.com/dev-sec/puppet-os-hardening/pull/190) ([mcgege](https://github.com/mcgege))
+- Readme updates [\#188](https://github.com/dev-sec/puppet-os-hardening/pull/188) ([mcgege](https://github.com/mcgege))
+- Replace sysctl module [\#183](https://github.com/dev-sec/puppet-os-hardening/pull/183) ([mcgege](https://github.com/mcgege))
+- Add version tag on puppetforge [\#182](https://github.com/dev-sec/puppet-os-hardening/pull/182) ([mcgege](https://github.com/mcgege))
+- New option rpfilter\_loose to enable loose mode \(rp\_filter = 2\) [\#163](https://github.com/dev-sec/puppet-os-hardening/pull/163) ([mcgege](https://github.com/mcgege))
+- Easy add and remove packages, disable services [\#138](https://github.com/dev-sec/puppet-os-hardening/pull/138) ([timstoop](https://github.com/timstoop))
+
+**Fixed bugs:**
+
+- Fix for integration tests \(apt-transport-https missing\) [\#237](https://github.com/dev-sec/puppet-os-hardening/pull/237) ([mcgege](https://github.com/mcgege))
+- Travis-CI fix \(kitchen / faraday broken?\) [\#228](https://github.com/dev-sec/puppet-os-hardening/pull/228) ([mcgege](https://github.com/mcgege))
+- Augeas sysctl needs explicit string value [\#207](https://github.com/dev-sec/puppet-os-hardening/pull/207) ([mcgege](https://github.com/mcgege))
+- Add dirs to exclude to .pdkignore [\#196](https://github.com/dev-sec/puppet-os-hardening/pull/196) ([mcgege](https://github.com/mcgege))
+- Add missing dependency [\#184](https://github.com/dev-sec/puppet-os-hardening/pull/184) ([theosotr](https://github.com/theosotr))
 
 **Merged pull requests:**
 
 - Adapt Travis to puppetlabs standard [\#247](https://github.com/dev-sec/puppet-os-hardening/pull/247) ([mcgege](https://github.com/mcgege))
 - Small fixes [\#243](https://github.com/dev-sec/puppet-os-hardening/pull/243) ([mcgege](https://github.com/mcgege))
+- patch-cumuluslinux-support [\#239](https://github.com/dev-sec/puppet-os-hardening/pull/239) ([mdklapwijk](https://github.com/mdklapwijk))
+- Update to PDK 1.15 [\#233](https://github.com/dev-sec/puppet-os-hardening/pull/233) ([mcgege](https://github.com/mcgege))
+- Small fix on kitchen.yml [\#232](https://github.com/dev-sec/puppet-os-hardening/pull/232) ([mcgege](https://github.com/mcgege))
+- CentOS 8 support [\#229](https://github.com/dev-sec/puppet-os-hardening/pull/229) ([mcgege](https://github.com/mcgege))
+- Updates from pdk template 1.13.0 [\#227](https://github.com/dev-sec/puppet-os-hardening/pull/227) ([mcgege](https://github.com/mcgege))
+- Updates from pdk template 1.12.0 [\#221](https://github.com/dev-sec/puppet-os-hardening/pull/221) ([mcgege](https://github.com/mcgege))
+- allow puppet-stdlib v6 [\#219](https://github.com/dev-sec/puppet-os-hardening/pull/219) ([mcgege](https://github.com/mcgege))
+- OpenSUSE 42.3 docker image correction [\#214](https://github.com/dev-sec/puppet-os-hardening/pull/214) ([mcgege](https://github.com/mcgege))
+- Kitchen fix [\#206](https://github.com/dev-sec/puppet-os-hardening/pull/206) ([mcgege](https://github.com/mcgege))
+- Some applications require different setting for icmp\_ratelimit [\#204](https://github.com/dev-sec/puppet-os-hardening/pull/204) ([tuxmea](https://github.com/tuxmea))
+- Update to PDK 1.10.0 [\#193](https://github.com/dev-sec/puppet-os-hardening/pull/193) ([mcgege](https://github.com/mcgege))
+- Replace Gitter with mailing lists [\#185](https://github.com/dev-sec/puppet-os-hardening/pull/185) ([mcgege](https://github.com/mcgege))
+- Bugfix script to change file + dir permissions for Puppet Forge build [\#176](https://github.com/dev-sec/puppet-os-hardening/pull/176) ([mcgege](https://github.com/mcgege))
+- Also works with current puppetlabs/stdlib \(5.1.0 tested\) [\#168](https://github.com/dev-sec/puppet-os-hardening/pull/168) ([mcgege](https://github.com/mcgege))
+- Do not disable vfat. Fixes \#165. [\#166](https://github.com/dev-sec/puppet-os-hardening/pull/166) ([timstoop](https://github.com/timstoop))
+- Add support for Ubuntu 18.04 and SLES 15 in metadata.json [\#162](https://github.com/dev-sec/puppet-os-hardening/pull/162) ([mcgege](https://github.com/mcgege))
+- Update issue templates [\#158](https://github.com/dev-sec/puppet-os-hardening/pull/158) ([rndmh3ro](https://github.com/rndmh3ro))
+- rework README [\#155](https://github.com/dev-sec/puppet-os-hardening/pull/155) ([mcgege](https://github.com/mcgege))
+- Create license file [\#154](https://github.com/dev-sec/puppet-os-hardening/pull/154) ([mcgege](https://github.com/mcgege))
+- Create license file [\#153](https://github.com/dev-sec/puppet-os-hardening/pull/153) ([mcgege](https://github.com/mcgege))
+- Add  'MANAGED BY PUPPET' header [\#150](https://github.com/dev-sec/puppet-os-hardening/pull/150) ([hdep](https://github.com/hdep))
+- Fix missing Requirements in Readme [\#149](https://github.com/dev-sec/puppet-os-hardening/pull/149) ([hdep](https://github.com/hdep))
+- Add OpenSUSE 15 to the supported distributions [\#148](https://github.com/dev-sec/puppet-os-hardening/pull/148) ([mcgege](https://github.com/mcgege))
 
 ## [2.2.8](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.8) (2020-06-01)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.7...2.2.8)
 
-**Implemented enhancements:**
-
-- Updates from pdk template 1.17.0 [\#236](https://github.com/dev-sec/puppet-os-hardening/pull/236) ([mcgege](https://github.com/mcgege))
-
 **Fixed bugs:**
 
 - Minimize\_access to File \[/usr/bin\] issue [\#234](https://github.com/dev-sec/puppet-os-hardening/issues/234)
-- Fix for integration tests \(apt-transport-https missing\) [\#237](https://github.com/dev-sec/puppet-os-hardening/pull/237) ([mcgege](https://github.com/mcgege))
 
 **Closed issues:**
 
 - Conflicts with apache module [\#231](https://github.com/dev-sec/puppet-os-hardening/issues/231)
 
-**Merged pull requests:**
-
-- patch-cumuluslinux-support [\#239](https://github.com/dev-sec/puppet-os-hardening/pull/239) ([mdklapwijk](https://github.com/mdklapwijk))
-- Update to PDK 1.15 [\#233](https://github.com/dev-sec/puppet-os-hardening/pull/233) ([mcgege](https://github.com/mcgege))
-- Small fix on kitchen.yml [\#232](https://github.com/dev-sec/puppet-os-hardening/pull/232) ([mcgege](https://github.com/mcgege))
-
 ## [2.2.7](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.7) (2019-10-04)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.6...2.2.7)
-
-**Implemented enhancements:**
-
-- If disabled service should also be stopped [\#226](https://github.com/dev-sec/puppet-os-hardening/pull/226) ([mcgege](https://github.com/mcgege))
-- Manage files /etc/anacrontab and crontab equally [\#225](https://github.com/dev-sec/puppet-os-hardening/pull/225) ([mcgege](https://github.com/mcgege))
-
-**Fixed bugs:**
-
-- Travis-CI fix \(kitchen / faraday broken?\) [\#228](https://github.com/dev-sec/puppet-os-hardening/pull/228) ([mcgege](https://github.com/mcgege))
 
 **Closed issues:**
 
 - disabled\_services should be stopped too [\#224](https://github.com/dev-sec/puppet-os-hardening/issues/224)
 - os\_hardening::minimize\_access should treat anacrontab the same as crontab [\#223](https://github.com/dev-sec/puppet-os-hardening/issues/223)
 
-**Merged pull requests:**
-
-- CentOS 8 support [\#229](https://github.com/dev-sec/puppet-os-hardening/pull/229) ([mcgege](https://github.com/mcgege))
-- Updates from pdk template 1.13.0 [\#227](https://github.com/dev-sec/puppet-os-hardening/pull/227) ([mcgege](https://github.com/mcgege))
-- Updates from pdk template 1.12.0 [\#221](https://github.com/dev-sec/puppet-os-hardening/pull/221) ([mcgege](https://github.com/mcgege))
-
 ## [2.2.6](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.6) (2019-07-24)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.5...2.2.6)
-
-**Implemented enhancements:**
-
-- Proxy support / SUSE fixes [\#217](https://github.com/dev-sec/puppet-os-hardening/pull/217) ([mcgege](https://github.com/mcgege))
-- Updates from pdk template 1.11.1 [\#215](https://github.com/dev-sec/puppet-os-hardening/pull/215) ([mcgege](https://github.com/mcgege))
-- Metadata / Travis fixes [\#211](https://github.com/dev-sec/puppet-os-hardening/pull/211) ([mcgege](https://github.com/mcgege))
-- CIS: Fix permissions on home cron and log dirs [\#203](https://github.com/dev-sec/puppet-os-hardening/pull/203) ([PenguinFreeDom](https://github.com/PenguinFreeDom))
-- Update to PDK 1.9.0 [\#190](https://github.com/dev-sec/puppet-os-hardening/pull/190) ([mcgege](https://github.com/mcgege))
 
 **Fixed bugs:**
 
@@ -132,75 +172,29 @@
 
 - Error: no implicit conversion of Integer into String [\#199](https://github.com/dev-sec/puppet-os-hardening/issues/199)
 
-**Merged pull requests:**
-
-- allow puppet-stdlib v6 [\#219](https://github.com/dev-sec/puppet-os-hardening/pull/219) ([mcgege](https://github.com/mcgege))
-- OpenSUSE 42.3 docker image correction [\#214](https://github.com/dev-sec/puppet-os-hardening/pull/214) ([mcgege](https://github.com/mcgege))
-
 ## [2.2.5](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.5) (2019-06-01)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.4...2.2.5)
-
-**Fixed bugs:**
-
-- Augeas sysctl needs explicit string value [\#207](https://github.com/dev-sec/puppet-os-hardening/pull/207) ([mcgege](https://github.com/mcgege))
-
-**Merged pull requests:**
-
-- Kitchen fix [\#206](https://github.com/dev-sec/puppet-os-hardening/pull/206) ([mcgege](https://github.com/mcgege))
-- Some applications require different setting for icmp\_ratelimit [\#204](https://github.com/dev-sec/puppet-os-hardening/pull/204) ([tuxmea](https://github.com/tuxmea))
 
 ## [2.2.4](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.4) (2019-05-01)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.3...2.2.4)
 
-**Implemented enhancements:**
-
-- Adjust .travis.yml to PDK template [\#197](https://github.com/dev-sec/puppet-os-hardening/pull/197) ([mcgege](https://github.com/mcgege))
-
-**Fixed bugs:**
-
-- Add dirs to exclude to .pdkignore [\#196](https://github.com/dev-sec/puppet-os-hardening/pull/196) ([mcgege](https://github.com/mcgege))
-
 ## [2.2.3](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.3) (2019-05-01)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.2...2.2.3)
-
-**Implemented enhancements:**
-
-- Integration tests with DigitalOcean \(see \#180\) [\#194](https://github.com/dev-sec/puppet-os-hardening/pull/194) ([mcgege](https://github.com/mcgege))
-- Update to PDK 1.9.1 [\#191](https://github.com/dev-sec/puppet-os-hardening/pull/191) ([mcgege](https://github.com/mcgege))
-
-**Merged pull requests:**
-
-- Update to PDK 1.10.0 [\#193](https://github.com/dev-sec/puppet-os-hardening/pull/193) ([mcgege](https://github.com/mcgege))
 
 ## [2.2.2](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.2) (2019-02-28)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.1...2.2.2)
 
-**Implemented enhancements:**
-
-- Readme updates [\#188](https://github.com/dev-sec/puppet-os-hardening/pull/188) ([mcgege](https://github.com/mcgege))
-- Replace sysctl module [\#183](https://github.com/dev-sec/puppet-os-hardening/pull/183) ([mcgege](https://github.com/mcgege))
-- Add version tag on puppetforge [\#182](https://github.com/dev-sec/puppet-os-hardening/pull/182) ([mcgege](https://github.com/mcgege))
-
 **Fixed bugs:**
 
 - Wrong permission on module files [\#175](https://github.com/dev-sec/puppet-os-hardening/issues/175)
-- Add missing dependency [\#184](https://github.com/dev-sec/puppet-os-hardening/pull/184) ([theosotr](https://github.com/theosotr))
-
-**Merged pull requests:**
-
-- Replace Gitter with mailing lists [\#185](https://github.com/dev-sec/puppet-os-hardening/pull/185) ([mcgege](https://github.com/mcgege))
 
 ## [2.2.1](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.1) (2019-01-28)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.2.0...2.2.1)
-
-**Merged pull requests:**
-
-- Bugfix script to change file + dir permissions for Puppet Forge build [\#176](https://github.com/dev-sec/puppet-os-hardening/pull/176) ([mcgege](https://github.com/mcgege))
 
 ## [2.2.0](https://github.com/dev-sec/puppet-os-hardening/tree/2.2.0) (2019-01-27)
 
@@ -211,7 +205,6 @@
 - Test / Update for Puppet 6 [\#156](https://github.com/dev-sec/puppet-os-hardening/issues/156)
 - Convert module into "standardized PDK module" [\#107](https://github.com/dev-sec/puppet-os-hardening/issues/107)
 - Update to verify the module against https://github.com/dev-sec/linux-baseline [\#79](https://github.com/dev-sec/puppet-os-hardening/issues/79)
-- New option rpfilter\_loose to enable loose mode \(rp\_filter = 2\) [\#163](https://github.com/dev-sec/puppet-os-hardening/pull/163) ([mcgege](https://github.com/mcgege))
 - Update test mechanisms [\#169](https://github.com/dev-sec/puppet-os-hardening/pull/169) ([mcgege](https://github.com/mcgege))
 - Support os umask [\#152](https://github.com/dev-sec/puppet-os-hardening/pull/152) ([hdep](https://github.com/hdep))
 
@@ -225,20 +218,9 @@
 - module on the forge is not in sync with version of github [\#160](https://github.com/dev-sec/puppet-os-hardening/issues/160)
 - Fix broken tests in Travis CI [\#123](https://github.com/dev-sec/puppet-os-hardening/issues/123)
 
-**Merged pull requests:**
-
-- Also works with current puppetlabs/stdlib \(5.1.0 tested\) [\#168](https://github.com/dev-sec/puppet-os-hardening/pull/168) ([mcgege](https://github.com/mcgege))
-- Do not disable vfat. Fixes \#165. [\#166](https://github.com/dev-sec/puppet-os-hardening/pull/166) ([timstoop](https://github.com/timstoop))
-- Add support for Ubuntu 18.04 and SLES 15 in metadata.json [\#162](https://github.com/dev-sec/puppet-os-hardening/pull/162) ([mcgege](https://github.com/mcgege))
-
 ## [2.1.3](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.3) (2018-11-12)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.1.2...2.1.3)
-
-**Implemented enhancements:**
-
-- Easy add and remove packages, disable services [\#138](https://github.com/dev-sec/puppet-os-hardening/pull/138) ([timstoop](https://github.com/timstoop))
-- Deploy GRUB hardening [\#137](https://github.com/dev-sec/puppet-os-hardening/pull/137) ([timstoop](https://github.com/timstoop))
 
 **Closed issues:**
 
@@ -246,27 +228,18 @@
 - Missing comments in managed file : file managed by puppet [\#146](https://github.com/dev-sec/puppet-os-hardening/issues/146)
 - Missing requirements in readme file [\#145](https://github.com/dev-sec/puppet-os-hardening/issues/145)
 
-**Merged pull requests:**
-
-- Update issue templates [\#158](https://github.com/dev-sec/puppet-os-hardening/pull/158) ([rndmh3ro](https://github.com/rndmh3ro))
-- rework README [\#155](https://github.com/dev-sec/puppet-os-hardening/pull/155) ([mcgege](https://github.com/mcgege))
-- Create license file [\#154](https://github.com/dev-sec/puppet-os-hardening/pull/154) ([mcgege](https://github.com/mcgege))
-- Add  'MANAGED BY PUPPET' header [\#150](https://github.com/dev-sec/puppet-os-hardening/pull/150) ([hdep](https://github.com/hdep))
-- Fix missing Requirements in Readme [\#149](https://github.com/dev-sec/puppet-os-hardening/pull/149) ([hdep](https://github.com/hdep))
-- Add OpenSUSE 15 to the supported distributions [\#148](https://github.com/dev-sec/puppet-os-hardening/pull/148) ([mcgege](https://github.com/mcgege))
-
 ## [2.1.2](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.2) (2018-08-15)
 
 [Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.1.1...2.1.2)
 
 **Implemented enhancements:**
 
+- Deploy GRUB hardening [\#137](https://github.com/dev-sec/puppet-os-hardening/pull/137) ([timstoop](https://github.com/timstoop))
 - Only allow root and members of group wheel to use su [\#134](https://github.com/dev-sec/puppet-os-hardening/pull/134) ([timstoop](https://github.com/timstoop))
 - Fix permissions on /etc/gshadow, based on CIS DIL Benchmark 6.1.5. [\#133](https://github.com/dev-sec/puppet-os-hardening/pull/133) ([timstoop](https://github.com/timstoop))
 
 **Merged pull requests:**
 
-- Create license file [\#153](https://github.com/dev-sec/puppet-os-hardening/pull/153) ([mcgege](https://github.com/mcgege))
 - Add stricter file permissions + PE fix [\#136](https://github.com/dev-sec/puppet-os-hardening/pull/136) ([mcgege](https://github.com/mcgege))
 
 ## [2.1.1](https://github.com/dev-sec/puppet-os-hardening/tree/2.1.1) (2018-05-17)
@@ -306,6 +279,7 @@
 - Minimize access needs a better way of removing +w on system folders  [\#60](https://github.com/dev-sec/puppet-os-hardening/issues/60)
 - login.defs for different OS [\#57](https://github.com/dev-sec/puppet-os-hardening/issues/57)
 - Adduser consistency [\#49](https://github.com/dev-sec/puppet-os-hardening/issues/49)
+- Cleanup headers / copyright [\#111](https://github.com/dev-sec/puppet-os-hardening/issues/111)
 - Update some RH settings in this module [\#102](https://github.com/dev-sec/puppet-os-hardening/issues/102)
 
 **Merged pull requests:**
@@ -358,6 +332,7 @@
 - Adopt Puppet style guide - remove dynamic variable lookup [\#70](https://github.com/dev-sec/puppet-os-hardening/pull/70) ([tuxmea](https://github.com/tuxmea))
 - Remove link following in minimize\_access file resource [\#64](https://github.com/dev-sec/puppet-os-hardening/pull/64) ([rooprob](https://github.com/rooprob))
 - update common kitchen.yml platforms [\#63](https://github.com/dev-sec/puppet-os-hardening/pull/63) ([chris-rock](https://github.com/chris-rock))
+- add support for limiting password re-use. [\#61](https://github.com/dev-sec/puppet-os-hardening/pull/61) ([igoraj](https://github.com/igoraj))
 - add local testing section to readme [\#59](https://github.com/dev-sec/puppet-os-hardening/pull/59) ([chris-rock](https://github.com/chris-rock))
 - add net.ipv6.conf.default.accept\_ra. closes \#56 [\#58](https://github.com/dev-sec/puppet-os-hardening/pull/58) ([igoraj](https://github.com/igoraj))
 - Disable System Accounts [\#54](https://github.com/dev-sec/puppet-os-hardening/pull/54) ([igoraj](https://github.com/igoraj))
@@ -370,7 +345,6 @@
 
 **Merged pull requests:**
 
-- add support for limiting password re-use. [\#61](https://github.com/dev-sec/puppet-os-hardening/pull/61) ([igoraj](https://github.com/igoraj))
 - Update common readme badges + contributors + rubocop [\#52](https://github.com/dev-sec/puppet-os-hardening/pull/52) ([arlimus](https://github.com/arlimus))
 - update common travis.yml, kitchen.yml platforms [\#51](https://github.com/dev-sec/puppet-os-hardening/pull/51) ([arlimus](https://github.com/arlimus))
 - bugfix: use scoped resource for puppet 4 [\#50](https://github.com/dev-sec/puppet-os-hardening/pull/50) ([arlimus](https://github.com/arlimus))
