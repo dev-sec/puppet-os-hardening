@@ -54,10 +54,29 @@ class os_hardening::minimize_access (
   } else {
     $use_max_files = 0
   }
+  case $::aio_agent_version {
+    /^6/: {
+      if versioncmp($::aio_agent_version, '6.23.0') >= 0 {
+        $apply_max_files = true
+      } else {
+        $apply_max_files = false
+      }
+    }
+    /^7/: {
+      if versioncmp($::aio_agent_version, '7.7.0') >= 0 {
+        $apply_max_files = true
+      } else {
+        $apply_max_files = false
+      }
+    }
+    default: {
+      $apply_max_files = true
+    }
+  }
 
   # remove write permissions from path folders ($PATH) for all regular users
   # this prevents changing any system-wide command from normal users
-  if versioncmp($::aio_agent_version, '6.23.0') >= 0 {
+  if $apply_max_files {
     ensure_resources ('file',
     { $folders_to_restrict => {
         ensure                  => directory,
@@ -71,7 +90,7 @@ class os_hardening::minimize_access (
       }
     })
   } else {
-    # Original pre the introduction of max_files in puppet-agent 6.23.0
+    # Original pre the introduction of max_files in puppet-agent 6.23.0/7.70
     ensure_resources ('file',
     { $folders_to_restrict => {
         ensure                  => directory,
