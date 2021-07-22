@@ -1,16 +1,18 @@
 # Changelog
 
-## Changelog generator problem - older changes included in current delta
+## Changelog generator still broken, sorry
 
-## [v2.3.1](https://github.com/dev-sec/puppet-os-hardening/tree/v2.3.1) (2021-07-19)
+### Really new in v2.3.2
 
-[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.3.0...v2.3.1)
+- Backwards incompatible breaking change in PR279 [\#284](https://github.com/dev-sec/puppet-os-hardening/issues/284)
+- Backwards incompatible breaking change in PR279 \(\#284\) [\#285](https://github.com/dev-sec/puppet-os-hardening/pull/285) ([earthgecko](https://github.com/earthgecko))
+
+## [v2.3.2](https://github.com/dev-sec/puppet-os-hardening/tree/v2.3.2) (2021-07-22)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.3.1...v2.3.2)
 
 **Implemented enhancements:**
 
-- Add support for Puppet 7 [\#267](https://github.com/dev-sec/puppet-os-hardening/issues/267)
-- allow defining parameters in hiera [\#248](https://github.com/dev-sec/puppet-os-hardening/issues/248)
-- Add integration tests for current platforms [\#172](https://github.com/dev-sec/puppet-os-hardening/issues/172)
 - Add Puppet 7 tests + new versions [\#282](https://github.com/dev-sec/puppet-os-hardening/pull/282) ([mcgege](https://github.com/mcgege))
 - Remove Puppet v5 support + tests [\#281](https://github.com/dev-sec/puppet-os-hardening/pull/281) ([mcgege](https://github.com/mcgege))
 - update to PDK template 2.1.1 [\#278](https://github.com/dev-sec/puppet-os-hardening/pull/278) ([mcgege](https://github.com/mcgege))
@@ -26,11 +28,28 @@
 
 **Fixed bugs:**
 
+- Backwards incompatible breaking change in PR279 [\#284](https://github.com/dev-sec/puppet-os-hardening/issues/284)
+- Backwards incompatible breaking change in PR279 \(\#284\) [\#285](https://github.com/dev-sec/puppet-os-hardening/pull/285) ([earthgecko](https://github.com/earthgecko))
 - Activate manage\_cron\_permissions to satisfy cron tests [\#269](https://github.com/dev-sec/puppet-os-hardening/pull/269) ([mcgege](https://github.com/mcgege))
 - Solve bundle problem on automated tests [\#268](https://github.com/dev-sec/puppet-os-hardening/pull/268) ([mcgege](https://github.com/mcgege))
 - add source for chef-utils gem \(bundle confusion\) [\#265](https://github.com/dev-sec/puppet-os-hardening/pull/265) ([mcgege](https://github.com/mcgege))
 - Revert "secure\_redirects should be set to 1 \(default\)" [\#260](https://github.com/dev-sec/puppet-os-hardening/pull/260) ([mcgege](https://github.com/mcgege))
 - Switch to Inspec 4 to break bundler loop [\#257](https://github.com/dev-sec/puppet-os-hardening/pull/257) ([mcgege](https://github.com/mcgege))
+
+**Merged pull requests:**
+
+- Add ignore\_max\_files\_warnings \(\#279\) [\#280](https://github.com/dev-sec/puppet-os-hardening/pull/280) ([earthgecko](https://github.com/earthgecko))
+- Disable sysctl configuration [\#253](https://github.com/dev-sec/puppet-os-hardening/pull/253) ([Tahitibob35](https://github.com/Tahitibob35))
+
+## [2.3.1](https://github.com/dev-sec/puppet-os-hardening/tree/2.3.1) (2021-07-19)
+
+[Full Changelog](https://github.com/dev-sec/puppet-os-hardening/compare/2.3.0...2.3.1)
+
+**Implemented enhancements:**
+
+- Add support for Puppet 7 [\#267](https://github.com/dev-sec/puppet-os-hardening/issues/267)
+- allow defining parameters in hiera [\#248](https://github.com/dev-sec/puppet-os-hardening/issues/248)
+- Add integration tests for current platforms [\#172](https://github.com/dev-sec/puppet-os-hardening/issues/172)
 
 **Closed issues:**
 
@@ -39,11 +58,6 @@
 - Dead links result in an error [\#271](https://github.com/dev-sec/puppet-os-hardening/issues/271)
 - Duplicate declaration [\#270](https://github.com/dev-sec/puppet-os-hardening/issues/270)
 - Using relative file modes can result very wrong in some cases [\#222](https://github.com/dev-sec/puppet-os-hardening/issues/222)
-
-**Merged pull requests:**
-
-- Add ignore\_max\_files\_warnings \(\#279\) [\#280](https://github.com/dev-sec/puppet-os-hardening/pull/280) ([earthgecko](https://github.com/earthgecko))
-- Disable sysctl configuration [\#253](https://github.com/dev-sec/puppet-os-hardening/pull/253) ([Tahitibob35](https://github.com/Tahitibob35))
 
 ## [2.3.0](https://github.com/dev-sec/puppet-os-hardening/tree/2.3.0) (2021-02-10)
 
