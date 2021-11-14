@@ -104,7 +104,7 @@ platforms:
       puppet_apt_collections_repo: http://apt.puppetlabs.com/puppet7-release-focal.deb
 
 transport:
-  name: sftp
+  name: docker
 
 verifier:
   name: inspec

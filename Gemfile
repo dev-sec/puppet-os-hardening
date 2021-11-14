@@ -44,7 +44,6 @@ group :integration do
   gem "chef-config",          require: false, source: "https://rubygems.org/"
   gem "unf_ext",              require: false, source: "https://rubygems.org/"
   gem "sync",                 require: false, source: "https://rubygems.org/"
-  gem "r10k", '~> 3.12',      require: false
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
