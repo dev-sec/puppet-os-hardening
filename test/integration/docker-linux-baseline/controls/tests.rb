@@ -5,6 +5,8 @@ include_controls 'linux-baseline' do
   skip_control 'os-08'
   # skip filesystem test (vfat enabled for uefi)
   skip_control 'os-10'
+  # skip mountpoint test
+  skip_control 'os-14'
   # No syslog installed in test env
   skip_control 'package-07'
   # skip auditd tests, we do not have any implementation for audit management yet
