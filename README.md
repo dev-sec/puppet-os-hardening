@@ -199,6 +199,11 @@ Otherwise puppet will drop an error (duplicate resource)!
   set to false to disable sysctl configuration
 * `manage_system_users = true`
   set to false to disable managing of system users (empty password and setting nologin shell)
+* `shadow_group = undef`
+  override the group ownership of /etc/shadow
+* `shadow_mode = undef`
+  override the file permissions of /etc/shadow
+
 
 ### Hiera usage
 
