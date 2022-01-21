@@ -2,6 +2,6 @@
 # Puppet os_hardening: 
 
 <% @disable_network_protocol.each do |protocol| -%>
-install <%= fs %> /bin/true
+install <%= protocol %> /bin/true
 <% end -%>
 
