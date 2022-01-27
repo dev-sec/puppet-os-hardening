@@ -93,6 +93,9 @@ class os_hardening (
   Boolean           $enable_sysctl_config               = true,
 
   Optional[String]  $system_umask                       = undef,
+
+  Optional[String]  $shadow_group                       = undef,
+  Optional[String]  $shadow_mode                        = undef,
 ) {
 
   # Prepare
@@ -114,22 +117,22 @@ class os_hardening (
       $def_umask = '027'
       $def_sys_uid_min = 100
       $def_sys_gid_min = 100
-      $shadowgroup = 'shadow'
-      $shadowmode = '0640'
+      $def_shadowgroup = 'shadow'
+      $def_shadowmode = '0640'
     }
     'RedHat': {
       $def_umask = '077'
       $def_sys_uid_min = 201
       $def_sys_gid_min = 201
-      $shadowgroup = 'root'
-      $shadowmode = '0000'
+      $def_shadowgroup = 'root'
+      $def_shadowmode = '0000'
     }
     default: {
       $def_umask = '027'
       $def_sys_uid_min = 100
       $def_sys_gid_min = 100
-      $shadowgroup = 'root'
-      $shadowmode = '0600'
+      $def_shadowgroup = 'root'
+      $def_shadowmode = '0600'
     }
   }
 
@@ -137,6 +140,8 @@ class os_hardening (
   $merged_umask = pick($umask, $def_umask)
   $merged_sys_uid_min = pick($sys_uid_min, $def_sys_uid_min)
   $merged_sys_gid_min = pick($sys_gid_min, $def_sys_gid_min)
+  $merged_shadowgroup = pick($shadow_group, $def_shadowgroup)
+  $merged_shadowmode  = pick($shadow_mode, $def_shadowmode)
 
   # Fix for Puppet Enterprise
   if $pe_environment {
@@ -180,8 +185,8 @@ class os_hardening (
     folders_to_restrict                => $folders_to_restrict_int,
     ignore_max_files_warnings          => $ignore_max_files_warnings,
     restrict_log_dir                   => $restrict_log_dir,
-    shadowgroup                        => $shadowgroup,
-    shadowmode                         => $shadowmode,
+    shadowgroup                        => $merged_shadowgroup,
+    shadowmode                         => $merged_shadowmode,
     recurselimit                       => $recurselimit,
   }
   class { 'os_hardening::modules':
