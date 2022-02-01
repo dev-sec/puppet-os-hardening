@@ -25,10 +25,16 @@ platforms:
       puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
       puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet7/puppet7-release-el-7.noarch.rpm
   - name: centos-8-puppet6
+    driver_config:
+      image: quay.io/centos/centos:stream8
+      platform: centos
     provisioner:
       puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-8.noarch.rpm
       puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet6/puppet6-release-el-8.noarch.rpm
   - name: centos-8-puppet7
+    driver_config:
+      image: quay.io/centos/centos:stream8
+      platform: centos
     provisioner:
       puppet_yum_repo: https://yum.puppetlabs.com/puppetlabs-release-el-8.noarch.rpm
       puppet_yum_collections_repo: http://yum.puppetlabs.com/puppet7/puppet7-release-el-8.noarch.rpm
