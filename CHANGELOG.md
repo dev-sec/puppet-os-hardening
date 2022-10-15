@@ -2,7 +2,15 @@
 
 ## Changelog generator still broken, sorry
 
-### Really new in v2.3.2
+### Changes in v2.3.3
+
+- fix CI: use docker driver for transfering files \(\#290\)
+- Disable new check 'os-14' for automated testing \(\#291\)
+- Restore ability to override /etc/shadow file permissions and group owner \(\#293\)
+- move to CentOS 8 Stream from quay.io \(\#295\)
+- fix(pam_passwdqc): remove accidental paste from `pam_passwdqc.erb` \(\#299\)
+
+### Changes in v2.3.2
 
 - Backwards incompatible breaking change in PR279 [\#284](https://github.com/dev-sec/puppet-os-hardening/issues/284)
 - Backwards incompatible breaking change in PR279 \(\#284\) [\#285](https://github.com/dev-sec/puppet-os-hardening/pull/285) ([earthgecko](https://github.com/earthgecko))
