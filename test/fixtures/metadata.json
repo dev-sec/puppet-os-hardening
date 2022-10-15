@@ -1,6 +1,6 @@
 {
   "name": "hardening-os_hardening",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "author": "Dominik Richter",
   "summary": "Configures the base OS with hardening",
   "license": "Apache-2.0",
@@ -84,7 +84,7 @@
       "version_requirement": ">= 6.0.0 < 8.0.0"
     }
   ],
-  "template-url": "https://github.com/dev-sec/puppet-pdk-template#2.1.1",
-  "pdk-version": "2.1.1",
-  "template-ref": "tags/2.1.1-0-g03daa92"
+  "template-url": "https://github.com/dev-sec/puppet-pdk-template#2.3.0",
+  "pdk-version": "2.3.0",
+  "template-ref": "tags/2.3.0-0-g8aaceff"
 }
