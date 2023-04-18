@@ -10,23 +10,25 @@
 # Configures Kernel Parameters via sysctl
 #
 class os_hardening::sysctl (
-  Boolean $enable_module_loading   = true,
-  Array   $load_modules            = [],
-  String  $cpu_vendor              = 'intel',
-  String  $icmp_ratelimit          = '100',
-  Boolean $desktop_enabled         = false,
-  Boolean $enable_ipv4_forwarding  = false,
-  Boolean $manage_ipv6             = true,
-  Boolean $enable_ipv6             = false,
-  Boolean $enable_ipv6_forwarding  = false,
-  Boolean $arp_restricted          = true,
-  Boolean $arp_ignore_samenet      = false,
-  Boolean $enable_sysrq            = false,
-  Boolean $enable_core_dump        = false,
-  Boolean $enable_stack_protection = true,
-  Boolean $enable_rpfilter         = true,
-  Boolean $rpfilter_loose          = false,
-  Boolean $enable_log_martians     = true,
+  Boolean $enable_module_loading    = true,
+  Array   $load_modules             = [],
+  String  $cpu_vendor               = 'intel',
+  String  $icmp_ratelimit           = '100',
+  Boolean $desktop_enabled          = false,
+  Boolean $enable_ipv4_forwarding   = false,
+  Boolean $manage_ipv6              = true,
+  Boolean $enable_ipv6              = false,
+  Boolean $enable_ipv6_forwarding   = false,
+  Boolean $arp_restricted           = true,
+  Boolean $arp_ignore_samenet       = false,
+  Boolean $enable_sysrq             = false,
+  Boolean $enable_core_dump         = false,
+  Boolean $enable_stack_protection  = true,
+  Boolean $enable_rpfilter          = true,
+  Boolean $rpfilter_loose           = false,
+  Boolean $enable_log_martians      = true,
+  Boolean $enable_overcommit_memory = true,
+  String  $swappiness_value         = '60',
 ) {
 
   # set variables
@@ -236,5 +238,15 @@ class os_hardening::sysctl (
     }
   }
 
+  # configure the memory overcommitment
+  # ** 0 ** - kernel attempts to estimate the amount of free memory left when userspace requests more memory.
+  # ** 1 ** - kernel pretends there is always enough memory until it actually runs out.
+  if $enable_overcommit_memory {
+    sysctl { 'vm.overcommit_memory': value => '1' }
+  } else {
+    sysctl { 'vm.overcommit_memory': value => '0' }
+  }
+
+  sysctl { 'vm.swappiness': value => String($swappiness_value) }
 }
 
