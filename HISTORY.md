@@ -49,7 +49,7 @@
 * improvement: add travis testing for lint+specs
 * improvement: use file resource instead of exec for access minimization
 * bugfix: fix typo dry_run_on_unkown -> dry_run_on_unknown
-* bugfix: don't run update initramfs on each run, only when requiered
+* bugfix: don't run update initramfs on each run, only when required
 * bugfix: deactivation of kernel module loading wasn't implemented
 * bugfix: ip_forwarding wasn't activated correctly
 

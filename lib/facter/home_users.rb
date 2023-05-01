@@ -1,4 +1,4 @@
-# Try to read UID_MIN from /etc/login.defs to caluclate SYS_UID_MAX
+# Try to read UID_MIN from /etc/login.defs to calculate SYS_UID_MAX
 # if that fails set some predefined values based on os_family fact.
 logindefs = '/etc/login.defs'
 

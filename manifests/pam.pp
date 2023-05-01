@@ -55,7 +55,7 @@ class os_hardening::pam (
 
       # if passwdqc is enabled
       if $passwdqc_enabled == true {
-        # remove pam_cracklib, because it does not play nice wiht passwdqc
+        # remove pam_cracklib, because it does not play nice with passwdqc
         package { 'pam-cracklib':
           ensure => absent,
           name   => $pam_cracklib,
