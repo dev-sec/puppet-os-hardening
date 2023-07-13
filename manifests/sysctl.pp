@@ -30,7 +30,7 @@ class os_hardening::sysctl (
 ) {
 
   # set variables
-  if $::architecture == 'amd64' or $::architecture == 'x86_64' {
+  if $facts['os']['architecture'] == 'amd64' or $facts['os']['architecture'] == 'x86_64' {
     $x86_64 = true
   } else {
     $x86_64 = false
