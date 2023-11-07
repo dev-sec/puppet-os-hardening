@@ -96,6 +96,10 @@ class os_hardening (
 
   Optional[String]  $shadow_group                       = undef,
   Optional[String]  $shadow_mode                        = undef,
+
+  Boolean           $boot_without_password              = true,
+  Boolean           $enable_transparent_hugepage        = false,
+  String            $swappiness_value                   = '60',
 ) {
 
   # Prepare
@@ -217,23 +221,25 @@ class os_hardening (
 
   if $configure_sysctl {
     class { 'os_hardening::sysctl':
-      enable_module_loading   => $enable_module_loading,
-      load_modules            => $load_modules,
-      cpu_vendor              => $cpu_vendor,
-      icmp_ratelimit          => $icmp_ratelimit,
-      desktop_enabled         => $desktop_enabled,
-      enable_ipv4_forwarding  => $enable_ipv4_forwarding,
-      manage_ipv6             => $manage_ipv6,
-      enable_ipv6             => $enable_ipv6,
-      enable_ipv6_forwarding  => $enable_ipv6_forwarding,
-      arp_restricted          => $arp_restricted,
-      arp_ignore_samenet      => $arp_ignore_samenet,
-      enable_sysrq            => $enable_sysrq,
-      enable_core_dump        => $enable_core_dump,
-      enable_stack_protection => $enable_stack_protection,
-      enable_rpfilter         => $enable_rpfilter,
-      rpfilter_loose          => $rpfilter_loose,
-      enable_log_martians     => $enable_log_martians,
+      enable_module_loading    => $enable_module_loading,
+      load_modules             => $load_modules,
+      cpu_vendor               => $cpu_vendor,
+      icmp_ratelimit           => $icmp_ratelimit,
+      desktop_enabled          => $desktop_enabled,
+      enable_ipv4_forwarding   => $enable_ipv4_forwarding,
+      manage_ipv6              => $manage_ipv6,
+      enable_ipv6              => $enable_ipv6,
+      enable_ipv6_forwarding   => $enable_ipv6_forwarding,
+      arp_restricted           => $arp_restricted,
+      arp_ignore_samenet       => $arp_ignore_samenet,
+      enable_sysrq             => $enable_sysrq,
+      enable_core_dump         => $enable_core_dump,
+      enable_stack_protection  => $enable_stack_protection,
+      enable_rpfilter          => $enable_rpfilter,
+      rpfilter_loose           => $rpfilter_loose,
+      enable_log_martians      => $enable_log_martians,
+      enable_overcommit_memory => $enable_overcommit_memory,
+      swappiness_value         => $swappiness_value,
     }
   }
 
@@ -252,5 +258,9 @@ class os_hardening (
 
   class { 'os_hardening::umask':
     system_umask          => $system_umask,
+  }
+
+  class { 'os_hardening::kernel_options':
+    enable_transparent_hugepage  => $enable_transparent_hugepage,
   }
 }
