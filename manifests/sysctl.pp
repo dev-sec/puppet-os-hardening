@@ -9,6 +9,40 @@
 #
 # Configures Kernel Parameters via sysctl
 #
+# @param enable_module_loading
+#
+# @param load_modules
+#
+# @param cpu_vendor
+#
+# @param icmp_ratelimit
+#
+# @param desktop_enabled
+#
+# @param enable_ipv4_forwarding
+#
+# @param manage_ipv6
+#
+# @param enable_ipv6
+#
+# @param enable_ipv6_forwarding
+#
+# @param arp_restricted
+#
+# @param arp_ignore_samenet
+#
+# @param enable_sysrq
+#
+# @param enable_core_dump
+#
+# @param enable_stack_protection
+#
+# @param enable_rpfilter
+#
+# @param rpfilter_loose
+#
+# @param enable_log_martians
+#
 class os_hardening::sysctl (
   Boolean $enable_module_loading   = true,
   Array   $load_modules            = [],
@@ -28,9 +62,8 @@ class os_hardening::sysctl (
   Boolean $rpfilter_loose          = false,
   Boolean $enable_log_martians     = true,
 ) {
-
   # set variables
-  if $::architecture == 'amd64' or $::architecture == 'x86_64' {
+  if $facts['os']['architecture'] == 'amd64' or $facts['os']['architecture'] == 'x86_64' {
     $x86_64 = true
   } else {
     $x86_64 = false
@@ -79,7 +112,6 @@ class os_hardening::sysctl (
   sysctl { 'net.ipv4.conf.all.rp_filter': value => $rpfilter }
   sysctl { 'net.ipv4.conf.default.rp_filter': value => $rpfilter }
 
-
   # Reduce the surface on SMURF attacks. Make sure to ignore ECHO broadcasts, which are only required in broad network analysis.
   sysctl { 'net.ipv4.icmp_echo_ignore_broadcasts': value => '1' }
 
@@ -119,7 +151,6 @@ class os_hardening::sysctl (
   } else {
     sysctl { 'net.ipv4.conf.all.arp_ignore': value => '0' }
   }
-
 
   # Define different modes for sending replies in response to received ARP requests that resolve local target IP addresses:
   #
@@ -169,7 +200,6 @@ class os_hardening::sysctl (
   sysctl { 'net.ipv4.conf.all.log_martians': value => String(bool2num($enable_log_martians)) }
   sysctl { 'net.ipv4.conf.default.log_martians': value => String(bool2num($enable_log_martians)) }
 
-
   # System
   # ------
 
@@ -214,8 +244,8 @@ class os_hardening::sysctl (
   # if modules cannot be loaded at runtime, they must all
   # be pre-configured in initramfs
   if $enable_module_loading == false {
-    case $::operatingsystem {
-      debian, ubuntu, cumuluslinux: {
+    case $facts['os']['name'] {
+      'debian', 'ubuntu', 'cumuluslinux': {
         file { '/etc/initramfs-tools/modules':
           ensure  => file,
           content => template('os_hardening/modules.erb'),
@@ -235,6 +265,4 @@ class os_hardening::sysctl (
       }
     }
   }
-
 }
-

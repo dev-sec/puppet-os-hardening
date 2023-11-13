@@ -9,15 +9,22 @@
 #
 # Hardens the grub config
 #
+# @param enable
+#
+# @param user
+#
+# @param password_hash
+#
+# @param boot_without_password
+#
 class os_hardening::grub (
-  Boolean $enable                = false,
-  String  $user                  = 'root',
-  String  $password_hash         = '',
-  Boolean $boot_without_password = true,
+  Boolean $enable                 = false,
+  String  $user                   = 'root',
+  Optional[String] $password_hash = undef,
+  Boolean $boot_without_password  = true,
 ) {
-
-  case $::operatingsystem {
-    debian, ubuntu, cumuluslinux: {
+  case $facts['os']['name'] {
+    'debian', 'ubuntu', 'cumuluslinux': {
       $grub_cfg = '/boot/grub/grub.cfg'
       $grub_cmd = '/usr/sbin/grub-mkconfig'
     }
@@ -65,6 +72,4 @@ class os_hardening::grub (
     command     => "${grub_cmd} -o ${grub_cfg}",
     refreshonly => true,
   }
-
 }
-

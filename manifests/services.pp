@@ -9,6 +9,12 @@
 #
 # Configures specific services that do not require a full class of their own
 #
+# @param unwanted_packages
+#
+# @param wanted_packages
+#
+# @param disabled_services
+#
 class os_hardening::services (
   Array   $unwanted_packages = [],
   Array   $wanted_packages   = [],
@@ -35,6 +41,4 @@ class os_hardening::services (
       enable => false,
     }
   }
-
 }
-

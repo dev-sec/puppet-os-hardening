@@ -9,10 +9,11 @@
 #
 # Configures profile.conf.
 #
+# @param enable_core_dump
+#
 class os_hardening::profile (
   Boolean $enable_core_dump = false,
 ) {
-
   if $enable_core_dump == false {
     file { '/etc/profile.d/pinerolo_profile.sh':
       ensure => file,
@@ -26,6 +27,4 @@ class os_hardening::profile (
       ensure => absent,
     }
   }
-
 }
-

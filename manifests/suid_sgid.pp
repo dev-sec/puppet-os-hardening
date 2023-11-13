@@ -9,13 +9,20 @@
 #
 # Minimize SUID and SGID bits.
 #
+# @param whitelist
+#
+# @param blacklist
+#
+# @param remove_from_unknown
+#
+# @param dry_run_on_unknown
+#
 class os_hardening::suid_sgid (
   Array   $whitelist           = [],
   Array   $blacklist           = [],
   Boolean $remove_from_unknown = false,
   Boolean $dry_run_on_unknown  = false,
 ) {
-
   # suid and sgid blacklists and whitelists
   # ---------------------------------------
   # don't change values in the system_blacklist/whitelist
@@ -132,6 +139,4 @@ class os_hardening::suid_sgid (
     }
     File['/usr/local/sbin/remove_suids'] -> Exec['remove SUID/SGID bits from unknown']
   }
-
 }
-

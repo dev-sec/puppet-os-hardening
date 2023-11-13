@@ -9,6 +9,32 @@
 #
 # Configures PAM
 #
+# @param extra_user_paths
+#
+# @param umask
+#
+# @param maildir
+#
+# @param usergroups
+#
+# @param sys_uid_min
+#
+# @param sys_gid_min
+#
+# @param password_max_age
+#
+# @param password_min_age
+#
+# @param password_warn_age
+#
+# @param login_retries
+#
+# @param login_timeout
+#
+# @param chfn_restrict
+#
+# @param allow_login_without_home
+#
 class os_hardening::login_defs (
   Array   $extra_user_paths         = [],
   String  $umask                    = '027',
@@ -21,10 +47,9 @@ class os_hardening::login_defs (
   Integer $password_warn_age        = 7,
   Integer $login_retries            = 5,
   Integer $login_timeout            = 60,
-  String  $chfn_restrict            = '',
+  Optional[String] $chfn_restrict   = undef,
   Boolean $allow_login_without_home = false,
 ) {
-
   # prepare all variables
   $additional_user_paths = join($extra_user_paths, ':')
 
@@ -39,6 +64,4 @@ class os_hardening::login_defs (
     group   => 'root',
     mode    => '0444',
   }
-
 }
-

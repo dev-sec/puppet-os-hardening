@@ -8,11 +8,11 @@
 #
 # Manage Kernel Modules
 #
+# @param disable_filesystems
+#
 class os_hardening::modules (
-  Array $disable_filesystems =
-    ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf'],
+  Array $disable_filesystems = ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf'],
 ) {
-
   # Disable unused filesystems (os-10)
   file { '/etc/modprobe.d/dev-sec.conf':
     ensure  => file,
@@ -21,6 +21,4 @@ class os_hardening::modules (
     mode    => '0440',
     content => template('os_hardening/disable_fs.erb'),
   }
-
 }
-

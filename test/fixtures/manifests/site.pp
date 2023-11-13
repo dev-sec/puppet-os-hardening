@@ -1,12 +1,11 @@
 # FIX: create module conf dir
 
 file { '/etc/modprobe.d/':
-    ensure => directory,
+  ensure => directory,
 }
 
 # Apply hardening module
 -> class { 'os_hardening':
-    manage_cron_permissions => true,
-    system_environment      => 'docker',
+  manage_cron_permissions => true,
+  system_environment      => 'docker',
 }
-

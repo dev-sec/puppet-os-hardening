@@ -9,10 +9,11 @@
 #
 # Configures securetty.
 #
+# @param root_ttys
+#
 class os_hardening::securetty (
   Array $root_ttys = ['console','tty1','tty2','tty3','tty4','tty5','tty6'],
 ) {
-
   $ttys = join($root_ttys, "\n")
   file { '/etc/securetty':
     ensure  => file,
@@ -21,6 +22,4 @@ class os_hardening::securetty (
     group   => 'root',
     mode    => '0400',
   }
-
 }
-

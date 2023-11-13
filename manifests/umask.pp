@@ -9,12 +9,12 @@
 #
 # Configures system umask.
 #
+# @param system_umask
+#
 class os_hardening::umask (
-  $system_umask = undef,
+  Optional[Integer] $system_umask = undef,
 ) {
-
   if $system_umask != undef {
-
     file { '/etc/profile.d/umask.sh':
       ensure  => file,
       content => template('os_hardening/umask.sh.erb'),
