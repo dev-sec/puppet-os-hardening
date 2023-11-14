@@ -81,7 +81,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.0.0 < 8.0.0"
+      "version_requirement": ">= 6.0.0 < 9.0.0"
     }
   ],
   "template-url": "https://github.com/dev-sec/puppet-pdk-template#2.3.0",
