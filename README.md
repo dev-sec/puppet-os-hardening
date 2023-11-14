@@ -308,7 +308,7 @@ Your patches will automatically get tested via Github Actions. The test summary 
 You can reach us on several ways:
 
 * [@DevSecIO](https://twitter.com/DevSecIO) on Twitter
-* Mailing list for questions and general discussion: devsec@freelists.org [[subsribe]](https://www.freelists.org/list/devsec)
+* Mailing list for questions and general discussion: devsec@freelists.org [[subscribe]](https://www.freelists.org/list/devsec)
 * Mailing list with release announcements (no posts are possible here): devsec-announce@freelists.org [[subscribe]](https://www.freelists.org/list/devsec-announce)
 
 ## Contributors + Kudos
