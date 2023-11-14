@@ -2,6 +2,10 @@
 
 ## Changelog generator still broken, sorry
 
+### Changes in v2.4.0
+
+- Compability for Puppet version 8
+
 ### Changes in v2.3.3
 
 - fix CI: use docker driver for transferring files \(\#290\)
