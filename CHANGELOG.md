@@ -4,7 +4,7 @@
 
 ### Changes in v2.3.3
 
-- fix CI: use docker driver for transfering files \(\#290\)
+- fix CI: use docker driver for transferring files \(\#290\)
 - Disable new check 'os-14' for automated testing \(\#291\)
 - Restore ability to override /etc/shadow file permissions and group owner \(\#293\)
 - move to CentOS 8 Stream from quay.io \(\#295\)
@@ -290,7 +290,7 @@
 **Implemented enhancements:**
 
 - Use type checking by defining data types [\#114](https://github.com/dev-sec/puppet-os-hardening/pull/114) ([mcgege](https://github.com/mcgege))
-- Make paramater USERGROUPS\_ENAB in login.defs configurable [\#113](https://github.com/dev-sec/puppet-os-hardening/pull/113) ([mcgege](https://github.com/mcgege))
+- Make parameter USERGROUPS\_ENAB in login.defs configurable [\#113](https://github.com/dev-sec/puppet-os-hardening/pull/113) ([mcgege](https://github.com/mcgege))
 
 **Fixed bugs:**
 
@@ -422,7 +422,7 @@
 * improvement: add travis testing for lint+specs
 * improvement: use file resource instead of exec for access minimization
 * bugfix: fix typo dry_run_on_unkown -> dry_run_on_unknown
-* bugfix: don't run update initramfs on each run, only when requiered
+* bugfix: don't run update initramfs on each run, only when required
 * bugfix: deactivation of kernel module loading wasn't implemented
 * bugfix: ip_forwarding wasn't activated correctly
 
