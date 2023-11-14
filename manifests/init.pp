@@ -9,10 +9,149 @@
 #
 # Pulls in all manifests for os_hardening.
 #
+# @param system_environment
+#
+# @param pe_environment
+#
+# @param extra_user_paths
+#
+# @param umask
+#
+# @param maildir
+#
+# @param usergroups
+#
+# @param sys_uid_min
+#
+# @param sys_gid_min
+#
+# @param password_max_age
+#
+# @param password_min_age
+#
+# @param password_warn_age
+#
+# @param login_retries
+#
+# @param login_timeout
+#
+# @param chfn_restrict
+#
+# @param allow_login_without_home
+#
+# @param allow_change_user
+#
+# @param manage_home_permissions
+#
+# @param manage_log_permissions
+#
+# @param manage_cron_permissions
+#
+# @param manage_system_users
+#
+# @param ignore_users
+#
+# @param ignore_home_users
+#
+# @param ignore_restrict_log_dir
+#
+# @param ignore_files_in_folder_to_restrict
+#
+# @param folders_to_restrict
+#
+# @param ignore_max_files_warnings
+#
+# @param restrict_log_dir
+#
+# @param recurselimit
+#
+# @param passwdqc_enabled
+#
+# @param auth_retries
+#
+# @param auth_lockout_time
+#
+# @param passwdqc_options
+#
+# @param manage_pam_unix
+#
+# @param enable_pw_history
+#
+# @param pw_remember_last
+#
+# @param only_root_may_su
+#
+# @param root_ttys
+#
+# @param whitelist
+#
+# @param blacklist
+#
+# @param remove_from_unknown
+#
+# @param dry_run_on_unknown
+#
+# @param enable_module_loading
+#
+# @param load_modules
+#
+# @param disable_filesystems
+#
+# @param cpu_vendor
+#
+# @param icmp_ratelimit
+#
+# @param desktop_enabled
+#
+# @param enable_ipv4_forwarding
+#
+# @param manage_ipv6
+#
+# @param enable_ipv6
+#
+# @param enable_ipv6_forwarding
+#
+# @param arp_restricted
+#
+# @param arp_ignore_samenet
+#
+# @param enable_sysrq
+#
+# @param enable_core_dump
+#
+# @param enable_stack_protection
+#
+# @param enable_rpfilter
+#
+# @param rpfilter_loose
+#
+# @param enable_log_martians
+#
+# @param unwanted_packages
+#
+# @param wanted_packages
+#
+# @param disabled_services
+#
+# @param enable_grub_hardening
+#
+# @param grub_user
+#
+# @param grub_password_hash
+#
+# @param boot_without_password
+#
+# @param enable_sysctl_config
+#
+# @param system_umask
+#
+# @param shadow_group
+#
+# @param shadow_mode
+#
 class os_hardening (
   String            $system_environment                 = 'default',
   Boolean           $pe_environment                     = false,
-
   Array             $extra_user_paths                   = [],
   Optional[String]  $umask                              = undef,
   Optional[String]  $maildir                            = undef,
@@ -24,9 +163,8 @@ class os_hardening (
   Integer           $password_warn_age                  = 7,
   Integer           $login_retries                      = 5,
   Integer           $login_timeout                      = 60,
-  String            $chfn_restrict                      = '',
+  Optional[String]  $chfn_restrict                      = undef,
   Boolean           $allow_login_without_home           = false,
-
   Boolean           $allow_change_user                  = false,
   Boolean           $manage_home_permissions            = false,
   Boolean           $manage_log_permissions             = false,
@@ -36,13 +174,10 @@ class os_hardening (
   Array             $ignore_home_users                  = [],
   Array             $ignore_restrict_log_dir            = [],
   Array             $ignore_files_in_folder_to_restrict = [],
-  Array             $folders_to_restrict                =
-    ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
+  Array             $folders_to_restrict                = ['/usr/local/games','/usr/local/sbin','/usr/local/bin','/usr/bin','/usr/sbin','/sbin','/bin'],
   Boolean           $ignore_max_files_warnings          = false,
-  Array             $restrict_log_dir                   =
-    ['/var/log/'],
+  Array             $restrict_log_dir                   = ['/var/log/'],
   Integer           $recurselimit                       = 5,
-
   Boolean           $passwdqc_enabled                   = true,
   Integer           $auth_retries                       = 5,
   Integer           $auth_lockout_time                  = 600,
@@ -51,20 +186,14 @@ class os_hardening (
   Boolean           $enable_pw_history                  = true,
   Integer           $pw_remember_last                   = 5,
   Boolean           $only_root_may_su                   = false,
-
-  Array             $root_ttys                          =
-    ['console','tty1','tty2','tty3','tty4','tty5','tty6'],
-
+  Array             $root_ttys                          = ['console','tty1','tty2','tty3','tty4','tty5','tty6'],
   Array             $whitelist                          = [],
   Array             $blacklist                          = [],
   Boolean           $remove_from_unknown                = false,
   Boolean           $dry_run_on_unknown                 = false,
-
   Boolean           $enable_module_loading              = true,
   Array             $load_modules                       = [],
-  Array             $disable_filesystems                =
-    ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf'],
-
+  Array             $disable_filesystems                = ['cramfs','freevxfs','jffs2','hfs','hfsplus','squashfs','udf'],
   String            $cpu_vendor                         = 'intel',
   String            $icmp_ratelimit                     = '100',
   Boolean           $desktop_enabled                    = false,
@@ -80,24 +209,18 @@ class os_hardening (
   Boolean           $enable_rpfilter                    = true,
   Boolean           $rpfilter_loose                     = false,
   Boolean           $enable_log_martians                = true,
-
   Array             $unwanted_packages                  = [],
   Array             $wanted_packages                    = [],
   Array             $disabled_services                  = [],
-
   Boolean           $enable_grub_hardening              = false,
   String            $grub_user                          = 'root',
-  String            $grub_password_hash                 = '',
+  Optional[String]  $grub_password_hash                 = undef,
   Boolean           $boot_without_password              = true,
-
   Boolean           $enable_sysctl_config               = true,
-
   Optional[String]  $system_umask                       = undef,
-
   Optional[String]  $shadow_group                       = undef,
   Optional[String]  $shadow_mode                        = undef,
 ) {
-
   # Prepare
   # -------
 
@@ -112,7 +235,7 @@ class os_hardening (
   )
 
   # Defaults for specific platforms
-  case $::osfamily {
+  case $facts['os']['family'] {
     'Debian','Suse': {
       $def_umask = '027'
       $def_sys_uid_min = 100
@@ -150,7 +273,6 @@ class os_hardening (
   } else {
     $folders_to_restrict_int = $folders_to_restrict
   }
-
 
   # Install
   # -------

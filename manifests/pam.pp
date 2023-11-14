@@ -9,6 +9,22 @@
 #
 # Configures PAM
 #
+# @param passwdqc_enabled
+#
+# @param auth_retries
+#
+# @param auth_lockout_time
+#
+# @param passwdqc_options
+#
+# @param manage_pam_unix
+#
+# @param enable_pw_history
+#
+# @param pw_remember_last
+#
+# @param only_root_may_su
+#
 class os_hardening::pam (
   Boolean $passwdqc_enabled  = true,
   Integer $auth_retries      = 5,
@@ -19,15 +35,14 @@ class os_hardening::pam (
   Integer $pw_remember_last  = 5,
   Boolean $only_root_may_su  = false,
 ) {
-
   # prepare package names
-  case $::operatingsystem {
-    redhat, fedora: {
+  case $facts['os']['name'] {
+    'redhat', 'fedora': {
       $pam_ccreds = 'pam_ccreds'
       $pam_passwdqc = 'pam_passwdqc'
       $pam_cracklib = 'pam_cracklib'
     }
-    debian, ubuntu, cumuluslinux: {
+    'debian', 'ubuntu', 'cumuluslinux': {
       $pam_ccreds = 'libpam-ccreds'
       $pam_passwdqc = 'libpam-passwdqc'
       $pam_cracklib = 'libpam-cracklib'
@@ -40,13 +55,13 @@ class os_hardening::pam (
   }
 
   # remove ccreds if not necessary
-  package{ 'pam-ccreds':
+  package { 'pam-ccreds':
     ensure => absent,
     name   => $pam_ccreds,
   }
 
-  case $::operatingsystem {
-    debian, ubuntu, cumuluslinux: {
+  case $facts['os']['name'] {
+    'debian', 'ubuntu', 'cumuluslinux': {
       # configure paths
       $passwdqc_path = '/usr/share/pam-configs/passwdqc'
       $tally2_path   = '/usr/share/pam-configs/tally2'
@@ -77,7 +92,6 @@ class os_hardening::pam (
           require => Package['pam-passwdqc'],
           notify  => Exec['update-pam'],
         }
-
       } else {
         # deactivate passwdqc
 
@@ -154,6 +168,4 @@ class os_hardening::pam (
       # TODO: not supported warning
     }
   }
-
 }
-
