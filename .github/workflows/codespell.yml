@@ -10,3 +10,5 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   codespell:
     uses: "dev-sec/.github/.github/workflows/codespell.yml@main"
+    with:
+      skip: "./.git,./Gemfile"
