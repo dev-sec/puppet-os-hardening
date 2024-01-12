@@ -13,7 +13,7 @@
       "version_requirement": ">= 4.6.0 < 10.0.0"
     },
     {
-      "name": "hpuppet-augeasproviders_sysctl",
+      "name": "puppet-augeasproviders_sysctl",
       "version_requirement": ">= 2.2.1 < 4.0.0"
     }
   ],
