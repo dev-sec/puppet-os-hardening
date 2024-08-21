@@ -38,8 +38,8 @@ group :integration do
   gem "kitchen-inspec",       require: false
   gem "kitchen-puppet",       require: false
   gem "kitchen-sync",         require: false
-  gem "inspec",               require: false, source: "https://packagecloud.io/cinc-project/stable"
-  gem "inspec-core",          require: false, source: "https://packagecloud.io/cinc-project/stable"
+  gem "inspec",               require: false, source: "https://rubygems.cinc.sh"
+  gem "inspec-core",          require: false, source: "https://rubygems.cinc.sh"
   gem "chef-utils",           require: false, source: "https://rubygems.org/"
   gem "chef-config",          require: false, source: "https://rubygems.org/"
   gem "unf_ext",              require: false, source: "https://rubygems.org/"
