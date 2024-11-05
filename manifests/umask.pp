@@ -12,7 +12,7 @@
 # @param system_umask
 #
 class os_hardening::umask (
-  Optional[Integer] $system_umask = undef,
+  Optional[String] $system_umask = undef,
 ) {
   if $system_umask != undef {
     file { '/etc/profile.d/umask.sh':
