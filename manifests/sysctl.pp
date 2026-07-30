@@ -9,6 +9,8 @@
 #
 # Configures Kernel Parameters via sysctl
 #
+# @param system_environment
+#
 # @param enable_module_loading
 #
 # @param load_modules
@@ -44,6 +46,7 @@
 # @param enable_log_martians
 #
 class os_hardening::sysctl (
+  String  $system_environment      = 'default',
   Boolean $enable_module_loading   = true,
   Array   $load_modules            = [],
   String  $cpu_vendor              = 'intel',
@@ -200,68 +203,70 @@ class os_hardening::sysctl (
   sysctl { 'net.ipv4.conf.all.log_martians': value => String(bool2num($enable_log_martians)) }
   sysctl { 'net.ipv4.conf.default.log_martians': value => String(bool2num($enable_log_martians)) }
 
-  # System
-  # ------
+  if $system_environment != 'lxc' and $system_environment != 'docker' {
+    # System
+    # ------
 
-  # This settings controls how the kernel behaves towards module changes at runtime. Setting to 1 will disable module loading at runtime.
-  if $enable_module_loading == false {
-    sysctl { 'kernel.modules_disabled': value => '1' }
-  }
-  #kernel.modules_disabled = <%= @enable_module_loading ? 0 : 1 %>
+    # This settings controls how the kernel behaves towards module changes at runtime. Setting to 1 will disable module loading at runtime.
+    if $enable_module_loading == false {
+      sysctl { 'kernel.modules_disabled': value => '1' }
+    }
+    #kernel.modules_disabled = <%= @enable_module_loading ? 0 : 1 %>
 
-  # Magic Sysrq should be disabled, but can also be set to a safe value if so desired for physical machines. It can allow a safe reboot if
-  # the system hangs and is a 'cleaner' alternative to hitting the reset button.
-  # The following values are permitted:
-  #
-  # * **0** - disable sysrq
-  # * **1** - enable sysrq completely
-  # * **>1** - bitmask of enabled sysrq functions:
-  # * **2** - control of console logging level
-  # * **4** - control of keyboard (SAK, unraw)
-  # * **8** - debugging dumps of processes etc.
-  # * **16** - sync command
-  # * **32** - remount read-only
-  # * **64** - signalling of processes (term, kill, oom-kill)
-  # * **128** - reboot/poweroff
-  # * **256** - nicing of all RT tasks
-  if $enable_sysrq {
-    $limited_sysrq = String(4 + 16 + 32 + 64 + 128)
-    sysctl { 'kernel.sysrq': value => $limited_sysrq }
-  } else {
-    sysctl { 'kernel.sysrq': value => '0' }
-  }
+    # Magic Sysrq should be disabled, but can also be set to a safe value if so desired for physical machines. It can allow a safe reboot if
+    # the system hangs and is a 'cleaner' alternative to hitting the reset button.
+    # The following values are permitted:
+    #
+    # * **0** - disable sysrq
+    # * **1** - enable sysrq completely
+    # * **>1** - bitmask of enabled sysrq functions:
+    # * **2** - control of console logging level
+    # * **4** - control of keyboard (SAK, unraw)
+    # * **8** - debugging dumps of processes etc.
+    # * **16** - sync command
+    # * **32** - remount read-only
+    # * **64** - signalling of processes (term, kill, oom-kill)
+    # * **128** - reboot/poweroff
+    # * **256** - nicing of all RT tasks
+    if $enable_sysrq {
+      $limited_sysrq = String(4 + 16 + 32 + 64 + 128)
+      sysctl { 'kernel.sysrq': value => $limited_sysrq }
+    } else {
+      sysctl { 'kernel.sysrq': value => '0' }
+    }
 
-  # Enable stack protection by randomizing kernel va space
-  if $enable_stack_protection {
-    sysctl { 'kernel.randomize_va_space': value => '2' }
-  } else {
-    sysctl { 'kernel.randomize_va_space': value => '0' }
-  }
-  # Prevent core dumps with SUID. These are usually only needed by developers and may contain sensitive information.
-  sysctl { 'fs.suid_dumpable': value => String(bool2num($enable_core_dump)) }
+    # Enable stack protection by randomizing kernel va space
+    if $enable_stack_protection {
+      sysctl { 'kernel.randomize_va_space': value => '2' }
+    } else {
+      sysctl { 'kernel.randomize_va_space': value => '0' }
+    }
+    # Prevent core dumps with SUID. These are usually only needed by developers and may contain sensitive information.
+    sysctl { 'fs.suid_dumpable': value => String(bool2num($enable_core_dump)) }
 
-  # configure for module hardening
-  # if modules cannot be loaded at runtime, they must all
-  # be pre-configured in initramfs
-  if $enable_module_loading == false {
-    case $facts['os']['name'] {
-      'debian', 'ubuntu', 'cumuluslinux': {
-        file { '/etc/initramfs-tools/modules':
-          ensure  => file,
-          content => template('os_hardening/modules.erb'),
-          owner   => 'root',
-          group   => 'root',
-          mode    => '0400',
-          notify  => Exec['update-initramfs'],
+    # configure for module hardening
+    # if modules cannot be loaded at runtime, they must all
+    # be pre-configured in initramfs
+    if $enable_module_loading == false {
+      case $facts['os']['name'] {
+        'debian', 'ubuntu', 'cumuluslinux': {
+          file { '/etc/initramfs-tools/modules':
+            ensure  => file,
+            content => template('os_hardening/modules.erb'),
+            owner   => 'root',
+            group   => 'root',
+            mode    => '0400',
+            notify  => Exec['update-initramfs'],
+          }
+
+          exec { 'update-initramfs':
+            command     => '/usr/sbin/update-initramfs -u',
+            refreshonly => true,
+          }
         }
-
-        exec { 'update-initramfs':
-          command     => '/usr/sbin/update-initramfs -u',
-          refreshonly => true,
+        default: {
+          # TODO
         }
-      }
-      default: {
-        # TODO
       }
     }
   }

@@ -143,6 +143,8 @@
 #
 # @param enable_sysctl_config
 #
+# @param manage_container_network_sysctls
+#
 # @param system_umask
 #
 # @param shadow_group
@@ -217,6 +219,7 @@ class os_hardening (
   Optional[String]  $grub_password_hash                 = undef,
   Boolean           $boot_without_password              = true,
   Boolean           $enable_sysctl_config               = true,
+  Boolean           $manage_container_network_sysctls   = false,
   Optional[String]  $system_umask                       = undef,
   Optional[String]  $shadow_group                       = undef,
   Optional[String]  $shadow_mode                        = undef,
@@ -227,11 +230,14 @@ class os_hardening (
   # system environment configuration
   # there may be differences when using kvm/lxc vs metal
 
-  # sysctl configuration doesn't work in docker:
+  # Container sysctl management is opt-in because host-level settings cannot
+  # be managed safely from LXC and Docker.
   $configure_sysctl = (
-    $system_environment != 'lxc' and
-    $system_environment != 'docker' and
-    $enable_sysctl_config
+    $enable_sysctl_config and (
+      $system_environment != 'lxc' and
+      $system_environment != 'docker' or
+      $manage_container_network_sysctls
+    )
   )
 
   # Defaults for specific platforms
@@ -339,6 +345,7 @@ class os_hardening (
 
   if $configure_sysctl {
     class { 'os_hardening::sysctl':
+      system_environment      => $system_environment,
       enable_module_loading   => $enable_module_loading,
       load_modules            => $load_modules,
       cpu_vendor              => $cpu_vendor,

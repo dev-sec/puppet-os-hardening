@@ -172,6 +172,48 @@ describe 'os_hardening::sysctl' do
           is_expected.to contain_sysctl('net.ipv4.icmp_ratelimit').with_value('10')
         end
       end
+
+      context 'in an opted-in LXC container' do
+        let(:params) do
+          {
+            system_environment: 'lxc',
+            enable_ipv6: true,
+            enable_module_loading: false,
+          }
+        end
+
+        it do
+          is_expected.to contain_sysctl('net.ipv4.ip_forward')
+          is_expected.to contain_sysctl('net.ipv6.conf.all.disable_ipv6')
+          is_expected.not_to contain_sysctl('kernel.sysrq')
+          is_expected.not_to contain_sysctl('kernel.randomize_va_space')
+          is_expected.not_to contain_sysctl('kernel.modules_disabled')
+          is_expected.not_to contain_sysctl('fs.suid_dumpable')
+          is_expected.not_to contain_file('/etc/initramfs-tools/modules')
+          is_expected.not_to contain_exec('update-initramfs')
+        end
+      end
+
+      context 'in an opted-in Docker container' do
+        let(:params) do
+          {
+            system_environment: 'docker',
+            enable_ipv6: true,
+            enable_module_loading: false,
+          }
+        end
+
+        it do
+          is_expected.to contain_sysctl('net.ipv4.ip_forward')
+          is_expected.to contain_sysctl('net.ipv6.conf.all.disable_ipv6')
+          is_expected.not_to contain_sysctl('kernel.sysrq')
+          is_expected.not_to contain_sysctl('kernel.randomize_va_space')
+          is_expected.not_to contain_sysctl('kernel.modules_disabled')
+          is_expected.not_to contain_sysctl('fs.suid_dumpable')
+          is_expected.not_to contain_file('/etc/initramfs-tools/modules')
+          is_expected.not_to contain_exec('update-initramfs')
+        end
+      end
     end
   end
 end
